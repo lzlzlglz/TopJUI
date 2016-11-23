@@ -33,6 +33,7 @@ module.exports = function(grunt) {
      },
      uglify: {
          options: {
+            banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
          },
          dist: {
              files: {
@@ -47,9 +48,8 @@ module.exports = function(grunt) {
          compress: {
              files: {
                  'assets/css/default.css': [
-                     "css/global.css",
-                     "css/pops.css",
-                     "css/index.css"
+                     "themes/default/css/style.css",
+                     "themes/default/css/bootstrap-ext.css"
                  ]
              }
          }
