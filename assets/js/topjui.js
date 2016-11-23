@@ -3529,7 +3529,7 @@ $.extend($.fn.datagrid.methods, {
                 }, 400);
             },
             onShowPanel: function () {
-
+                $(this).combobox("reload", options.url);
             },
             onChange: function (newValue, oldValue) {
                 if (newValue == null) {
