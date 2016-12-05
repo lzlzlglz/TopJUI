@@ -77,11 +77,18 @@
 								keObj = options.editor;
 							}
 							for (var i = 0; i < keObj.length; i++) {
+								var editorType = keObj[i]["type"];
 								var editorId = keObj[i]["id"];
 								var editorField = keObj[i]["field"];
-								UE.getEditor(editorId).ready(function () {
-									UE.getEditor(editorId).setContent(data[editorField]);
-								});
+								if(editorType == "kindeditor") {
+									getTabWindow().$("iframe").each(function(i){
+										this.contentWindow.document.body.innerHTML = html_decode(data[editorField]);
+									});
+								} else {
+									UE.getEditor(editorId).ready(function () {
+										UE.getEditor(editorId).setContent(data[editorField]);
+									});
+								}
 							}
 						}
 					});

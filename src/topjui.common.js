@@ -113,7 +113,7 @@ function bindMenuClickEvent($element, options) {
             for (var i = 0; i < options.dialog.editor.length; i++) {
                 if (i != options.dialog.editor.length - 1)
                     dh = ",";
-                editorStr += '{id:\'' + options.dialog.editor[i].id + '\',field:\'' + options.dialog.editor[i].field + '\'}' + dh;
+                editorStr += '{id:\'' + options.dialog.editor[i].id + '\',type:\'' + options.dialog.editor[i].type + '\',field:\'' + options.dialog.editor[i].field + '\'}' + dh;
             }
             extendDoc += ',editor:[' + editorStr + ']';
         }

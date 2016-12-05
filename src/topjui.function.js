@@ -103,6 +103,15 @@ function bytesToSize(bytes, precision) {
  * @param url
  * @returns {*}
  */
+function appendUrlParam(url, paramValue) {
+    return url.indexOf("?") == -1 ? url + "?" + paramValue : url + "&" + paramValue;
+}
+
+/**
+ * 当前url后面追加来源url中的参数
+ * @param url
+ * @returns {*}
+ */
 function appendSourceUrlParam(url) {
     return url.indexOf("?") == -1 ? url + location.search : url + location.search.replace("?", "&");
 }

@@ -1,6 +1,6 @@
 {
-  "name": "topjui.com",
-  "version": "v0.1.0",
+  "name": "TopJUI前端框架，使用html调用组件功能的EasyUI极速开发框架 http://www.topjui.com",
+  "version": "v1.0.0",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "~0.5.1",

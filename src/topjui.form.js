@@ -277,9 +277,17 @@
             panelHeight: options.panelHeight,
             formatter: options.formatter,
             required: options.required,
-            onSelect: function (record) {
+            onChange: function(newValue, oldValue) {
+                //重载级联combobox内容
+                if (typeof options.childCombobox == "object") {
+                    var url = appendUrlParam(options.childCombobox.url , "newValue=" + newValue);
+                    $('#' + options.childCombobox.id).combobox('reload', url);
+                }
+            },
+            onSelect: function(record) {
+                var $formObj = $(this).closest('form');
+                
                 if (options.param) {
-                    var $formObj = $(this).closest('form');
                     var jsonData = getSelectedRowJson(options.param, record);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }

@@ -96,29 +96,33 @@
 
             if (options.id) $element.attr('id', options.id);
 
-            setTimeout(function(){
-                UE.delEditor(options.id);
-                <!-- 实例化编辑器 -->
-                var ue = UE.getEditor(options.id, {
-                    toolbars: [[
-                        'fullscreen', 'source', '|', 'undo', 'redo', '|',
-                        'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-                        'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-                        'paragraph', 'fontfamily', 'fontsize', '|',
-                        'indent', '|',
-                        'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
-                        'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-                        'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'insertcode', '|',
-                        'horizontal', 'spechars', 'wordimage', '|',
-                        'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',
-                        'preview', 'drafts'
-                    ]],
-                    initialFrameWidth: 700,
-                    autoHeightEnabled: true,
-                    autoFloatEnabled: true,
-                    readonly: options.readonly ? true : false
-                });
-            }, 10);
+            UE.delEditor(options.id);
+            <!-- 实例化编辑器 -->
+            var toolbars = [[
+                    'fullscreen', 'source', '|', 'undo', 'redo', '|',
+                    'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                    'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                    'paragraph', 'fontfamily', 'fontsize', '|',
+                    'indent', '|',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+                    'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                    'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'insertcode', '|',
+                    'horizontal', 'spechars', 'wordimage', '|',
+                    'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',
+                    'preview', 'drafts'
+                ]];
+            var simpleToolbars = [[
+                    'fullscreen', 'source', '|', 'undo', 'redo', '|',
+                    'bold', 'italic', 'underline', 'fontborder', 'strikethrough'
+                ]];
+            var ue = UE.getEditor(options.id, {
+                toolbars: options.mode == "simple" ? toolbars : simpleToolbars,
+                initialFrameWidth: 700,
+                autoHeightEnabled: true,
+                autoFloatEnabled: true,
+                readonly: options.readonly ? true : false
+            });
+
         });
 
         $('[data-toggle="topjui-kindeditor"]').each(function (i) {
@@ -171,11 +175,14 @@
                 module: options.module ? options.module : '未设置',
                 category: options.category ? options.category : 'default',
                 width: options.width ? options.width + 'px' : '700px',
-                height: options.height ? options.height + 'px' : '300px',
+                height: options.height ? options.height + 'px' : '600px',
                 pasteType: options.pasteType,
                 minHeight: options.minHeight || 150,
-                autoHeightMode: options.autoHeight || false,
-                items: options.mode == "simple" ? ['source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'insertfile', 'link'] : KindEditor.options.items,
+                autoHeightMode: options.autoHeight || true,
+                afterCreate : function() {
+                    //this.loadPlugin('autoheight');
+                },
+                items: options.model == "simple" ? ['source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'insertfile', 'link'] : KindEditor.options.items,
                 uploadJson: options.uploadJson || ctx + '/system/attachment/kindeditorUpload',
                 fileManagerJson: options.fileManagerJson || ctx + '/static/kindeditor/4.1.5/jsp/file_manager_json.jsp',
                 allowFileManager: options.allowFileManager || true,
@@ -187,7 +194,7 @@
                 cssPath: [
                     ctx + '/static/kindeditor/4.1.5/editor-content.css',
                     ctx + '/static/kindeditor/4.1.5/plugins/code/prettify.css'
-                ],
+                ],                
                 afterBlur: function () {
                     this.sync()
                 }

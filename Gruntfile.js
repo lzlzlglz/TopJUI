@@ -28,22 +28,24 @@ module.exports = function(grunt) {
                  "src/topjui.treegrid.js",
                  "src/topjui.window.js"
              ],
-             dest: "assets/js/topjui.js"
+             //dest: 'assets/js/topjui.js'
+             dest: 'E:/wwwroot/Java/ewsdERP/src/main/webapp/static/topjui/ext/js/topjui.js'
          }
      },
      uglify: {
          options: {
-            banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            banner: '/* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
          },
          dist: {
              files: {
-                 'assets/js/topjui.min.js': 'assets/js/topjui.js'
+                 //'assets/js/topjui.min.js': 'assets/js/topjui.js',
+                 'E:/wwwroot/Java/ewsdERP/src/main/webapp/static/topjui/ext/js/topjui.min.js': 'E:/wwwroot/Java/ewsdERP/src/main/webapp/static/topjui/ext/js/topjui.js'
              }
          }
      },
      cssmin: {
          options: {
-             keepSpecialComments: 0
+             keepSpecialComments: 0 /* 删除所有注释 */
          },
          compress: {
              files: {
