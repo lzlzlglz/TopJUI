@@ -29,7 +29,7 @@ module.exports = function(grunt) {
                  "src/topjui.window.js"
              ],
              //dest: 'assets/js/topjui.js'
-             dest: 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/ext/js/topjui.js'
+             dest: 'E:/wwwroot/Java/ewsdERP/src/main/webapp/static/topjui/ext/js/topjui.js'
          }
      },
      uglify: {
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
          dist: {
              files: {
                  //'assets/js/topjui.min.js': 'assets/js/topjui.js',
-                 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/ext/js/topjui.min.js': 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/ext/js/topjui.js'
+                 'E:/wwwroot/Java/ewsdERP/src/main/webapp/static/topjui/ext/js/topjui.min.js': 'E:/wwwroot/Java/ewsdERP/src/main/webapp/static/topjui/ext/js/topjui.js'
              }
          }
      },

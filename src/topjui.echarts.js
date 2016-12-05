@@ -1,4 +1,4 @@
-+function ($) {
+(function ($) {
     'use strict';
 
     $(document).on(topJUI.eventType.initUI.echarts, function (e) {
@@ -94,7 +94,7 @@
     });
 
 
-}(jQuery);
+})(jQuery);
 
 $(function () {
     // 页面加载完成后触发echarts图表加载事件
