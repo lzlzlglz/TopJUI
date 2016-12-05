@@ -98,25 +98,21 @@
 
             UE.delEditor(options.id);
             <!-- 实例化编辑器 -->
-            var toolbars = [[
-                    'fullscreen', 'source', '|', 'undo', 'redo', '|',
-                    'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-                    'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-                    'paragraph', 'fontfamily', 'fontsize', '|',
-                    'indent', '|',
-                    'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
-                    'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-                    'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'insertcode', '|',
-                    'horizontal', 'spechars', 'wordimage', '|',
-                    'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',
-                    'preview', 'drafts'
-                ]];
-            var simpleToolbars = [[
-                    'fullscreen', 'source', '|', 'undo', 'redo', '|',
-                    'bold', 'italic', 'underline', 'fontborder', 'strikethrough'
-                ]];
+            var toolbars = [['fullscreen', 'source', '|', 'undo', 'redo', '|',
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 
+                'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 
+                'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|','paragraph', 'fontfamily', 'fontsize', '|',
+                'indent', '|','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                'simpleupload', 'insertimage', 'emotion', 'insertvideo', 'music', 'attachment', 'map', 'insertcode', '|',
+                'horizontal', 'spechars', 'wordimage', '|',
+                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 
+                'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',
+                'preview', 'drafts']];
+            var simpleToolbars = [["fullscreen", "source", "undo", "redo", "bold", "italic", "underline", "fontborder", "strikethrough","superscript", "subscript", "insertunorderedlist", "insertorderedlist", "justifyleft", "justifycenter","justifyright", "justifyjustify", "removeformat", "simpleupload", "snapscreen", "emotion", "attachment","link", "unlink", "indent", "lineheight", "autotypeset"]];
             var ue = UE.getEditor(options.id, {
-                toolbars: options.mode == "simple" ? toolbars : simpleToolbars,
+                toolbars: options.mode == "simple" ? simpleToolbars : toolbars,
                 initialFrameWidth: 700,
                 autoHeightEnabled: true,
                 autoFloatEnabled: true,
@@ -250,10 +246,7 @@
             //http://www.cnblogs.com/stupage/p/3145353.html
             //重新实例化一个编辑器，上传独立使用，防止在上面的editor编辑器中显示上传的图片或者文件
             var ueUpload = UE.getEditor(options.ueContainerId, {
-                toolbars: [["fullscreen", "source", "undo", "redo", "bold", "italic", "underline", "fontborder", "strikethrough",
-                    "superscript", "subscript", "insertunorderedlist", "insertorderedlist", "justifyleft", "justifycenter",
-                    "justifyright", "justifyjustify", "removeformat", "simpleupload", "snapscreen", "emotion", "attachment",
-                    "link", "unlink", "indent", "lineheight", "autotypeset"]]
+                toolbars: [["insertimage", "attachment"]]
             });
             ueUpload.ready(function () {
                 //设置编辑器不可用
