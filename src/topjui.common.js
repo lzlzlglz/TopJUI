@@ -27,6 +27,27 @@ function hideMask() {
     $(".datagrid-mask-msg").remove();
 }
 
+//在主框架内打开Tab页，如点击左边的菜单打开Tab窗口
+function addTab(params) {
+    var iframe = '<iframe src="' + appendUrlParam(params.url, "themeName=" + $.cookie("easyuiThemeName")) + '" scrolling="auto" frameborder="0" style="width:100%;height:99.5%;"></iframe>';
+    var t = $('#index_tabs');
+    var opts = {
+        id: "test",
+        title: params.text,
+        closable: typeof(params.closable) != "undefined" ? params.closable : true,
+        iconCls: params.iconCls ? params.iconCls : 'icon-page',
+        content: iframe,
+        //href: params.url,
+        border: false,
+        fit: true
+        //cls: 'leftBottomBorder'
+    };
+    if (t.tabs('exists', opts.title)) {
+        t.tabs('select', opts.title);
+    } else {
+        t.tabs('myAdd', opts);
+    }
+}
 
 addParentTab = function (options) {
 
