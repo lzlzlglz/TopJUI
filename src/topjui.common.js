@@ -285,7 +285,7 @@ function bindMenuClickEvent($element, options) {
         });
     } else if (options.clickEvent == "export") {
         defaults = {
-            iconCls: 'icon-table-go'
+            iconCls: 'icon-table_go'
         }
         options = $.extend(defaults, options);
 
@@ -294,7 +294,7 @@ function bindMenuClickEvent($element, options) {
         });
     } else if (options.clickEvent == "import") {
         defaults = {
-            iconCls: 'icon-table-go',
+            iconCls: 'icon-table_go',
             href: '/system/excel/excelImport'
         }
         options = $.extend(defaults, options);

@@ -12,7 +12,6 @@ module.exports = function(grunt) {
                  "src/topjui.combotree.js",
                  "src/topjui.common.js",
                  "src/topjui.core.js",
-                 "src/topjui.datagrid.js",
                  "src/topjui.datagrid2.js",
                  "src/topjui.datagrid-filter.js",
                  "src/topjui.dialog.js",
@@ -29,7 +28,7 @@ module.exports = function(grunt) {
                  "src/topjui.window.js"
              ],
              //dest: 'assets/js/topjui.js'
-             dest: 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/ext/js/topjui.js'
+             dest: 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/core/topjui.js'
          }
      },
      uglify: {
@@ -39,7 +38,7 @@ module.exports = function(grunt) {
          dist: {
              files: {
                  //'assets/js/topjui.min.js': 'assets/js/topjui.js',
-                 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/ext/js/topjui.min.js': 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/ext/js/topjui.js'
+                 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/core/topjui.min.js': 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/core/topjui.js'
              }
          }
      },
@@ -49,9 +48,9 @@ module.exports = function(grunt) {
          },
          compress: {
              files: {
-                 'assets/css/default.css': [
-                     "themes/default/css/style.css",
-                     "themes/default/css/bootstrap-ext.css"
+                 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/css/style.css': [
+                     "themes/css/style.css",
+                     "themes/css/bootstrap-ext.css"
                  ]
              }
          }

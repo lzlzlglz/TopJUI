@@ -305,7 +305,7 @@ data-columns='[{"field":"id","title":"ID","align":"center"},{"field":"title","ti
             }, {
             	id: 'exportButton',
                 text: '导出',
-                iconCls: 'icon-table-go',
+                iconCls: 'icon-table_go',
                 handler: function () {
                 	var date = new Date();
                 	var excelTitle = parent.$('#index_tabs').tabs('getSelected').panel('options').title+"_导出数据_"+date.toLocaleString();

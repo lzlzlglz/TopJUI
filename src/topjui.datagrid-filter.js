@@ -257,7 +257,7 @@ data-columns='[{"field":"id","title":"ID","align":"center"},{"field":"title","ti
                 handler: function () {
                     MoveDown();
                 }
-            }],
+            }]
 	    });
 		
 		//上移

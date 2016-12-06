@@ -87,6 +87,7 @@ table td {
     max-width: 131px;
     text-align: right;
     padding: 0 2px 0 2px;
+    font-weight: bold;
 }
 
 .editTable .divider {
