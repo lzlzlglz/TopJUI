@@ -38,7 +38,7 @@ function addTab(params) {
         iconCls: params.iconCls ? params.iconCls : 'icon-page',
         content: iframe,
         //href: params.url,
-        border: false,
+        border: params.border || false,
         fit: true
         //cls: 'leftBottomBorder'
     };
