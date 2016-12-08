@@ -326,6 +326,39 @@
                 getTabWindow().$('#' + options.id).iDatagrid2(options);
             });
 
+            getTabWindow().$('[data-toggle="topjui-edatagrid"]').each(function (i) {
+                var $element = $(this);
+                var options = getOptionsJson($element);
+
+                var frozenColumns = $element.find("thead:first")[0];
+                //console.log(frozenColumns.getAttribute("frozen"));
+                if ($(frozenColumns).attr("frozen")) {
+                    var frozenColumns = [];
+                    $element.find("thead:first th").each(function (i) {
+                        frozenColumns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
+                    });
+                    options.frozenColumns = [frozenColumns];
+
+                    var columns = [];
+                    $element.find("thead:eq(1) th").each(function (i) {
+                        columns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
+                    });
+                } else {
+                    var columns = [];
+                    $element.find("thead th").each(function (i) {
+                        columns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
+                    });
+                }
+                options.columns = [columns];
+
+                var kindEditor = [];
+
+                //console.log(op.join());
+
+                $element.attr('id', options.id);
+                getTabWindow().$('#' + options.id).iEdatagrid(options);
+            });
+
             getTabWindow().$('[data-toggle="topjui-treegrid"]').each(function (i) {
                 var $element = $(this);
                 var options = getOptionsJson($element);

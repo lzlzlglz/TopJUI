@@ -16,6 +16,7 @@ module.exports = function(grunt) {
                  "src/topjui.datagrid-filter.js",
                  "src/topjui.dialog.js",
                  "src/topjui.dialog2.js",
+                 "src/topjui.edatagrid.js",
                  "src/topjui.extend.js",
                  "src/topjui.form.js",
                  "src/topjui.function.js",
