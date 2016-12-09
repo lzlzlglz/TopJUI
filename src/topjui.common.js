@@ -842,6 +842,7 @@ function filterHandler(options) {
     //console.log($(".l-btn-text").index($(".l-btn-text:contains('查询')")));
     var gridId;
     if (typeof options.grid == "object") {
+        options.filterOption = [];
         if (options.grid.type == "datagrid") {
             gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {

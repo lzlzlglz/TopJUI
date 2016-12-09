@@ -77,7 +77,7 @@
             addDialogId: '#editDialog',
             editDialogId: '#editDialog',
             gridParam: 'uuid'
-    }
+        }
 
         var options = $.extend(defaults, options);
 
@@ -88,7 +88,7 @@
         options.saveUrl = options.saveUrl ? options.saveUrl : controllerUrl + "save";
         options.editDialogHref = options.editDialogHref ? options.editDialogHref : controllerUrl + "edit";
         options.updateUrl = options.updateUrl ? options.updateUrl : controllerUrl + "update";
-        options.deleteUrl = options.deleteUrl ? options.deleteUrl : controllerUrl + "delete";
+        options.destroyUrl = options.destroyUrl ? options.destroyUrl : controllerUrl + "delete";
 
         $(this).edatagrid({
             filterBtnIconCls: 'icon-filter',
@@ -119,9 +119,9 @@
             checkOnSelect: options.checkOnSelect,
             selectOnCheck: options.selectOnCheck,
             //bodyCls : "leftBottomBorder",
-            saveUrl: options.saveUrl ? options.saveUrl : getUrl("controller") + "rowSave",
-            updateUrl: options.updateUrl ? options.updateUrl : getUrl("controller") + "rowUpdate",
-            destroyUrl: options.destroyUrl ? options.destroyUrl : getUrl("controller") + "rowDelete",
+            saveUrl: options.saveUrl,
+            updateUrl: options.updateUrl,
+            destroyUrl: options.destroyUrl,
             onBeforeLoad: function (param) {
 
             },

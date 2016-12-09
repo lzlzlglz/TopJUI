@@ -155,6 +155,36 @@
                         })(i);
                     }
                 }
+
+                if (typeof options.childTabs == "object") {
+                    var $tabsElement = $('#'+options.childTabs.id);
+                    var $tabsOptions = $tabsElement.tabs('options');
+                    var index = $tabsElement.tabs('getTabIndex',$tabsElement.tabs('getSelected'));
+                    var tabsComponent = $tabsOptions.component;
+                    var $element = $("#" + tabsComponent[index].id);
+
+                    var newQueryParams = {};
+
+                    newQueryParams = getSelectedRowJson(options.childTabs.param, row);
+
+                    if (tabsComponent[index]["type"] == "datagrid") {
+                        //获得表格原有的参数
+                        var queryParams = $element.datagrid('options').queryParams;
+                        $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                        $element.datagrid('load');
+                    } else if (tabsComponent[index]["type"] == "treegrid") {
+                        //获得表格原有的参数
+                        var queryParams = $element.treegrid('options').queryParams;
+                        $element.treegrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                        $element.treegrid('load');
+                    } else if (tabsComponent[index]["type"] == "panel") {
+                        var panelOptions = $element.panel('options');
+                        var oriHref = panelOptions.href;
+                        var newHref = replaceUrlParamValueByBrace(panelOptions.href, row);
+                        $element.panel('refresh', newHref);
+                        panelOptions.href = oriHref;
+                    }
+                }
             }
 
         });
@@ -167,7 +197,7 @@
     }
 
     /**
-     * @author 孙宇
+     * @author 小策一喋
      * @requires jQuery,EasyUI
      * 为datagrid、treegrid增加表头菜单，用于显示或隐藏列，注意：冻结列不在此菜单中
      */
