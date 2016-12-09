@@ -56,8 +56,8 @@
                         var $parentGrid = $('#' + panelOptions.parentGrid.id);
                         var selectedRow = $parentGrid.datagrid("getSelected");
                         if (selectedRow) {
-                            var href = replaceUrlParamValueByBrace(panelOptions.href, selectedRow);
-                            $element.panel('refresh', href);
+                            var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, selectedRow);
+                            $element.panel('refresh', newHref);
                         }
                     }
                 }

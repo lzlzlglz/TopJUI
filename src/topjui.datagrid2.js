@@ -179,10 +179,8 @@
                         $element.treegrid('load');
                     } else if (tabsComponent[index]["type"] == "panel") {
                         var panelOptions = $element.panel('options');
-                        var oriHref = panelOptions.href;
-                        var newHref = replaceUrlParamValueByBrace(panelOptions.href, row);
+                        var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, row);
                         $element.panel('refresh', newHref);
-                        panelOptions.href = oriHref;
                     }
                 }
             }
