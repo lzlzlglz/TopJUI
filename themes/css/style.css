@@ -78,11 +78,11 @@ ul {
 
 table td {
     font-size: 13px;
-    padding: 0 2px 0 2px;
+    padding: 2px;
 }
 
 .editTable .label {
-    font-size: 13px;
+    font-size: 12px;
     min-width: 131px;
     max-width: 131px;
     text-align: right;
