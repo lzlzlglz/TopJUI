@@ -16,7 +16,7 @@ $(function () {
     $('#index_tabs').tabs({
         onContextMenu: function (e, title, index) {
             e.preventDefault();
-            if (index > 0) {
+            if (index >= 0) {
                 $('#mm').menu('show', {
                     left: e.pageX,
                     top: e.pageY

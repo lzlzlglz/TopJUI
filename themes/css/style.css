@@ -4,16 +4,16 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font: 12px/normal "Lucida Grande, Lucida Sans Unicode, Hiragino Sans GB, WenQuanYi Micro Hei, Verdana, Aril, sans-serif, microsoft yahei";
 }
 
-/**
- * 覆盖easyui样式开始
- */
+/* 覆盖easyui样式开始 */
 .tree-node {
     height: 20px;
 }
 
-/**
- * 覆盖easyui样式结束
- */
+/* 解决iframe右侧总出两个滚条 http://blog.csdn.net/isitman/article/details/53083640 */
+#index_tabs .tabs-panels>.panel>.panel-body {
+    overflow: hidden;
+}
+/* 覆盖easyui样式结束 */
 
 .red {
     color: red !important;

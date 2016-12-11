@@ -29,10 +29,10 @@ function hideMask() {
 
 //在主框架内打开Tab页，如点击左边的菜单打开Tab窗口
 function addTab(params) {
-    var iframe = '<iframe src="' + params.url + '" scrolling="auto" frameborder="0" style="width:100%;height:99.5%;"></iframe>';
+    var iframe = '<iframe src="' + params.url + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
     var t = $('#index_tabs');
     var opts = {
-        id: "test",
+        id: Math.random(),
         title: params.text,
         closable: typeof(params.closable) != "undefined" ? params.closable : true,
         iconCls: params.iconCls ? params.iconCls : 'icon-page',
