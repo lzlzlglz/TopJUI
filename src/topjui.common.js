@@ -210,7 +210,7 @@ function bindMenuClickEvent($element, options) {
             } else if (options.dialog.url) {
                 openDialogAndloadDataByUrl(options);
             } else {
-                if(options.grid.uncheckedMsg) {
+                if (options.grid.uncheckedMsg) {
                     var rows = getCheckedRowsData(options.grid.type, options.grid.id);
                     if (rows.length == 0) {
                         $.messager.alert(
@@ -1300,3 +1300,24 @@ function getMultiRowsFieldValue(rowsData, field) {
     }
     return fieldArr.join(',');
 }
+
+/**
+ * 将表单数据序列化为json数据
+ * $("#form").serializeObject();
+ * @returns {{}}
+ */
+$.fn.serializeObject = function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};

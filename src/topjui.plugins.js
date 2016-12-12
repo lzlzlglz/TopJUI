@@ -16,7 +16,7 @@
                 options.buttonText = '禁止';
             }
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iTextbox(options);
         });
 
@@ -24,7 +24,7 @@
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iFilebox(options);
         });
 
@@ -32,7 +32,7 @@
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iNumberspinner(options);
         });
 
@@ -40,7 +40,7 @@
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iNumberbox(options);
         });
 
@@ -48,7 +48,7 @@
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iDatebox(options);
         });
 
@@ -56,7 +56,7 @@
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iCombobox(options);
         });
 
@@ -64,7 +64,7 @@
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iCombotree(options);
         });
 
@@ -78,7 +78,7 @@
             if (options.height == null)
                 options.height = 66;
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iTextbox(options);
         });
 
@@ -86,7 +86,7 @@
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iAutoComplete2(options);
         });
 
@@ -94,23 +94,23 @@
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
 
             UE.delEditor(options.id);
             <!-- 实例化编辑器 -->
             var toolbars = [['fullscreen', 'source', '|', 'undo', 'redo', '|',
-                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 
-                'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat',
+                'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist',
                 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|','paragraph', 'fontfamily', 'fontsize', '|',
-                'indent', '|','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|', 'paragraph', 'fontfamily', 'fontsize', '|',
+                'indent', '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
                 'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
                 'simpleupload', 'insertimage', 'emotion', 'insertvideo', 'music', 'attachment', 'map', 'insertcode', '|',
                 'horizontal', 'spechars', 'wordimage', '|',
-                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 
+                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol',
                 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',
                 'preview', 'drafts']];
-            var simpleToolbars = [["fullscreen", "source", "undo", "redo", "bold", "italic", "underline", "fontborder", "strikethrough","superscript", "subscript", "insertunorderedlist", "insertorderedlist", "justifyleft", "justifycenter","justifyright", "justifyjustify", "removeformat", "simpleupload", "snapscreen", "emotion", "attachment","link", "unlink", "indent", "lineheight", "autotypeset"]];
+            var simpleToolbars = [["fullscreen", "source", "undo", "redo", "bold", "italic", "underline", "fontborder", "strikethrough", "superscript", "subscript", "insertunorderedlist", "insertorderedlist", "justifyleft", "justifycenter", "justifyright", "justifyjustify", "removeformat", "simpleupload", "snapscreen", "emotion", "attachment", "link", "unlink", "indent", "lineheight", "autotypeset"]];
             var ue = UE.getEditor(options.id, {
                 toolbars: options.mode == "simple" ? simpleToolbars : toolbars,
                 initialFrameWidth: 700,
@@ -175,7 +175,7 @@
                 pasteType: options.pasteType,
                 minHeight: options.minHeight || 150,
                 autoHeightMode: options.autoHeight || true,
-                afterCreate : function() {
+                afterCreate: function () {
                     //this.loadPlugin('autoheight');
                 },
                 items: options.model == "simple" ? ['source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'insertfile', 'link'] : KindEditor.options.items,
@@ -190,7 +190,7 @@
                 cssPath: [
                     ctx + '/static/kindeditor/4.1.5/editor-content.css',
                     ctx + '/static/kindeditor/4.1.5/plugins/code/prettify.css'
-                ],                
+                ],
                 afterBlur: function () {
                     this.sync()
                 }
@@ -241,7 +241,7 @@
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
 
             //http://www.cnblogs.com/stupage/p/3145353.html
             //重新实例化一个编辑器，上传独立使用，防止在上面的editor编辑器中显示上传的图片或者文件
@@ -460,9 +460,9 @@
                                     return;
                                 }
                                 var pkName = 'uuid';
-                                if(options.grid.pkName)
+                                if (options.grid.pkName)
                                     pkName = options.grid.pkName;
-                                options.ajaxData += '&'+pkName+'=' + getMultiRowsFieldValue(rows, pkName) + '&'+pkName+'s=' + getMultiRowsFieldValue(rows, pkName);
+                                options.ajaxData += '&' + pkName + '=' + getMultiRowsFieldValue(rows, pkName) + '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
                             }
                             // 执行ajax动作
                             getTabWindow().doAjax(options);

@@ -31,8 +31,8 @@ function selectAllOptions(selector) {
  * 转换传入的回调函数字条串，并执行
  * @param functionStr
  */
-function executeCallBackFun(functionStr, options){
-    if(functionStr != undefined) {
+function executeCallBackFun(functionStr, options) {
+    if (functionStr != undefined) {
         var handlerBeforeArr = functionStr.split("|");
         var handlerBeforeParamsArr = handlerBeforeArr[1].split(",");
         var handlerBeforeParams = "";
@@ -163,7 +163,11 @@ function getUrl(urlType) {
     return url;
 }
 
-
+/**
+ * 获得选项json数据
+ * @param $element
+ * @returns {*}
+ */
 function getOptionsJson($element) {
     var options = $element.data();
 
@@ -173,6 +177,20 @@ function getOptionsJson($element) {
         } else {
             options = strToJson('{' + options.options.replace(/'/g, '"') + '}');
         }
+    }
+    return options;
+}
+
+/**
+ * 设置表单元素id属性
+ * @param options
+ */
+function setFormElementId($element, options) {
+    if (options.id == undefined) {
+        options.id = $element[0].name;
+        $element.attr('id', $element[0].name)
+    } else {
+        $element.attr('id', options.id)
     }
     return options;
 }
@@ -243,23 +261,23 @@ function jsonLength(obj) {
 
 
 /*Array.prototype.remove = function (dx) {
-    if (isNaN(dx) || dx > this.length) {
-        return false;
-    }
-    for (var i = 0, n = 0; i < this.length; i++) {
-        if (this[i] != this[dx]) {
-            this[n++] = this[i]
-        }
-    }
-    this.length -= 1
-}*/
+ if (isNaN(dx) || dx > this.length) {
+ return false;
+ }
+ for (var i = 0, n = 0; i < this.length; i++) {
+ if (this[i] != this[dx]) {
+ this[n++] = this[i]
+ }
+ }
+ this.length -= 1
+ }*/
 
 /**
  * 扩展数组方法：查找指定元素的下标
  * @param val
  * @returns {number}
  */
-Array.prototype.indexOf = function(val) {
+Array.prototype.indexOf = function (val) {
     for (var i = 0; i < this.length; i++) {
         if (this[i] == val) return i;
     }
@@ -270,9 +288,9 @@ Array.prototype.indexOf = function(val) {
  * 扩展数组方法:删除指定元素
  * @param val
  */
-Array.prototype.remove = function(val) {
+Array.prototype.remove = function (val) {
     var index = this.indexOf(val);
-    while(index>-1){
+    while (index > -1) {
         this.splice(index, 1);
         index = this.indexOf(val);
     }

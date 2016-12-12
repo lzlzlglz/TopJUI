@@ -277,16 +277,23 @@
             panelHeight: options.panelHeight,
             formatter: options.formatter,
             required: options.required,
-            onChange: function(newValue, oldValue) {
+            onShowPanel: function () {
+                if (options.url.indexOf("{") >= 0) {
+                    //将form表单数据封装成json数据
+                    var formData = $(this).closest("form").serializeObject();
+                    $('#' + options.id).combobox('reload', replaceUrlParamValueByBrace(options.url, formData));
+                }
+            },
+            onChange: function (newValue, oldValue) {
                 //重载级联combobox内容
                 if (typeof options.childCombobox == "object") {
-                    var url = appendUrlParam(options.childCombobox.url , "newValue=" + newValue);
+                    var url = appendUrlParam(options.childCombobox.url, "parentParam=" + newValue);
                     $('#' + options.childCombobox.id).combobox('reload', url);
                 }
             },
-            onSelect: function(record) {
+            onSelect: function (record) {
                 var $formObj = $(this).closest('form');
-                
+
                 if (options.param) {
                     var jsonData = getSelectedRowJson(options.param, record);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
