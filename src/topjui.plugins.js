@@ -240,8 +240,15 @@
         $('[data-toggle="topjui-upload-ue"]').each(function (i) {
             var $element = $(this);
             var options = getOptionsJson($element);
-
             options = setFormElementId($element, options);
+
+            var defaults = {
+                ueContainerId: options.id + 'Editor',
+                width: 450,
+                buttonText: '选择图片',
+                uploadType: 'image'
+            }
+            var options = $.extend(defaults, options);
 
             //http://www.cnblogs.com/stupage/p/3145353.html
             //重新实例化一个编辑器，上传独立使用，防止在上面的editor编辑器中显示上传的图片或者文件

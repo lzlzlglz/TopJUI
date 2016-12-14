@@ -124,6 +124,20 @@
             },
             onLoadSuccess: function () {
                 //$(this).datagrid("fixRownumber");
+                if (typeof options.childGrid == "object") {
+                    var refreshGridIdArr = options.childGrid.grid;
+                    for (var i = 0; i < refreshGridIdArr.length; i++) {
+                        var syncReload =  refreshGridIdArr[i].syncReload;
+                        if(syncReload){
+                            var $grid = $("#" + refreshGridIdArr[i].id);
+                            if (refreshGridIdArr[i]["type"] == "datagrid") {
+                                $grid.datagrid('load');
+                            } else if (refreshGridIdArr[i].type == "treegrid") {
+                                $grid.treegrid('load');
+                            }
+                        }
+                    }
+                }
             },
             onClickRow: function (index, row) {
                 //传递给要刷新表格的参数
