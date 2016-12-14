@@ -275,7 +275,7 @@
             textField: options.textField,
             editable: options.editable,
             panelHeight: options.panelHeight,
-            //formatter: options.formatter,
+            formatter: options.combobox_formatter,
             required: options.required,
             onShowPanel: function () {
                 if (options.url.indexOf("{") >= 0) {
@@ -309,9 +309,9 @@
 
     var combobox_formatter = function (row) {
         if (value == 0) {
-            return row.text;
+            //return row.text;
         } else {
-            return row.text;
+            //return row.text;
         }
     }
 
