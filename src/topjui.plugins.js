@@ -250,7 +250,7 @@
             }
             var options = $.extend(defaults, options);
 
-            //UE.delEditor(options.id);
+            UE.delEditor(options.id);
             //http://www.cnblogs.com/stupage/p/3145353.html
             //重新实例化一个编辑器，上传独立使用，防止在上面的editor编辑器中显示上传的图片或者文件
             var ueUpload = UE.getEditor(options.ueContainerId, {
