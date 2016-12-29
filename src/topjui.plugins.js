@@ -118,7 +118,57 @@
                 autoFloatEnabled: true,
                 readonly: options.readonly ? true : false
             });
+        });
 
+        $('[data-toggle="topjui-ueupload"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+            options = setFormElementId($element, options);
+
+            var defaults = {
+                width: 450,
+                buttonText: '选择图片',
+                uploadType: 'image'
+            }
+            var options = $.extend(defaults, options);
+
+            UE.delEditor(options.id);
+            //http://www.cnblogs.com/stupage/p/3145353.html
+            //重新实例化一个编辑器，上传独立使用，防止在上面的editor编辑器中显示上传的图片或者文件
+            var ueUpload = UE.getEditor(options.id, {
+                toolbars: [["insertimage", "attachment"]]
+            });
+            ueUpload.ready(function () {
+                //设置编辑器不可用
+                ueUpload.setDisabled();
+                //隐藏编辑器，因为不会用到这个编辑器实例，所以要隐藏
+                ueUpload.hide();
+                var listener = "afterConfirmUploadedFile", pathAttr = "url";
+                if (options.uploadType == "image") {
+                    listener = "afterConfirmUploadedImage";
+                    pathAttr = "src";
+                }
+                //侦听上传
+                ueUpload.addListener(listener, function (t, arg) {
+                    //将地址赋值给相应的input
+                    $("#" + options.id).textbox("setText", arg[0][pathAttr]);
+                    $("#" + options.id).textbox("setValue", arg[0][pathAttr]);
+                    //图片预览
+                    if (pathAttr == "src")
+                        $("#" + options.previewImageId).attr(pathAttr, arg[0][pathAttr]);
+                });
+            });
+
+            options.onClickButton = function () {
+                if (options.uploadType == "image") {
+                    var imageUploadDialog = ueUpload.getDialog("insertimage");
+                    imageUploadDialog.open();
+                } else {
+                    var fileUploadDialog = ueUpload.getDialog("attachment");
+                    fileUploadDialog.open();
+                }
+            };
+            $element.iTextbox(options);
         });
 
         $('[data-toggle="topjui-kindeditor"]').each(function (i) {
@@ -235,58 +285,6 @@
                     uploadbutton.submit();
                 });
             }, 500);
-        });
-
-        $('[data-toggle="topjui-upload-ue"]').each(function (i) {
-            var $element = $(this);
-            var options = getOptionsJson($element);
-            options = setFormElementId($element, options);
-
-            var defaults = {
-                ueContainerId: options.id + 'Editor',
-                width: 450,
-                buttonText: '选择图片',
-                uploadType: 'image'
-            }
-            var options = $.extend(defaults, options);
-
-            UE.delEditor(options.id);
-            //http://www.cnblogs.com/stupage/p/3145353.html
-            //重新实例化一个编辑器，上传独立使用，防止在上面的editor编辑器中显示上传的图片或者文件
-            var ueUpload = UE.getEditor(options.ueContainerId, {
-                toolbars: [["insertimage", "attachment"]]
-            });
-            ueUpload.ready(function () {
-                //设置编辑器不可用
-                ueUpload.setDisabled();
-                //隐藏编辑器，因为不会用到这个编辑器实例，所以要隐藏
-                ueUpload.hide();
-                var listener = "afterConfirmUploadedFile", pathAttr = "url";
-                if (options.uploadType == "image") {
-                    listener = "afterConfirmUploadedImage";
-                    pathAttr = "src";
-                }
-                //侦听上传
-                ueUpload.addListener(listener, function (t, arg) {
-                    //将地址赋值给相应的input
-                    $("#" + options.id).textbox("setText", arg[0][pathAttr]);
-                    $("#" + options.id).textbox("setValue", arg[0][pathAttr]);
-                    //图片预览
-                    if (pathAttr == "src")
-                        $("#" + options.previewImageId).attr(pathAttr, arg[0][pathAttr]);
-                });
-            });
-
-            options.onClickButton = function () {
-                if (options.uploadType == "image") {
-                    var imageUploadDialog = ueUpload.getDialog("insertimage");
-                    imageUploadDialog.open();
-                } else {
-                    var fileUploadDialog = ueUpload.getDialog("attachment");
-                    fileUploadDialog.open();
-                }
-            };
-            $element.iTextbox(options);
         });
 
         /*var tab = $("#index_tabs");//假设是tab
