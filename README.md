@@ -17,4 +17,4 @@ KindEditor/UEditor编辑器、附件上传、Echarts图表等插件
 
 用户名：topjui 密码：topjui
 
-如有问题或建议欢迎反馈：小策一喋 xvpindex#qq.com
+如有问题或建议欢迎反馈！QQ交流群：593783047
