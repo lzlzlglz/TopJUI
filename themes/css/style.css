@@ -6,7 +6,10 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 覆盖easyui样式开始 */
 .tree-node {
-    height: 20px;
+    padding: 3px 0;
+}
+.datagrid-row {
+    height: 30px;
 }
 
 /* 解决iframe右侧总出两个滚条 http://blog.csdn.net/isitman/article/details/53083640 */
