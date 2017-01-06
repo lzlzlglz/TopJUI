@@ -744,7 +744,7 @@ $(function () {
 
     // 页面加载完成后触发基础表格及弹窗事件
     var url = getUrl();
-    if (url != "/system/index/index") {
+    if (url != TopJUI.config.mainPagePath) {
         $(this).trigger(topJUI.eventType.initUI.base);
         $(this).trigger(topJUI.eventType.initUI.base2);
     } else {
