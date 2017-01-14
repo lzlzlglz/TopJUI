@@ -84,10 +84,10 @@
                                 url: replaceUrlParamValueByBrace(options.getFatherIdsUrl, dataObj),
                                 //data : {"codeSetId":options.codeSetId, "id":id, "levelId":0},
                                 success: function (data) {
-                                    $(options.combotreeId).combotree('tree').tree("collapseAll");
+                                    //$(options.combotreeId).combotree('tree').tree("collapseAll");
                                     var fatherIdsArray = data.split(",");
-                                    for (i = 0; i < fatherIdsArray.length; i++) {
-                                        findNode = $(options.combotreeId).combotree('tree').tree('find', fatherIdsArray[i]);
+                                    for (i = fatherIdsArray.length-1; i >= 0; i--) {
+                                        findNode = $(options.combotreeId).combotree('tree').tree('find', fatherIdsArray[i].replace(/'/g,""));
                                         if (findNode) {
                                             $(options.combotreeId).combotree('tree').tree('expand', findNode.target);
                                         }
@@ -96,7 +96,7 @@
                             });
                             $(options.combotreeId).combotree('setValue', dataObj.id);//数据加载完毕可以设置值了
                         }
-                    }, 1000);
+                    }, 200);
                 }
             },
             onSelect: function (node) {

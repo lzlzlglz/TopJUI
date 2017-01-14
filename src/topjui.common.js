@@ -989,6 +989,10 @@ function exportHandler(options) {
             for (var j = 0; j < fieldName.length; j++) {
                 columnOption = $("#" + gridId).treegrid("getColumnOption", fieldName[j]);
                 colName.push(columnOption.title);
+                if (columnOption.hidden == true || columnOption.checkbox == true)
+                    hiddenMark.push(true);
+                else
+                    hiddenMark.push(false);
             }
         }
     }
