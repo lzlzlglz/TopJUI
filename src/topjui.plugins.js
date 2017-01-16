@@ -483,7 +483,10 @@
                                     getTabWindow().$("#" + options.grid.id).datagrid("reload");
                                 } else if (options.grid.type == "treegrid") {
                                     var row = getSelectedRowData(options.grid.type, options.grid.id);
-                                    getTabWindow().$("#" + options.grid.id).treegrid("reload", row[options.grid.parentIdField]);
+                                    if (row == null)
+                                        getTabWindow().$("#" + options.grid.id).treegrid("reload");
+                                    else
+                                        getTabWindow().$("#" + options.grid.id).treegrid("reload", row[options.grid.parentIdField]);
                                 }
                             }
                             // 重新加载指定的Grid数据
