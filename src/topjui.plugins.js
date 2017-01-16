@@ -99,17 +99,12 @@
             UE.delEditor(options.id);
             <!-- 实例化编辑器 -->
             var toolbars = [['fullscreen', 'source', '|', 'undo', 'redo', '|',
-                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat',
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', '|',
                 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist',
-                'insertunorderedlist', 'selectall', 'cleardoc', '|',
-                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|', 'paragraph', 'fontfamily', 'fontsize', '|',
-                'indent', '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
-                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-                'simpleupload', 'insertimage', 'emotion', 'insertvideo', 'music', 'attachment', 'map', 'insertcode', '|',
-                'horizontal', 'spechars', 'wordimage', '|',
-                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol',
-                'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',
-                'preview', 'drafts']];
+                'insertunorderedlist', 'lineheight', '|',
+                'horizontal', 'spechars', 'map', 'paragraph', 'fontfamily', 'fontsize', 'insertcode', '|',
+                'indent', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+                'link', 'unlink', '|', 'emotion', 'attachment', 'simpleupload', 'insertimage', '|', 'preview']];
             var simpleToolbars = [["fullscreen", "source", "undo", "redo", "bold", "italic", "underline", "fontborder", "strikethrough", "superscript", "subscript", "insertunorderedlist", "insertorderedlist", "justifyleft", "justifycenter", "justifyright", "justifyjustify", "removeformat", "simpleupload", "snapscreen", "emotion", "attachment", "link", "unlink", "indent", "lineheight", "autotypeset"]];
             var ue = UE.getEditor(options.id, {
                 toolbars: options.mode == "simple" ? simpleToolbars : toolbars,
@@ -132,37 +127,38 @@
             }
             var options = $.extend(defaults, options);
 
-            var ueUpload;
-            setTimeout(function () {
-                //UE.delEditor(options.id);
-                //http://www.cnblogs.com/stupage/p/3145353.html
-                //重新实例化一个编辑器，上传独立使用，防止在上面的editor编辑器中显示上传的图片或者文件
-                ueUpload = UE.getEditor(options.id, {
-                    toolbars: [["insertimage", "attachment"]]
+            //var ueUpload;
+            //setTimeout(function () {
+            //UE.delEditor(options.id);
+            //http://www.cnblogs.com/stupage/p/3145353.html
+            //重新实例化一个编辑器，上传独立使用，防止在上面的editor编辑器中显示上传的图片或者文件
+            var ueUpload = UE.getEditor(options.id, {
+                toolbars: [["insertimage", "attachment"]]
+            });
+            ueUpload.ready(function () {
+                //设置编辑器不可用
+                ueUpload.setDisabled();
+                //隐藏编辑器，因为不会用到这个编辑器实例，所以要隐藏
+                ueUpload.hide();
+                var listener = "afterConfirmUploadedFile", pathAttr = "url";
+                if (options.uploadType == "image") {
+                    listener = "afterConfirmUploadedImage";
+                    pathAttr = "src";
+                }
+                //侦听上传
+                ueUpload.addListener(listener, function (t, arg) {
+                    //将地址赋值给相应的input
+                    $("#" + options.id).textbox("setText", arg[0][pathAttr]);
+                    $("#" + options.id).textbox("setValue", arg[0][pathAttr]);
+                    //图片预览
+                    if (pathAttr == "src")
+                        $("#" + options.previewImageId).attr(pathAttr, arg[0][pathAttr]);
                 });
-                ueUpload.ready(function () {
-                    //设置编辑器不可用
-                    ueUpload.setDisabled();
-                    //隐藏编辑器，因为不会用到这个编辑器实例，所以要隐藏
-                    ueUpload.hide();
-                    var listener = "afterConfirmUploadedFile", pathAttr = "url";
-                    if (options.uploadType == "image") {
-                        listener = "afterConfirmUploadedImage";
-                        pathAttr = "src";
-                    }
-                    //侦听上传
-                    ueUpload.addListener(listener, function (t, arg) {
-                        //将地址赋值给相应的input
-                        $("#" + options.id).textbox("setText", arg[0][pathAttr]);
-                        $("#" + options.id).textbox("setValue", arg[0][pathAttr]);
-                        //图片预览
-                        if (pathAttr == "src")
-                            $("#" + options.previewImageId).attr(pathAttr, arg[0][pathAttr]);
-                    });
-                });
-            }, 1000);
+            });
+            //}, 1000);
 
             options.onClickButton = function () {
+                console.log(ueUpload);
                 if (options.uploadType == "image") {
                     var imageUploadDialog = ueUpload.getDialog("insertimage");
                     imageUploadDialog.open();
