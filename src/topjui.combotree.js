@@ -8,6 +8,7 @@
             expandUrl: ctx + '/system/codeItem/getListByPid?pid={pid}',
             getFatherIdsUrl: '',
             width: 153,
+            height: 34,
             required: false,
             lines: true,
             multiple: false,
@@ -51,6 +52,7 @@
         $combotreeObj.combotree({
             url: options.url,
             width: options.width,
+            height: options.height,
             required: options.required,
             lines: options.lines,
             multiple: options.multiple,

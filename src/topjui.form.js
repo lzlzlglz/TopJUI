@@ -12,7 +12,7 @@
 
         var defaults = {
             width: 153,
-            height: 22,
+            height: 34,
             prompt: '',
             type: 'text',
             multiline: false,
@@ -49,7 +49,7 @@
 
         var defaults = {
             width: 450,
-            height: 22,
+            height: 34,
             prompt: '',
             type: 'text',
             multiline: false,
@@ -68,6 +68,7 @@
 
         $(this).filebox({
             width: options.width,
+            height: options.height,
             buttonText: options.buttonText,
             buttonAlign: options.buttonAlign
         });
@@ -78,6 +79,7 @@
             min: 0,
             max: 10000,
             width: 153,
+            height: 34,
             editable: true,
             defaultValueType: '',
             value: '',
@@ -123,6 +125,7 @@
             max: options.max,
             prompt: options.prompt,
             width: options.width,
+            height: options.height,
             editable: options.editable,
             value: options.value,
             min: options.min,
@@ -137,6 +140,7 @@
             required: false,
             editable: true,
             width: 153,
+            height: 34,
             formatter: function (value) {
                 var y = value.getFullYear();
                 var m = value.getMonth() + 1;
@@ -166,6 +170,7 @@
             required: options.required,
             editable: options.editable,
             width: options.width,
+            height: options.height,
             prompt: options.prompt,
             formatter: options.formatter,
             parser: options.parser,
@@ -178,6 +183,7 @@
     $.fn.iNumberbox = function (options) {
         var defaults = {
             width: 153,
+            height: 34,
             min: 0,
             precision: 0,
             decimalSeparator: '.',
@@ -190,6 +196,7 @@
 
         $(this).numberbox({
             width: options.width,
+            height: options.height,
             min: options.min,
             prompt: options.prompt,
             precision: options.precision,
@@ -244,7 +251,7 @@
     $.fn.iCombobox = function (options) {
         var defaults = {
             width: 153,
-            height: 22,
+            height: 34,
             url: ctx + '/system/codeItem/getListByCodesetidAndLevelid?codeSetId={codeSetId}&levelId={levelId}',
             data: '',
             codeSetId: 0,
@@ -322,6 +329,7 @@
             valueField: 'userNameId',
             textField: 'userName',
             width: 450,
+            height: 34,
             fieldId: 'userNameId',
             required: false
         }
@@ -332,6 +340,7 @@
             valueField: options.valueField,
             textField: options.textField,
             width: options.width,
+            height: options.height,
             prompt: options.prompt,
             required: options.required,
             onChange: function (newValue, oldValue) {
@@ -366,6 +375,7 @@
             valueField: 'userNameId',
             textField: 'userName',
             width: 450,
+            height: 34,
             fieldId: 'userNameId',
             required: false,
             formatter: ''
@@ -383,6 +393,7 @@
             valueField: options.valueField,
             textField: options.textField,
             width: options.width,
+            height: options.height,
             prompt: options.prompt,
             required: options.required,
             formatter: options.formatter,
