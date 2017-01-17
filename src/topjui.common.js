@@ -151,7 +151,7 @@ function bindMenuClickEvent($element, options) {
         }
 
         var dialogDom = "";
-        dialogDom = '<form data-toggle="topjui-dialog2" data-options="id:\'' + options.dialog.id + '\',href:\'' + options.dialog.href + '\',url:\'' + options.dialog.url + '\',title:\'' + options.dialog.title + '\',beforeOpenCheckUrl:\'' + options.dialog.beforeOpenCheckUrl + '\'' + extendDoc + '"></form>';
+        dialogDom = '<form data-toggle="topjui-dialog" data-options="id:\'' + options.dialog.id + '\',href:\'' + options.dialog.href + '\',url:\'' + options.dialog.url + '\',title:\'' + options.dialog.title + '\',beforeOpenCheckUrl:\'' + options.dialog.beforeOpenCheckUrl + '\'' + extendDoc + '"></form>';
 
         // 判断dialog是否存在linkbutton按钮组
         var buttonsDom = "";

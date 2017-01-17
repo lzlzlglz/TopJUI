@@ -14,10 +14,15 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     height: 30px;
 }
 
+.textbox textarea.textbox-text {
+    line-height: 18px;
+}
+
 /* 解决iframe右侧总出两个滚条 http://blog.csdn.net/isitman/article/details/53083640 */
-#index_tabs .tabs-panels>.panel>.panel-body {
+#index_tabs .tabs-panels > .panel > .panel-body {
     overflow: hidden;
 }
+
 /* 覆盖easyui样式结束 */
 
 .red {
@@ -87,11 +92,11 @@ table td {
 }
 
 .editTable .label {
-    font-size: 12px;
+    font-size: 14px;
     min-width: 131px;
     max-width: 131px;
     text-align: right;
-    padding: 0 2px 0 2px;
+    padding: 0 5px 0 2px;
     font-weight: bold;
 }
 

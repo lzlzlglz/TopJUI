@@ -159,7 +159,6 @@
             //}, 1000);
 
             options.onClickButton = function () {
-                console.log(ueUpload);
                 if (options.uploadType == "image") {
                     var imageUploadDialog = ueUpload.getDialog("insertimage");
                     imageUploadDialog.open();
@@ -299,7 +298,7 @@
         setTimeout(function () {
             // 父框架获取子框架元素
             // var test = $("iframe").contents().find("#test").val();
-            getTabWindow().$('[data-toggle="topjui-datagrid2"]').each(function (i) {
+            getTabWindow().$('[data-toggle="topjui-datagrid"]').each(function (i) {
                 var $element = $(this);
                 var options = getOptionsJson($element);
 
@@ -329,7 +328,7 @@
                 //console.log(op.join());
 
                 $element.attr('id', options.id);
-                getTabWindow().$('#' + options.id).iDatagrid2(options);
+                getTabWindow().$('#' + options.id).iDatagrid(options);
             });
 
             getTabWindow().$('[data-toggle="topjui-edatagrid"]').each(function (i) {
@@ -403,7 +402,7 @@
         }, 1);
 
         setTimeout(function () {
-            getTabWindow().$('[data-toggle="topjui-dialog2"]').each(function () {
+            getTabWindow().$('[data-toggle="topjui-dialog"]').each(function () {
                 var $element = $(this);
                 var options = getOptionsJson($element);
 
@@ -411,16 +410,16 @@
                 if (href != undefined) {
                     options.href = href;
                     getTabWindow().$('body').append('<div id="' + options.id + '"></div>');
-                    getTabWindow().$('#' + options.id).iDialog2(options);
+                    getTabWindow().$('#' + options.id).iDialog(options);
 
                     $element.on("click", function () {
-                        getTabWindow().$('#' + options.id).dialog2('open');
+                        getTabWindow().$('#' + options.id).dialog('open');
                         return false; //阻止链接跳转
                     });
 
                 } else {
                     $element.attr('id', options.id);
-                    getTabWindow().$('#' + options.id).iDialog2(options);
+                    getTabWindow().$('#' + options.id).iDialog(options);
                 }
             });
 
@@ -499,52 +498,12 @@
 
     $(document).on(topJUI.eventType.initUI.base2, function (e) {
         setTimeout(function () {
-            getTabWindow().$('[data-toggle="topjui-datagrid"]').each(function (i) {
-                var $element = $(this);
-                var options = getOptionsJson($element);
-
-                var op = [];
-                getTabWindow().$("th").each(function (i) {
-                    op.push(strToJson("{" + this.getAttribute("data-options") + "}"));
-                });
-                options.columns = [op];
-
-                var kindEditor = [];
-
-
-                //console.log(op.join());
-
-                $element.attr('id', options.id);
-                getTabWindow().$('#' + options.id).iDatagrid(options);
-            });
-
             getTabWindow().$('[data-toggle="topjui-menu"]').each(function (i) {
                 var $element = $(this);
                 var options = getOptionsJson($element);
 
                 $element.attr('id', options.id);
                 getTabWindow().$('#' + options.id).iMenu(options);
-            });
-
-            getTabWindow().$('[data-toggle="topjui-dialog"]').each(function () {
-                var $element = $(this);
-                var options = getOptionsJson($element);
-
-                var href = $element.attr('href');
-                if (href != undefined) {
-                    options.href = href;
-                    getTabWindow().$('body').append('<div id="' + options.id + '"></div>');
-                    getTabWindow().$('#' + options.id).iDialog(options);
-
-                    $element.on("click", function () {
-                        getTabWindow().$('#' + options.id).dialog('open');
-                        return false; //阻止链接跳转
-                    });
-
-                } else {
-                    $element.attr('id', options.id);
-                    getTabWindow().$('#' + options.id).iDialog(options);
-                }
             });
 
             getTabWindow().$('[data-toggle="topjui-tree"]').each(function (i) {
