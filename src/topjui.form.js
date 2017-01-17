@@ -12,7 +12,7 @@
 
         var defaults = {
             width: 153,
-            height: 34,
+            height: 30,
             prompt: '',
             type: 'text',
             multiline: false,
@@ -49,7 +49,7 @@
 
         var defaults = {
             width: 450,
-            height: 34,
+            height: 30,
             prompt: '',
             type: 'text',
             multiline: false,
@@ -79,7 +79,7 @@
             min: 0,
             max: 10000,
             width: 153,
-            height: 34,
+            height: 30,
             editable: true,
             defaultValueType: '',
             value: '',
@@ -140,7 +140,7 @@
             required: false,
             editable: true,
             width: 153,
-            height: 34,
+            height: 30,
             formatter: function (value) {
                 var y = value.getFullYear();
                 var m = value.getMonth() + 1;
@@ -183,7 +183,7 @@
     $.fn.iNumberbox = function (options) {
         var defaults = {
             width: 153,
-            height: 34,
+            height: 30,
             min: 0,
             precision: 0,
             decimalSeparator: '.',
@@ -251,7 +251,7 @@
     $.fn.iCombobox = function (options) {
         var defaults = {
             width: 153,
-            height: 34,
+            height: 30,
             url: ctx + '/system/codeItem/getListByCodesetidAndLevelid?codeSetId={codeSetId}&levelId={levelId}',
             data: '',
             codeSetId: 0,
@@ -329,7 +329,7 @@
             valueField: 'userNameId',
             textField: 'userName',
             width: 450,
-            height: 34,
+            height: 30,
             fieldId: 'userNameId',
             required: false
         }
@@ -375,7 +375,7 @@
             valueField: 'userNameId',
             textField: 'userName',
             width: 450,
-            height: 34,
+            height: 30,
             fieldId: 'userNameId',
             required: false,
             formatter: ''
