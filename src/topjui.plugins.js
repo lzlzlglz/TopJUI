@@ -123,7 +123,8 @@
             var defaults = {
                 width: 450,
                 buttonText: '选择图片',
-                uploadType: 'image'
+                uploadType: 'image',
+                buttonIcon: 'icon-picture_add'
             }
             var options = $.extend(defaults, options);
 
