@@ -1,7 +1,7 @@
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, table, th, td {
     margin: 0;
     padding: 0;
-    font: 12px/normal "Lucida Grande, Lucida Sans Unicode, Hiragino Sans GB, WenQuanYi Micro Hei, Verdana, Aril, sans-serif, microsoft yahei";
+    font: 12px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;;
 }
 
 /* 覆盖easyui样式开始 */
@@ -14,8 +14,13 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     height: 30px;
 }
 
+.textbox .textbox-text {
+    font-family: "microsoft yahei", "Times New Roman", "宋体", Times, serif;
+}
+
 .textbox textarea.textbox-text {
     line-height: 18px;
+    font-family: "microsoft yahei", "Times New Roman", "宋体", Times, serif;
 }
 
 /* 解决iframe右侧总出两个滚条 http://blog.csdn.net/isitman/article/details/53083640 */
@@ -98,6 +103,7 @@ table td {
     text-align: right;
     padding: 0 5px 0 2px;
     font-weight: bold;
+    font-family: "microsoft yahei", "Times New Roman", "宋体", Times, serif;
 }
 
 .editTable .divider {
