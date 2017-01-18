@@ -361,7 +361,10 @@ function openDialogAndloadDataByParentGrid(options) {
             var row = getSelectedRowData(options.grid.type, options.grid.id);
             newHref = replaceUrlParamValueByBrace(appendSourceUrlParam(newHref), row);
         }
-        $dialogObj.dialog('open').dialog("refresh", newHref);
+        $dialogObj.dialog({
+            href: newHref
+        });
+        $dialogObj.dialog('open');
     } else {
         $dialogObj.dialog('open');
     }
@@ -402,7 +405,11 @@ function openDialogAndloadDataByUrl(options) {
     if (options.dialog.href.indexOf("{") != -1) {
         // 替换本表中选中行占位值
         var newHref = replaceUrlParamValueByBrace(appendSourceUrlParam(oriHref), row);
-        $dialogObj.dialog('open').dialog("refresh", newHref);
+        $dialogObj.dialog({
+            href: newHref
+        });
+        //$dialogObj.dialog('open').dialog("refresh", newHref); //加载两次href指定的页面
+        $dialogObj.dialog('open');
     } else {
         $dialogObj.dialog('open');
     }

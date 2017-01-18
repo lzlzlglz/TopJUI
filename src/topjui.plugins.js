@@ -106,7 +106,7 @@
                 'indent', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
                 'link', 'unlink', '|', 'emotion', 'attachment', 'simpleupload', 'insertimage', '|', 'preview']];
             var simpleToolbars = [["fullscreen", "source", "undo", "redo", "bold", "italic", "underline", "fontborder", "strikethrough", "superscript", "subscript", "insertunorderedlist", "insertorderedlist", "justifyleft", "justifycenter", "justifyright", "justifyjustify", "removeformat", "simpleupload", "snapscreen", "emotion", "attachment", "link", "unlink", "indent", "lineheight", "autotypeset"]];
-            var ue = UE.getEditor(options.id, {
+            UE.getEditor(options.id, {
                 toolbars: options.mode == "simple" ? simpleToolbars : toolbars,
                 initialFrameWidth: 700,
                 autoHeightEnabled: true,
@@ -128,8 +128,6 @@
             }
             var options = $.extend(defaults, options);
 
-            //var ueUpload;
-            //setTimeout(function () {
             //UE.delEditor(options.id);
             //http://www.cnblogs.com/stupage/p/3145353.html
             //重新实例化一个编辑器，上传独立使用，防止在上面的editor编辑器中显示上传的图片或者文件
@@ -155,19 +153,19 @@
                     if (pathAttr == "src")
                         $("#" + options.previewImageId).attr(pathAttr, arg[0][pathAttr]);
                 });
-            });
-            //}, 1000);
 
-            options.onClickButton = function () {
-                if (options.uploadType == "image") {
-                    var imageUploadDialog = ueUpload.getDialog("insertimage");
-                    imageUploadDialog.open();
-                } else {
-                    var fileUploadDialog = ueUpload.getDialog("attachment");
-                    fileUploadDialog.open();
-                }
-            };
-            $element.iTextbox(options);
+                options.onClickButton = function () {
+                    if (options.uploadType == "image") {
+                        var imageUploadDialog = ueUpload.getDialog("insertimage");
+                        imageUploadDialog.open();
+                    } else {
+                        var fileUploadDialog = ueUpload.getDialog("attachment");
+                        fileUploadDialog.open();
+                    }
+                };
+                $element.iTextbox(options);
+            });
+
         });
 
         $('[data-toggle="topjui-kindeditor"]').each(function (i) {
