@@ -259,7 +259,7 @@
             valueField: 'text',
             textField: 'text',
             editable: false,
-            panelHeight: 44,
+            panelHeight: 50,
             onSelect: combobox_onSelect,
             formatter: combobox_formatter,
             required: false
