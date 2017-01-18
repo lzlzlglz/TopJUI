@@ -66,19 +66,19 @@
             },
             onBeforeSelect: options.onBeforeSelect,
             onLoadSuccess: function (node, data) {
+                var $treeObj = $(options.combotreeId).combotree('tree');
+
                 // 展开根节点
-                $(options.combotreeId).combotree('tree').tree("expand", $(options.combotreeId).combotree('tree').tree('getRoot').target);
+                $treeObj.tree("expand", $treeObj.tree('getRoot').target);
 
                 if (options.expandAll) {
-                    var treeObj = $(options.combotreeId).combotree('tree');
-                    $(options.combotreeId).combotree('tree').tree("expandAll");
+                    $treeObj.tree("expandAll");
                 }
 
                 //setInterval(resetCombotree, 1000);
                 if (options.getFatherIdsUrl) {
                     setTimeout(function () {
-                        var t = $(options.combotreeId).combotree('tree');
-                        var n = t.tree('getSelected');
+                        var n = $treeObj.tree('getSelected');
                         var dataObj = {id: $(options.combotreeId).combotree("getValue")};
                         if (n == undefined && dataObj.id != "") {
                             var findNode;
