@@ -74,7 +74,7 @@ addParentTab = function (options) {
             if (!row) {
                 $.messager.alert(
                     topJUI.language.message.title.operationTips,
-                    topJUI.language.message.msg.checkSelfGrid,
+                    topJUI.language.message.msg.selectSelfGrid,
                     topJUI.language.message.icon.warning
                 );
                 return;
@@ -95,6 +95,41 @@ addParentTab = function (options) {
         iconCls: 'icon-page'
     });
 
+}
+
+/**
+ * 打开新窗口
+ * @param options
+ */
+openWindow = function (options) {
+    var href;
+    if (typeof options.grid == "object") {
+        if (options.grid.checkboxSelect == true) {
+            var rows = getCheckedRowsData(options.grid.type, options.grid.id);
+            if (rows.length == 0) {
+                $.messager.alert(
+                    topJUI.language.message.title.operationTips,
+                    topJUI.language.message.msg.checkSelfGrid,
+                    topJUI.language.message.icon.warning
+                );
+                return;
+            }
+        } else {
+            var row = getSelectedRowData(options.grid.type, options.grid.id);
+            if (!row) {
+                $.messager.alert(
+                    topJUI.language.message.title.operationTips,
+                    topJUI.language.message.msg.selectSelfGrid,
+                    topJUI.language.message.icon.warning
+                );
+                return;
+            }
+            href = replaceUrlParamValueByBrace(options.href, row);
+        }
+    } else {
+        href = options.href;
+    }
+    window.open(href);
 }
 
 /**
@@ -245,6 +280,15 @@ function bindMenuClickEvent($element, options) {
 
         $element.on("click", function () {
             addParentTab(options);
+        });
+    } else if (options.clickEvent == "openWindow") {
+        defaults = {
+            iconCls: 'icon-add'
+        }
+        options = $.extend(defaults, options);
+
+        $element.on("click", function () {
+            openWindow(options);
         });
     } else if (options.clickEvent == "doAjax") {
         defaults = {
