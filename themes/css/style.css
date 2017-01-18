@@ -124,6 +124,7 @@ table td {
     left: -3px;
     background: url("../image/icons/rainbow.png") no-repeat left;
     background-position: 5px;
+    font-size: 14px;
 }
 
 #attachTable {
