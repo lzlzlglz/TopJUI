@@ -66,18 +66,19 @@
             },
             onBeforeSelect: options.onBeforeSelect,
             onLoadSuccess: function (node, data) {
+                var $treeObj = $(options.combotreeId).combotree('tree');
+
+                // 展开根节点
+                $treeObj.tree("expand", $treeObj.tree('getRoot').target);
+
                 if (options.expandAll) {
-                    var treeObj = $(options.combotreeId).combotree('tree');
-                    $(options.combotreeId).combotree('tree').tree("expandAll");
-                    // 展开根节点
-                    $(options.combotreeId).combotree('tree').tree("expand", $(options.combotreeId).combotree('tree').tree('getRoot').target);
+                    $treeObj.tree("expandAll");
                 }
 
                 //setInterval(resetCombotree, 1000);
-                if(options.getFatherIdsUrl) {
+                if (options.getFatherIdsUrl) {
                     setTimeout(function () {
-                        var t = $(options.combotreeId).combotree('tree');
-                        var n = t.tree('getSelected');
+                        var n = $treeObj.tree('getSelected');
                         var dataObj = {id: $(options.combotreeId).combotree("getValue")};
                         if (n == undefined && dataObj.id != "") {
                             var findNode;
@@ -88,8 +89,8 @@
                                 success: function (data) {
                                     //$(options.combotreeId).combotree('tree').tree("collapseAll");
                                     var fatherIdsArray = data.split(",");
-                                    for (i = fatherIdsArray.length-1; i >= 0; i--) {
-                                        findNode = $(options.combotreeId).combotree('tree').tree('find', fatherIdsArray[i].replace(/'/g,""));
+                                    for (i = fatherIdsArray.length - 1; i >= 0; i--) {
+                                        findNode = $(options.combotreeId).combotree('tree').tree('find', fatherIdsArray[i].replace(/'/g, ""));
                                         if (findNode) {
                                             $(options.combotreeId).combotree('tree').tree('expand', findNode.target);
                                         }
@@ -103,16 +104,16 @@
             },
             onSelect: function (node) {
                 /*if (options.param) {
-                    var dialogIdArr = options.dialog.id.split(",");
-                    for (var i = 0; i < dialogIdArr.length; i++) {
-                        var jsonData = getSelectedRowJson(options.param, node);
-                        getTabWindow().$("#" + dialogIdArr[i]).form('load', jsonData);
-                    }
-                }*/
+                 var dialogIdArr = options.dialog.id.split(",");
+                 for (var i = 0; i < dialogIdArr.length; i++) {
+                 var jsonData = getSelectedRowJson(options.param, node);
+                 getTabWindow().$("#" + dialogIdArr[i]).form('load', jsonData);
+                 }
+                 }*/
                 if (options.param) {
                     var $formObj = $combotreeObj.closest('form');
                     var jsonData = getSelectedRowJson(options.param, node);
-                    getTabWindow().$("#"+ $formObj.attr("id")).form('load', jsonData);
+                    getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }
             },
             onShowPanel: function () {
