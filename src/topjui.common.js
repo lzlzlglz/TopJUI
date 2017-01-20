@@ -264,6 +264,7 @@ function bindMenuClickEvent($element, options) {
                 dialogObj.dialog({
                     width: options.dialog.width,
                     height: options.dialog.height,
+                    maximized: options.dialog.maximized,
                     left: options.dialog.leftMargin,
                     top: options.dialog.topMargin,
                     buttons: options.dialog.buttons
@@ -387,6 +388,7 @@ function openDialogAndloadDataByParentGrid(options) {
     $dialogObj.dialog({
         width: options.dialog.width,
         height: options.dialog.height,
+        maximized: options.dialog.maximized,
         left: options.dialog.leftMargin,
         top: options.dialog.topMargin,
         buttons: options.dialog.buttons
@@ -439,6 +441,7 @@ function openDialogAndloadDataByUrl(options) {
     $dialogObj.dialog({
         width: options.dialog.width,
         height: options.dialog.height,
+        maximized: options.dialog.maximized,
         left: options.dialog.leftMargin,
         top: options.dialog.topMargin,
         buttons: options.dialog.buttons
