@@ -1,10 +1,11 @@
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, table, th, td {
     margin: 0;
     padding: 0;
-    font: 12px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;;
+    font: 12px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
 }
 
 /* 覆盖easyui样式开始 */
+
 .tree-node {
     padding: 3px 0;
 }
@@ -97,11 +98,11 @@ table td {
 }
 
 .editTable .label {
-    font-size: 14px;
+    font-size: 12.5px;
     min-width: 131px;
     max-width: 131px;
     text-align: right;
-    padding: 5px 5px 0 2px;
+    padding: 6px 5px 0 2px;
     font-weight: bold;
     vertical-align: top;
     font-family: "microsoft yahei", "Times New Roman", "宋体", Times, serif;
