@@ -29,6 +29,14 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     overflow: hidden;
 }
 
+.tabs li a.tabs-inner {
+    border-top-width: 4px;
+}
+
+.tabs li.tabs-selected a.tabs-inner {
+    border-top-color: #3498DB;
+}
+
 /* 覆盖easyui样式结束 */
 
 .red {
@@ -192,9 +200,10 @@ table td {
 /* #header{overflow:hidden;height:69px;background:#2076C3 url("images/index/headbg.png") repeat-x;line-height:64px;color:#fff;font-family:Verdana,寰蒋闆呴粦,榛戜綋} */
 #header {
     overflow: hidden;
-    height: 60px;
-    background: url(../image/blue.png) repeat-x;
-    line-height: 60px;
+    height: 50px;
+    /*background: url(../image/blue.png) repeat-x;*/
+    background-color: #3498DB;
+    line-height: 50px;
     color: #6699CC;
     font-family: Verdana, 寰蒋闆呴粦, 榛戜綋
 }
@@ -202,14 +211,14 @@ table td {
 .header_system {
     background: url(../image/logo.png) no-repeat left;
     width: 360px;
-    height: 60px;
+    height: 50px;
     float: left;
 }
 
 .header_welder {
     background: url(../image/logo_welder.png) no-repeat left;
     width: 360px;
-    height: 60px;
+    height: 50px;
     float: left;
 }
 
