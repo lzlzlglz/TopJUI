@@ -1,27 +1,96 @@
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, table, th, td {
     margin: 0;
     padding: 0;
-    font: 12px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
+    font: 14px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
 }
 
 /* 覆盖easyui样式开始 */
 
+/* 树形节点高度 */
 .tree-node {
-    padding: 3px 0;
+    padding: 5px 0;
+}
+
+/* 树形节点文字大小 */
+.tree-title {
+    font-size: 14px;
 }
 
 /* 表格行高 */
 .datagrid-row {
-    height: 30px;
+    height: 32px;
+}
+
+/* 表格单元格 */
+.datagrid-cell {
+    font-size: 14px;
+}
+
+/* 更改表格标题文字大小 */
+.datagrid-header .datagrid-cell span {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 更改表格标题文字大小 */
+.datagrid-header span {
+    font-size: 14px !important;
+}
+
+.datagrid-header-row {
+    /*background-color: #e3e3e3;
+    color: #111;*/
+    height: 35px;
+}
+
+/* 面板标题 */
+.panel-title {
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.tabs {
+    height: 34px !important;
+}
+
+.tabs-title {
+    font-size: 14px;
+}
+
+.tabs a {
+    height: 32px !important;
+    line-height: 32px !important;
+}
+
+.tabs li a.tabs-close {
+    height: 12px !important;
+}
+
+/* 工具栏按钮高度 */
+.l-btn-left {
+    padding: 4px 0;
+}
+
+/* 工具栏按钮文字大小 */
+.l-btn-text {
+    line-height: 24px;
+    font-size: 14px;
+}
+
+.datagrid-pager {
+    display: none
 }
 
 .textbox .textbox-text {
     font-family: "microsoft yahei", "Times New Roman", "宋体", Times, serif;
+    font-size: 14px;
 }
 
 .textbox textarea.textbox-text {
-    line-height: 18px;
     font-family: "microsoft yahei", "Times New Roman", "宋体", Times, serif;
+    line-height: 18px;
+    font-size: 14px;
 }
 
 /* 解决iframe右侧总出两个滚条 http://blog.csdn.net/isitman/article/details/53083640 */
@@ -106,11 +175,11 @@ table td {
 }
 
 .editTable .label {
-    font-size: 12.5px;
+    font-size: 14px;
     min-width: 131px;
     max-width: 131px;
     text-align: right;
-    padding: 9px 5px 0 2px;
+    padding: 5px 5px 0 2px;
     font-weight: bold;
     vertical-align: top;
     font-family: "microsoft yahei", "Times New Roman", "宋体", Times, serif;
@@ -205,7 +274,6 @@ table td {
     background-color: #3498DB;
     line-height: 50px;
     color: #6699CC;
-    font-family: Verdana, 寰蒋闆呴粦, 榛戜綋
 }
 
 .header_system {
