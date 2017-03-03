@@ -2,18 +2,24 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     margin: 0;
     padding: 0;
     font: 14px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
+    letter-spacing: 1px;
 }
 
 /* 覆盖easyui样式开始 */
 
 /* 树形节点高度 */
 .tree-node {
-    padding: 5px 0;
+    padding: 5px 0 !important;
 }
 
 /* 树形节点文字大小 */
 .tree-title {
     font-size: 14px;
+}
+
+/* 调整树形图标显示位置 */
+.tree-icon {
+    margin-top: 1px;
 }
 
 /* 表格行高 */
@@ -37,6 +43,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 14px !important;
 }
 
+/* 表格表头行高 */
 .datagrid-header-row {
     /*background-color: #e3e3e3;
     color: #111;*/
@@ -50,26 +57,55 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     line-height: 24px;
 }
 
+/* panel主体字体大小 */
+.panel-body {
+    font-size: 14px;
+}
+
+/* 调整panel图标显示位置 */
+.panel-icon {
+    margin-top: -7px;
+}
+
+/* tabs显示高度 */
 .tabs {
     height: 34px !important;
 }
 
+/* tabs标题字体大小 */
 .tabs-title {
     font-size: 14px;
 }
 
+/* 调整tabs图标显示位置 */
+.tabs-icon {
+    margin-top: -6px;
+}
+
+/* tabs链接字体大小 */
 .tabs a {
     height: 32px !important;
     line-height: 32px !important;
 }
 
+/* tabs关闭按钮高度 */
 .tabs li a.tabs-close {
     height: 12px !important;
 }
 
 /* 工具栏按钮高度 */
 .l-btn-left {
-    padding: 4px 0;
+    /*padding: 4px 0;*/
+}
+
+/* 工具栏高度 */
+.datagrid-toolbar {
+    padding: 4.5px 2px;
+}
+
+/* 工具栏图片按钮栏高度 */
+.l-btn-icon-left {
+    /*padding: 4px 0;*/
 }
 
 /* 工具栏按钮文字大小 */
@@ -78,15 +114,52 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 14px;
 }
 
+/* 下拉列表字体大小 */
+.combobox-item {
+    font-size: 14px;
+}
+
+/* 下拉菜单高度 */
+.menu-item {
+    height: 24px !important;
+    line-height: 24px;
+}
+
+/* 下拉菜单文字大小 */
+.menu-text {
+    height: 24px !important;
+    line-height: 24px !important;
+    font-size: 14px;
+}
+
+/* 分页列表 */
+.pagination-page-list {
+    height: 24px !important;
+    line-height: 24px !important;
+    font-size: 14px;
+}
+
+/* 分页文字 */
+.pagination span {
+    font-size: 14px;
+}
+
+/* 分页信息 */
+.pagination-info {
+    font-size: 14px;
+}
+
 .datagrid-pager {
     display: none
 }
 
+/* 输入框字体及大小 */
 .textbox .textbox-text {
     font-family: "microsoft yahei", "Times New Roman", "宋体", Times, serif;
     font-size: 14px;
 }
 
+/* 输入框字体及大小 */
 .textbox textarea.textbox-text {
     font-family: "microsoft yahei", "Times New Roman", "宋体", Times, serif;
     line-height: 18px;
@@ -98,10 +171,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     overflow: hidden;
 }
 
+/* tabs顶部边框高度 */
 .tabs li a.tabs-inner {
     border-top-width: 4px;
 }
 
+/* 被选中的tabs顶部边框颜色 */
 .tabs li.tabs-selected a.tabs-inner {
     border-top-color: #3498DB;
 }
