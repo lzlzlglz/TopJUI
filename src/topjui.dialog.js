@@ -6,7 +6,7 @@
 			width   : 650,
 			height  : 400,
 			title   : '修改管理',
-			modal   : false,
+			modal   : true,
 			closed  : true,
 			iconCls : 'icon-save',
 			collapsible : true,
