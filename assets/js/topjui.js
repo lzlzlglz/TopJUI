@@ -8,6 +8,7 @@
             expandUrl: ctx + '/system/codeItem/getListByPid?pid={pid}',
             getFatherIdsUrl: '',
             width: 153,
+            height: 30,
             required: false,
             lines: true,
             multiple: false,
@@ -51,6 +52,7 @@
         $combotreeObj.combotree({
             url: options.url,
             width: options.width,
+            height: options.height,
             required: options.required,
             lines: options.lines,
             multiple: options.multiple,
@@ -64,18 +66,19 @@
             },
             onBeforeSelect: options.onBeforeSelect,
             onLoadSuccess: function (node, data) {
+                var $treeObj = $(options.combotreeId).combotree('tree');
+
+                // 展开根节点
+                $treeObj.tree("expand", $treeObj.tree('getRoot').target);
+
                 if (options.expandAll) {
-                    var treeObj = $(options.combotreeId).combotree('tree');
-                    $(options.combotreeId).combotree('tree').tree("expandAll");
-                    // 展开根节点
-                    $(options.combotreeId).combotree('tree').tree("expand", $(options.combotreeId).combotree('tree').tree('getRoot').target);
+                    $treeObj.tree("expandAll");
                 }
 
                 //setInterval(resetCombotree, 1000);
-                if(options.getFatherIdsUrl) {
+                if (options.getFatherIdsUrl) {
                     setTimeout(function () {
-                        var t = $(options.combotreeId).combotree('tree');
-                        var n = t.tree('getSelected');
+                        var n = $treeObj.tree('getSelected');
                         var dataObj = {id: $(options.combotreeId).combotree("getValue")};
                         if (n == undefined && dataObj.id != "") {
                             var findNode;
@@ -84,10 +87,10 @@
                                 url: replaceUrlParamValueByBrace(options.getFatherIdsUrl, dataObj),
                                 //data : {"codeSetId":options.codeSetId, "id":id, "levelId":0},
                                 success: function (data) {
-                                    $(options.combotreeId).combotree('tree').tree("collapseAll");
+                                    //$(options.combotreeId).combotree('tree').tree("collapseAll");
                                     var fatherIdsArray = data.split(",");
-                                    for (i = 0; i < fatherIdsArray.length; i++) {
-                                        findNode = $(options.combotreeId).combotree('tree').tree('find', fatherIdsArray[i]);
+                                    for (i = fatherIdsArray.length - 1; i >= 0; i--) {
+                                        findNode = $(options.combotreeId).combotree('tree').tree('find', fatherIdsArray[i].replace(/'/g, ""));
                                         if (findNode) {
                                             $(options.combotreeId).combotree('tree').tree('expand', findNode.target);
                                         }
@@ -96,21 +99,21 @@
                             });
                             $(options.combotreeId).combotree('setValue', dataObj.id);//数据加载完毕可以设置值了
                         }
-                    }, 1000);
+                    }, 200);
                 }
             },
             onSelect: function (node) {
                 /*if (options.param) {
-                    var dialogIdArr = options.dialog.id.split(",");
-                    for (var i = 0; i < dialogIdArr.length; i++) {
-                        var jsonData = getSelectedRowJson(options.param, node);
-                        getTabWindow().$("#" + dialogIdArr[i]).form('load', jsonData);
-                    }
-                }*/
+                 var dialogIdArr = options.dialog.id.split(",");
+                 for (var i = 0; i < dialogIdArr.length; i++) {
+                 var jsonData = getSelectedRowJson(options.param, node);
+                 getTabWindow().$("#" + dialogIdArr[i]).form('load', jsonData);
+                 }
+                 }*/
                 if (options.param) {
                     var $formObj = $combotreeObj.closest('form');
                     var jsonData = getSelectedRowJson(options.param, node);
-                    getTabWindow().$("#"+ $formObj.attr("id")).form('load', jsonData);
+                    getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }
             },
             onShowPanel: function () {
@@ -180,6 +183,27 @@ function hideMask() {
     $(".datagrid-mask-msg").remove();
 }
 
+//在主框架内打开Tab页，如点击左边的菜单打开Tab窗口
+function addTab(params) {
+    var iframe = '<iframe src="' + params.url + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
+    var t = $('#index_tabs');
+    var opts = {
+        id: Math.random(),
+        title: params.text,
+        closable: typeof(params.closable) != "undefined" ? params.closable : true,
+        iconCls: params.iconCls ? params.iconCls : 'icon-page',
+        content: iframe,
+        //href: params.url,
+        border: params.border || false,
+        fit: true
+        //cls: 'leftBottomBorder'
+    };
+    if (t.tabs('exists', opts.title)) {
+        t.tabs('select', opts.title);
+    } else {
+        t.tabs('myAdd', opts);
+    }
+}
 
 addParentTab = function (options) {
 
@@ -206,7 +230,7 @@ addParentTab = function (options) {
             if (!row) {
                 $.messager.alert(
                     topJUI.language.message.title.operationTips,
-                    topJUI.language.message.msg.checkSelfGrid,
+                    topJUI.language.message.msg.selectSelfGrid,
                     topJUI.language.message.icon.warning
                 );
                 return;
@@ -230,10 +254,49 @@ addParentTab = function (options) {
 }
 
 /**
+ * 打开新窗口
+ * @param options
+ */
+openWindow = function (options) {
+    var href;
+    if (typeof options.grid == "object") {
+        if (options.grid.checkboxSelect == true) {
+            var rows = getCheckedRowsData(options.grid.type, options.grid.id);
+            if (rows.length == 0) {
+                $.messager.alert(
+                    topJUI.language.message.title.operationTips,
+                    topJUI.language.message.msg.checkSelfGrid,
+                    topJUI.language.message.icon.warning
+                );
+                return;
+            }
+        } else {
+            var row = getSelectedRowData(options.grid.type, options.grid.id);
+            if (!row) {
+                $.messager.alert(
+                    topJUI.language.message.title.operationTips,
+                    topJUI.language.message.msg.selectSelfGrid,
+                    topJUI.language.message.icon.warning
+                );
+                return;
+            }
+            href = replaceUrlParamValueByBrace(options.href, row);
+        }
+    } else {
+        href = options.href;
+    }
+    window.open(href);
+}
+
+/**
  * 绑定按钮点击事件
  * @param options
  */
 function bindMenuClickEvent($element, options) {
+    if (typeof options.grid != "object") {
+        var toolbarOptions = getOptionsJson($element.closest("div"));
+        options = $.extend(options, toolbarOptions);
+    }
     var defaults = {};
     // 打开dialog事件
     if (options.clickEvent == "openDialog") {
@@ -266,7 +329,7 @@ function bindMenuClickEvent($element, options) {
             for (var i = 0; i < options.dialog.editor.length; i++) {
                 if (i != options.dialog.editor.length - 1)
                     dh = ",";
-                editorStr += '{id:\'' + options.dialog.editor[i].field + '\',type:\'' + options.dialog.editor[i].type + '\',field:\'' + options.dialog.editor[i].field + '\'}' + dh;
+                editorStr += '{id:\'' + options.dialog.editor[i].id + '\',type:\'' + options.dialog.editor[i].type + '\',field:\'' + options.dialog.editor[i].field + '\'}' + dh;
             }
             extendDoc += ',editor:[' + editorStr + ']';
         }
@@ -283,7 +346,7 @@ function bindMenuClickEvent($element, options) {
         }
 
         var dialogDom = "";
-        dialogDom = '<form data-toggle="topjui-dialog2" data-options="id:\'' + options.dialog.id + '\',href:\'' + options.dialog.href + '\',url:\'' + options.dialog.url + '\',title:\'' + options.dialog.title + '\',beforeOpenCheckUrl:\'' + options.dialog.beforeOpenCheckUrl + '\'' + extendDoc + '"></form>';
+        dialogDom = '<form data-toggle="topjui-dialog" data-options="id:\'' + options.dialog.id + '\',href:\'' + options.dialog.href + '\',url:\'' + options.dialog.url + '\',title:\'' + options.dialog.title + '\',beforeOpenCheckUrl:\'' + options.dialog.beforeOpenCheckUrl + '\'' + extendDoc + '"></form>';
 
         // 判断dialog是否存在linkbutton按钮组
         var buttonsDom = "";
@@ -342,7 +405,7 @@ function bindMenuClickEvent($element, options) {
             } else if (options.dialog.url) {
                 openDialogAndloadDataByUrl(options);
             } else {
-                if(options.grid.uncheckedMsg) {
+                if (options.grid.uncheckedMsg) {
                     var rows = getCheckedRowsData(options.grid.type, options.grid.id);
                     if (rows.length == 0) {
                         $.messager.alert(
@@ -361,6 +424,8 @@ function bindMenuClickEvent($element, options) {
                 dialogObj.dialog({
                     width: options.dialog.width,
                     height: options.dialog.height,
+                    maximized: options.dialog.maximized,
+                    maximizable: options.dialog.maximizable,
                     left: options.dialog.leftMargin,
                     top: options.dialog.topMargin,
                     buttons: options.dialog.buttons
@@ -377,6 +442,15 @@ function bindMenuClickEvent($element, options) {
 
         $element.on("click", function () {
             addParentTab(options);
+        });
+    } else if (options.clickEvent == "openWindow") {
+        defaults = {
+            iconCls: 'icon-add'
+        }
+        options = $.extend(defaults, options);
+
+        $element.on("click", function () {
+            openWindow(options);
         });
     } else if (options.clickEvent == "doAjax") {
         defaults = {
@@ -417,7 +491,7 @@ function bindMenuClickEvent($element, options) {
         });
     } else if (options.clickEvent == "export") {
         defaults = {
-            iconCls: 'icon-table-go'
+            iconCls: 'icon-table_go'
         }
         options = $.extend(defaults, options);
 
@@ -426,7 +500,7 @@ function bindMenuClickEvent($element, options) {
         });
     } else if (options.clickEvent == "import") {
         defaults = {
-            iconCls: 'icon-table-go',
+            iconCls: 'icon-table_go',
             href: '/system/excel/excelImport'
         }
         options = $.extend(defaults, options);
@@ -475,6 +549,8 @@ function openDialogAndloadDataByParentGrid(options) {
     $dialogObj.dialog({
         width: options.dialog.width,
         height: options.dialog.height,
+        maximized: options.dialog.maximized,
+        maximizable: options.dialog.maximizable,
         left: options.dialog.leftMargin,
         top: options.dialog.topMargin,
         buttons: options.dialog.buttons
@@ -493,7 +569,10 @@ function openDialogAndloadDataByParentGrid(options) {
             var row = getSelectedRowData(options.grid.type, options.grid.id);
             newHref = replaceUrlParamValueByBrace(appendSourceUrlParam(newHref), row);
         }
-        $dialogObj.dialog('open').dialog("refresh", newHref);
+        $dialogObj.dialog({
+            href: newHref
+        });
+        $dialogObj.dialog('open');
     } else {
         $dialogObj.dialog('open');
     }
@@ -524,6 +603,8 @@ function openDialogAndloadDataByUrl(options) {
     $dialogObj.dialog({
         width: options.dialog.width,
         height: options.dialog.height,
+        maximized: options.dialog.maximized,
+        maximizable: options.dialog.maximizable,
         left: options.dialog.leftMargin,
         top: options.dialog.topMargin,
         buttons: options.dialog.buttons
@@ -534,7 +615,11 @@ function openDialogAndloadDataByUrl(options) {
     if (options.dialog.href.indexOf("{") != -1) {
         // 替换本表中选中行占位值
         var newHref = replaceUrlParamValueByBrace(appendSourceUrlParam(oriHref), row);
-        $dialogObj.dialog('open').dialog("refresh", newHref);
+        $dialogObj.dialog({
+            href: newHref
+        });
+        //$dialogObj.dialog('open').dialog("refresh", newHref); //加载两次href指定的页面
+        $dialogObj.dialog('open');
     } else {
         $dialogObj.dialog('open');
     }
@@ -974,6 +1059,7 @@ function filterHandler(options) {
     //console.log($(".l-btn-text").index($(".l-btn-text:contains('查询')")));
     var gridId;
     if (typeof options.grid == "object") {
+        options.filterOption = [];
         if (options.grid.type == "datagrid") {
             gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {
@@ -1120,6 +1206,10 @@ function exportHandler(options) {
             for (var j = 0; j < fieldName.length; j++) {
                 columnOption = $("#" + gridId).treegrid("getColumnOption", fieldName[j]);
                 colName.push(columnOption.title);
+                if (columnOption.hidden == true || columnOption.checkbox == true)
+                    hiddenMark.push(true);
+                else
+                    hiddenMark.push(false);
             }
         }
     }
@@ -1430,7 +1520,28 @@ function getMultiRowsFieldValue(rowsData, field) {
         fieldArr.push("'" + rowsData[i][field] + "'");
     }
     return fieldArr.join(',');
-};
+}
+
+/**
+ * 将表单数据序列化为json数据
+ * $("#form").serializeObject();
+ * @returns {{}}
+ */
+$.fn.serializeObject = function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};;
 var topJUI = {
     eventType: {
     	//initUI     : 'topjui.initForm',         // When document load completed or ajax load completed, B-JUI && Plugins init 
@@ -1484,571 +1595,385 @@ var topJUI = {
     }
 }
 
-;(function($){
-	$.fn.iDatagrid = function(options) {
-		var defaults = {
-		    //datagridId       : element.get(0).id,
-			datagridId       : this.selector,
-			width            : '100%',
-			height           : '100%',
-            autoRowHeight    : false,
-            nowrap           : true,
-            fit              : true,
-            fitColumns		 : false,
-    		border           : false,
-            striped          : true,
-            singleSelect     : true,
-            url              : "",
-            columns          : [[{field:'uuid',title:'UUID',align:'center'},
-                                {field:'title',title:'标题',align:'left'},
-                                {field:'creator',title: '发布人',align: 'center'},
-                                {field:'createTime',title: '发布时间',align: 'center'}]],
-            sortName	     : "createTime",
-            sortOrder        : "desc",
+;(function ($) {
+    $.fn.iDatagrid = function (options) {
+        var defaults = {
+            //datagridId       : element.get(0).id,
+            datagridId: this.selector,
+            width: '100%',
+            height: '100%',
+            autoRowHeight: false,
+            nowrap: true,
+            fit: true,
+            fitColumns: false,
+            border: false,
+            striped: true,
+            singleSelect: true,
+            url: "",
+            toolbar: this.selector + "-toolbar",
+            columns: [[{field: 'uuid', title: 'UUID', align: 'center'},
+                {field: 'title', title: '标题', align: 'left'},
+                {field: 'creator', title: '发布人', align: 'center'},
+                {field: 'createTime', title: '发布时间', align: 'center'}]],
+            sortName: "createTime",
+            sortOrder: "desc",
             //toolbar          : this.selector + 'Toolbar',
-            addButton        : true,
-            editButton       : true,
-            deleteButton     : true,
-            searchButton     : true,
-            addDialogTitle   : '新增',
-            editDialogTitle  : '编辑',
-            loadMsg          : "数据加载中,请稍后...",
-            rownumbers       : true,
-            pagination       : true,
-            pageNumber       : 1,
-            pageSize         : 20,
-            pageList         : [10, 20, 30, 40, 50],
-            editable    	 : true,
-            queryFormId      : "",      // search form id
-            queryAction      : "",      // search from action
-            infoFormId       : "",      // info form id
-            infoAddAction    : "",    	// info data add action
-            infoUpdateAction : "", 		// info update action
-            infoDlgDivId     : "",     	// info data detail/edit dlg div id
-            deleteAction     : "",     	// data delete action  from ajax
-            deleteMsg        : "",      // show the message before do delete
-            moveDlgDivId     : "",     	// the div id of dialog for move show
-            moveFormId       : "",      // the form id for move
-            moveTreeId       : "",      // the combotree id for move
-            queryParams      : {},      // search params name for post, must to be {}
-            queryParamsVCN   : {},   	// search params value from htmlcontrol name, must to be {}
-            
-            kindEditor       : [],
-            addDialogId      : '#editDialog',
-            editDialogId     : '#editDialog'
+            addButton: true,
+            editButton: true,
+            deleteButton: true,
+            searchButton: true,
+            addDialogTitle: '新增',
+            editDialogTitle: '编辑',
+            loadMsg: "数据加载中,请稍后...",
+            rownumbers: true,
+            pagination: true,
+            pageNumber: 1,
+            pageSize: 20,
+            pageList: [20, 30, 40, 50, 100, 200],
+            editable: true,
+            queryFormId: "",      // search form id
+            queryAction: "",      // search from action
+            infoFormId: "",      // info form id
+            infoAddAction: "",    	// info data add action
+            infoUpdateAction: "", 		// info update action
+            infoDlgDivId: "",     	// info data detail/edit dlg div id
+            deleteAction: "",     	// data delete action  from ajax
+            deleteMsg: "",      // show the message before do delete
+            moveDlgDivId: "",     	// the div id of dialog for move show
+            moveFormId: "",      // the form id for move
+            moveTreeId: "",      // the combotree id for move
+            queryParams: {},      // search params name for post, must to be {}
+            queryParamsVCN: {},   	// search params value from htmlcontrol name, must to be {}
+            checkOnSelect: false,
+            selectOnCheck: false,
+            kindEditor: [],
+            addDialogId: '#editDialog',
+            editDialogId: '#editDialog',
+            gridParam: 'uuid'
+        }
+
+        var options = $.extend(defaults, options);
+
+        var controllerUrl = getUrl('controller');
+        options.url = options.url ? options.url : controllerUrl + "getPageSetData";
+        options.getDetailUrl = options.getDetailUrl ? options.getDetailUrl : controllerUrl + "getDetailByUuid";
+        options.addDialogHref = options.addDialogHref ? options.addDialogHref : controllerUrl + "add";
+        options.saveUrl = options.saveUrl ? options.saveUrl : controllerUrl + "save";
+        options.editDialogHref = options.editDialogHref ? options.editDialogHref : controllerUrl + "edit";
+        options.updateUrl = options.updateUrl ? options.updateUrl : controllerUrl + "update";
+        options.deleteUrl = options.deleteUrl ? options.deleteUrl : controllerUrl + "delete";
+
+        $(this).datagrid({
+            filterBtnIconCls: 'icon-filter',
+            remoteFilter: true,
+            width: options.width,
+            height: options.height,
+            autoRowHeight: options.autoRowHeight,
+            nowrap: options.nowrap,
+            striped: options.striped,
+            singleSelect: options.singleSelect,
+            url: appendSourceUrlParam(options.url),
+            toolbar: options.toolbar,
+            //queryParams : {},
+            loadMsg: options.loadMsg,
+            rownumbers: options.rownumbers,
+            pagination: options.pagination,
+            paginPosition: 'bottom',
+            pageNumber: options.pageNumber,
+            pageSize: options.pageSize,
+            pageList: options.pageList,
+            frozenColumns: options.frozenColumns,
+            columns: options.columns,
+            sortName: options.sortName,
+            sortOrder: options.sortOrder,
+            fit: options.fit,
+            fitColumns: options.fitColumns,
+            border: options.border,
+            checkOnSelect: options.checkOnSelect,
+            selectOnCheck: options.selectOnCheck,
+            //bodyCls : "leftBottomBorder",
+            onBeforeLoad: function (param) {
+
+            },
+            onLoadSuccess: function () {
+                //$(this).datagrid("fixRownumber");
+                if (typeof options.childGrid == "object") {
+                    var refreshGridIdArr = options.childGrid.grid;
+                    for (var i = 0; i < refreshGridIdArr.length; i++) {
+                        var syncReload =  refreshGridIdArr[i].syncReload;
+                        if(syncReload){
+                            var $grid = $("#" + refreshGridIdArr[i].id);
+                            if (refreshGridIdArr[i]["type"] == "datagrid") {
+                                $grid.datagrid('load');
+                            } else if (refreshGridIdArr[i].type == "treegrid") {
+                                $grid.treegrid('load');
+                            }
+                        }
+                    }
+                }
+            },
+            onClickRow: function (index, row) {
+                //传递给要刷新表格的参数
+                if (typeof options.childGrid == "object") {
+                    var newQueryParams = {};
+                    newQueryParams = getSelectedRowJson(options.childGrid.param, row);
+
+                    var refreshGridIdArr = options.childGrid.grid;
+                    for (var i = 0; i < refreshGridIdArr.length; i++) {
+                        // 通过闭包嵌套和不同时序的执行来刷新grid
+                        (function (i) {
+                            setTimeout(function () {
+                                var $grid = $("#" + refreshGridIdArr[i].id);
+                                if (refreshGridIdArr[i]["type"] == "datagrid") {
+                                    //获得表格原有的参数
+                                    var queryParams = $grid.datagrid('options').queryParams;
+                                    $grid.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                                    $grid.datagrid('load');
+                                } else if (refreshGridIdArr[i].type == "treegrid") {
+                                    //获得表格原有的参数
+                                    var queryParams = $grid.treegrid('options').queryParams;
+                                    $grid.treegrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                                    $grid.treegrid('load');
+                                } else if (refreshGridIdArr[i].type == "panel") {
+                                    var href = replaceUrlParamValueByBrace(refreshGridIdArr[i].href, newQueryParams);
+                                    $grid.panel('refresh', href);
+                                }
+                            }, i * 100);
+                        })(i);
+                    }
+                }
+
+                if (typeof options.childTabs == "object") {
+                    var $tabsElement = $('#'+options.childTabs.id);
+                    var $tabsOptions = $tabsElement.tabs('options');
+                    var index = $tabsElement.tabs('getTabIndex',$tabsElement.tabs('getSelected'));
+                    var tabsComponent = $tabsOptions.component;
+                    var $element = $("#" + tabsComponent[index].id);
+
+                    var newQueryParams = {};
+
+                    newQueryParams = getSelectedRowJson(options.childTabs.param, row);
+
+                    if (tabsComponent[index]["type"] == "datagrid") {
+                        //获得表格原有的参数
+                        var queryParams = $element.datagrid('options').queryParams;
+                        $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                        $element.datagrid('load');
+                    } else if (tabsComponent[index]["type"] == "treegrid") {
+                        //获得表格原有的参数
+                        var queryParams = $element.treegrid('options').queryParams;
+                        $element.treegrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                        $element.treegrid('load');
+                    } else if (tabsComponent[index]["type"] == "panel") {
+                        var panelOptions = $element.panel('options');
+                        var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, row);
+                        $element.panel('refresh', newHref);
+                    }
+                }
+            }
+
+        });
+
+        //$(this).datagrid('disableFilter', options.filterOption);
+
+        //重新加载datagrid的数据
+        //$(this).datagrid('reload');
+
+    }
+
+    /**
+     * @author 小策一喋
+     * @requires jQuery,EasyUI
+     * 为datagrid、treegrid增加表头菜单，用于显示或隐藏列，注意：冻结列不在此菜单中
+     */
+    var createGridHeaderContextMenu = function (e, field) {
+        e.preventDefault();
+        var grid = $(this);
+        /* grid本身 */
+        var headerContextMenu = this.headerContextMenu;
+        /* grid上的列头菜单对象 */
+        var okCls = 'tree-checkbox1'; // 选中
+        var emptyCls = 'tree-checkbox0'; // 取消
+        if (!headerContextMenu) {
+            var tmenu = $('<div style="width:150px;"></div>').appendTo('body');
+            var fields = grid.datagrid('getColumnFields');
+            for (var i = 0; i < fields.length; i++) {
+                var fieldOption = grid.datagrid('getColumnOption', fields[i]);
+                if (!fieldOption.hidden) {
+                    $('<div iconCls="' + okCls + '" field="' + fields[i] + '"/>').html(fieldOption.title).appendTo(tmenu);
+                } else {
+                    $('<div iconCls="' + emptyCls + '" field="' + fields[i] + '"/>').html(fieldOption.title).appendTo(tmenu);
+                }
+            }
+            headerContextMenu = this.headerContextMenu = tmenu.menu({
+                onClick: function (item) {
+                    var field = $(item.target).attr('field');
+                    if (item.iconCls == okCls) {
+                        grid.datagrid('hideColumn', field);
+                        $(this).menu('setIcon', {
+                            target: item.target,
+                            iconCls: emptyCls
+                        });
+                    } else {
+                        grid.datagrid('showColumn', field);
+                        $(this).menu('setIcon', {
+                            target: item.target,
+                            iconCls: okCls
+                        });
+                    }
+                    headerContextMenu.menu('show');
+                }
+            });
+        }
+        headerContextMenu.menu('show', {
+            left: e.pageX,
+            top: e.pageY
+        });
+    };
+    $.fn.datagrid.defaults.onHeaderContextMenu = createGridHeaderContextMenu;
+    $.fn.treegrid.defaults.onHeaderContextMenu = createGridHeaderContextMenu;
+
+
+})(jQuery);;(function($){
+	
+	$.fn.iDialog = function(options) {
+		var defaults = {
+			currentDialogId : this.selector,
+			width   : 650,
+			height  : 400,
+			title   : '编辑',
+			modal   : true,
+			closed  : true,
+			iconCls : 'icon-save',
+			collapsible : true,
+			maximizable : true,
+			minimizable : false,
+			maximized : false,
+			resizable : true,
+			openAnimation : 'show',
+			openDuration : 100,
+			closeAnimation : 'show',
+			closeDuration : 400,
+			toolbar : this.selector+'-toolbar',
+			buttons : this.selector+'-buttons',
+			postfix : 'Edit',
+			combotreeFields : '',
+			refreshTreeId : ''
 		}
-		
 		var options = $.extend(defaults, options);
 		
-		var indexUrl = window.location.pathname;
-		var controllerUrl = indexUrl.substring(0, indexUrl.lastIndexOf("/")+1);
-		options.datagridUrl = options.datagridUrl ? options.datagridUrl : controllerUrl + "getPageSetData";
-		options.getDetailUrl = options.getDetailUrl ? options.getDetailUrl : controllerUrl + "getDetailByUuid";
-		options.addDialogHref = options.addDialogHref ? options.addDialogHref : controllerUrl + "add";
-		options.saveUrl = options.saveUrl ? options.saveUrl : controllerUrl + "save";
-		options.editDialogHref = options.editDialogHref ? options.editDialogHref : controllerUrl + "edit";
-		options.updateUrl = options.updateUrl ? options.updateUrl : controllerUrl + "update";
-		options.deleteUrl = options.deleteUrl ? options.deleteUrl : controllerUrl + "delete";
-		
-		$(this).datagrid({
-			filterBtnIconCls:'icon-filter',
-			remoteFilter  : true,
-	        width         : options.width,
-            height        : options.height,
-            autoRowHeight : options.autoRowHeight,
-            nowrap        : options.nowrap,
-            striped       : options.striped,
-            singleSelect  : options.singleSelect,
-            url           : options.datagridUrl + location.search,
-            //queryParams : {},
-            loadMsg       : options.loadMsg,
-            rownumbers    : options.rownumbers,
-            pagination    : options.pagination,
-            paginPosition : 'bottom',
-            pageNumber    : options.pageNumber,
-            pageSize      : options.pageSize,
-            pageList      : options.pageList,
-            columns       : options.columns,
-            sortName	  : options.sortName,
-            sortOrder     : options.sortOrder,
-            fit           : options.fit,
-    		fitColumns    : options.fitColumns,
-    		border        : options.border,
-    		//bodyCls : "leftBottomBorder",
-    		onBeforeLoad  : function(param) {
-    			$.get(ctx + "/system/authAccess/getDetailByRoleIdAndUrl",  function(data) {
-    				if(data.addAuth != 1 || options.addButton == false) {
-    					$(options.datagridId).datagrid("removeToolbarItem", "添加");
-    				}
-    				if(data.editAuth != 1 || options.editButton == false) {
-    					$(options.datagridId).datagrid("removeToolbarItem", "修改");
-    				}
-    				if(data.deleteAuth != 1 || options.deleteButton == false) {
-    					$(options.datagridId).datagrid("removeToolbarItem", "删除");
-    				}
-    				if(data.searchAuth != 1 || options.searchButton == false) {
-    					$(options.datagridId).datagrid("removeToolbarItem", "查询");
-    				}
-    				if(data.importAuth != 1 || options.importButton == false) {
-    					$(options.datagridId).datagrid("removeToolbarItem", "导入");
-    				}
-    				if(data.exportAuth != 1 || options.exportButton == false) {
-    					$(options.datagridId).datagrid("removeToolbarItem", "导出");
-    				}
-                }, 'json');
-    		},
-            onLoadSuccess : function() {
-            	$(this).datagrid("fixRownumber");
-            },
-            onClickRow    : function(index, row) {
-            	if(options.refreshChildDatagrid) {
-	            	var childDatagrid = $(options.childDatagridId);
-	         	    var queryParams = childDatagrid.datagrid('options').queryParams;
-	         	    queryParams2 = options.queryParams;
-	         	    queryParams2.codeSetId = row.id;
-	         	    childDatagrid.datagrid('options').queryParams = $.extend({}, queryParams, queryParams2);
-	         	    childDatagrid.datagrid('reload');
-            	}
-            },
-            onDblClickRow : editHandler,
-            toolbar: [{
-            	id: 'addButton',
-                text: '添加',
-                iconCls: 'icon-add',
-                handler: function () {
-                	
-                	clearDialogHrefKeyValue(options.addDialogId, "action,uuid");
-                	
-        			$(options.addDialogId).dialog('open').form('reset');
-        			
-        			setTimeout(function() {
-	        			$(options.addDialogId).dialog('setTitle', options.addDialogTitle);
-						$('#addBtn').show();
-						$('#saveBtn').hide();
-						$('#processBtn').hide();
-						
-						/* kindeditor编辑器处理 */
-						if(options.kindEditor.length > 0) {
-							for(var i=0; i<options.kindEditor.length; i++) {  
-							   for(var key in options.kindEditor[i]) {
-							    	document.getElementsByTagName("iframe")[i].contentWindow.document.body.innerHTML = "";
-							   }
+		var controllerUrl = getUrl('controller');
+		options.href = options.href ? options.href + location.search : controllerUrl + "edit" + location.search;
+
+		var $dialogObj = $("#"+options.id);
+		$(this).dialog({
+			width   : options.width,
+			height  : options.height,
+			title   : options.title,
+			modal   : options.modal,
+			closed  : options.closed,
+			iconCls : options.iconCls,
+			href 	: options.href,
+			collapsible : options.collapsible,
+			maximizable : options.maximizable,
+			minimizable : options.minimizable,
+			maximized : options.maximized,
+			resizable : options.resizable,
+			openAnimation : options.openAnimation,
+			openDuration : options.openDuration,
+			closeAnimation : options.closeAnimation,
+			closeDuration : options.closeDuration,
+			zIndex : 10,
+			toolbar : options.toolbar,
+			buttons : options.buttons,
+			onBeforeOpen : function() {
+
+			},
+			onLoad : function() {
+				$(this).trigger(topJUI.eventType.initUI.form);
+
+				if(options.url.length > 1) {
+					// 获取选中行的数据
+					var row = getSelectedRowData(options.grid.type, options.grid.id);
+					// 如果指定了数据来源URL，则通过URL加载数据
+					var newDialogUrl = replaceUrlParamValueByBrace(options.url, row);
+					$.getJSON(newDialogUrl, function(data) {
+						$dialogObj.form('load', data);
+						if(typeof options.editor == "string" || typeof options.editor == "object") {
+							// kindeditor编辑器处理
+							if (typeof options.editor == "string") {
+								// 富文本编辑器字符串
+								var ke = [], keObj = [];
+								ke = options.editor.replace(/'/g, '"').split(",");
+								for (var i = 0; i < ke.length; i++) {
+									keObj.push(strToJson(ke[i]));
+								}
+							} else {
+								// 富文本编辑数组
+								keObj = options.editor;
 							}
-						}
-        			}, 500);
-					
-        		}
-            }, {
-                text: '修改',
-                iconCls: 'icon-edit',
-                handler: editHandler
-            }, /*'-', {
-                text: '保存',
-                iconCls: 'icon-save',
-                handler: function () {
-                    $(options.datagridId).datagrid('endEdit', editRow);
-     
-                    //如果调用acceptChanges(),使用getChanges()则获取不到编辑和新增的数据。
-     
-                    //使用JSON序列化datarow对象，发送到后台。
-                    var rows = $(options.datagridId).datagrid('getChanges');
-                    //console.log(rows[0]);
-                    if(rows[0] == undefined) {
-                    	$.messager.alert('操作失败！', '未知错误或没有任何修改，请重试！', 'warning');
-                    } else {
-	                    //var rowstr = JSON.stringify(rows);
-	                    
-                    	var url = null;
-                        if(rows[0]["uuid"] == undefined) {
-                        	url = options.saveUrl;
-                        } else {
-                        	url = options.updateUrl;
-                        }
-                    	
-	                    $.ajax({
-							url : url,
-							type : 'post',
-							data : rows[0],
-							beforeSend : function () {
-								$.messager.progress({
-									text : '正在操作...'
-								});
-							},
-							success : function (data, response, status) {
-								$.messager.progress('close');
-								if (data > 0) {
-									$.messager.show({
-										title : '提示',
-										msg : '操作成功'
+							for (var i = 0; i < keObj.length; i++) {
+								var editorType = keObj[i]["type"];
+								var editorId = keObj[i]["id"];
+								var editorField = keObj[i]["field"];
+								if(editorType == "kindeditor") {
+									getTabWindow().$("iframe").each(function(i){
+										this.contentWindow.document.body.innerHTML = html_decode(data[editorField]);
 									});
-									$(options.datagridId).datagrid('reload');
 								} else {
-									$.messager.alert('操作失败！', '未知错误或没有任何修改，请重试！', 'warning');
+									UE.getEditor(editorId).ready(function () {
+										UE.getEditor(editorId).setContent(data[editorField]);
+									});
 								}
 							}
-						});
-                    }
-                    
-                    //$.post(options.saveUrl, rowstr, function (data) {
-                         
-                    //});
-                }
-            },*/ {
-                text: '删除',
-                iconCls: 'icon-no',
-                handler: function () {
-        			if(options) {
-        				var rows = $(options.datagridId).datagrid('getSelections');
-        				if (rows.length > 0) {
-        					$.messager.confirm('确定操作', '您确定要删除所选的记录吗？', function (flag) {
-        						if (flag) {
-        							var uuids = [];
-        							for (var i = 0; i < rows.length; i ++) {
-        								uuids.push("'"+rows[i].uuid+"'");
-        							}
-        							//console.log(uuids.join(','));
-        							$.ajax({
-        								type : 'POST',
-        								url : options.deleteUrl,
-        								data : {
-        									uuids : uuids.join(',')
-        								},
-        								beforeSend : function () {
-        									$(options.datagridId).datagrid('loading');
-        								},
-        								success : function (data) {
-        									if (data) {
-        										$(options.datagridId).datagrid('loaded');
-        										$(options.datagridId).datagrid('load');
-        										$(options.datagridId).datagrid('unselectAll');
-        										$.messager.show({
-        											title : '温馨提示',
-        											msg : '成功删除【' + data + '】条记录！'
-        										});
-        									}
-        								}
-        							});
-        						}
-        					});
-        				} else {
-        					$.messager.alert('提示操作', '请选择要删除的记录！', 'info');
-        				}
-        			}
-        		}
-            }, {
-                text: '查询',
-                iconCls: 'icon-search',
-                handler: function () {
-                	//console.log($(options.datagridId + " .datagrid-filter-row").length);
-                	//console.log($(".l-btn-text").index($(".l-btn-text:contains('查询')")));
-                	if($(".datagrid-filter-row").length > 0) {
-                		$(options.datagridId).datagrid('disableFilter', options.filterOption);
-                		//$(".l-btn-text:contains('隐藏'):eq(1)").text("查询");
-                	} else {
-                		$(options.datagridId).datagrid('enableFilter', options.filterOption);
-                		//$(".l-btn-text:contains('查询'):eq(1)").text("隐藏");
-                	}
-                }
-            }, {
-            	id: 'importButton',
-                text: '导入',
-                iconCls: 'icon-table-add',
-                handler: function () {
-                	
-                	$(this).trigger(topJUI.eventType.initCombotree);
-        			$("#importDialog").dialog('open');
-        			
-        			/*setTimeout(function() {
-	        			$(options.importDialogId).dialog('setTitle', options.importDialogTitle);
-						$('#addBtn').show();
-        			}, 100);*/
-					
-        		}
-            }, {
-            	id: 'exportButton',
-                text: '导出',
-                iconCls: 'icon-table-go',
-                handler: function () {
-                	var date = new Date();
-                	var excelTitle = parent.$('#index_tabs').tabs('getSelected').panel('options').title+"_导出数据_"+date.toLocaleString();
-                	var fieldName = $(options.datagridId).datagrid('getColumnFields');
-                	var colName=[];
-                	for(i = 0; i < fieldName.length; i++) {
-                		var col = $(options.datagridId).datagrid("getColumnOption", fieldName[i]);
-                		colName.push(col.title);
-                	}
-                	var exportUrl = options.datagridUrl.substring(0, options.datagridUrl.lastIndexOf("/")) + '/exportExcel';
-                	var colNameStr = colName.join(',').replace("UUID,","").replace(/,操作/g,"").replace(/操作,/g,"");
-                	var fieldNameStr = fieldName.join(',').replace("uuid,","").replace(/,handle/g,"").replace(/handle,/g,"");
-                	$.ajax({
-						type : 'POST',
-						url : exportUrl,
-						data : {
-							excelTitle : excelTitle,
-							colName : colNameStr,
-							fieldName : fieldNameStr
-						},
-						success : function (data) {
-							if (data) {
-								window.location.href = exportUrl+'?excelTitle='+excelTitle+'&colName='+colNameStr+'&fieldName='+fieldNameStr;
-								$.messager.show({
-									title : '温馨提示',
-									msg : '导出请求已发出，请稍后！'
-								});
-							}
 						}
 					});
-        		}
-            }, {
-                text: '撤销',
-                iconCls: 'icon-redo',
-                handler: function () {
-                    editRow = undefined;
-                    $(options.datagridId).datagrid('rejectChanges');
-                    $(options.datagridId).datagrid('unselectAll');
-                }
-            }/*, '-', {
-                text: '上移',
-                iconCls: 'icon-up',
-                handler: function () {
-                    MoveUp();
-                }
-            }, '-', {
-                text: '下移',
-                iconCls: 'icon-down',
-                handler: function () {
-                    MoveDown();
-                }
-            }*/]
+				} else {
+					// 如果没有指定数据来源URL，则直接加载选中行的数据
+					// $dialogObj.form('load', row); // 防止新增时也加载选中行的数据，暂时屏蔽
+				}
+
+				// 如果存在父表，则将父表中指定的字段数据加载到本窗口中
+				if(typeof options.parentGrid == "object") {
+					var parentRow = getSelectedRowData(options.parentGrid.type, options.parentGrid.id);
+					var jsonData = getSelectedRowJson(options.parentGrid.param, parentRow);
+					$dialogObj.form('load', jsonData);
+				}
+			},
+			onClose : function() {
+				$(options.currentDialogId).form('clear');
+			}
 	    });
 		
-		//$(this).datagrid('disableFilter', options.filterOption);
-		
-		
-		function editHandler() {
-			if(options) {
-				var rows = $(options.datagridId).datagrid('getSelections');
-				if (rows.length > 1) {
-					$.messager.alert('提示操作！', '编辑数据只能选择一条记录！', 'warning');
-				} else if (rows.length == 1) {
-					clearDialogHrefKeyValue(options.editDialogId, "uuid");
-					setDialogHrefKeyValue(options.editDialogId, "action,uuid", "edit," + rows[0].uuid);
-					$.ajax({
-						url : options.getDetailUrl + "?uuid=" + rows[0].uuid,
-						type : 'post',
-						dataType: 'json',
-						async : false,
-						beforeSend : function () {
-							/*$.messager.progress({
-								text : '正在获取中...'
-							});*/
-						},
-						success : function (data, response, status) {
-							$.messager.progress('close');
-							
-							if (data) {
-								//var params = '{';
-								//$.each(options.editFields, function (k, v) {
-									//params += '"' + v + '": "' + data[v.replace("Edit", "")] + '", ';
-								//});
-								//params += '"endStr": "1"}';
-								//console.log(params);
-								var newHref = $(options.editDialogId).dialog('options').href + "&abc=213";
-								$(options.editDialogId).dialog('open').dialog('refresh', newHref);
-								setTimeout(function() {
-									$(options.editDialogId).form('load', data);
-									$(options.editDialogId).dialog('setTitle', options.editDialogTitle);
-									$('#addBtn').hide();
-									$('#saveBtn').show();
-									if(!options.processUpdateUrl){
-										$('#processBtn').hide();
-									}
-							    }, 500);
-								
-								setTimeout(function(){
-									
-									/* kindeditor编辑器处理 */
-									// 判断是一个富文本编辑器字符串还是多个富文本编辑数组
-									if(typeof options.kindEditor == "string") {
-										var ke = [],keObj = [];
-										ke = options.kindEditor.replace(/'/g,'"').split(",");
-										for(var i=0; i<ke.length; i++) {
-											keObj.push(strToJson(ke[i]));
-										}
-									} else {
-										keObj = options.kindEditor;
-									}
-									
-									getTabWindow().$("iframe").each(function(i){
-										this.contentWindow.document.body.innerHTML = html_decode(data[keObj[i]["field"]]);
-							    	});
-									
-									
-									/*if(options.kindEditor.length > 0) {
-    									for(var i=0; i<options.kindEditor.length; i++) {  
-										   for(var key in options.kindEditor[i]) {
-										    	document.getElementsByTagName("iframe")[i].contentWindow.document.body.innerHTML = html_decode(data[options.kindEditor[i][key]]);
-										   }
-    									}
-									}*/
-									
-									/* 附件处理 */
-									if($(".attachTable").length > 0) {
-    									$(".attachTable tr:gt(0)").remove();
-    									for(var i=0; i<data.attach.length; i++) {  
-    										var attach = data.attach[i];
-    										$(".attachTable").append('<tr><td class="label">'+attach.fileName+'</td><td class="label">'+attach.fileSize+'</td><td class="label">'+attach.creator+'</td><td class="label">'+attach.createTime+'</td></tr>');
-        								}
-									}
-								},500);
-								
-							} else {
-								$.messager.alert('获取失败！', '未知错误导致失败，请重试！', 'warning');
-							}
-						}
-					});
-				} else if (rows.length == 0) {
-					$.messager.alert('提示操作！', '编辑数据请至少选择一条记录！', 'warning');
+		function showHiddenBtn(btn1, btn2, btn3, btn4, btn5, btn6){
+			$(".dialog-button > a").each(function(i){
+				switch(i%6) {
+					case 0:
+						btn1 ? $(this).show() : $(this).hide();
+						break;
+					case 1:
+						btn2 ? $(this).show() : $(this).hide();
+						break;
+					case 2:
+						btn3 ? $(this).show() : $(this).hide();
+						break;
+					case 3:
+						btn4 ? $(this).show() : $(this).hide();
+						break;
+					case 4:
+						btn5 ? $(this).show() : $(this).hide();
+						break;
+					case 5:
+						btn6 ? $(this).show() : $(this).hide();
+						break;
 				}
-			}
+			});
 		}
-		
-		//上移
-		function MoveUp() {
-		    var row = $(options.datagridId).datagrid('getSelected');
-		    var index = $(options.datagridId).datagrid('getRowIndex', row);
-		    mysort(index, 'up', options.datagridId);
-		     
-		}
-		//下移
-		function MoveDown() {
-		    var row = $(options.datagridId).datagrid('getSelected');
-		    var index = $(options.datagridId).datagrid('getRowIndex', row);
-		    mysort(index, 'down', options.datagridId);
-		     
-		}
-		 
-		 
-		function mysort(index, type, datagridId) {
-		    if ("up" == type) {
-		        if (index != 0) {
-		            var toup = $(datagridId).datagrid('getData').rows[index];
-		            var todown = $(datagridId).datagrid('getData').rows[index - 1];
-		            $(datagridId).datagrid('getData').rows[index] = todown;
-		            $(datagridId).datagrid('getData').rows[index - 1] = toup;
-		            $(datagridId).datagrid('refreshRow', index);
-		            $(datagridId).datagrid('refreshRow', index - 1);
-		            $(datagridId).datagrid('selectRow', index - 1);
-		        }
-		    } else if ("down" == type) {
-		        var rows = $(datagridId).datagrid('getRows').length;
-		        if (index != rows - 1) {
-		            var todown = $(datagridId).datagrid('getData').rows[index];
-		            var toup = $(datagridId).datagrid('getData').rows[index + 1];
-		            $(datagridId).datagrid('getData').rows[index + 1] = todown;
-		            $(datagridId).datagrid('getData').rows[index] = toup;
-		            $(datagridId).datagrid('refreshRow', index);
-		            $(datagridId).datagrid('refreshRow', index + 1);
-		            $(datagridId).datagrid('selectRow', index + 1);
-		        }
-		    }
-		 
-		}
-	
-		//重新加载datagrid的数据
-		//$(this).datagrid('reload');
 		
 	}
-	
-	// 扩展datagrid方法，修复行号宽度显示问题
-	$.extend($.fn.datagrid.methods, {
-		fixRownumber : function (jq) {
-			return jq.each(function () {
-				var panel = $(this).datagrid("getPanel");
-				//获取最后一行的number容器,并拷贝一份
-				var clone = $(".datagrid-cell-rownumber", panel).last().clone();
-				//由于在某些浏览器里面,是不支持获取隐藏元素的宽度,所以取巧一下
-				clone.css({
-					"position" : "absolute",
-					left : -1000
-				}).appendTo("body");
-				var width = clone.width("auto").width();
-				//默认宽度是25,所以只有大于25的时候才进行fix
-				if (width > 25) {
-					//多加5个像素,保持一点边距
-					$(".datagrid-header-rownumber,.datagrid-cell-rownumber", panel).width(width + 5);
-					//修改了宽度之后,需要对容器进行重新计算,所以调用resize
-					$(this).datagrid("resize");
-					//一些清理工作
-					clone.remove();
-					clone = null;
-				} else {
-					//还原成默认状态
-					$(".datagrid-header-rownumber,.datagrid-cell-rownumber", panel).removeAttr("style");
-				}
-			});
-		},
-		/*
-		 *	$('#tt').datagrid("addToolbarItem",[{"text":"xxx"},"-",{"text":"xxxsss","iconCls":"icon-ok"}])
-		 *	$('#tt').datagrid("removeToolbarItem","GetChanges") //根据btn的text删除
-		 *	$('#tt').datagrid("removeToolbarItem",0) //根据下标删除
-		 */
-		addToolbarItem : function (jq, items) {
-			return jq.each(function () {
-				var dpanel = $(this);
-				var toolbar = dpanel.children("div.datagrid-toolbar");
-				if (!toolbar.length) {
-					toolbar = $("<div class=\"datagrid-toolbar\"><table cellspacing=\"0\" cellpadding=\"0\"><tr></tr></table></div>").prependTo(dpanel);
-					$(this).datagrid('resize');
-				}
-				var tr = toolbar.find("tr");
-				for (var i = 0; i < items.length; i++) {
-					var btn = items[i];
-					if (btn == "-") {
-						$("<td><div class=\"datagrid-btn-separator\"></div></td>").appendTo(tr);
-					} else {
-						var td = $("<td></td>").appendTo(tr);
-						var b = $("<a href=\"javascript:void(0)\"></a>").appendTo(td);
-						b[0].onclick = eval(btn.handler || function () {});
-						b.linkbutton($.extend({}, btn, {
-								plain : true
-							}));
-					}
-				}
-			});
-		},
-		removeToolbarItem : function (jq, param) {
-			return jq.each(function () {
-				var dpanel = $(this).datagrid("getPanel");
-				var toolbar = dpanel.children("div.datagrid-toolbar");
-				var cbtn = null;
-				if (typeof param == "number") {
-					cbtn = toolbar.find("td").eq(param).find('span.l-btn-text');
-					//csep = toolbar.find("td").eq(param).find('.datagrid-btn-separator');
-				} else if (typeof param == "string") {
-					cbtn = toolbar.find("span.l-btn-text:contains('" + param + "')");
-					//csep = toolbar.find(".datagrid-btn-separator:contains('" + param + "')");
-				}
-				if (cbtn && cbtn.length > 0) {
-					cbtn.closest('td').remove();
-					//csep.closest('td').remove();
-					cbtn = null;
-				}
-			});
-		}
-	});
-	
-	/*$(function() {
-		var $this  = $('[data-toggle="datagrid"]'),
-		    options = $this.data()
-		
-		//options.columns = JSON.parse(options.columns)
-		
-		$this.myDatagrid($this, options)
-	})*/
-	
+
 })(jQuery);;(function ($) {
-    $.fn.iDatagrid2 = function (options) {
+    $.fn.iEdatagrid = function (options) {
         var defaults = {
             //datagridId       : element.get(0).id,
             datagridId: this.selector,
@@ -2113,9 +2038,9 @@ var topJUI = {
         options.saveUrl = options.saveUrl ? options.saveUrl : controllerUrl + "save";
         options.editDialogHref = options.editDialogHref ? options.editDialogHref : controllerUrl + "edit";
         options.updateUrl = options.updateUrl ? options.updateUrl : controllerUrl + "update";
-        options.deleteUrl = options.deleteUrl ? options.deleteUrl : controllerUrl + "delete";
+        options.destroyUrl = options.destroyUrl ? options.destroyUrl : controllerUrl + "delete";
 
-        $(this).datagrid({
+        $(this).edatagrid({
             filterBtnIconCls: 'icon-filter',
             remoteFilter: true,
             width: options.width,
@@ -2144,6 +2069,9 @@ var topJUI = {
             checkOnSelect: options.checkOnSelect,
             selectOnCheck: options.selectOnCheck,
             //bodyCls : "leftBottomBorder",
+            saveUrl: options.saveUrl,
+            updateUrl: options.updateUrl,
+            destroyUrl: options.destroyUrl,
             onBeforeLoad: function (param) {
 
             },
@@ -2244,839 +2172,6 @@ var topJUI = {
     $.fn.treegrid.defaults.onHeaderContextMenu = createGridHeaderContextMenu;
 
 
-})(jQuery);;(function($){
-	$.fn.iDatagrid = function(options) {
-		var defaults = {
-		    //datagridId       : element.get(0).id,
-			datagridId       : this.selector,
-			width            : '100%',
-			height           : '100%',
-            autoRowHeight    : false,
-            nowrap           : true,
-            fit              : true,
-            fitColumns		 : true,
-    		border           : false,
-            striped          : true,
-            singleSelect     : false,
-            url              : "",
-            columns          : [[{field:'id',title:'ID',align:'center'},
-                                {field:'title',title:'标题',align:'left'},
-                                {field:'creator',title: '发布人',align: 'center'},
-                                {field:'createTime',title: '发布时间',align: 'center'}]],
-            sortName	     : "createTime",
-            sortOrder        : "desc",
-            //toolbar          : this.selector + 'Toolbar',
-            loadMsg          : "数据加载中,请稍后...",
-            rownumbers       : true,
-            pagination       : true,
-            pageNumber       : 1,
-            pageSize         : 20,
-            pageList         : [10, 20, 30, 40, 50],
-            editable    	 : true,
-            queryFormId      : "",      // search form id
-            queryAction      : "",      // search from action
-            infoFormId       : "",      // info form id
-            infoAddAction    : "",    	// info data add action
-            infoUpdateAction : "", 		// info update action
-            infoDlgDivId     : "",     	// info data detail/edit dlg div id
-            deleteAction     : "",     	// data delete action  from ajax
-            deleteMsg        : "",      // show the message before do delete
-            moveDlgDivId     : "",     	// the div id of dialog for move show
-            moveFormId       : "",      // the form id for move
-            moveTreeId       : "",      // the combotree id for move
-            queryParams      : {},      // search params name for post, must to be {}
-            queryParamsVCN   : {}   	// search params value from htmlcontrol name, must to be {}
-		}
-		
-		var options = $.extend(defaults, options);
-		
-		$(this).datagrid({
-	        width         : options.width,
-            height        : options.height,
-            autoRowHeight : options.autoRowHeight,
-            nowrap        : options.nowrap,
-            striped       : options.striped,
-            singleSelect  : options.singleSelect,
-            url           : options.datagridUrl,
-            //queryParams : {},
-            loadMsg       : options.loadMsg,
-            rownumbers    : options.rownumbers,
-            pagination    : options.pagination,
-            paginPosition : 'bottom',
-            pageNumber    : options.pageNumber,
-            pageSize      : options.pageSize,
-            pageList      : options.pageList,
-            columns       : options.columns,
-            sortName	  : options.sortName,
-            sortOrder     : options.sortOrder,
-            fit           : options.fit,
-    		fitColumns    : options.fitColumns,
-    		border        : options.border,
-            onLoadSuccess : function() {
-            	$(this).datagrid("fixRownumber")
-            },
-            toolbar: [{
-                text: '添加',
-                iconCls: 'icon-add',
-                handler: function () {
-        			$(options.addDialogId).dialog('open').form('reset');
-        		}
-            }, '-', {
-                text: '修改',
-                iconCls: 'icon-edit',
-                handler: function () {
-        			if(options) {
-        				var rows = $(options.datagridId).datagrid('getSelections');
-        				if (rows.length > 1) {
-        					$.messager.alert('提示操作！', '编辑数据只能选择一条记录！', 'warning');
-        				} else if (rows.length == 1) {
-        					$.ajax({
-        						url : options.getDetailUrl,
-        						type : 'post',
-        						dataType: 'json',
-        						data : {
-        							uuid : rows[0].uuid
-        						},
-        						beforeSend : function () {
-        							$.messager.progress({
-        								text : '正在获取中...'
-        							});
-        						},
-        						success : function (data, response, status) {
-        							$.messager.progress('close');
-        								
-        							if (data) {
-        								var params = '{';
-        								$.each(options.editFields, function (k, v) {
-        									params += '"' + v + '": "' + data[v.replace("Edit", "")] + '", ';
-        								});
-        								params += '"endStr": "1"}';
-        								console.log(params);
-        								$(options.editDialogId).dialog('open');
-        								setTimeout(function() {
-        									$(options.editDialogId).form('load', $.parseJSON(params));
-        							    }, 100);
-        							} else {
-        								$.messager.alert('获取失败！', '未知错误导致失败，请重试！', 'warning');
-        							}
-        						}
-        					});
-        				} else if (rows.length == 0) {
-        					$.messager.alert('提示操作！', '编辑数据请至少选择一条记录！', 'warning');
-        				}
-        			}
-        		}
-            }, '-', {
-                text: '保存',
-                iconCls: 'icon-save',
-                handler: function () {
-                    $(options.datagridId).datagrid('endEdit', editRow);
-     
-                    //如果调用acceptChanges(),使用getChanges()则获取不到编辑和新增的数据。
-     
-                    //使用JSON序列化datarow对象，发送到后台。
-                    var rows = $(options.datagridId).datagrid('getChanges');
-                    console.log(rows[0]);
-                    if(rows[0] == undefined) {
-                    	$.messager.alert('操作失败！', '未知错误或没有任何修改，请重试！', 'warning');
-                    } else {
-	                    //var rowstr = JSON.stringify(rows);
-	                    
-                    	var url = null;
-                        if(rows[0]["uuid"] == undefined) {
-                        	url = options.saveUrl;
-                        } else {
-                        	url = options.updateUrl;
-                        }
-                    	
-	                    $.ajax({
-							url : url,
-							type : 'post',
-							data : rows[0],
-							beforeSend : function () {
-								$.messager.progress({
-									text : '正在操作...'
-								});
-							},
-							success : function (data, response, status) {
-								$.messager.progress('close');
-								if (data > 0) {
-									$.messager.show({
-										title : '提示',
-										msg : '操作成功'
-									});
-									$(options.datagridId).datagrid('reload');
-								} else {
-									$.messager.alert('操作失败！', '未知错误或没有任何修改，请重试！', 'warning');
-								}
-							}
-						});
-                    }
-                    
-                    //$.post(options.saveUrl, rowstr, function (data) {
-                         
-                    //});
-                }
-            }, '-', {
-                text: '删除',
-                iconCls: 'icon-no',
-                handler: function () {
-        			if(options) {
-        				var rows = $(options.datagridId).datagrid('getSelections');
-        				if (rows.length > 0) {
-        					$.messager.confirm('确定操作', '您确定要删除所选的记录吗？', function (flag) {
-        						if (flag) {
-        							var uuids = [];
-        							for (var i = 0; i < rows.length; i ++) {
-        								uuids.push("'"+rows[i].uuid+"'");
-        							}
-        							//console.log(uuids.join(','));
-        							$.ajax({
-        								type : 'POST',
-        								url : options.deleteUrl,
-        								data : {
-        									uuids : uuids.join(',')
-        								},
-        								beforeSend : function () {
-        									$(options.datagridId).datagrid('loading');
-        								},
-        								success : function (data) {
-        									if (data) {
-        										$(options.datagridId).datagrid('loaded');
-        										$(options.datagridId).datagrid('load');
-        										$(options.datagridId).datagrid('unselectAll');
-        										$.messager.show({
-        											title : '温馨提示',
-        											msg : '成功删除【' + data + '】条记录！'
-        										});
-        									}
-        								}
-        							});
-        						}
-        					});
-        				} else {
-        					$.messager.alert('提示操作', '请选择要删除的记录！', 'info');
-        				}
-        			}
-        		}
-            }, '-', {
-                text: '撤销',
-                iconCls: 'icon-redo',
-                handler: function () {
-                    editRow = undefined;
-                    $(options.datagridId).datagrid('rejectChanges');
-                    $(options.datagridId).datagrid('unselectAll');
-                }
-            }, '-', {
-                text: '上移',
-                iconCls: 'icon-up',
-                handler: function () {
-                    MoveUp();
-                }
-            }, '-', {
-                text: '下移',
-                iconCls: 'icon-down',
-                handler: function () {
-                    MoveDown();
-                }
-            }],
-	    });
-		
-		//上移
-		function MoveUp() {
-		    var row = $(options.datagridId).datagrid('getSelected');
-		    var index = $(options.datagridId).datagrid('getRowIndex', row);
-		    mysort(index, 'up', options.datagridId);
-		     
-		}
-		//下移
-		function MoveDown() {
-		    var row = $(options.datagridId).datagrid('getSelected');
-		    var index = $(options.datagridId).datagrid('getRowIndex', row);
-		    mysort(index, 'down', options.datagridId);
-		     
-		}
-		 
-		 
-		function mysort(index, type, datagridId) {
-		    if ("up" == type) {
-		        if (index != 0) {
-		            var toup = $(datagridId).datagrid('getData').rows[index];
-		            var todown = $(datagridId).datagrid('getData').rows[index - 1];
-		            $(datagridId).datagrid('getData').rows[index] = todown;
-		            $(datagridId).datagrid('getData').rows[index - 1] = toup;
-		            $(datagridId).datagrid('refreshRow', index);
-		            $(datagridId).datagrid('refreshRow', index - 1);
-		            $(datagridId).datagrid('selectRow', index - 1);
-		        }
-		    } else if ("down" == type) {
-		        var rows = $(datagridId).datagrid('getRows').length;
-		        if (index != rows - 1) {
-		            var todown = $(datagridId).datagrid('getData').rows[index];
-		            var toup = $(datagridId).datagrid('getData').rows[index + 1];
-		            $(datagridId).datagrid('getData').rows[index + 1] = todown;
-		            $(datagridId).datagrid('getData').rows[index] = toup;
-		            $(datagridId).datagrid('refreshRow', index);
-		            $(datagridId).datagrid('refreshRow', index + 1);
-		            $(datagridId).datagrid('selectRow', index + 1);
-		        }
-		    }
-		 
-		}
-	
-		//重新加载datagrid的数据
-		//$(this).datagrid('reload');
-		
-	}
-	
-	// 扩展datagrid方法，修复行号宽度显示问题
-	$.extend($.fn.datagrid.methods, {
-		fixRownumber : function (jq) {
-			return jq.each(function () {
-				var panel = $(this).datagrid("getPanel");
-				//获取最后一行的number容器,并拷贝一份
-				var clone = $(".datagrid-cell-rownumber", panel).last().clone();
-				//由于在某些浏览器里面,是不支持获取隐藏元素的宽度,所以取巧一下
-				clone.css({
-					"position" : "absolute",
-					left : -1000
-				}).appendTo("body");
-				var width = clone.width("auto").width();
-				//默认宽度是25,所以只有大于25的时候才进行fix
-				if (width > 25) {
-					//多加5个像素,保持一点边距
-					$(".datagrid-header-rownumber,.datagrid-cell-rownumber", panel).width(width + 5);
-					//修改了宽度之后,需要对容器进行重新计算,所以调用resize
-					$(this).datagrid("resize");
-					//一些清理工作
-					clone.remove();
-					clone = null;
-				} else {
-					//还原成默认状态
-					$(".datagrid-header-rownumber,.datagrid-cell-rownumber", panel).removeAttr("style");
-				}
-			});
-		}
-	});
-	
-	/*$(function() {
-		var $this  = $('[data-toggle="datagrid"]'),
-		    options = $this.data()
-		
-		//options.columns = JSON.parse(options.columns)
-		
-		$this.myDatagrid($this, options)
-	})*/
-	
-})(jQuery);;(function($){
-	
-	$.fn.iDialog = function(options) {
-		var defaults = {
-			currentDialogId : this.selector,
-			width   : 600,
-			height  : 400,
-			title   : '修改管理',
-			modal   : false,
-			closed  : true,
-			iconCls : 'icon-save',
-			collapsible : true,
-			maximizable : true,
-			minimizable : false,
-			maximized : false,
-			openAnimation : 'show',
-			openDuration : 600,
-			postfix : 'Edit',
-			combotreeFields : '',
-			refreshTreeId : '',
-			datagridId : '#datagrid'
-		}
-		
-		var options = $.extend(defaults, options);
-		
-		var indexUrl = window.location.pathname;
-		var controllerUrl = indexUrl.substring(0, indexUrl.lastIndexOf("/")+1);
-		options.getDetailUrl = options.getDetailUrl ? options.getDetailUrl : controllerUrl + "getDetailByUuid";
-		options.addHref = options.href ? options.href + location.search : controllerUrl + "add" + location.search;
-		options.saveUrl = options.saveUrl ? options.saveUrl :  controllerUrl + "save";
-		options.editHref = options.href ? options.href + location.search : controllerUrl + "edit" + location.search;
-		options.updateUrl = options.updateUrl ? options.updateUrl :  controllerUrl + "update";
-		options.processUpdateUrl = options.processUpdateUrl ? options.processUpdateUrl : controllerUrl + "processUpdate";
-		options.processRollBackUrl = options.processRollBackUrl ? options.processRollBackUrl : controllerUrl + "processRollBackUrl";
-		
-		options.href = options.editHref;
-		
-		if(options.currentDialogId == "") {
-			options.currentDialogId = options.id;
-		}
-		if(options.currentDialogId.indexOf('#') == -1){
-			options.currentDialogId = '#'+options.currentDialogId;
-		}
-		if(options.datagridId == ""){
-			options.datagridId = '#'+options.refreshDatagridId;
-		}
-		
-		$(this).dialog({
-			width   : options.width,
-			height  : options.height,
-			title   : options.title,
-			modal   : options.modal,
-			closed  : options.closed,
-			iconCls : options.iconCls,
-			href 	: options.href,
-			collapsible : options.collapsible,
-			maximizable : options.maximizable,
-			minimizable : options.minimizable,
-			maximized : options.maximized,
-			openAnimation : options.openAnimation,
-			openDuration : options.openDuration,
-			zIndex : 10,
-			buttons : [{
-				text : '新增',
-				//id : 'addBtn',
-				iconCls : 'icon-add',
-				handler : function () {
-					if ($(options.currentDialogId).form('validate')) {
-						
-						var formData = $(options.currentDialogId).serialize();
-						if(options.combotreeFields != "") {
-							var combotreeParams = '';
-							$.each(options.combotreeFields, function (k, v) {
-								combotreeParams += '&' + v.replace(options.postfix, "") + '='+ $(options.currentDialogId +' input[textboxname="' + v + '"]').combotree('getValues').join(',') + ', ';
-							});
-							//combotreeParams += '"endStr": "1"}';
-							//formData = $.extend($(options.formId).serialize(), $.parseJSON(combotreeParams));
-							formData += combotreeParams;
-						}
-														
-						$.ajax({
-							url : options.saveUrl,
-							type : 'post',
-							cache:false,
-							data : formData,
-							dataType: "json",
-							contentType: "application/x-www-form-urlencoded;charset=utf-8",
-							beforeSend : function () {
-								$.messager.progress({
-									text : '正在操作...'
-								});
-							},
-							success : function (data, response, status) {
-								$.messager.progress('close');
-								msgFn(data);
-							}
-						});
-
-
-					} else {
-						$.messager.show({
-							title : '提示',
-							msg : '显示红色的字段为必填字段'
-						});
-					}
-				}
-			},{
-				text : '保存',
-				//id : 'saveBtn',
-				iconCls : 'icon-save',
-				handler : function () {
-
-					//var params = '{';
-					//$.each(options.editFields, function (k, v) {
-						//params += '"' + v.replace(options.postfix, "") + '": "' + html_encode($(options.currentDialogId +' input[name="' + v + '"]').val()) + '", ';
-					//});
-					//params += '"endStr": "1"}';
-					
-					//console.log(jsonData);
-					//console.log($.parseJSON(combotreeParams));
-					//console.log($.extend($.parseJSON(params), $.parseJSON(combotreeParams)));
-										
-					if ($(options.currentDialogId).form('validate')) {
-						
-						var formData = $(options.currentDialogId).serialize();
-						if(options.combotreeFields != "") {
-							var combotreeParams = '';
-							$.each(options.combotreeFields, function (k, v) {
-								combotreeParams += '&' + v.replace(options.postfix, "") + '='+ $(options.currentDialogId +' input[textboxname="' + v + '"]').combotree('getValues').join(',') + ', ';
-							});
-							//combotreeParams += '"endStr": "1"}';
-							//formData = $.extend($(options.formId).serialize(), $.parseJSON(combotreeParams));
-							formData += combotreeParams;
-						}
-														
-						$.ajax({
-							url : options.updateUrl,
-							type : 'post',
-							data : formData,
-							dataType: "json",
-							contentType: "application/x-www-form-urlencoded;charset=utf-8",
-							beforeSend : function () {
-								$.messager.progress({
-									text : '正在操作...'
-								});
-							},
-							success : function (data, response, status) {
-								$.messager.progress('close');
-								msgFn(data);
-								$(options.currentDialogId).dialog('close').form('reset');
-								$(options.datagridId).datagrid('reload');
-							}
-						});
-
-
-					} else {
-						$.messager.show({
-							title : '提示',
-							msg : '显示红色的字段为必填字段'
-						});
-					}
-					
-				}
-			},{
-				text : '提交流程',
-				//id : 'processBtn',
-				iconCls : 'icon-redo',
-				handler : function () {
-
-					//var params = '{';
-					//$.each(options.editFields, function (k, v) {
-						//params += '"' + v.replace(options.postfix, "") + '": "' + html_encode($(options.currentDialogId +' input[name="' + v + '"]').val()) + '", ';
-					//});
-					//params += '"endStr": "1"}';
-					
-					//console.log(jsonData);
-					//console.log($.parseJSON(combotreeParams));
-					//console.log($.extend($.parseJSON(params), $.parseJSON(combotreeParams)));
-										
-					if ($(options.currentDialogId).form('validate')) {
-						
-						var formData = $(options.currentDialogId).serialize();
-						if(options.combotreeFields != "") {
-							var combotreeParams = '';
-							$.each(options.combotreeFields, function (k, v) {
-								combotreeParams += '&' + v.replace(options.postfix, "") + '='+ $(options.currentDialogId +' input[textboxname="' + v + '"]').combotree('getValues').join(',') + ', ';
-							});
-							formData += combotreeParams;
-						}
-														
-						$.ajax({
-							url : options.processUpdateUrl,
-							type : 'post',
-							data : formData,
-							dataType: "json",
-							contentType: "application/x-www-form-urlencoded;charset=utf-8",
-							beforeSend : function () {
-								$.messager.progress({
-									text : '正在操作...'
-								});
-							},
-							success : function (data, response, status) {
-								$.messager.progress('close');
-								msgFn(data);
-							}
-						});
-
-
-					} else {
-						$.messager.show({
-							title : '提示',
-							msg : '显示红色的字段为必填字段'
-						});
-					}
-					
-				}
-			},{
-				text : '退回流程',
-				//id : 'rollBackBtn',
-				iconCls : 'icon-undo',
-				handler : function () {
-										
-					if ($(options.currentDialogId).form('validate')) {
-						
-						var formData = $(options.currentDialogId).serialize();														
-						$.ajax({
-							url : options.processRollBackUrl,
-							type : 'post',
-							data : formData,
-							dataType: "json",
-							contentType: "application/x-www-form-urlencoded;charset=utf-8",
-							beforeSend : function () {
-								$.messager.progress({
-									text : '正在操作...'
-								});
-							},
-							success : function (data, response, status) {
-								$.messager.progress('close');
-								msgFn(data);
-							}
-						});
-
-
-					} else {
-						$.messager.show({
-							title : '提示',
-							msg : '显示红色的字段为必填字段'
-						});
-					}
-					
-				}
-			},{
-				text : '上传并导入',
-				//id : 'processBtn',
-				iconCls : 'icon-sys',
-				handler : function () {
-								
-					if ($(options.currentDialogId).form('validate')) {
-						
-						var formData = $(options.currentDialogId).serialize();
-						if(options.combotreeFields != "") {
-							var combotreeParams = '';
-							$.each(options.combotreeFields, function (k, v) {
-								combotreeParams += '&' + v.replace(options.postfix, "") + '='+ $(options.currentDialogId +' input[textboxname="' + v + '"]').combotree('getValues').join(',') + ', ';
-							});
-							formData += combotreeParams;
-						}
-														
-						$.ajax({
-							url : options.url,
-							type : 'post',
-							data : formData,
-							dataType: "json",
-							contentType: "application/x-www-form-urlencoded;charset=utf-8",
-							beforeSend : function () {
-								$.messager.progress({
-									text : '正在操作...'
-								});
-							},
-							success : function (data, response, status) {
-								$.messager.progress('close');
-								msgFn(data);
-							}
-						});
-
-
-					} else {
-						$.messager.show({
-							title : '提示',
-							msg : '显示红色的字段为必填字段'
-						});
-					}
-					
-				}
-			},{
-				text : '取消',
-				iconCls : 'icon-cancel',
-				handler : function () {
-					$(options.currentDialogId).dialog('close').form('clear');
-				}
-			}],
-			onLoad : function() {
-				$(this).trigger(topJUI.eventType.initUI.form);
-			},
-			onOpen : function() {
-				//$(this).dialog("refresh");
-				//$("#partyBranchId").combotree("reload");
-				var currentDialogHref = $(options.currentDialogId).dialog("options").href;
-
-				//showHiddenBtn(options.button);
-				
-				$.get(ctx + "/system/authAccess/getDetailByRoleIdAndUrl",  function(data) {
-    				if(currentDialogHref.indexOf("action=edit") > 0){
-    					if(options.processDeal == true) {
-    						var uuid = $.getUrlStrParam(currentDialogHref, "uuid");
-							$.get(options.getDetailUrl + "?uuid=" + uuid,  function(data) {
-								var userNameId = parent.$('#userNameId').val();
-			    				if(data.currentUserNameId == userNameId) {
-			    					showHiddenBtn(0, 1, 1, 1, 0, 1);
-			    				} else {
-			    					showHiddenBtn(0, 0, 0, 0, 0, 1);
-			    				}
-			                }, 'json');
-							
-    					} else {
-    						showHiddenBtn(0, data.editAuth, 0, 0, 0, 1);
-    					}
-    				} else if(currentDialogHref.indexOf("Import") > 0) {
-    					showHiddenBtn(0, 0, 0, 0, 1, 1);
-    				} else {
-    					showHiddenBtn(1, 0, 0, 0, 0, 1);
-    				}
-				
-				}, 'json');
-				
-				
-				//$(options.currentDialogId).dialog('refresh');
-			},
-			onClose : function() {
-				$(options.currentDialogId).form('clear');
-				//$(this).dialog("refresh");
-			}
-	    });
-		
-		function showHiddenBtn(btn1, btn2, btn3, btn4, btn5, btn6){
-			$(".dialog-button > a").each(function(i){
-				switch(i%6) {
-					case 0:
-						btn1 ? $(this).show() : $(this).hide();
-						break;
-					case 1:
-						btn2 ? $(this).show() : $(this).hide();
-						break;
-					case 2:
-						btn3 ? $(this).show() : $(this).hide();
-						break;
-					case 3:
-						btn4 ? $(this).show() : $(this).hide();
-						break;
-					case 4:
-						btn5 ? $(this).show() : $(this).hide();
-						break;
-					case 5:
-						btn6 ? $(this).show() : $(this).hide();
-						break;
-				}
-			});
-		}
-		
-	}
-
-})(jQuery);;(function($){
-	
-	$.fn.iDialog2 = function(options) {
-		var defaults = {
-			currentDialogId : this.selector,
-			width   : 650,
-			height  : 400,
-			title   : '修改管理',
-			modal   : false,
-			closed  : true,
-			iconCls : 'icon-save',
-			collapsible : true,
-			maximizable : true,
-			minimizable : false,
-			maximized : false,
-			resizable : true,
-			openAnimation : 'show',
-			openDuration : 100,
-			closeAnimation : 'show',
-			closeDuration : 400,
-			toolbar : this.selector+'-toolbar',
-			buttons : this.selector+'-buttons',
-			postfix : 'Edit',
-			combotreeFields : '',
-			refreshTreeId : ''
-		}
-		var options = $.extend(defaults, options);
-		
-		var controllerUrl = getUrl('controller');
-		options.href = options.href ? options.href + location.search : controllerUrl + "edit" + location.search;
-
-		var $dialogObj = $("#"+options.id);
-		$(this).dialog({
-			width   : options.width,
-			height  : options.height,
-			title   : options.title,
-			modal   : options.modal,
-			closed  : options.closed,
-			iconCls : options.iconCls,
-			href 	: options.href,
-			collapsible : options.collapsible,
-			maximizable : options.maximizable,
-			minimizable : options.minimizable,
-			maximized : options.maximized,
-			resizable : options.resizable,
-			openAnimation : options.openAnimation,
-			openDuration : options.openDuration,
-			closeAnimation : options.closeAnimation,
-			closeDuration : options.closeDuration,
-			zIndex : 10,
-			toolbar : options.toolbar,
-			buttons : options.buttons,
-			onBeforeOpen : function() {
-
-			},
-			onLoad : function() {
-				$(this).trigger(topJUI.eventType.initUI.form);
-
-				if(options.url.length > 1) {
-					// 获取选中行的数据
-					var row = getSelectedRowData(options.grid.type, options.grid.id);
-					// 如果指定了数据来源URL，则通过URL加载数据
-					var newDialogUrl = replaceUrlParamValueByBrace(options.url, row);
-					$.getJSON(newDialogUrl, function(data) {
-						$dialogObj.form('load', data);
-						if(typeof options.editor == "string" || typeof options.editor == "object") {
-							// kindeditor编辑器处理
-							if (typeof options.editor == "string") {
-								// 富文本编辑器字符串
-								var ke = [], keObj = [];
-								ke = options.editor.replace(/'/g, '"').split(",");
-								for (var i = 0; i < ke.length; i++) {
-									keObj.push(strToJson(ke[i]));
-								}
-							} else {
-								// 富文本编辑数组
-								keObj = options.editor;
-							}
-							for (var i = 0; i < keObj.length; i++) {
-								var editorType = keObj[i]["type"];
-								var editorId = keObj[i]["id"];
-								var editorField = keObj[i]["field"];
-								if(editorType == "KindEditor") {
-									getTabWindow().$("iframe").each(function(i){
-										this.contentWindow.document.body.innerHTML = html_decode(data[editorField]);
-									});
-								} else {
-									UE.getEditor(editorId).ready(function () {
-										UE.getEditor(editorId).setContent(data[editorField]);
-									});
-								}
-							}
-						}
-					});
-				} else {
-					// 如果没有指定数据来源URL，则直接加载选中行的数据
-					// $dialogObj.form('load', row); // 防止新增时也加载选中行的数据，暂时屏蔽
-				}
-
-				// 如果存在父表，则将父表中指定的字段数据加载到本窗口中
-				if(typeof options.parentGrid == "object") {
-					var parentRow = getSelectedRowData(options.parentGrid.type, options.parentGrid.id);
-					var jsonData = getSelectedRowJson(options.parentGrid.param, parentRow);
-					$dialogObj.form('load', jsonData);
-				}
-			},
-			onClose : function() {
-				$(options.currentDialogId).form('clear');
-			}
-	    });
-		
-		function showHiddenBtn(btn1, btn2, btn3, btn4, btn5, btn6){
-			$(".dialog-button > a").each(function(i){
-				switch(i%6) {
-					case 0:
-						btn1 ? $(this).show() : $(this).hide();
-						break;
-					case 1:
-						btn2 ? $(this).show() : $(this).hide();
-						break;
-					case 2:
-						btn3 ? $(this).show() : $(this).hide();
-						break;
-					case 3:
-						btn4 ? $(this).show() : $(this).hide();
-						break;
-					case 4:
-						btn5 ? $(this).show() : $(this).hide();
-						break;
-					case 5:
-						btn6 ? $(this).show() : $(this).hide();
-						break;
-				}
-			});
-		}
-		
-	}
-
 })(jQuery);;// 扩展datagrid方法，修复行号宽度显示问题
 $.extend($.fn.datagrid.methods, {
 	fixRownumber : function (jq) {
@@ -3167,7 +2262,7 @@ $.extend($.fn.datagrid.methods, {
 
         var defaults = {
             width: 153,
-            height: 22,
+            height: 30,
             prompt: '',
             type: 'text',
             multiline: false,
@@ -3204,7 +2299,7 @@ $.extend($.fn.datagrid.methods, {
 
         var defaults = {
             width: 450,
-            height: 22,
+            height: 30,
             prompt: '',
             type: 'text',
             multiline: false,
@@ -3223,6 +2318,7 @@ $.extend($.fn.datagrid.methods, {
 
         $(this).filebox({
             width: options.width,
+            height: options.height,
             buttonText: options.buttonText,
             buttonAlign: options.buttonAlign
         });
@@ -3233,6 +2329,7 @@ $.extend($.fn.datagrid.methods, {
             min: 0,
             max: 10000,
             width: 153,
+            height: 30,
             editable: true,
             defaultValueType: '',
             value: '',
@@ -3278,6 +2375,7 @@ $.extend($.fn.datagrid.methods, {
             max: options.max,
             prompt: options.prompt,
             width: options.width,
+            height: options.height,
             editable: options.editable,
             value: options.value,
             min: options.min,
@@ -3292,6 +2390,7 @@ $.extend($.fn.datagrid.methods, {
             required: false,
             editable: true,
             width: 153,
+            height: 30,
             formatter: function (value) {
                 var y = value.getFullYear();
                 var m = value.getMonth() + 1;
@@ -3321,6 +2420,7 @@ $.extend($.fn.datagrid.methods, {
             required: options.required,
             editable: options.editable,
             width: options.width,
+            height: options.height,
             prompt: options.prompt,
             formatter: options.formatter,
             parser: options.parser,
@@ -3333,6 +2433,7 @@ $.extend($.fn.datagrid.methods, {
     $.fn.iNumberbox = function (options) {
         var defaults = {
             width: 153,
+            height: 30,
             min: 0,
             precision: 0,
             decimalSeparator: '.',
@@ -3345,6 +2446,7 @@ $.extend($.fn.datagrid.methods, {
 
         $(this).numberbox({
             width: options.width,
+            height: options.height,
             min: options.min,
             prompt: options.prompt,
             precision: options.precision,
@@ -3399,7 +2501,7 @@ $.extend($.fn.datagrid.methods, {
     $.fn.iCombobox = function (options) {
         var defaults = {
             width: 153,
-            height: 22,
+            height: 30,
             url: ctx + '/system/codeItem/getListByCodesetidAndLevelid?codeSetId={codeSetId}&levelId={levelId}',
             data: '',
             codeSetId: 0,
@@ -3407,7 +2509,7 @@ $.extend($.fn.datagrid.methods, {
             valueField: 'text',
             textField: 'text',
             editable: false,
-            panelHeight: 44,
+            panelHeight: 50,
             onSelect: combobox_onSelect,
             formatter: combobox_formatter,
             required: false
@@ -3430,11 +2532,26 @@ $.extend($.fn.datagrid.methods, {
             textField: options.textField,
             editable: options.editable,
             panelHeight: options.panelHeight,
-            formatter: options.formatter,
+            formatter: options.combobox_formatter,
             required: options.required,
+            onShowPanel: function () {
+                if (options.url.indexOf("{") >= 0) {
+                    //将form表单数据封装成json数据
+                    var formData = $(this).closest("form").serializeObject();
+                    $('#' + options.id).combobox('reload', replaceUrlParamValueByBrace(options.url, formData));
+                }
+            },
+            onChange: function (newValue, oldValue) {
+                //重载级联combobox内容
+                if (typeof options.childCombobox == "object") {
+                    var url = appendUrlParam(options.childCombobox.url, "parentParam=" + newValue);
+                    $('#' + options.childCombobox.id).combobox('reload', url);
+                }
+            },
             onSelect: function (record) {
+                var $formObj = $(this).closest('form');
+
                 if (options.param) {
-                    var $formObj = $(this).closest('form');
                     var jsonData = getSelectedRowJson(options.param, record);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }
@@ -3447,11 +2564,11 @@ $.extend($.fn.datagrid.methods, {
         //console.log(record);
     }
 
-    var combobox_formatter = function (value, row) {
+    var combobox_formatter = function (row) {
         if (value == 0) {
-            return value.text;
+            //return row.text;
         } else {
-            return value.text;
+            //return row.text;
         }
     }
 
@@ -3462,6 +2579,7 @@ $.extend($.fn.datagrid.methods, {
             valueField: 'userNameId',
             textField: 'userName',
             width: 450,
+            height: 30,
             fieldId: 'userNameId',
             required: false
         }
@@ -3472,6 +2590,7 @@ $.extend($.fn.datagrid.methods, {
             valueField: options.valueField,
             textField: options.textField,
             width: options.width,
+            height: options.height,
             prompt: options.prompt,
             required: options.required,
             onChange: function (newValue, oldValue) {
@@ -3506,6 +2625,7 @@ $.extend($.fn.datagrid.methods, {
             valueField: 'userNameId',
             textField: 'userName',
             width: 450,
+            height: 30,
             fieldId: 'userNameId',
             required: false,
             formatter: ''
@@ -3523,6 +2643,7 @@ $.extend($.fn.datagrid.methods, {
             valueField: options.valueField,
             textField: options.textField,
             width: options.width,
+            height: options.height,
             prompt: options.prompt,
             required: options.required,
             formatter: options.formatter,
@@ -3598,7 +2719,25 @@ $.extend($.fn.datagrid.methods, {
         });
     }
 
-})(jQuery);;test = function (str) {
+})(jQuery);;// 获取地址栏参数
+$.getUrlParam = function (name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+
+// 获取网址字符串参数值
+$.getUrlStrParam = function (urlStr, name) {
+    urlParam = urlStr.substring(urlStr.indexOf("?"));
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = urlParam.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+
+/**
+ * 测试函数
+ */
+test = function (str) {
     alert(str);
 }
 
@@ -3628,8 +2767,8 @@ function selectAllOptions(selector) {
  * 转换传入的回调函数字条串，并执行
  * @param functionStr
  */
-function executeCallBackFun(functionStr, options){
-    if(functionStr != undefined) {
+function executeCallBackFun(functionStr, options) {
+    if (functionStr != undefined) {
         var handlerBeforeArr = functionStr.split("|");
         var handlerBeforeParamsArr = handlerBeforeArr[1].split(",");
         var handlerBeforeParams = "";
@@ -3700,6 +2839,15 @@ function bytesToSize(bytes, precision) {
  * @param url
  * @returns {*}
  */
+function appendUrlParam(url, paramValue) {
+    return url.indexOf("?") == -1 ? url + "?" + paramValue : url + "&" + paramValue;
+}
+
+/**
+ * 当前url后面追加来源url中的参数
+ * @param url
+ * @returns {*}
+ */
 function appendSourceUrlParam(url) {
     return url.indexOf("?") == -1 ? url + location.search : url + location.search.replace("?", "&");
 }
@@ -3751,7 +2899,11 @@ function getUrl(urlType) {
     return url;
 }
 
-
+/**
+ * 获得选项json数据
+ * @param $element
+ * @returns {*}
+ */
 function getOptionsJson($element) {
     var options = $element.data();
 
@@ -3761,6 +2913,20 @@ function getOptionsJson($element) {
         } else {
             options = strToJson('{' + options.options.replace(/'/g, '"') + '}');
         }
+    }
+    return options;
+}
+
+/**
+ * 设置表单元素id属性
+ * @param options
+ */
+function setFormElementId($element, options) {
+    if (options.id == undefined) {
+        options.id = $element[0].name;
+        $element.attr('id', $element[0].name)
+    } else {
+        $element.attr('id', options.id)
     }
     return options;
 }
@@ -3831,23 +2997,23 @@ function jsonLength(obj) {
 
 
 /*Array.prototype.remove = function (dx) {
-    if (isNaN(dx) || dx > this.length) {
-        return false;
-    }
-    for (var i = 0, n = 0; i < this.length; i++) {
-        if (this[i] != this[dx]) {
-            this[n++] = this[i]
-        }
-    }
-    this.length -= 1
-}*/
+ if (isNaN(dx) || dx > this.length) {
+ return false;
+ }
+ for (var i = 0, n = 0; i < this.length; i++) {
+ if (this[i] != this[dx]) {
+ this[n++] = this[i]
+ }
+ }
+ this.length -= 1
+ }*/
 
 /**
  * 扩展数组方法：查找指定元素的下标
  * @param val
  * @returns {number}
  */
-Array.prototype.indexOf = function(val) {
+Array.prototype.indexOf = function (val) {
     for (var i = 0; i < this.length; i++) {
         if (this[i] == val) return i;
     }
@@ -3858,82 +3024,13 @@ Array.prototype.indexOf = function(val) {
  * 扩展数组方法:删除指定元素
  * @param val
  */
-Array.prototype.remove = function(val) {
+Array.prototype.remove = function (val) {
     var index = this.indexOf(val);
-    while(index>-1){
+    while (index > -1) {
         this.splice(index, 1);
         index = this.indexOf(val);
     }
 };;(function($){
-	
-	$.fn.iTabs = function(options) {
-		var defaults = {
-			title : '',
-			closable : true,
-			iconCls : '',
-			content : '',
-			//href: '',
-			border : false,
-			fit : true
-		}
-		
-		var options = $.extend(defaults, options);
-		
-		$(this).tabs({
-			title : options.title,
-			closable : options.closable,
-			iconCls : options.iconCls,
-			content : options.content,
-			//href: options.href,
-			border : options.border,
-			fit : options.fit,
-			onSelect:function(title){
-
-			},
-			onLoad : function(panel) {
-				$(this).trigger(topJUI.eventType.initUI.base);
-			}
-		});
-	}
-	
-	// 扩展tabs方法
-	$.extend($.fn.tabs.methods, {
-		myAdd : function (jq, param) {
-			return jq.each(function () {
-				$(this).tabs('add', param);
-				// 打开Tab页时触发事件
-				// $(this).trigger(topJUI.eventType.initUI.base);
-			});
-		},
-		/**
-		 * 绑定双击事件
-		 * @param {Object} jq
-		 * @param {Object} caller 绑定的事件处理程序
-		 */
-		bindDblclick: function(jq, caller){
-			return jq.each(function(){
-				var that = this;
-				$(this).children("div.tabs-header").find("ul.tabs").undelegate('li', 'dblclick.tabs').delegate('li', 'dblclick.tabs', function(e){
-					if (caller && typeof(caller) == 'function') {
-						var title = $(this).text();
-						var index = $(that).tabs('getTabIndex', $(that).tabs('getTab', title));
-						caller(index, title);
-					}
-				});
-			});
-		},
-		/**
-		 * 解除绑定双击事件
-		 * @param {Object} jq
-		 */
-		unbindDblclick: function(jq){
-			return jq.each(function(){
-				$(this).children("div.tabs-header").find("ul.tabs").undelegate('li', 'dblclick.tabs');
-			});
-		}
-	});
-
-})(jQuery);;(function($){
 	
 	$.fn.iMenu = function(options) {
 		var defaults = {
@@ -4064,7 +3161,7 @@ Array.prototype.remove = function(val) {
                 options.buttonText = '禁止';
             }
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iTextbox(options);
         });
 
@@ -4072,7 +3169,7 @@ Array.prototype.remove = function(val) {
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iFilebox(options);
         });
 
@@ -4080,7 +3177,7 @@ Array.prototype.remove = function(val) {
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iNumberspinner(options);
         });
 
@@ -4088,7 +3185,7 @@ Array.prototype.remove = function(val) {
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iNumberbox(options);
         });
 
@@ -4096,7 +3193,7 @@ Array.prototype.remove = function(val) {
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iDatebox(options);
         });
 
@@ -4104,7 +3201,7 @@ Array.prototype.remove = function(val) {
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iCombobox(options);
         });
 
@@ -4112,7 +3209,7 @@ Array.prototype.remove = function(val) {
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iCombotree(options);
         });
 
@@ -4126,7 +3223,7 @@ Array.prototype.remove = function(val) {
             if (options.height == null)
                 options.height = 66;
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iTextbox(options);
         });
 
@@ -4134,7 +3231,7 @@ Array.prototype.remove = function(val) {
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
             $element.iAutoComplete2(options);
         });
 
@@ -4142,31 +3239,80 @@ Array.prototype.remove = function(val) {
             var $element = $(this);
             var options = getOptionsJson($element);
 
-            if (options.id) $element.attr('id', options.id);
+            options = setFormElementId($element, options);
 
-            setTimeout(function(){
-                UE.delEditor(options.id);
-                <!-- 实例化编辑器 -->
-                var ue = UE.getEditor(options.id, {
-                    toolbars: [[
-                        'fullscreen', 'source', '|', 'undo', 'redo', '|',
-                        'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-                        'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-                        'paragraph', 'fontfamily', 'fontsize', '|',
-                        'indent', '|',
-                        'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
-                        'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-                        'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'insertcode', '|',
-                        'horizontal', 'spechars', 'wordimage', '|',
-                        'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',
-                        'preview', 'drafts'
-                    ]],
-                    initialFrameWidth: 700,
-                    autoHeightEnabled: true,
-                    autoFloatEnabled: true,
-                    readonly: options.readonly ? true : false
+            UE.delEditor(options.id);
+            <!-- 实例化编辑器 -->
+            var toolbars = [['fullscreen', 'source', '|', 'undo', 'redo', '|',
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', '|',
+                'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist',
+                'insertunorderedlist', 'lineheight', '|',
+                'horizontal', 'spechars', 'map', 'paragraph', 'fontfamily', 'fontsize', 'insertcode', '|',
+                'indent', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+                'link', 'unlink', '|', 'emotion', 'attachment', 'simpleupload', 'insertimage', '|', 'preview']];
+            var simpleToolbars = [["fullscreen", "source", "undo", "redo", "bold", "italic", "underline", "fontborder", "strikethrough", "superscript", "subscript", "insertunorderedlist", "insertorderedlist", "justifyleft", "justifycenter", "justifyright", "justifyjustify", "removeformat", "simpleupload", "snapscreen", "emotion", "attachment", "link", "unlink", "indent", "lineheight", "autotypeset"]];
+            UE.getEditor(options.id, {
+                toolbars: options.mode == "simple" ? simpleToolbars : toolbars,
+                initialFrameWidth: 700,
+                autoHeightEnabled: true,
+                autoFloatEnabled: true,
+                readonly: options.readonly ? true : false
+            });
+        });
+
+        $('[data-toggle="topjui-ueupload"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+            options = setFormElementId($element, options);
+
+            var defaults = {
+                width: 450,
+                buttonText: '选择图片',
+                uploadType: 'image',
+                buttonIcon: 'icon-picture_add'
+            }
+            var options = $.extend(defaults, options);
+
+            var uploaderId = options.id + "Uploader";
+            $('body').append('<script type="text/plain" id="' + uploaderId + '"></script>');
+
+            //http://www.cnblogs.com/stupage/p/3145353.html
+            //重新实例化一个编辑器，上传独立使用
+            var ueUpload = UE.getEditor(uploaderId, {
+                toolbars: [["insertimage", "attachment"]]
+            });
+            ueUpload.ready(function () {
+                //设置编辑器不可用
+                ueUpload.setDisabled();
+                //隐藏编辑器，因为不会用到这个编辑器实例，所以要隐藏
+                ueUpload.hide();
+                var listener = "afterConfirmUploadedFile", pathAttr = "url";
+                if (options.uploadType == "image") {
+                    listener = "afterConfirmUploadedImage";
+                    pathAttr = "src";
+                }
+                //侦听上传
+                ueUpload.addListener(listener, function (t, arg) {
+                    //将地址赋值给相应的input
+                    $("#" + options.id).textbox("setText", arg[0][pathAttr]);
+                    $("#" + options.id).textbox("setValue", arg[0][pathAttr]);
+                    //图片预览
+                    if (pathAttr == "src")
+                        $("#" + options.previewImageId).attr(pathAttr, arg[0][pathAttr]);
                 });
-            }, 10);
+
+                options.onClickButton = function () {
+                    if (options.uploadType == "image") {
+                        var imageUploadDialog = ueUpload.getDialog("insertimage");
+                        imageUploadDialog.open();
+                    } else {
+                        var fileUploadDialog = ueUpload.getDialog("attachment");
+                        fileUploadDialog.open();
+                    }
+                };
+                $element.iTextbox(options);
+            });
+
         });
 
         $('[data-toggle="topjui-kindeditor"]').each(function (i) {
@@ -4219,11 +3365,14 @@ Array.prototype.remove = function(val) {
                 module: options.module ? options.module : '未设置',
                 category: options.category ? options.category : 'default',
                 width: options.width ? options.width + 'px' : '700px',
-                height: options.height ? options.height + 'px' : '300px',
+                height: options.height ? options.height + 'px' : '600px',
                 pasteType: options.pasteType,
                 minHeight: options.minHeight || 150,
-                autoHeightMode: options.autoHeight || false,
-                items: options.mode == "simple" ? ['source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'insertfile', 'link'] : KindEditor.options.items,
+                autoHeightMode: options.autoHeight || true,
+                afterCreate: function () {
+                    //this.loadPlugin('autoheight');
+                },
+                items: options.model == "simple" ? ['source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'image', 'insertfile', 'link'] : KindEditor.options.items,
                 uploadJson: options.uploadJson || ctx + '/system/attachment/kindeditorUpload',
                 fileManagerJson: options.fileManagerJson || ctx + '/static/kindeditor/4.1.5/jsp/file_manager_json.jsp',
                 allowFileManager: options.allowFileManager || true,
@@ -4282,53 +3431,6 @@ Array.prototype.remove = function(val) {
             }, 500);
         });
 
-        $('[data-toggle="topjui-upload-ue"]').each(function (i) {
-            var $element = $(this);
-            var options = getOptionsJson($element);
-
-            if (options.id) $element.attr('id', options.id);
-
-            //http://www.cnblogs.com/stupage/p/3145353.html
-            //重新实例化一个编辑器，上传独立使用，防止在上面的editor编辑器中显示上传的图片或者文件
-            var ueUpload = UE.getEditor(options.ueContainerId, {
-                toolbars: [["fullscreen", "source", "undo", "redo", "bold", "italic", "underline", "fontborder", "strikethrough",
-                    "superscript", "subscript", "insertunorderedlist", "insertorderedlist", "justifyleft", "justifycenter",
-                    "justifyright", "justifyjustify", "removeformat", "simpleupload", "snapscreen", "emotion", "attachment",
-                    "link", "unlink", "indent", "lineheight", "autotypeset"]]
-            });
-            ueUpload.ready(function () {
-                //设置编辑器不可用
-                ueUpload.setDisabled();
-                //隐藏编辑器，因为不会用到这个编辑器实例，所以要隐藏
-                ueUpload.hide();
-                var listener = "afterConfirmUploadedFile", pathAttr = "url";
-                if (options.uploadType == "image") {
-                    listener = "afterConfirmUploadedImage";
-                    pathAttr = "src";
-                }
-                //侦听上传
-                ueUpload.addListener(listener, function (t, arg) {
-                    //将地址赋值给相应的input
-                    $("#" + options.id).textbox("setText", arg[0][pathAttr]);
-                    $("#" + options.id).textbox("setValue", arg[0][pathAttr]);
-                    //图片预览
-                    if (pathAttr == "src")
-                        $("#" + options.previewImageId).attr(pathAttr, arg[0][pathAttr]);
-                });
-            });
-
-            options.onClickButton = function () {
-                if (options.uploadType == "image") {
-                    var imageUploadDialog = ueUpload.getDialog("insertimage");
-                    imageUploadDialog.open();
-                } else {
-                    var fileUploadDialog = ueUpload.getDialog("attachment");
-                    fileUploadDialog.open();
-                }
-            };
-            $element.iTextbox(options);
-        });
-
         /*var tab = $("#index_tabs");//假设是tab
          var iframe = $("iframe",tab);//获取tab中的iframe
          $('[data-toggle="topjui-dialog"]', iframe.context).each(function(i){
@@ -4341,7 +3443,7 @@ Array.prototype.remove = function(val) {
         setTimeout(function () {
             // 父框架获取子框架元素
             // var test = $("iframe").contents().find("#test").val();
-            getTabWindow().$('[data-toggle="topjui-datagrid2"]').each(function (i) {
+            getTabWindow().$('[data-toggle="topjui-datagrid"]').each(function (i) {
                 var $element = $(this);
                 var options = getOptionsJson($element);
 
@@ -4371,7 +3473,40 @@ Array.prototype.remove = function(val) {
                 //console.log(op.join());
 
                 $element.attr('id', options.id);
-                getTabWindow().$('#' + options.id).iDatagrid2(options);
+                getTabWindow().$('#' + options.id).iDatagrid(options);
+            });
+
+            getTabWindow().$('[data-toggle="topjui-edatagrid"]').each(function (i) {
+                var $element = $(this);
+                var options = getOptionsJson($element);
+
+                var frozenColumns = $element.find("thead:first")[0];
+                //console.log(frozenColumns.getAttribute("frozen"));
+                if ($(frozenColumns).attr("frozen")) {
+                    var frozenColumns = [];
+                    $element.find("thead:first th").each(function (i) {
+                        frozenColumns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
+                    });
+                    options.frozenColumns = [frozenColumns];
+
+                    var columns = [];
+                    $element.find("thead:eq(1) th").each(function (i) {
+                        columns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
+                    });
+                } else {
+                    var columns = [];
+                    $element.find("thead th").each(function (i) {
+                        columns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
+                    });
+                }
+                options.columns = [columns];
+
+                var kindEditor = [];
+
+                //console.log(op.join());
+
+                $element.attr('id', options.id);
+                getTabWindow().$('#' + options.id).iEdatagrid(options);
             });
 
             getTabWindow().$('[data-toggle="topjui-treegrid"]').each(function (i) {
@@ -4412,7 +3547,7 @@ Array.prototype.remove = function(val) {
         }, 1);
 
         setTimeout(function () {
-            getTabWindow().$('[data-toggle="topjui-dialog2"]').each(function () {
+            getTabWindow().$('[data-toggle="topjui-dialog"]').each(function () {
                 var $element = $(this);
                 var options = getOptionsJson($element);
 
@@ -4420,16 +3555,16 @@ Array.prototype.remove = function(val) {
                 if (href != undefined) {
                     options.href = href;
                     getTabWindow().$('body').append('<div id="' + options.id + '"></div>');
-                    getTabWindow().$('#' + options.id).iDialog2(options);
+                    getTabWindow().$('#' + options.id).iDialog(options);
 
                     $element.on("click", function () {
-                        getTabWindow().$('#' + options.id).dialog2('open');
+                        getTabWindow().$('#' + options.id).dialog('open');
                         return false; //阻止链接跳转
                     });
 
                 } else {
                     $element.attr('id', options.id);
-                    getTabWindow().$('#' + options.id).iDialog2(options);
+                    getTabWindow().$('#' + options.id).iDialog(options);
                 }
             });
 
@@ -4475,9 +3610,9 @@ Array.prototype.remove = function(val) {
                                     return;
                                 }
                                 var pkName = 'uuid';
-                                if(options.grid.pkName)
+                                if (options.grid.pkName)
                                     pkName = options.grid.pkName;
-                                options.ajaxData += '&'+pkName+'=' + getMultiRowsFieldValue(rows, pkName) + '&'+pkName+'s=' + getMultiRowsFieldValue(rows, pkName);
+                                options.ajaxData += '&' + pkName + '=' + getMultiRowsFieldValue(rows, pkName) + '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
                             }
                             // 执行ajax动作
                             getTabWindow().doAjax(options);
@@ -4489,7 +3624,10 @@ Array.prototype.remove = function(val) {
                                     getTabWindow().$("#" + options.grid.id).datagrid("reload");
                                 } else if (options.grid.type == "treegrid") {
                                     var row = getSelectedRowData(options.grid.type, options.grid.id);
-                                    getTabWindow().$("#" + options.grid.id).treegrid("reload", row[options.grid.parentIdField]);
+                                    if (row == null)
+                                        getTabWindow().$("#" + options.grid.id).treegrid("reload");
+                                    else
+                                        getTabWindow().$("#" + options.grid.id).treegrid("reload", row[options.grid.parentIdField]);
                                 }
                             }
                             // 重新加载指定的Grid数据
@@ -4505,52 +3643,12 @@ Array.prototype.remove = function(val) {
 
     $(document).on(topJUI.eventType.initUI.base2, function (e) {
         setTimeout(function () {
-            getTabWindow().$('[data-toggle="topjui-datagrid"]').each(function (i) {
-                var $element = $(this);
-                var options = getOptionsJson($element);
-
-                var op = [];
-                getTabWindow().$("th").each(function (i) {
-                    op.push(strToJson("{" + this.getAttribute("data-options") + "}"));
-                });
-                options.columns = [op];
-
-                var kindEditor = [];
-
-
-                //console.log(op.join());
-
-                $element.attr('id', options.id);
-                getTabWindow().$('#' + options.id).iDatagrid(options);
-            });
-
             getTabWindow().$('[data-toggle="topjui-menu"]').each(function (i) {
                 var $element = $(this);
                 var options = getOptionsJson($element);
 
                 $element.attr('id', options.id);
                 getTabWindow().$('#' + options.id).iMenu(options);
-            });
-
-            getTabWindow().$('[data-toggle="topjui-dialog"]').each(function () {
-                var $element = $(this);
-                var options = getOptionsJson($element);
-
-                var href = $element.attr('href');
-                if (href != undefined) {
-                    options.href = href;
-                    getTabWindow().$('body').append('<div id="' + options.id + '"></div>');
-                    getTabWindow().$('#' + options.id).iDialog(options);
-
-                    $element.on("click", function () {
-                        getTabWindow().$('#' + options.id).dialog('open');
-                        return false; //阻止链接跳转
-                    });
-
-                } else {
-                    $element.attr('id', options.id);
-                    getTabWindow().$('#' + options.id).iDialog(options);
-                }
             });
 
             getTabWindow().$('[data-toggle="topjui-tree"]').each(function (i) {
@@ -4750,7 +3848,7 @@ $(function () {
 
     // 页面加载完成后触发基础表格及弹窗事件
     var url = getUrl();
-    if (url != "/system/index/index") {
+    if (url != TopJUI.config.mainPagePath) {
         $(this).trigger(topJUI.eventType.initUI.base);
         $(this).trigger(topJUI.eventType.initUI.base2);
     } else {
@@ -4860,7 +3958,116 @@ $(function () {
         });
     });
 
-});;$(function(){
+});;(function ($) {
+
+    $.fn.iTabs = function (options) {
+        var defaults = {
+            title: '',
+            closable: true,
+            iconCls: '',
+            content: '',
+            //href: '',
+            border: false,
+            fit: true
+        }
+
+        var options = $.extend(defaults, options);
+        var $tabsElement = $('#' + options.id);
+        var initShow = true;
+
+        $(this).tabs({
+            title: options.title,
+            closable: options.closable,
+            iconCls: options.iconCls,
+            content: options.content,
+            //href: options.href,
+            border: options.border,
+            fit: options.fit,
+            onSelect: function (title, index) {
+                //初始化显示tabs时，不加载里面的内容
+                if (!initShow) {
+                    var component = options.component;
+                    var newQueryParams = {};
+                    var $element = $('#' + options.id + index);
+                    if (component[index]["type"] == "datagrid") {
+                        var gridOptions = $element.datagrid('options');
+                        var $parentGrid = $('#' + gridOptions.parentGrid.id);
+                        var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (selectedRow) {
+                            newQueryParams = getSelectedRowJson(gridOptions.parentGrid.param, selectedRow);
+                            //获得表格原有的参数
+                            var queryParams = $element.datagrid('options').queryParams;
+                            $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                            $element.datagrid('load');
+                        }
+                    } else if (component[index]["type"] == "treegrid") {
+                        var gridOptions = $element.treegrid('options');
+                        var $parentGrid = $('#' + gridOptions.parentGrid.id);
+                        var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (selectedRow) {
+                            newQueryParams = getSelectedRowJson(gridOptions.parentGrid.param, selectedRow);
+                            //获得表格原有的参数
+                            var queryParams = $element.datagrid('options').queryParams;
+                            $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                            $element.datagrid('load');
+                        }
+                    } else if (component[index]["type"] == "panel") {
+                        var panelOptions = $element.panel('options');
+                        var $parentGrid = $('#' + panelOptions.parentGrid.id);
+                        var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (selectedRow) {
+                            var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, selectedRow);
+                            $element.panel('refresh', newHref);
+                        }
+                    }
+                }
+                initShow = false;
+
+            },
+            onLoad: function (panel) {
+                //$(this).trigger(topJUI.eventType.initUI.base);
+            }
+        });
+    }
+
+    // 扩展tabs方法
+    $.extend($.fn.tabs.methods, {
+        myAdd: function (jq, param) {
+            return jq.each(function () {
+                $(this).tabs('add', param);
+                // 打开Tab页时触发事件
+                // $(this).trigger(topJUI.eventType.initUI.base);
+            });
+        },
+        /**
+         * 绑定双击事件
+         * @param {Object} jq
+         * @param {Object} caller 绑定的事件处理程序
+         */
+        bindDblclick: function (jq, caller) {
+            return jq.each(function () {
+                var that = this;
+                $(this).children("div.tabs-header").find("ul.tabs").undelegate('li', 'dblclick.tabs').delegate('li', 'dblclick.tabs', function (e) {
+                    if (caller && typeof(caller) == 'function') {
+                        var title = $(this).text();
+                        var index = $(that).tabs('getTabIndex', $(that).tabs('getTab', title));
+                        caller(index, title);
+                    }
+                });
+            });
+        },
+        /**
+         * 解除绑定双击事件
+         * @param {Object} jq
+         */
+        unbindDblclick: function (jq) {
+            return jq.each(function () {
+                $(this).children("div.tabs-header").find("ul.tabs").undelegate('li', 'dblclick.tabs');
+            });
+        }
+    });
+
+})(jQuery);;$(function(){
 	managerTool = {
 		reload : function (options) {
 			$(options.datagridId).datagrid('reload');

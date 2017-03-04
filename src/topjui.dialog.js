@@ -5,7 +5,7 @@
 			currentDialogId : this.selector,
 			width   : 650,
 			height  : 400,
-			title   : '修改管理',
+			title   : '编辑',
 			modal   : true,
 			closed  : true,
 			iconCls : 'icon-save',
