@@ -137,6 +137,10 @@ openWindow = function (options) {
  * @param options
  */
 function bindMenuClickEvent($element, options) {
+    if (typeof options.grid != "object") {
+        var toolbarOptions = getOptionsJson($element.closest("div"));
+        options = $.extend(options, toolbarOptions);
+    }
     var defaults = {};
     // 打开dialog事件
     if (options.clickEvent == "openDialog") {
