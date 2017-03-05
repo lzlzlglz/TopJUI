@@ -939,7 +939,8 @@ function searchHandler(options) {
             title: '高级查询',
             iconCls: 'icon-find',
             toolbar: '#searchHandler-toolbar',
-            buttons: '#searchHandler-buttons'
+            buttons: '#searchHandler-buttons',
+            height: 250
         });
 
         dialogObj.dialog('open');
