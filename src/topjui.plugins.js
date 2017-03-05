@@ -758,11 +758,11 @@ $(function () {
 
         if ($.cookie("gridType") == "datagrid") {
             $("#" + $.cookie("gridId")).datagrid('load', {
-                filterRules: JSON.stringify(formDataArr)
+                advanceFilter: JSON.stringify(formDataArr)
             });
         } else if ($.cookie("gridType") == "treegrid") {
             $("#" + $.cookie("gridId")).treegrid('load', {
-                filterRules: JSON.stringify(formDataArr)
+                advanceFilter: JSON.stringify(formDataArr)
             });
         }
 

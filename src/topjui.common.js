@@ -907,7 +907,7 @@ function filterHandler(options) {
         if (options.grid.type == "datagrid") {
             gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {
-                $("#" + gridId).datagrid('disableFilter', options.filterOption);
+                $("#" + gridId).datagrid('disableFilter');
                 //$(".l-btn-text:contains('隐藏'):eq(1)").text("查询");
             } else {
                 $("#" + gridId).datagrid('enableFilter', options.filterOption);
@@ -916,7 +916,7 @@ function filterHandler(options) {
         } else if (options.grid.type == "treegrid") {
             gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {
-                $("#" + gridId).treegrid('disableFilter', options.filterOption);
+                $("#" + gridId).treegrid('disableFilter');
                 //$(".l-btn-text:contains('隐藏'):eq(1)").text("查询");
             } else {
                 $("#" + gridId).treegrid('enableFilter', options.filterOption);
