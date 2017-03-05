@@ -1063,7 +1063,7 @@ function filterHandler(options) {
         if (options.grid.type == "datagrid") {
             gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {
-                $("#" + gridId).datagrid('disableFilter', options.filterOption);
+                $("#" + gridId).datagrid('disableFilter');
                 //$(".l-btn-text:contains('隐藏'):eq(1)").text("查询");
             } else {
                 $("#" + gridId).datagrid('enableFilter', options.filterOption);
@@ -1072,7 +1072,7 @@ function filterHandler(options) {
         } else if (options.grid.type == "treegrid") {
             gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {
-                $("#" + gridId).treegrid('disableFilter', options.filterOption);
+                $("#" + gridId).treegrid('disableFilter');
                 //$(".l-btn-text:contains('隐藏'):eq(1)").text("查询");
             } else {
                 $("#" + gridId).treegrid('enableFilter', options.filterOption);
@@ -1095,7 +1095,8 @@ function searchHandler(options) {
             title: '高级查询',
             iconCls: 'icon-find',
             toolbar: '#searchHandler-toolbar',
-            buttons: '#searchHandler-buttons'
+            buttons: '#searchHandler-buttons',
+            height: 250
         });
 
         dialogObj.dialog('open');
@@ -3768,7 +3769,8 @@ Array.prototype.remove = function (val) {
             textField: 'text',
             valueField: 'value',
             data: fieldArr,
-            editable: false
+            editable: false,
+            width: 140
         });
 
         $(".op:last").combobox({
@@ -3785,8 +3787,8 @@ Array.prototype.remove = function (val) {
                 {"text": "以...开头", "value": "beginwith"},
                 {"text": "以...结尾", "value": "endwith"}
             ],
-            width: 100,
-            panelHeight: 198,
+            width: 120,
+            panelHeight: 220,
             editable: false
         });
 
@@ -3800,7 +3802,7 @@ Array.prototype.remove = function (val) {
                 {"text": "或者", "value": "or"}
             ],
             width: 70,
-            panelHeight: 44,
+            panelHeight: 50,
             editable: false
         });
 
@@ -3882,6 +3884,23 @@ $(function () {
         }
     });
 
+    function loadGrid(formDataArr) {
+        if ($.cookie("gridType") == "datagrid") {
+            $("#" + $.cookie("gridId")).datagrid('load', {
+                advanceFilter: JSON.stringify(formDataArr)
+            });
+        } else if ($.cookie("gridType") == "treegrid") {
+            $("#" + $.cookie("gridId")).treegrid('load', {
+                advanceFilter: JSON.stringify(formDataArr)
+            });
+        }
+    }
+
+    $("#resetAdvanceSearchForm").on('click', function () {
+        var formDataArr = [];
+        loadGrid(formDataArr)
+    });
+
     $("#submitAdvanceSearchForm").on('click', function () {
         var formDataArr = [];
         var formData = $("#advanceSearchDialog").serializeArray();
@@ -3898,19 +3917,8 @@ $(function () {
 
             formDataArr.push({field: fieldValue, op: opValue, value: valValue, join: joinValue});
         }
-
         // console.log(JSON.stringify(formDataArr));
-
-        if ($.cookie("gridType") == "datagrid") {
-            $("#" + $.cookie("gridId")).datagrid('load', {
-                filterRules: JSON.stringify(formDataArr)
-            });
-        } else if ($.cookie("gridType") == "treegrid") {
-            $("#" + $.cookie("gridId")).treegrid('load', {
-                filterRules: JSON.stringify(formDataArr)
-            });
-        }
-
+        loadGrid(formDataArr)
     });
 
 

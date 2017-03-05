@@ -26,8 +26,8 @@ module.exports = function(grunt) {
                  "src/topjui.treegrid.js",
                  "src/topjui.window.js"
              ],
-             //dest: 'assets/js/topjui.js'
-             dest: 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/core/topjui.js'
+             dest: 'assets/js/topjui.js'
+             //dest: 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/core/topjui.js'
          }
      },
      uglify: {
