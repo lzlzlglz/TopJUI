@@ -623,7 +623,8 @@
             textField: 'text',
             valueField: 'value',
             data: fieldArr,
-            editable: false
+            editable: false,
+            width: 140
         });
 
         $(".op:last").combobox({
@@ -640,8 +641,8 @@
                 {"text": "以...开头", "value": "beginwith"},
                 {"text": "以...结尾", "value": "endwith"}
             ],
-            width: 100,
-            panelHeight: 198,
+            width: 120,
+            panelHeight: 220,
             editable: false
         });
 
@@ -655,7 +656,7 @@
                 {"text": "或者", "value": "or"}
             ],
             width: 70,
-            panelHeight: 44,
+            panelHeight: 50,
             editable: false
         });
 
@@ -737,6 +738,23 @@ $(function () {
         }
     });
 
+    function loadGrid(formDataArr) {
+        if ($.cookie("gridType") == "datagrid") {
+            $("#" + $.cookie("gridId")).datagrid('load', {
+                advanceFilter: JSON.stringify(formDataArr)
+            });
+        } else if ($.cookie("gridType") == "treegrid") {
+            $("#" + $.cookie("gridId")).treegrid('load', {
+                advanceFilter: JSON.stringify(formDataArr)
+            });
+        }
+    }
+
+    $("#resetAdvanceSearchForm").on('click', function () {
+        var formDataArr = [];
+        loadGrid(formDataArr)
+    });
+
     $("#submitAdvanceSearchForm").on('click', function () {
         var formDataArr = [];
         var formData = $("#advanceSearchDialog").serializeArray();
@@ -753,19 +771,8 @@ $(function () {
 
             formDataArr.push({field: fieldValue, op: opValue, value: valValue, join: joinValue});
         }
-
         // console.log(JSON.stringify(formDataArr));
-
-        if ($.cookie("gridType") == "datagrid") {
-            $("#" + $.cookie("gridId")).datagrid('load', {
-                filterRules: JSON.stringify(formDataArr)
-            });
-        } else if ($.cookie("gridType") == "treegrid") {
-            $("#" + $.cookie("gridId")).treegrid('load', {
-                filterRules: JSON.stringify(formDataArr)
-            });
-        }
-
+        loadGrid(formDataArr)
     });
 
 

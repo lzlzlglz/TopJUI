@@ -137,6 +137,10 @@ openWindow = function (options) {
  * @param options
  */
 function bindMenuClickEvent($element, options) {
+    if (typeof options.grid != "object") {
+        var toolbarOptions = getOptionsJson($element.closest("div"));
+        options = $.extend(options, toolbarOptions);
+    }
     var defaults = {};
     // 打开dialog事件
     if (options.clickEvent == "openDialog") {
@@ -903,7 +907,7 @@ function filterHandler(options) {
         if (options.grid.type == "datagrid") {
             gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {
-                $("#" + gridId).datagrid('disableFilter', options.filterOption);
+                $("#" + gridId).datagrid('disableFilter');
                 //$(".l-btn-text:contains('隐藏'):eq(1)").text("查询");
             } else {
                 $("#" + gridId).datagrid('enableFilter', options.filterOption);
@@ -912,7 +916,7 @@ function filterHandler(options) {
         } else if (options.grid.type == "treegrid") {
             gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {
-                $("#" + gridId).treegrid('disableFilter', options.filterOption);
+                $("#" + gridId).treegrid('disableFilter');
                 //$(".l-btn-text:contains('隐藏'):eq(1)").text("查询");
             } else {
                 $("#" + gridId).treegrid('enableFilter', options.filterOption);
@@ -935,7 +939,8 @@ function searchHandler(options) {
             title: '高级查询',
             iconCls: 'icon-find',
             toolbar: '#searchHandler-toolbar',
-            buttons: '#searchHandler-buttons'
+            buttons: '#searchHandler-buttons',
+            height: 250
         });
 
         dialogObj.dialog('open');

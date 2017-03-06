@@ -19,7 +19,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 调整树形图标显示位置 */
 .tree-icon {
-    margin-top: 1px;
+    margin-top: -1px;
 }
 
 /* 表格行高 */
@@ -64,7 +64,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 调整panel图标显示位置 */
 .panel-icon {
-    margin-top: -7px;
+    margin-top: -9px;
 }
 
 /* tabs显示高度 */
