@@ -9,6 +9,8 @@ module.exports = function(grunt) {
          },
          dist: {
              src: [
+                 "plugins/jquery.easyui.min.js",
+                 "plugins/datagrid-filter.js",
                  "src/topjui.combotree.js",
                  "src/topjui.common.js",
                  "src/topjui.core.js",
