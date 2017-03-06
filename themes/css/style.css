@@ -181,6 +181,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-top-color: #3498DB;
 }
 
+.tabs-tool {
+    border-top: 0;
+    border-right: 0;
+}
+
 /* 覆盖easyui样式结束 */
 
 .red {
@@ -209,6 +214,28 @@ a:hover {
 
 .border_top_none {
     border-top: none;
+}
+
+.border_right_none {
+    border-right: none;
+}
+
+.border_bottom_none {
+    border-bottom: none;
+}
+
+.border_left_none {
+    border-left: none;
+}
+
+.border_top_left_none {
+    border-top: none;
+    border-left: none;
+}
+
+.border_top_right_none {
+    border-top: none;
+    border-right: none;
 }
 
 .leftBottomBorder {
