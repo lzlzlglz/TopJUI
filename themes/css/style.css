@@ -84,8 +84,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* tabs链接字体大小 */
 .tabs a {
-    height: 32px !important;
-    line-height: 32px !important;
+    height: 31px !important;
+    line-height: 31px !important;
 }
 
 /* tabs关闭按钮高度 */
