@@ -212,6 +212,22 @@ a:hover {
     text-decoration: underline;
 }
 
+.border_top {
+    border-top-width: 1px;
+}
+
+.border_right {
+    border-right-width: 1px;
+}
+
+.border_bottom {
+    border-bottom-width: 1px;
+}
+
+.border_left {
+    border-left-width: 1px;
+}
+
 .border_top_none {
     border-top: none;
 }
