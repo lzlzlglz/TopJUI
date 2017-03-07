@@ -18644,8 +18644,8 @@ var topJUI = {
                 if (typeof options.childGrid == "object") {
                     var refreshGridIdArr = options.childGrid.grid;
                     for (var i = 0; i < refreshGridIdArr.length; i++) {
-                        var syncReload =  refreshGridIdArr[i].syncReload;
-                        if(syncReload){
+                        var syncReload = refreshGridIdArr[i].syncReload;
+                        if (syncReload) {
                             var $grid = $("#" + refreshGridIdArr[i].id);
                             if (refreshGridIdArr[i]["type"] == "datagrid") {
                                 $grid.datagrid('load');
@@ -18687,16 +18687,16 @@ var topJUI = {
                     }
                 }
 
-                if (typeof options.childTabs == "object") {
-                    var $tabsElement = $('#'+options.childTabs.id);
+                if (typeof options.childTab == "object") {
+                    var $tabsElement = $('#' + options.childTab.id);
                     var $tabsOptions = $tabsElement.tabs('options');
-                    var index = $tabsElement.tabs('getTabIndex',$tabsElement.tabs('getSelected'));
+                    var index = $tabsElement.tabs('getTabIndex', $tabsElement.tabs('getSelected'));
                     var tabsComponent = $tabsOptions.component;
                     var $element = $("#" + tabsComponent[index].id);
 
                     var newQueryParams = {};
 
-                    newQueryParams = getSelectedRowJson(options.childTabs.param, row);
+                    newQueryParams = getSelectedRowJson(options.childTab.param, row);
 
                     if (tabsComponent[index]["type"] == "datagrid") {
                         //获得表格原有的参数
@@ -20943,32 +20943,47 @@ $(function () {
                     if (component[index]["type"] == "datagrid") {
                         var gridOptions = $element.datagrid('options');
                         var $parentGrid = $('#' + gridOptions.parentGrid.id);
-                        var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (gridOptions.parentGrid.type == "datagrid")
+                            var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (gridOptions.parentGrid.type == "treegrid")
+                            var selectedRow = $parentGrid.treegrid("getSelected");
                         if (selectedRow) {
                             newQueryParams = getSelectedRowJson(gridOptions.parentGrid.param, selectedRow);
                             //获得表格原有的参数
                             var queryParams = $element.datagrid('options').queryParams;
                             $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                            $element.datagrid('load');
+                        } else {
                             $element.datagrid('load');
                         }
                     } else if (component[index]["type"] == "treegrid") {
                         var gridOptions = $element.treegrid('options');
                         var $parentGrid = $('#' + gridOptions.parentGrid.id);
-                        var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (gridOptions.parentGrid.type == "datagrid")
+                            var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (gridOptions.parentGrid.type == "treegrid")
+                            var selectedRow = $parentGrid.treegrid("getSelected");
                         if (selectedRow) {
                             newQueryParams = getSelectedRowJson(gridOptions.parentGrid.param, selectedRow);
                             //获得表格原有的参数
                             var queryParams = $element.datagrid('options').queryParams;
-                            $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
-                            $element.datagrid('load');
+                            $element.treegrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                            $element.treegrid('load');
+                        } else {
+                            $element.treegrid('load');
                         }
                     } else if (component[index]["type"] == "panel") {
                         var panelOptions = $element.panel('options');
                         var $parentGrid = $('#' + panelOptions.parentGrid.id);
-                        var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (gridOptions.parentGrid.type == "datagrid")
+                            var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (gridOptions.parentGrid.type == "treegrid")
+                            var selectedRow = $parentGrid.treegrid("getSelected");
                         if (selectedRow) {
                             var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, selectedRow);
                             $element.panel('refresh', newHref);
+                        } else {
+                            $element.panel('refresh');
                         }
                     }
                 }
@@ -21275,13 +21290,13 @@ $(function () {
             },
             onContextMenu: function (e, row) {
                 /*e.preventDefault();
-                // 查找节点
-                $(this).treegrid('select', row[options.idField]);
-                // 显示快捷菜单
-                $("#" + options.treegridContextId).menu('show', {
-                    left: e.pageX,
-                    top: e.pageY
-                });*/
+                 // 查找节点
+                 $(this).treegrid('select', row[options.idField]);
+                 // 显示快捷菜单
+                 $("#" + options.treegridContextId).menu('show', {
+                 left: e.pageX,
+                 top: e.pageY
+                 });*/
             },
             onClickRow: function (row) {
                 //传递给要刷新表格的参数
@@ -21309,6 +21324,35 @@ $(function () {
                         }
                     }
                 }
+
+                if (typeof options.childTab == "object") {
+                    var $tabsElement = $('#' + options.childTab.id);
+                    var $tabsOptions = $tabsElement.tabs('options');
+                    var index = $tabsElement.tabs('getTabIndex', $tabsElement.tabs('getSelected'));
+                    var tabsComponent = $tabsOptions.component;
+                    var $element = $("#" + tabsComponent[index].id);
+
+                    var newQueryParams = {};
+
+                    newQueryParams = getSelectedRowJson(options.childTab.param, row);
+
+                    if (tabsComponent[index]["type"] == "datagrid") {
+                        //获得表格原有的参数
+                        var queryParams = $element.datagrid('options').queryParams;
+                        $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                        $element.datagrid('load');
+                    } else if (tabsComponent[index]["type"] == "treegrid") {
+                        //获得表格原有的参数
+                        var queryParams = $element.treegrid('options').queryParams;
+                        $element.treegrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                        $element.treegrid('load');
+                    } else if (tabsComponent[index]["type"] == "panel") {
+                        var panelOptions = $element.panel('options');
+                        var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, row);
+                        $element.panel('refresh', newHref);
+                    }
+                }
+
             }
         });
 

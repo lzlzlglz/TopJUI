@@ -127,8 +127,8 @@
                 if (typeof options.childGrid == "object") {
                     var refreshGridIdArr = options.childGrid.grid;
                     for (var i = 0; i < refreshGridIdArr.length; i++) {
-                        var syncReload =  refreshGridIdArr[i].syncReload;
-                        if(syncReload){
+                        var syncReload = refreshGridIdArr[i].syncReload;
+                        if (syncReload) {
                             var $grid = $("#" + refreshGridIdArr[i].id);
                             if (refreshGridIdArr[i]["type"] == "datagrid") {
                                 $grid.datagrid('load');
@@ -170,16 +170,16 @@
                     }
                 }
 
-                if (typeof options.childTabs == "object") {
-                    var $tabsElement = $('#'+options.childTabs.id);
+                if (typeof options.childTab == "object") {
+                    var $tabsElement = $('#' + options.childTab.id);
                     var $tabsOptions = $tabsElement.tabs('options');
-                    var index = $tabsElement.tabs('getTabIndex',$tabsElement.tabs('getSelected'));
+                    var index = $tabsElement.tabs('getTabIndex', $tabsElement.tabs('getSelected'));
                     var tabsComponent = $tabsOptions.component;
                     var $element = $("#" + tabsComponent[index].id);
 
                     var newQueryParams = {};
 
-                    newQueryParams = getSelectedRowJson(options.childTabs.param, row);
+                    newQueryParams = getSelectedRowJson(options.childTab.param, row);
 
                     if (tabsComponent[index]["type"] == "datagrid") {
                         //获得表格原有的参数

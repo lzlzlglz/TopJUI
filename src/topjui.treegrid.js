@@ -90,13 +90,13 @@
             },
             onContextMenu: function (e, row) {
                 /*e.preventDefault();
-                // 查找节点
-                $(this).treegrid('select', row[options.idField]);
-                // 显示快捷菜单
-                $("#" + options.treegridContextId).menu('show', {
-                    left: e.pageX,
-                    top: e.pageY
-                });*/
+                 // 查找节点
+                 $(this).treegrid('select', row[options.idField]);
+                 // 显示快捷菜单
+                 $("#" + options.treegridContextId).menu('show', {
+                 left: e.pageX,
+                 top: e.pageY
+                 });*/
             },
             onClickRow: function (row) {
                 //传递给要刷新表格的参数
@@ -124,6 +124,35 @@
                         }
                     }
                 }
+
+                if (typeof options.childTab == "object") {
+                    var $tabsElement = $('#' + options.childTab.id);
+                    var $tabsOptions = $tabsElement.tabs('options');
+                    var index = $tabsElement.tabs('getTabIndex', $tabsElement.tabs('getSelected'));
+                    var tabsComponent = $tabsOptions.component;
+                    var $element = $("#" + tabsComponent[index].id);
+
+                    var newQueryParams = {};
+
+                    newQueryParams = getSelectedRowJson(options.childTab.param, row);
+
+                    if (tabsComponent[index]["type"] == "datagrid") {
+                        //获得表格原有的参数
+                        var queryParams = $element.datagrid('options').queryParams;
+                        $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                        $element.datagrid('load');
+                    } else if (tabsComponent[index]["type"] == "treegrid") {
+                        //获得表格原有的参数
+                        var queryParams = $element.treegrid('options').queryParams;
+                        $element.treegrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                        $element.treegrid('load');
+                    } else if (tabsComponent[index]["type"] == "panel") {
+                        var panelOptions = $element.panel('options');
+                        var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, row);
+                        $element.panel('refresh', newHref);
+                    }
+                }
+
             }
         });
 

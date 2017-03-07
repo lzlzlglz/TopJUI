@@ -32,32 +32,47 @@
                     if (component[index]["type"] == "datagrid") {
                         var gridOptions = $element.datagrid('options');
                         var $parentGrid = $('#' + gridOptions.parentGrid.id);
-                        var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (gridOptions.parentGrid.type == "datagrid")
+                            var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (gridOptions.parentGrid.type == "treegrid")
+                            var selectedRow = $parentGrid.treegrid("getSelected");
                         if (selectedRow) {
                             newQueryParams = getSelectedRowJson(gridOptions.parentGrid.param, selectedRow);
                             //获得表格原有的参数
                             var queryParams = $element.datagrid('options').queryParams;
                             $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                            $element.datagrid('load');
+                        } else {
                             $element.datagrid('load');
                         }
                     } else if (component[index]["type"] == "treegrid") {
                         var gridOptions = $element.treegrid('options');
                         var $parentGrid = $('#' + gridOptions.parentGrid.id);
-                        var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (gridOptions.parentGrid.type == "datagrid")
+                            var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (gridOptions.parentGrid.type == "treegrid")
+                            var selectedRow = $parentGrid.treegrid("getSelected");
                         if (selectedRow) {
                             newQueryParams = getSelectedRowJson(gridOptions.parentGrid.param, selectedRow);
                             //获得表格原有的参数
                             var queryParams = $element.datagrid('options').queryParams;
-                            $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
-                            $element.datagrid('load');
+                            $element.treegrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                            $element.treegrid('load');
+                        } else {
+                            $element.treegrid('load');
                         }
                     } else if (component[index]["type"] == "panel") {
                         var panelOptions = $element.panel('options');
                         var $parentGrid = $('#' + panelOptions.parentGrid.id);
-                        var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (gridOptions.parentGrid.type == "datagrid")
+                            var selectedRow = $parentGrid.datagrid("getSelected");
+                        if (gridOptions.parentGrid.type == "treegrid")
+                            var selectedRow = $parentGrid.treegrid("getSelected");
                         if (selectedRow) {
                             var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, selectedRow);
                             $element.panel('refresh', newHref);
+                        } else {
+                            $element.panel('refresh');
                         }
                     }
                 }

@@ -186,32 +186,6 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-right: 0;
 }
 
-/* 覆盖easyui样式结束 */
-
-.red {
-    color: red !important;
-}
-
-.orange {
-    color: orange !important;
-}
-
-.blue {
-    color: blue !important;
-}
-
-.green {
-    color: green !important;
-}
-
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 .border_top {
     border-top-width: 1px;
 }
@@ -252,6 +226,32 @@ a:hover {
 .border_top_right_none {
     border-top: none;
     border-right: none;
+}
+
+/* 覆盖easyui样式结束 */
+
+.red {
+    color: red !important;
+}
+
+.orange {
+    color: orange !important;
+}
+
+.blue {
+    color: blue !important;
+}
+
+.green {
+    color: green !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 .leftBottomBorder {
