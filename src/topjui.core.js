@@ -1,5 +1,6 @@
 
 var topJUI = {
+    pageLoadComplete: false,
     eventType: {
     	//initUI     : 'topjui.initForm',         // When document load completed or ajax load completed, B-JUI && Plugins init 
         initUI         : {

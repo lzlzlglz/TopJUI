@@ -707,6 +707,7 @@ $(function () {
     if (url != TopJUI.config.mainPagePath) {
         $(this).trigger(topJUI.eventType.initUI.base);
         $(this).trigger(topJUI.eventType.initUI.base2);
+        $.cookie("pageLoadComplete", "1");
     } else {
         /*setTimeout(function () {
          $(this).trigger(topJUI.eventType.initUI.base);

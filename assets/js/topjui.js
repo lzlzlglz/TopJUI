@@ -17128,6 +17128,7 @@ function hideMask() {
 
 //在主框架内打开Tab页，如点击左边的菜单打开Tab窗口
 function addTab(params) {
+    $.cookie("pageLoadComplete", "0");
     var iframe = '<iframe src="' + params.url + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
     var t = $('#index_tabs');
     var opts = {
@@ -18487,6 +18488,7 @@ $.fn.serializeObject = function () {
     return o;
 };;
 var topJUI = {
+    pageLoadComplete: false,
     eventType: {
     	//initUI     : 'topjui.initForm',         // When document load completed or ajax load completed, B-JUI && Plugins init 
         initUI         : {
@@ -20803,6 +20805,7 @@ $(function () {
     if (url != TopJUI.config.mainPagePath) {
         $(this).trigger(topJUI.eventType.initUI.base);
         $(this).trigger(topJUI.eventType.initUI.base2);
+        $.cookie("pageLoadComplete", "1");
     } else {
         /*setTimeout(function () {
          $(this).trigger(topJUI.eventType.initUI.base);
