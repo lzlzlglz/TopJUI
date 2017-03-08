@@ -126,34 +126,37 @@
                 }
 
                 if (typeof options.childTab == "object") {
-                    var $tabsElement = $('#' + options.childTab.id);
-                    var $tabsOptions = $tabsElement.tabs('options');
-                    var index = $tabsElement.tabs('getTabIndex', $tabsElement.tabs('getSelected'));
-                    var tabsComponent = $tabsOptions.component;
-                    var $element = $("#" + tabsComponent[index].id);
+                    var childTabArr = options.childTab.tabs;
+                    for (var i = 0; i < childTabArr.length; i++) {
+                        var $tabsElement = $('#' + childTabArr[i].id);
+                        var $tabsOptions = $tabsElement.tabs('options');
+                        var index = $tabsElement.tabs('getTabIndex', $tabsElement.tabs('getSelected'));
+                        var tabsComponent = $tabsOptions.tabs;
+                        var $element = $("#" + tabsComponent[index].id);
 
-                    var newQueryParams = {};
+                        var newQueryParams = {};
 
-                    newQueryParams = getSelectedRowJson(options.childTab.param, row);
+                        newQueryParams = getSelectedRowJson(childTabArr[i].param, row);
 
-                    if (tabsComponent[index]["type"] == "datagrid") {
-                        //获得表格原有的参数
-                        var queryParams = $element.datagrid('options').queryParams;
-                        $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
-                        $element.datagrid('load');
-                    } else if (tabsComponent[index]["type"] == "treegrid") {
-                        //获得表格原有的参数
-                        var queryParams = $element.treegrid('options').queryParams;
-                        $element.treegrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
-                        $element.treegrid('load');
-                    } else if (tabsComponent[index]["type"] == "panel") {
-                        var panelOptions = $element.panel('options');
-                        var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, row);
-                        //$element.panel('refresh', newHref);
-                        var iframe = '<iframe src="' + newHref + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
-                        $element.panel({
-                            content: iframe
-                        });
+                        if (tabsComponent[index]["type"] == "datagrid") {
+                            //获得表格原有的参数
+                            var queryParams = $element.datagrid('options').queryParams;
+                            $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                            $element.datagrid('load');
+                        } else if (tabsComponent[index]["type"] == "treegrid") {
+                            //获得表格原有的参数
+                            var queryParams = $element.treegrid('options').queryParams;
+                            $element.treegrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                            $element.treegrid('load');
+                        } else if (tabsComponent[index]["type"] == "panel") {
+                            var panelOptions = $element.panel('options');
+                            var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, row);
+                            //$element.panel('refresh', newHref);
+                            var iframe = '<iframe src="' + newHref + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
+                            $element.panel({
+                                content: iframe
+                            });
+                        }
                     }
                 }
 
