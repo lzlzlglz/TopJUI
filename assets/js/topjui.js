@@ -18711,7 +18711,11 @@ var topJUI = {
                     } else if (tabsComponent[index]["type"] == "panel") {
                         var panelOptions = $element.panel('options');
                         var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, row);
-                        $element.panel('refresh', newHref);
+                        //$element.panel('refresh', newHref);
+                        var iframe = '<iframe src="' + newHref + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
+                        $element.panel({
+                            content: iframe
+                        });
                     }
                 }
             }
@@ -20957,7 +20961,7 @@ $(function () {
                             $element.datagrid('load');
                         }
                     } else if (component[index]["type"] == "treegrid") {
-                        var gridOptions = $element.treegrid('options');
+                        var gridOptions = $element.panel('options');
                         var $parentGrid = $('#' + gridOptions.parentGrid.id);
                         if (gridOptions.parentGrid.type == "datagrid")
                             var selectedRow = $parentGrid.datagrid("getSelected");
@@ -20975,13 +20979,17 @@ $(function () {
                     } else if (component[index]["type"] == "panel") {
                         var panelOptions = $element.panel('options');
                         var $parentGrid = $('#' + panelOptions.parentGrid.id);
-                        if (gridOptions.parentGrid.type == "datagrid")
+                        if (panelOptions.parentGrid.type == "datagrid")
                             var selectedRow = $parentGrid.datagrid("getSelected");
-                        if (gridOptions.parentGrid.type == "treegrid")
+                        if (panelOptions.parentGrid.type == "treegrid")
                             var selectedRow = $parentGrid.treegrid("getSelected");
                         if (selectedRow) {
                             var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, selectedRow);
-                            $element.panel('refresh', newHref);
+                            //$element.panel('refresh', newHref);
+                            var iframe = '<iframe src="' + newHref + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
+                            $element.panel({
+                                content: iframe
+                            });
                         } else {
                             $element.panel('refresh');
                         }
@@ -21349,7 +21357,11 @@ $(function () {
                     } else if (tabsComponent[index]["type"] == "panel") {
                         var panelOptions = $element.panel('options');
                         var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, row);
-                        $element.panel('refresh', newHref);
+                        //$element.panel('refresh', newHref);
+                        var iframe = '<iframe src="' + newHref + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
+                        $element.panel({
+                            content: iframe
+                        });
                     }
                 }
 
