@@ -17128,7 +17128,6 @@ function hideMask() {
 
 //在主框架内打开Tab页，如点击左边的菜单打开Tab窗口
 function addTab(params) {
-    $.cookie("pageLoadComplete", "0");
     var iframe = '<iframe src="' + params.url + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
     var t = $('#index_tabs');
     var opts = {
@@ -17145,7 +17144,17 @@ function addTab(params) {
     if (t.tabs('exists', opts.title)) {
         t.tabs('select', opts.title);
     } else {
-        t.tabs('myAdd', opts);
+        var lastMenuClickTime = $.cookie("menuClickTime");
+        var nowTime = new Date().getTime();
+        if ((nowTime - lastMenuClickTime) >= 1500) {
+            $.cookie("menuClickTime", new Date().getTime());
+            t.tabs('myAdd', opts);
+        } else {
+            $.messager.show({
+                title: '温馨提示',
+                msg: '操作过快，请稍后重试！'
+            });
+        }
     }
 }
 
