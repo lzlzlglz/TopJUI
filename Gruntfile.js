@@ -27,7 +27,8 @@ module.exports = function(grunt) {
                  "src/topjui.toolbar.js",
                  "src/topjui.tree.js",
                  "src/topjui.treegrid.js",
-                 "src/topjui.window.js"
+                 "src/topjui.window.js",
+                 "plugins/jquery.base64.js"
              ],
              dest: 'assets/js/topjui.js'
              //dest: 'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/core/topjui.js'
