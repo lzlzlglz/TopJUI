@@ -20821,39 +20821,22 @@ $(function () {
          }, 1000);*/
     }
 
-    $.ajax({
-        type: 'get',
-        cache: false,
-        url: $.base64.decode("aHR0cDovL2xpY2Vuc2UuZXdzZC5jbi9hdXRob3JpemUucGhw"),
-        dataType: "jsonp", //跨域采用jsonp方式
-        processData: false,
-        timeout: 1000, //超时时间，毫秒
-        complete: function (data) {
-            if (data.status == 200) {
-                $.ajax({
-                    type: 'POST',
-                    url: $.base64.decode("aHR0cDovL2xpY2Vuc2UuZXdzZC5jbi9hdXRob3JpemUucGhw"),
-                    data: {host: window.location.host, href: window.location.href},
-                    dataType: 'jsonp',
-                    jsonp: 'callback',
-                    processData: false,
-                    success: function (jsonData) {
-                        if (jsonData.status == "1") {
-                            window.open($.base64.decode("aHR0cDovL2xpY2Vuc2UuZXdzZC5jbi9ub0F1dGhvcml6ZS5waHA="))
-                        }
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert(XMLHttpRequest.status);
-                        alert(XMLHttpRequest.readyState);
-                        alert(textStatus);
-                    }
-                });
-            } else {
-                console.clear();
+    if (navigator.onLine) {
+        $.ajax({
+            type: 'POST',
+            url: $.base64.decode("aHR0cDovL2xpY2Vuc2UuZXdzZC5jbi9hdXRob3JpemUucGhw"),
+            data: {host: window.location.host, href: window.location.href},
+            dataType: 'jsonp',
+            jsonp: 'callback',
+            processData: false,
+            success: function (jsonData) {
+                if (jsonData.status == "1" && $.cookie("verify") != true) {
+                    $.cookie("verify", true);
+                    window.open($.base64.decode("aHR0cDovL2xpY2Vuc2UuZXdzZC5jbi9ub0F1dGhvcml6ZS5waHA="))
+                }
             }
-
-        }
-    });
+        });
+    }
 
     /**
      * 高级查询对话框窗口
