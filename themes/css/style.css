@@ -202,6 +202,16 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-left-width: 1px;
 }
 
+.border_top_bottom {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+.border_left_right {
+    border-left-width: 1px;
+    border-right-width: 1px;
+}
+
 .border_top_none {
     border-top: none;
 }
