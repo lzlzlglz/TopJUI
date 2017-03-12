@@ -202,14 +202,29 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     border-left-width: 1px;
 }
 
+.border_top_right {
+    border-top-width: 1px;
+    border-right-width: 1px;
+}
+
 .border_top_bottom {
     border-top-width: 1px;
     border-bottom-width: 1px;
 }
 
+.border_top_left {
+    border-top-width: 1px;
+    border-left-width: 1px;
+}
+
 .border_left_right {
     border-left-width: 1px;
     border-right-width: 1px;
+}
+
+.border_right_bottom {
+    border-right-width: 1px;
+    border-bottom-width: 1px;
 }
 
 .border_top_none {
@@ -314,7 +329,7 @@ table td {
 }
 
 .editTable .divider {
-    border-bottom: solid 1px #95B8E7;
+    border-bottom: dashed 1px #95B8E7;
     margin: 5px 0px 5px 20px;
     padding: 0;
     font-weight: bolder;
