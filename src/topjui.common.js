@@ -47,7 +47,7 @@ function addTab(params) {
     } else {
         var lastMenuClickTime = $.cookie("menuClickTime");
         var nowTime = new Date().getTime();
-        if ((nowTime - lastMenuClickTime) >= 1500) {
+        if ((nowTime - lastMenuClickTime) >= 1000) {
             $.cookie("menuClickTime", new Date().getTime());
             t.tabs('myAdd', opts);
         } else {

@@ -295,225 +295,226 @@
     });
 
     $(document).on(topJUI.eventType.initUI.base, function (e) {
-        setTimeout(function () {
-            // 父框架获取子框架元素
-            // var test = $("iframe").contents().find("#test").val();
-            getTabWindow().$('[data-toggle="topjui-datagrid"]').each(function (i) {
-                var $element = $(this);
-                var options = getOptionsJson($element);
+        //setTimeout(function () {
+        // 父框架获取子框架元素
+        // var test = $("iframe").contents().find("#test").val();
 
-                var frozenColumns = $element.find("thead:first")[0];
-                //console.log(frozenColumns.getAttribute("frozen"));
-                if ($(frozenColumns).attr("frozen")) {
-                    var frozenColumns = [];
-                    $element.find("thead:first th").each(function (i) {
-                        frozenColumns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
-                    });
-                    options.frozenColumns = [frozenColumns];
+        getTabWindow().$('[data-toggle="topjui-treegrid"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
 
-                    var columns = [];
-                    $element.find("thead:eq(1) th").each(function (i) {
-                        columns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
-                    });
-                } else {
-                    var columns = [];
-                    $element.find("thead th").each(function (i) {
-                        columns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
-                    });
-                }
-                options.columns = [columns];
-
-                var kindEditor = [];
-
-                //console.log(op.join());
-
-                $element.attr('id', options.id);
-                getTabWindow().$('#' + options.id).iDatagrid(options);
+            var op = [];
+            $element.find("th").each(function (i) {
+                op.push(strToJson("{" + this.getAttribute("data-options") + "}"));
             });
+            options.columns = [op];
 
-            getTabWindow().$('[data-toggle="topjui-edatagrid"]').each(function (i) {
-                var $element = $(this);
-                var options = getOptionsJson($element);
+            $element.attr('id', options.id);
+            getTabWindow().$('#' + options.id).iTreegrid(options);
+        });
 
-                var frozenColumns = $element.find("thead:first")[0];
-                //console.log(frozenColumns.getAttribute("frozen"));
-                if ($(frozenColumns).attr("frozen")) {
-                    var frozenColumns = [];
-                    $element.find("thead:first th").each(function (i) {
-                        frozenColumns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
-                    });
-                    options.frozenColumns = [frozenColumns];
+        getTabWindow().$('[data-toggle="topjui-datagrid"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
 
-                    var columns = [];
-                    $element.find("thead:eq(1) th").each(function (i) {
-                        columns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
-                    });
-                } else {
-                    var columns = [];
-                    $element.find("thead th").each(function (i) {
-                        columns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
-                    });
-                }
-                options.columns = [columns];
-
-                var kindEditor = [];
-
-                //console.log(op.join());
-
-                $element.attr('id', options.id);
-                getTabWindow().$('#' + options.id).iEdatagrid(options);
-            });
-
-            getTabWindow().$('[data-toggle="topjui-treegrid"]').each(function (i) {
-                var $element = $(this);
-                var options = getOptionsJson($element);
-
-                var op = [];
-                $element.find("th").each(function (i) {
-                    op.push(strToJson("{" + this.getAttribute("data-options") + "}"));
+            var frozenColumns = $element.find("thead:first")[0];
+            //console.log(frozenColumns.getAttribute("frozen"));
+            if ($(frozenColumns).attr("frozen")) {
+                var frozenColumns = [];
+                $element.find("thead:first th").each(function (i) {
+                    frozenColumns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
                 });
-                options.columns = [op];
+                options.frozenColumns = [frozenColumns];
 
+                var columns = [];
+                $element.find("thead:eq(1) th").each(function (i) {
+                    columns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
+                });
+            } else {
+                var columns = [];
+                $element.find("thead th").each(function (i) {
+                    columns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
+                });
+            }
+            options.columns = [columns];
+
+            var kindEditor = [];
+
+            //console.log(op.join());
+
+            $element.attr('id', options.id);
+            getTabWindow().$('#' + options.id).iDatagrid(options);
+        });
+
+        getTabWindow().$('[data-toggle="topjui-edatagrid"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+
+            var frozenColumns = $element.find("thead:first")[0];
+            //console.log(frozenColumns.getAttribute("frozen"));
+            if ($(frozenColumns).attr("frozen")) {
+                var frozenColumns = [];
+                $element.find("thead:first th").each(function (i) {
+                    frozenColumns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
+                });
+                options.frozenColumns = [frozenColumns];
+
+                var columns = [];
+                $element.find("thead:eq(1) th").each(function (i) {
+                    columns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
+                });
+            } else {
+                var columns = [];
+                $element.find("thead th").each(function (i) {
+                    columns.push(strToJson("{" + this.getAttribute("data-options") + "}"));
+                });
+            }
+            options.columns = [columns];
+
+            var kindEditor = [];
+
+            //console.log(op.join());
+
+            $element.attr('id', options.id);
+            getTabWindow().$('#' + options.id).iEdatagrid(options);
+        });
+
+        getTabWindow().$('[data-toggle="topjui-tabs"]').each(function () {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+
+            $element.attr('id', options.id);
+            getTabWindow().$('#' + options.id).iTabs(options);
+        });
+
+        getTabWindow().$('[data-toggle="topjui-menubutton"]').each(function () {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+            options = bindMenuClickEvent($element, options);
+
+            $(this).iMenubutton(options);
+        });
+
+        getTabWindow().$('[data-toggle="topjui-submenubutton"]').each(function () {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+            bindMenuClickEvent($element, options);
+        });
+        //}, 1);
+
+        //setTimeout(function () {
+        getTabWindow().$('[data-toggle="topjui-dialog"]').each(function () {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+
+            var href = $element.attr('href');
+            if (href != undefined) {
+                options.href = href;
+                getTabWindow().$('body').append('<div id="' + options.id + '"></div>');
+                getTabWindow().$('#' + options.id).iDialog(options);
+
+                $element.on("click", function () {
+                    getTabWindow().$('#' + options.id).dialog('open');
+                    return false; //阻止链接跳转
+                });
+
+            } else {
                 $element.attr('id', options.id);
-                getTabWindow().$('#' + options.id).iTreegrid(options);
-            });
+                getTabWindow().$('#' + options.id).iDialog(options);
+            }
+        });
 
-            getTabWindow().$('[data-toggle="topjui-tabs"]').each(function () {
-                var $element = $(this);
-                var options = getOptionsJson($element);
+        getTabWindow().$('[data-toggle="topjui-linkbutton"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
 
-                $element.attr('id', options.id);
-                getTabWindow().$('#' + options.id).iTabs(options);
-            });
+            $element.iLinkbutton(options);
 
-            getTabWindow().$('[data-toggle="topjui-menubutton"]').each(function () {
-                var $element = $(this);
-                var options = getOptionsJson($element);
-                options = bindMenuClickEvent($element, options);
+            if (options.handler == "ajaxForm" || options.handler == "multiAjaxForm") {
+                $element.on("click", function () {
 
-                $(this).iMenubutton(options);
-            });
+                    if (options.handlerBefore != "undefined") {
+                        // 回调执行传入的自定义函数
+                        executeCallBackFun(options.handlerBefore);
+                    }
 
-            getTabWindow().$('[data-toggle="topjui-submenubutton"]').each(function () {
-                var $element = $(this);
-                var options = getOptionsJson($element);
-                bindMenuClickEvent($element, options);
-            });
-        }, 1);
-
-        setTimeout(function () {
-            getTabWindow().$('[data-toggle="topjui-dialog"]').each(function () {
-                var $element = $(this);
-                var options = getOptionsJson($element);
-
-                var href = $element.attr('href');
-                if (href != undefined) {
-                    options.href = href;
-                    getTabWindow().$('body').append('<div id="' + options.id + '"></div>');
-                    getTabWindow().$('#' + options.id).iDialog(options);
-
-                    $element.on("click", function () {
-                        getTabWindow().$('#' + options.id).dialog('open');
-                        return false; //阻止链接跳转
-                    });
-
-                } else {
-                    $element.attr('id', options.id);
-                    getTabWindow().$('#' + options.id).iDialog(options);
-                }
-            });
-
-            getTabWindow().$('[data-toggle="topjui-linkbutton"]').each(function (i) {
-                var $element = $(this);
-                var options = getOptionsJson($element);
-
-                $element.iLinkbutton(options);
-
-                if (options.handler == "ajaxForm" || options.handler == "multiAjaxForm") {
-                    $element.on("click", function () {
-
-                        if (options.handlerBefore != "undefined") {
-                            // 回调执行传入的自定义函数
-                            executeCallBackFun(options.handlerBefore);
+                    var defaults = {
+                        gridId: 'datagrid',
+                        dialogId: 'editDialog'
+                    }
+                    options = $.extend(defaults, options);
+                    // 判断数据是否通过验证
+                    if (getTabWindow().$("#" + options.dialog.id).form('validate')) {
+                        // 序列化表单数据
+                        options.ajaxData = getTabWindow().$("#" + options.dialog.id).serialize();
+                        if (options.combotreeFields != undefined) {
+                            var combotreeParams = '';
+                            $.each(options.combotreeFields, function (k, v) {
+                                combotreeParams += '&' + v.replace(options.postfix, "") + '=' + getTabWindow().$("#" + options.dialogId + ' input[textboxname="' + v + '"]').combotree('getValues').join(',') + ', ';
+                            });
+                            options.ajaxData += combotreeParams;
                         }
-
-                        var defaults = {
-                            gridId: 'datagrid',
-                            dialogId: 'editDialog'
+                        // 提交更新多条数据
+                        if (options.handler == "multiAjaxForm") {
+                            var rows = getCheckedRowsData(options.grid.type, options.grid.id);
+                            if (rows.length == 0) {
+                                $.messager.alert(
+                                    topJUI.language.message.title.operationTips,
+                                    topJUI.language.message.msg.checkSelfGrid,
+                                    topJUI.language.message.icon.warning
+                                );
+                                return;
+                            }
+                            var pkName = 'uuid';
+                            if (options.grid.pkName)
+                                pkName = options.grid.pkName;
+                            options.ajaxData += '&' + pkName + '=' + getMultiRowsFieldValue(rows, pkName) + '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
                         }
-                        options = $.extend(defaults, options);
-                        // 判断数据是否通过验证
-                        if (getTabWindow().$("#" + options.dialog.id).form('validate')) {
-                            // 序列化表单数据
-                            options.ajaxData = getTabWindow().$("#" + options.dialog.id).serialize();
-                            if (options.combotreeFields != undefined) {
-                                var combotreeParams = '';
-                                $.each(options.combotreeFields, function (k, v) {
-                                    combotreeParams += '&' + v.replace(options.postfix, "") + '=' + getTabWindow().$("#" + options.dialogId + ' input[textboxname="' + v + '"]').combotree('getValues').join(',') + ', ';
-                                });
-                                options.ajaxData += combotreeParams;
+                        // 执行ajax动作
+                        getTabWindow().doAjax(options);
+                        // 关闭dialog
+                        getTabWindow().$("#" + options.dialog.id).dialog("close");
+                        // 重新加载本grid数据
+                        if (typeof options.grid == "object") {
+                            if (options.grid.type == "datagrid") {
+                                getTabWindow().$("#" + options.grid.id).datagrid("reload");
+                            } else if (options.grid.type == "treegrid") {
+                                var row = getSelectedRowData(options.grid.type, options.grid.id);
+                                if (row == null)
+                                    getTabWindow().$("#" + options.grid.id).treegrid("reload");
+                                else
+                                    getTabWindow().$("#" + options.grid.id).treegrid("reload", row[options.grid.parentIdField]);
                             }
-                            // 提交更新多条数据
-                            if (options.handler == "multiAjaxForm") {
-                                var rows = getCheckedRowsData(options.grid.type, options.grid.id);
-                                if (rows.length == 0) {
-                                    $.messager.alert(
-                                        topJUI.language.message.title.operationTips,
-                                        topJUI.language.message.msg.checkSelfGrid,
-                                        topJUI.language.message.icon.warning
-                                    );
-                                    return;
-                                }
-                                var pkName = 'uuid';
-                                if (options.grid.pkName)
-                                    pkName = options.grid.pkName;
-                                options.ajaxData += '&' + pkName + '=' + getMultiRowsFieldValue(rows, pkName) + '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
-                            }
-                            // 执行ajax动作
-                            getTabWindow().doAjax(options);
-                            // 关闭dialog
-                            getTabWindow().$("#" + options.dialog.id).dialog("close");
-                            // 重新加载本grid数据
-                            if (typeof options.grid == "object") {
-                                if (options.grid.type == "datagrid") {
-                                    getTabWindow().$("#" + options.grid.id).datagrid("reload");
-                                } else if (options.grid.type == "treegrid") {
-                                    var row = getSelectedRowData(options.grid.type, options.grid.id);
-                                    if (row == null)
-                                        getTabWindow().$("#" + options.grid.id).treegrid("reload");
-                                    else
-                                        getTabWindow().$("#" + options.grid.id).treegrid("reload", row[options.grid.parentIdField]);
-                                }
-                            }
-                            // 重新加载指定的Grid数据
-                            refreshGrids(options.reload);
-                        } else {
-                            showMessage({statusCode: 300, title: '温馨提示', message: '显示红色的字段为必填字段'});
                         }
-                    });
-                }
-            });
-        }, 1000);
+                        // 重新加载指定的Grid数据
+                        refreshGrids(options.reload);
+                    } else {
+                        showMessage({statusCode: 300, title: '温馨提示', message: '显示红色的字段为必填字段'});
+                    }
+                });
+            }
+        });
+        //}, 10);
     });
 
     $(document).on(topJUI.eventType.initUI.base2, function (e) {
-        setTimeout(function () {
-            getTabWindow().$('[data-toggle="topjui-menu"]').each(function (i) {
-                var $element = $(this);
-                var options = getOptionsJson($element);
+        //setTimeout(function () {
+        getTabWindow().$('[data-toggle="topjui-menu"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
 
-                $element.attr('id', options.id);
-                getTabWindow().$('#' + options.id).iMenu(options);
-            });
+            $element.attr('id', options.id);
+            getTabWindow().$('#' + options.id).iMenu(options);
+        });
 
-            getTabWindow().$('[data-toggle="topjui-tree"]').each(function (i) {
-                var $element = $(this);
-                var options = getOptionsJson($element);
+        getTabWindow().$('[data-toggle="topjui-tree"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
 
-                $element.attr('id', options.id);
-                getTabWindow().$('#' + options.id).iTree(options);
-            });
-        }, 1500);
+            $element.attr('id', options.id);
+            getTabWindow().$('#' + options.id).iTree(options);
+        });
+        //}, 15);
     });
 
     $(document).on(topJUI.eventType.initUI.echarts, function (e) {
