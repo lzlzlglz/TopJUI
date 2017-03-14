@@ -54,8 +54,7 @@ module.exports = function(grunt) {
              files: {
                  'E:/wwwroot/Java/ewsdMIS/src/main/webapp/static/topjui/css/style.css': [
                      "themes/css/icon.css",
-                     "themes/css/style.css",
-                     "themes/css/bootstrap-ext.css"
+                     "themes/css/style.css"
                  ]
              }
          }
