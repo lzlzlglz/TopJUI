@@ -740,7 +740,7 @@ $(function () {
      * 高级查询对话框窗口
      */
     $("#advanceSearchDialog").dialog({
-        width: 600,
+        width: 620,
         height: 200,
         title: '高级查询',
         modal: false,
