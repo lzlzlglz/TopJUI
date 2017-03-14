@@ -10,7 +10,7 @@
             width: 153,
             height: 30,
             required: false,
-            lines: true,
+            lines: false,
             multiple: false,
             checkbox: true,
             onlyLeafCheck: false,
