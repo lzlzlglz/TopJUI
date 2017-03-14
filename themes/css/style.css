@@ -69,7 +69,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* tabs显示高度 */
 .tabs {
-    height: 34px !important;
+    height: 35px !important;
 }
 
 /* tabs标题字体大小 */
@@ -86,6 +86,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .tabs a {
     height: 31px !important;
     line-height: 31px !important;
+    border-bottom: none !important;
+}
+
+/* tabs顶部边框高度 */
+.tabs li a.tabs-inner {
+    border-top-width: 4px;
+}
+
+/* 被选中的tabs顶部边框颜色及遮盖下边框线 */
+.tabs li.tabs-selected a.tabs-inner {
+    border-top-color: #3498DB;
+    height: 33px !important;
 }
 
 /* tabs关闭按钮高度 */
@@ -175,16 +187,6 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 /* 解决iframe右侧总出两个滚条 http://blog.csdn.net/isitman/article/details/53083640 */
 #index_tabs .tabs-panels > .panel > .panel-body {
     overflow: hidden;
-}
-
-/* tabs顶部边框高度 */
-.tabs li a.tabs-inner {
-    border-top-width: 4px;
-}
-
-/* 被选中的tabs顶部边框颜色 */
-.tabs li.tabs-selected a.tabs-inner {
-    border-top-color: #3498DB;
 }
 
 .tabs-tool {
