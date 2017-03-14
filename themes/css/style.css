@@ -119,7 +119,13 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 14px;
 }
 
-/* 下拉菜单高度 */
+/* 防止menu出现滚动条 */
+.menu {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* 下拉菜单项高度 */
 .menu-item {
     height: 24px !important;
     line-height: 24px;
