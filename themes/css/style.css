@@ -67,6 +67,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     margin-top: -9px;
 }
 
+/* 防止右下角的消息提示窗口出现滚动条 */
+.window-body {
+    min-height: 20px !important;
+}
+
 /* tabs显示高度 */
 .tabs {
     height: 35px !important;
