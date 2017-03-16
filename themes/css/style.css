@@ -347,7 +347,7 @@ table td {
 }
 
 .editTable .divider {
-    border-bottom: dashed 1px #95B8E7;
+    border-bottom: dashed 1px #d4d4d4;
     margin: 5px 0px 5px 20px;
     padding: 0;
     font-weight: bolder;
