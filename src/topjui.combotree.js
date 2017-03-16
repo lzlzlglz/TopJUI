@@ -97,7 +97,8 @@
                                     }
                                 }
                             });
-                            $(options.combotreeId).combotree('setValue', dataObj.id);//数据加载完毕可以设置值了
+                            if (dataObj.id != undefined)
+                                $(options.combotreeId).combotree('setValue', dataObj.id);//数据加载完毕可以设置值了
                         }
                     }, 200);
                 }
