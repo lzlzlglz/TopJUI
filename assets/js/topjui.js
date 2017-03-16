@@ -17375,8 +17375,8 @@ function bindMenuClickEvent($element, options) {
                     // 回调执行传入的自定义函数
                     executeCallBackFun(options.dialog.onBeforeOpen, options);
                 }
-                var dialogObj = $("#" + options.dialog.id);
-                dialogObj.dialog({
+                var $dialogObj = $("#" + options.dialog.id);
+                $dialogObj.dialog({
                     width: options.dialog.width,
                     height: options.dialog.height,
                     maximized: options.dialog.maximized,
@@ -17385,8 +17385,11 @@ function bindMenuClickEvent($element, options) {
                     top: options.dialog.topMargin,
                     buttons: options.dialog.buttons
                 });
-                dialogObj.dialog('refresh', appendSourceUrlParam(options.dialog.href)); // 解决页面加载刷新延迟
-                dialogObj.dialog('open');
+                //$dialogObj.dialog('refresh', appendSourceUrlParam(options.dialog.href)); //加载两次href指定的页面
+                $dialogObj.dialog({
+                    href: appendSourceUrlParam(options.dialog.href)
+                });
+                $dialogObj.dialog('open');
             }
         });
     } else if (options.clickEvent == "openTab") {
