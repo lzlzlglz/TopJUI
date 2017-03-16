@@ -433,7 +433,8 @@
                  }*/
 
                 if (options.param) {
-                    var $formObj = $comboboxObj.closest('form');
+                    //var $formObj = $comboboxObj.closest('form');
+                    var $formObj = $("#" + options.id).closest('form');
                     var jsonData = getSelectedRowJson(options.param, record);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }
