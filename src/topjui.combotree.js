@@ -9,6 +9,7 @@
             getFatherIdsUrl: '',
             width: 153,
             height: 30,
+            panelHeight: 'auto',
             required: false,
             lines: false,
             multiple: false,

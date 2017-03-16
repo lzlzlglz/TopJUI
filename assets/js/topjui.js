@@ -16952,6 +16952,7 @@ if ($.fn.datetimespinner){
             getFatherIdsUrl: '',
             width: 153,
             height: 30,
+            panelHeight: 'auto',
             required: false,
             lines: false,
             multiple: false,
@@ -17040,7 +17041,8 @@ if ($.fn.datetimespinner){
                                     }
                                 }
                             });
-                            $(options.combotreeId).combotree('setValue', dataObj.id);//数据加载完毕可以设置值了
+                            if (dataObj.id != undefined)
+                                $(options.combotreeId).combotree('setValue', dataObj.id);//数据加载完毕可以设置值了
                         }
                     }, 200);
                 }
@@ -19474,7 +19476,7 @@ $.extend($.fn.datagrid.methods, {
             valueField: 'text',
             textField: 'text',
             editable: false,
-            panelHeight: 50,
+            panelHeight: 'auto',
             onSelect: combobox_onSelect,
             formatter: combobox_formatter,
             required: false
@@ -19648,7 +19650,8 @@ $.extend($.fn.datagrid.methods, {
                  }*/
 
                 if (options.param) {
-                    var $formObj = $comboboxObj.closest('form');
+                    //var $formObj = $comboboxObj.closest('form');
+                    var $formObj = $("#" + options.id).closest('form');
                     var jsonData = getSelectedRowJson(options.param, record);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }
