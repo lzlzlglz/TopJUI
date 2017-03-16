@@ -178,15 +178,15 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 输入框字体及大小 */
 .textbox .textbox-text {
-    font-family: "microsoft yahei", "Times New Roman", "宋体", Times, serif;
     font-size: 14px;
 }
 
 /* 输入框字体及大小 */
 .textbox textarea.textbox-text {
-    font-family: "microsoft yahei", "Times New Roman", "宋体", Times, serif;
     line-height: 18px;
     font-size: 14px;
+    height: 100% !important;
+    width: 100% !important;
 }
 
 /* 解决iframe右侧总出两个滚条 http://blog.csdn.net/isitman/article/details/53083640 */
