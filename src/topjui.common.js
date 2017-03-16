@@ -1254,6 +1254,7 @@ function showMessage(data) {
     if (typeof(data) == "object") {
         statusCode = data.statusCode;
         messageJson = {
+            showType: 'fade',
             title: data.title,
             msg: data.message
         };
@@ -1261,11 +1262,13 @@ function showMessage(data) {
         statusCode = data;
         if (data == 1) {
             messageJson = {
+                showType: 'fade',
                 title: '操作提示',
                 msg: '操作成功'
             };
         } else {
             messageJson = {
+                showType: 'fade',
                 title: '操作提示',
                 msg: '操作失败！'
             };
