@@ -324,58 +324,13 @@
 
     $.fn.iAutoComplete = function (options) {
         var defaults = {
-            selector: this.selector,
-            url: ctx + "/system/user/getListByUserName?userName=",
-            valueField: 'userNameId',
-            textField: 'userName',
-            width: 450,
-            height: 30,
-            fieldId: 'userNameId',
-            required: false
-        }
-
-        var options = $.extend(defaults, options);
-
-        $(this).combobox({
-            valueField: options.valueField,
-            textField: options.textField,
-            width: options.width,
-            height: options.height,
-            prompt: options.prompt,
-            required: options.required,
-            onChange: function (newValue, oldValue) {
-                if (newValue != null) {
-                    $(this).combobox("reload", options.url + encodeURI(encodeURI(newValue)));
-                }
-            },
-            onSelect: function (record) {
-                $.messager.confirm('确认', '你选择的人员是：' + record.userName, function (r) {
-                    if (r) {
-                        var i = record.userName.indexOf('(cni23');
-                        $(options.selector).combobox('setValue', record.userName.substring(0, i));
-                        $(options.selector).combobox('hidePanel');
-                        $(options.fieldId).val(record.userNameId);
-                    } else {
-                        $(options.selector).combobox('setValue', "");
-                    }
-                });
-            },
-            onHidePanel: function () {
-                if ($(options.fieldId).val() == "") {
-                    $(options.selector).combobox("setText", "");
-                }
-            }
-        });
-    }
-
-    $.fn.iAutoComplete2 = function (options) {
-        var defaults = {
             comboboxId: this.selector,
             url: ctx + "/system/user/getListByUserName?userName=",
             valueField: 'userNameId',
             textField: 'userName',
             width: 450,
             height: 30,
+            panelHeight: 250,
             fieldId: 'userNameId',
             required: false,
             formatter: ''
@@ -394,6 +349,7 @@
             textField: options.textField,
             width: options.width,
             height: options.height,
+            panelHeight: options.panelHeight,
             prompt: options.prompt,
             required: options.required,
             formatter: options.formatter,

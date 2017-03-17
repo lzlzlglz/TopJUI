@@ -54,6 +54,7 @@
             url: options.url,
             width: options.width,
             height: options.height,
+            panelHeight: options.panelHeight,
             required: options.required,
             lines: options.lines,
             multiple: options.multiple,
