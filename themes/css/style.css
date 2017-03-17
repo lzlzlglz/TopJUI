@@ -331,8 +331,12 @@ ul {
 }
 
 table td {
-    font-size: 12px;
+    font-size: 14px;
     padding: 1px;
+}
+
+.editTable {
+    margin: 10px 0 20px;
 }
 
 .editTable .label {
