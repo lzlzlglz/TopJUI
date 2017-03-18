@@ -54,6 +54,7 @@
             url: options.url,
             width: options.width,
             height: options.height,
+            panelHeight: options.panelHeight,
             required: options.required,
             lines: options.lines,
             multiple: options.multiple,
@@ -101,7 +102,7 @@
                             if (dataObj.id != undefined)
                                 $(options.combotreeId).combotree('setValue', dataObj.id);//数据加载完毕可以设置值了
                         }
-                    }, 200);
+                    }, 100);
                 }
             },
             onSelect: function (node) {

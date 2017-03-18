@@ -87,7 +87,7 @@
             var options = getOptionsJson($element);
 
             options = setFormElementId($element, options);
-            $element.iAutoComplete2(options);
+            $element.iAutoComplete(options);
         });
 
         $('[data-toggle="topjui-ueditor"]').each(function (i) {
