@@ -602,7 +602,8 @@ function authCheck(resource) {
             if (data == 0) {
                 var msgJson = {
                     title: topJUI.language.message.title.operationTips,
-                    msg: topJUI.language.message.msg.permissionDenied
+                    msg: topJUI.language.message.msg.permissionDenied,
+                    icon: topJUI.language.message.icon.warning
                 };
                 $.messager.alert(msgJson);
                 isAuth = false;
@@ -1251,29 +1252,39 @@ function msgFn(data) {
     }
 }
 
+/**
+ * 显示提供信息
+ * @param data
+ */
 function showMessage(data) {
     var messageJson = {};
     var statusCode = "";
     if (typeof(data) == "object") {
         statusCode = data.statusCode;
+        if (data.icon == undefined) {
+            data.icon = topJUI.language.message.icon.info;
+        }
         messageJson = {
-            showType: 'fade',
+            showType: topJUI.language.message.showType.slide,
             title: data.title,
-            msg: data.message
+            msg: data.message,
+            icon: data.icon
         };
     } else {
         statusCode = data;
         if (data == 1) {
             messageJson = {
-                showType: 'fade',
-                title: '操作提示',
-                msg: '操作成功'
+                showType: topJUI.language.message.showType.slide,
+                title: topJUI.language.message.title.operationTips,
+                msg: topJUI.language.message.msg.success,
+                icon: topJUI.language.message.icon.info
             };
         } else {
             messageJson = {
-                showType: 'fade',
-                title: '操作提示',
-                msg: '操作失败！'
+                showType: topJUI.language.message.showType.slide,
+                title: topJUI.language.message.title.operationTips,
+                msg: topJUI.language.message.msg.failed,
+                icon: topJUI.language.message.icon.error
             };
         }
     }
@@ -1283,7 +1294,7 @@ function showMessage(data) {
             //showMask();
             //setTimeout(hideMask, 1000);
             messageJson.timeout = 1000;
-            $.messager.show(messageJson); //状态码为1和200时，右下角弹出操作成功提示框
+            $.messager.show(messageJson); //状态码为1和200时，屏幕中上部弹出操作成功提示框
         } else {
             $.messager.alert(messageJson); //状态码为100时，屏幕中央弹出操作成功提示框
         }

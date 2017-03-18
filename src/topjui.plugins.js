@@ -489,7 +489,12 @@
                         // 重新加载指定的Grid数据
                         refreshGrids(options.reload);
                     } else {
-                        showMessage({statusCode: 300, title: '温馨提示', message: '显示红色的字段为必填字段'});
+                        showMessage({
+                            statusCode: 300,
+                            title: topJUI.language.message.title.operationTips,
+                            message: '显示红底色的输入框为必填字段',
+                            icon: topJUI.language.message.icon.warning
+                        });
                     }
                 });
             }
@@ -705,7 +710,7 @@ $(function () {
 
     // 页面加载完成后触发基础表格及弹窗事件
     var url = getUrl();
-    if (url != TopJUI.config.mainPagePath) {
+    if (url != topJUI.config.mainPagePath) {
         $(this).trigger(topJUI.eventType.initUI.base);
         $(this).trigger(topJUI.eventType.initUI.base2);
     } else {

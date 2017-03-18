@@ -17703,7 +17703,8 @@ function authCheck(resource) {
             if (data == 0) {
                 var msgJson = {
                     title: topJUI.language.message.title.operationTips,
-                    msg: topJUI.language.message.msg.permissionDenied
+                    msg: topJUI.language.message.msg.permissionDenied,
+                    icon: topJUI.language.message.icon.warning
                 };
                 $.messager.alert(msgJson);
                 isAuth = false;
@@ -18352,29 +18353,39 @@ function msgFn(data) {
     }
 }
 
+/**
+ * 显示提供信息
+ * @param data
+ */
 function showMessage(data) {
     var messageJson = {};
     var statusCode = "";
     if (typeof(data) == "object") {
         statusCode = data.statusCode;
+        if (data.icon == undefined) {
+            data.icon = topJUI.language.message.icon.info;
+        }
         messageJson = {
-            showType: 'fade',
+            showType: topJUI.language.message.showType.slide,
             title: data.title,
-            msg: data.message
+            msg: data.message,
+            icon: data.icon
         };
     } else {
         statusCode = data;
         if (data == 1) {
             messageJson = {
-                showType: 'fade',
-                title: '操作提示',
-                msg: '操作成功'
+                showType: topJUI.language.message.showType.slide,
+                title: topJUI.language.message.title.operationTips,
+                msg: topJUI.language.message.msg.success,
+                icon: topJUI.language.message.icon.info
             };
         } else {
             messageJson = {
-                showType: 'fade',
-                title: '操作提示',
-                msg: '操作失败！'
+                showType: topJUI.language.message.showType.slide,
+                title: topJUI.language.message.title.operationTips,
+                msg: topJUI.language.message.msg.failed,
+                icon: topJUI.language.message.icon.error
             };
         }
     }
@@ -18384,7 +18395,7 @@ function showMessage(data) {
             //showMask();
             //setTimeout(hideMask, 1000);
             messageJson.timeout = 1000;
-            $.messager.show(messageJson); //状态码为1和200时，右下角弹出操作成功提示框
+            $.messager.show(messageJson); //状态码为1和200时，屏幕中上部弹出操作成功提示框
         } else {
             $.messager.alert(messageJson); //状态码为100时，屏幕中央弹出操作成功提示框
         }
@@ -18503,62 +18514,70 @@ $.fn.serializeObject = function () {
         }
     });
     return o;
-};;
-var topJUI = {
+};;var defaultConfig = {
     pageLoadComplete: false,
-    eventType: {
-    	//initUI     : 'topjui.initForm',         // When document load completed or ajax load completed, B-JUI && Plugins init 
-        initUI         : {
-        	base : 'topjui.initUI.base',
-            dialog : 'topjui.initUI.dialog',
-            base2 : 'topjui.initUI.base2',
-            echarts : 'topjui.initUI.echarts',
-        	form : 'topjui.initUI.form',
-        	advanceSearchForm : 'topjui.initUI.advanceSearchForm',
-            importExcelForm : 'topjui.initUI.importExcelForm'
-    	},
-        beforeInitUI   : 'topjui.beforeInitUI',   // If your DOM do not init [add to DOM attribute 'data-noinit="true"']
-        afterInitUI    : 'topjui.afterInitUI',    // 
-        ajaxStatus     : 'topjui.ajaxStatus',     // When performing ajax request, display or hidden progress bar
-        resizeGrid     : 'topjui.resizeGrid',     // When the window or dialog resize completed
-        beforeAjaxLoad : 'topjui.beforeAjaxLoad', // When perform '$.fn.ajaxUrl', to do something...
-        
-        beforeLoadNavtab  : 'topjui.beforeLoadNavtab',
-        beforeLoadDialog  : 'topjui.beforeLoadDialog',
-        afterLoadNavtab   : 'topjui.afterLoadNavtab',
-        afterLoadDialog   : 'topjui.afterLoadDialog',
-        beforeCloseNavtab : 'topjui.beforeCloseNavtab',
-        beforeCloseDialog : 'topjui.beforeCloseDialog',
-        afterCloseNavtab  : 'topjui.afterCloseNavtab',
-        afterCloseDialog  : 'topjui.afterCloseDialog'
+    config: {
+        ctx: "",
+        mainPagePath: "/system/index/index" //系统主页面路径，不包含域名及参数
     },
     language: {
-        message : {
-            title : {
+        message: {
+            showType: {
+                slide: "slide",
+                fade: "fade",
+                show: "show"
+            },
+            title: {
                 operationTips: "操作提示",
                 confirmTips: "确认提示"
             },
-            msg : {
-                success : "操作成功",
-                failed : "操作失败",
-                error : "未知错误",
-                checkSelfGrid : "请先勾选中要操作的数据前的复选框",
-                selectSelfGrid : "请先选中要操作的数据",
-                selectParentGrid : "请先选中主表中要操作的一条数据",
-                permissionDenied : "对不起，你没有操作权限",
-                confirmDelete : "你确定要删除所选的数据吗？"
+            msg: {
+                success: "操作成功",
+                failed: "操作失败",
+                error: "未知错误",
+                checkSelfGrid: "请先勾选中要操作的数据前的复选框",
+                selectSelfGrid: "请先选中要操作的数据",
+                selectParentGrid: "请先选中主表中要操作的一条数据",
+                permissionDenied: "对不起，你没有操作权限",
+                confirmDelete: "你确定要删除所选的数据吗？"
             },
-            icon : {
-                error : "error",
-                question : "question",
-                info : "info",
-                warning : "warning"
+            icon: {
+                error: "error",
+                question: "question",
+                info: "info",
+                warning: "warning"
             }
         }
-    }
-}
+    },
+    eventType: {
+        //initUI     : 'topjui.initForm',         // When document load completed or ajax load completed, B-JUI && Plugins init
+        initUI: {
+            base: 'topjui.initUI.base',
+            dialog: 'topjui.initUI.dialog',
+            base2: 'topjui.initUI.base2',
+            echarts: 'topjui.initUI.echarts',
+            form: 'topjui.initUI.form',
+            advanceSearchForm: 'topjui.initUI.advanceSearchForm',
+            importExcelForm: 'topjui.initUI.importExcelForm'
+        },
+        beforeInitUI: 'topjui.beforeInitUI',   // If your DOM do not init [add to DOM attribute 'data-noinit="true"']
+        afterInitUI: 'topjui.afterInitUI',    //
+        ajaxStatus: 'topjui.ajaxStatus',     // When performing ajax request, display or hidden progress bar
+        resizeGrid: 'topjui.resizeGrid',     // When the window or dialog resize completed
+        beforeAjaxLoad: 'topjui.beforeAjaxLoad', // When perform '$.fn.ajaxUrl', to do something...
 
-;(function ($) {
+        beforeLoadNavtab: 'topjui.beforeLoadNavtab',
+        beforeLoadDialog: 'topjui.beforeLoadDialog',
+        afterLoadNavtab: 'topjui.afterLoadNavtab',
+        afterLoadDialog: 'topjui.afterLoadDialog',
+        beforeCloseNavtab: 'topjui.beforeCloseNavtab',
+        beforeCloseDialog: 'topjui.beforeCloseDialog',
+        afterCloseNavtab: 'topjui.afterCloseNavtab',
+        afterCloseDialog: 'topjui.afterCloseDialog'
+    }
+};
+topJUI = $.extend(true, defaultConfig, topJUI);
+console.log(topJUI);;(function ($) {
     $.fn.iDatagrid = function (options) {
         var defaults = {
             //datagridId       : element.get(0).id,
@@ -20605,7 +20624,12 @@ Array.prototype.remove = function (val) {
                         // 重新加载指定的Grid数据
                         refreshGrids(options.reload);
                     } else {
-                        showMessage({statusCode: 300, title: '温馨提示', message: '显示红色的字段为必填字段'});
+                        showMessage({
+                            statusCode: 300,
+                            title: topJUI.language.message.title.operationTips,
+                            message: '显示红底色的输入框为必填字段',
+                            icon: topJUI.language.message.icon.warning
+                        });
                     }
                 });
             }
@@ -20821,7 +20845,7 @@ $(function () {
 
     // 页面加载完成后触发基础表格及弹窗事件
     var url = getUrl();
-    if (url != TopJUI.config.mainPagePath) {
+    if (url != topJUI.config.mainPagePath) {
         $(this).trigger(topJUI.eventType.initUI.base);
         $(this).trigger(topJUI.eventType.initUI.base2);
     } else {
