@@ -17022,7 +17022,7 @@ if ($.fn.datetimespinner){
 
                 //setInterval(resetCombotree, 1000);
                 if (options.getFatherIdsUrl) {
-                    setTimeout(function () {
+                    //setTimeout(function () {
                         var n = $treeObj.tree('getSelected');
                         var dataObj = {id: $(options.combotreeId).combotree("getValue")};
                         if (n == undefined && dataObj.id != "") {
@@ -17045,7 +17045,7 @@ if ($.fn.datetimespinner){
                             if (dataObj.id != undefined)
                                 $(options.combotreeId).combotree('setValue', dataObj.id);//数据加载完毕可以设置值了
                         }
-                    }, 200);
+                    //}, 200);
                 }
             },
             onSelect: function (node) {
