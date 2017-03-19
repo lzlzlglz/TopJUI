@@ -28,8 +28,8 @@
                 if (!initShow) {
                     var tabs = options.tabs;
                     var newQueryParams = {};
-                    var $element = $('#' + options.id + index);
-                    if (tabs[index]["type"] == "datagrid") {
+                    var $element = $('#' + tabs[index].id);
+                    if (tabs[index].type == "datagrid") {
                         var gridOptions = $element.datagrid('options');
                         var $parentGrid = $('#' + gridOptions.parentGrid.id);
                         if (gridOptions.parentGrid.type == "datagrid")
@@ -45,7 +45,7 @@
                         } else {
                             $element.datagrid('load');
                         }
-                    } else if (tabs[index]["type"] == "treegrid") {
+                    } else if (tabs[index].type == "treegrid") {
                         var gridOptions = $element.panel('options');
                         var $parentGrid = $('#' + gridOptions.parentGrid.id);
                         if (gridOptions.parentGrid.type == "datagrid")
@@ -61,7 +61,7 @@
                         } else {
                             $element.treegrid('load');
                         }
-                    } else if (tabs[index]["type"] == "panel") {
+                    } else if (tabs[index].type == "panel") {
                         var panelOptions = $element.panel('options');
                         var $parentGrid = $('#' + panelOptions.parentGrid.id);
                         if (panelOptions.parentGrid.type == "datagrid")

@@ -102,9 +102,9 @@
                 //传递给要刷新表格的参数
                 if (typeof options.childGrid == "object") {
                     var newQueryParams = {};
-                    newQueryParams = getSelectedRowJson(options.childGrid.param, row);
+                    newQueryParams = getSelectedRowJson(options.childGrid.params, row);
 
-                    var refreshGridIdArr = options.childGrid.grid;
+                    var refreshGridIdArr = options.childGrid.grids;
                     for (var i = 0; i < refreshGridIdArr.length; i++) {
                         var $grid = $("#" + refreshGridIdArr[i].id);
 
@@ -136,7 +136,7 @@
 
                         var newQueryParams = {};
 
-                        newQueryParams = getSelectedRowJson(childTabArr[i].param, row);
+                        newQueryParams = getSelectedRowJson(childTabArr[i].params, row);
 
                         if (tabsComponent[index]["type"] == "datagrid") {
                             //获得表格原有的参数

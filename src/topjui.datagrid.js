@@ -125,7 +125,7 @@
             onLoadSuccess: function () {
                 //$(this).datagrid("fixRownumber");
                 if (typeof options.childGrid == "object") {
-                    var refreshGridIdArr = options.childGrid.grid;
+                    var refreshGridIdArr = options.childGrid.grids;
                     for (var i = 0; i < refreshGridIdArr.length; i++) {
                         var syncReload = refreshGridIdArr[i].syncReload;
                         if (syncReload) {
@@ -143,9 +143,9 @@
                 //传递给要刷新表格的参数
                 if (typeof options.childGrid == "object") {
                     var newQueryParams = {};
-                    newQueryParams = getSelectedRowJson(options.childGrid.param, row);
+                    newQueryParams = getSelectedRowJson(options.childGrid.params, row);
 
-                    var refreshGridIdArr = options.childGrid.grid;
+                    var refreshGridIdArr = options.childGrid.grids;
                     for (var i = 0; i < refreshGridIdArr.length; i++) {
                         // 通过闭包嵌套和不同时序的执行来刷新grid
                         (function (i) {
@@ -175,25 +175,25 @@
                     for (var i = 0; i < childTabArr.length; i++) {
                         var $tabsElement = $('#' + childTabArr[i].id);
                         var $tabsOptions = $tabsElement.tabs('options');
-                        var index = $tabsElement.tabs('getTabIndex', $tabsElement.tabs('getSelected'));
+                        var selectedIndex = $tabsElement.tabs('getTabIndex', $tabsElement.tabs('getSelected'));
                         var tabsComponent = $tabsOptions.tabs;
-                        var $element = $("#" + tabsComponent[index].id);
+                        var $element = $("#" + tabsComponent[selectedIndex].id);
 
                         var newQueryParams = {};
 
-                        newQueryParams = getSelectedRowJson(childTabArr[i].param, row);
+                        newQueryParams = getSelectedRowJson(childTabArr[i].params, row);
 
-                        if (tabsComponent[index]["type"] == "datagrid") {
+                        if (tabsComponent[selectedIndex]["type"] == "datagrid") {
                             //获得表格原有的参数
                             var queryParams = $element.datagrid('options').queryParams;
                             $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
                             $element.datagrid('load');
-                        } else if (tabsComponent[index]["type"] == "treegrid") {
+                        } else if (tabsComponent[selectedIndex]["type"] == "treegrid") {
                             //获得表格原有的参数
                             var queryParams = $element.treegrid('options').queryParams;
                             $element.treegrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
                             $element.treegrid('load');
-                        } else if (tabsComponent[index]["type"] == "panel") {
+                        } else if (tabsComponent[selectedIndex]["type"] == "panel") {
                             var panelOptions = $element.panel('options');
                             var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, row);
                             //$element.panel('refresh', newHref);
