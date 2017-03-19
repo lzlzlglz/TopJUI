@@ -2,7 +2,8 @@ var defaultConfig = {
     pageLoadComplete: false,
     config: {
         ctx: "",
-        mainPagePath: "/system/index/index" //系统主页面路径，不包含域名及参数
+        mainPagePath: "/system/index/index", //系统主页面路径，不包含域名及参数
+        pkName: "uuid"
     },
     language: {
         message: {

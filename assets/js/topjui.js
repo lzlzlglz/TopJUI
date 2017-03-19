@@ -18519,7 +18519,8 @@ $.fn.serializeObject = function () {
     pageLoadComplete: false,
     config: {
         ctx: "",
-        mainPagePath: "/system/index/index" //系统主页面路径，不包含域名及参数
+        mainPagePath: "/system/index/index", //系统主页面路径，不包含域名及参数
+        pkName: "uuid"
     },
     language: {
         message: {
@@ -20556,10 +20557,8 @@ Array.prototype.remove = function (val) {
                                 );
                                 return;
                             }
-                            var pkName = 'uuid';
-                            if (options.grid.pkName)
-                                pkName = options.grid.pkName;
-                            options.ajaxData += '&' + pkName + '=' + getMultiRowsFieldValue(rows, pkName) + '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
+                            var pkName = options.grid.pkName == "undefined" ? topJUI.config.pkName : options.grid.pkName;
+                            options.ajaxData += '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
                         }
                         // 执行ajax动作
                         getTabWindow().doAjax(options);

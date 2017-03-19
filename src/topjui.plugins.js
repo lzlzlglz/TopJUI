@@ -465,10 +465,8 @@
                                 );
                                 return;
                             }
-                            var pkName = 'uuid';
-                            if (options.grid.pkName)
-                                pkName = options.grid.pkName;
-                            options.ajaxData += '&' + pkName + '=' + getMultiRowsFieldValue(rows, pkName) + '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
+                            var pkName = options.grid.pkName == "undefined" ? topJUI.config.pkName : options.grid.pkName;
+                            options.ajaxData += '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
                         }
                         // 执行ajax动作
                         getTabWindow().doAjax(options);
