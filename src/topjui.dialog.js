@@ -4,7 +4,7 @@
 		var defaults = {
 			currentDialogId : this.selector,
 			width   : 650,
-			height  : 'auto',
+			height  : 'auto',//宽高限制650*450,900*500
 			title   : '编辑',
 			modal   : true,
 			closed  : true,

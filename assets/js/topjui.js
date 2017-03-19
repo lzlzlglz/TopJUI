@@ -17204,7 +17204,7 @@ addParentTab = function (options) {
         title = options.title;
     }
 
-    var iframe = '<iframe src="' + src + '" frameborder="0" style="border:0;width:100%;height:99.5%;"></iframe>';
+    var iframe = '<iframe src="' + src + '" frameborder="0" style="border:0;width:100%;height:100%;"></iframe>';
     parent.$('#index_tabs').tabs("add", {
         title: title,
         content: iframe,
@@ -17267,7 +17267,7 @@ function bindMenuClickEvent($element, options) {
             dialog: {
                 title: '数据详情',
                 width: 650,
-                height: 400
+                height: 450
             }
         }
         options.dialog.width = options.dialog.width ? options.dialog.width : 650;
@@ -18835,7 +18835,7 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
 		var defaults = {
 			currentDialogId : this.selector,
 			width   : 650,
-			height  : 'auto',
+			height  : 'auto',//最高限制450
 			title   : '编辑',
 			modal   : true,
 			closed  : true,
