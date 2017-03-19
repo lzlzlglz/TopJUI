@@ -301,8 +301,8 @@
             onSelect: function (record) {
                 var $formObj = $(this).closest('form');
 
-                if (options.param) {
-                    var jsonData = getSelectedRowJson(options.param, record);
+                if (options.params) {
+                    var jsonData = getSelectedRowJson(options.params, record);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }
             }
@@ -384,14 +384,14 @@
 
                 /*var dialogIdArr = options.dialogId.split(",");
                  for (var i = 0; i < dialogIdArr.length; i++) {
-                 var jsonData = getSelectedRowJson(options.param, record);
+                 var jsonData = getSelectedRowJson(options.params, record);
                  getTabWindow().$("#" + dialogIdArr[i]).form('load', jsonData);
                  }*/
 
-                if (options.param) {
+                if (options.params) {
                     //var $formObj = $comboboxObj.closest('form');
                     var $formObj = $("#" + options.id).closest('form');
-                    var jsonData = getSelectedRowJson(options.param, record);
+                    var jsonData = getSelectedRowJson(options.params, record);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }
 

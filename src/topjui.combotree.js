@@ -106,16 +106,16 @@
                 }
             },
             onSelect: function (node) {
-                /*if (options.param) {
+                /*if (options.params) {
                  var dialogIdArr = options.dialog.id.split(",");
                  for (var i = 0; i < dialogIdArr.length; i++) {
-                 var jsonData = getSelectedRowJson(options.param, node);
+                 var jsonData = getSelectedRowJson(options.params, node);
                  getTabWindow().$("#" + dialogIdArr[i]).form('load', jsonData);
                  }
                  }*/
-                if (options.param) {
+                if (options.params) {
                     var $formObj = $combotreeObj.closest('form');
-                    var jsonData = getSelectedRowJson(options.param, node);
+                    var jsonData = getSelectedRowJson(options.params, node);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }
             },
