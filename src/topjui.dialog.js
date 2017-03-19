@@ -4,7 +4,7 @@
 		var defaults = {
 			currentDialogId : this.selector,
 			width   : 650,
-			height  : 400,
+			height  : 'auto',
 			title   : '编辑',
 			modal   : true,
 			closed  : true,
@@ -55,7 +55,7 @@
 			},
 			onLoad : function() {
 				$(this).trigger(topJUI.eventType.initUI.form);
-
+				$(this).dialog("center");
 				if(options.url.length > 1) {
 					// 获取选中行的数据
 					var row = getSelectedRowData(options.grid.type, options.grid.id);

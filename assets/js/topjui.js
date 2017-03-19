@@ -17049,16 +17049,16 @@ if ($.fn.datetimespinner){
                 }
             },
             onSelect: function (node) {
-                /*if (options.param) {
+                /*if (options.params) {
                  var dialogIdArr = options.dialog.id.split(",");
                  for (var i = 0; i < dialogIdArr.length; i++) {
-                 var jsonData = getSelectedRowJson(options.param, node);
+                 var jsonData = getSelectedRowJson(options.params, node);
                  getTabWindow().$("#" + dialogIdArr[i]).form('load', jsonData);
                  }
                  }*/
-                if (options.param) {
+                if (options.params) {
                     var $formObj = $combotreeObj.closest('form');
-                    var jsonData = getSelectedRowJson(options.param, node);
+                    var jsonData = getSelectedRowJson(options.params, node);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }
             },
@@ -17266,7 +17266,7 @@ function bindMenuClickEvent($element, options) {
             }
         }
         options.dialog.width = options.dialog.width ? options.dialog.width : 650;
-        options.dialog.height = options.dialog.height ? options.dialog.height : 400;
+        options.dialog.height = options.dialog.height ? options.dialog.height : 'auto';
         options = $.extend(defaults, options);
 
         var extendDoc = "";
@@ -18829,7 +18829,7 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
 		var defaults = {
 			currentDialogId : this.selector,
 			width   : 650,
-			height  : 400,
+			height  : 'auto',
 			title   : '编辑',
 			modal   : true,
 			closed  : true,
@@ -18880,7 +18880,7 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
 			},
 			onLoad : function() {
 				$(this).trigger(topJUI.eventType.initUI.form);
-
+				$(this).dialog("center");
 				if(options.url.length > 1) {
 					// 获取选中行的数据
 					var row = getSelectedRowData(options.grid.type, options.grid.id);
@@ -19540,8 +19540,8 @@ $.extend($.fn.datagrid.methods, {
             onSelect: function (record) {
                 var $formObj = $(this).closest('form');
 
-                if (options.param) {
-                    var jsonData = getSelectedRowJson(options.param, record);
+                if (options.params) {
+                    var jsonData = getSelectedRowJson(options.params, record);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }
             }
@@ -19623,14 +19623,14 @@ $.extend($.fn.datagrid.methods, {
 
                 /*var dialogIdArr = options.dialogId.split(",");
                  for (var i = 0; i < dialogIdArr.length; i++) {
-                 var jsonData = getSelectedRowJson(options.param, record);
+                 var jsonData = getSelectedRowJson(options.params, record);
                  getTabWindow().$("#" + dialogIdArr[i]).form('load', jsonData);
                  }*/
 
-                if (options.param) {
+                if (options.params) {
                     //var $formObj = $comboboxObj.closest('form');
                     var $formObj = $("#" + options.id).closest('form');
-                    var jsonData = getSelectedRowJson(options.param, record);
+                    var jsonData = getSelectedRowJson(options.params, record);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }
 

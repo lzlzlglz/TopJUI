@@ -164,7 +164,7 @@ function bindMenuClickEvent($element, options) {
             }
         }
         options.dialog.width = options.dialog.width ? options.dialog.width : 650;
-        options.dialog.height = options.dialog.height ? options.dialog.height : 400;
+        options.dialog.height = options.dialog.height ? options.dialog.height : 'auto';
         options = $.extend(defaults, options);
 
         var extendDoc = "";
