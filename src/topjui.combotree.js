@@ -113,10 +113,15 @@
                  getTabWindow().$("#" + dialogIdArr[i]).form('load', jsonData);
                  }
                  }*/
+                var $formObj = $combotreeObj.closest('form');
                 if (options.params) {
-                    var $formObj = $combotreeObj.closest('form');
                     var jsonData = getSelectedRowJson(options.params, node);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
+                }
+                if (typeof options.backfill == "object") {
+                    $.getJSON(replaceUrlParamValueByBrace(options.backfill.url, node), {}, function (backfillData) {
+                        getTabWindow().$("#" + $formObj.attr("id")).form('load', backfillData);
+                    });
                 }
             },
             onShowPanel: function () {
