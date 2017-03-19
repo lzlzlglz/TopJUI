@@ -50,11 +50,16 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     height: 35px;
 }
 
+/* 面板头部 */
+.panel-header {
+    height: 27px;
+}
+
 /* 面板标题 */
 .panel-title {
     font-size: 14px;
-    height: 24px;
-    line-height: 24px;
+    height: 26px;
+    line-height: 26px;
 }
 
 /* panel主体字体大小 */
@@ -117,7 +122,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 工具栏高度 */
 .datagrid-toolbar {
-    padding: 4.5px 2px;
+    padding: 5.5px 2px;
 }
 
 /* 工具栏图片按钮栏高度 */

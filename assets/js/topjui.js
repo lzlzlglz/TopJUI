@@ -17272,7 +17272,7 @@ function bindMenuClickEvent($element, options) {
         var extendDoc = "";
         // 判断是否存在父grid
         if (typeof options.parentGrid == "object") {
-            extendDoc += ',parentGrid:{type:\'' + options.parentGrid.type + '\',id:\'' + options.parentGrid.id + '\',param:\'' + options.parentGrid.param + '\',unselectedMsg:\'' + options.parentGrid.unselectedMsg + '\'}';
+            extendDoc += ',parentGrid:{type:\'' + options.parentGrid.type + '\',id:\'' + options.parentGrid.id + '\',params:\'' + options.parentGrid.params + '\',unselectedMsg:\'' + options.parentGrid.unselectedMsg + '\'}';
         }
         // 判断是否存在自身grid
         if (typeof options.grid == "object") {
@@ -17480,7 +17480,7 @@ function openDialogAndloadDataByParentGrid(options) {
     var parentGridParam = "";
     if (typeof options.parentGrid == "object") {
         parentGridUnselectedMsg = options.parentGrid.unselectedMsg;
-        parentGridParam = options.parentGrid.param;
+        parentGridParam = options.parentGrid.params;
         if (options.parentGrid.type == "datagrid") {
 
         } else if (options.parentGrid.type == "treegrid") {
@@ -17961,9 +17961,9 @@ function doAjaxHandler(options) {
         topJUI.language.message.title.confirmTips,
         options.comfirmMsg,
         function (flag) {
-            if (options.grid.param == undefined)
-                options.grid.param = {uuid: 'uuid'};
-            options.ajaxData = convertParamObj2ObjData(options.grid.param, rows);
+            if (options.grid.params == undefined)
+                options.grid.params = {uuid: 'uuid'};
+            options.ajaxData = convertParamObj2ObjData(options.grid.params, rows);
             if (flag && doAjax(options)) {
                 refreshGrid(options.grid.type, options.grid.id);
             }
@@ -18925,7 +18925,7 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
 				// 如果存在父表，则将父表中指定的字段数据加载到本窗口中
 				if(typeof options.parentGrid == "object") {
 					var parentRow = getSelectedRowData(options.parentGrid.type, options.parentGrid.id);
-					var jsonData = getSelectedRowJson(options.parentGrid.param, parentRow);
+					var jsonData = getSelectedRowJson(options.parentGrid.params, parentRow);
 					$dialogObj.form('load', jsonData);
 				}
 			},

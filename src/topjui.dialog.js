@@ -100,7 +100,7 @@
 				// 如果存在父表，则将父表中指定的字段数据加载到本窗口中
 				if(typeof options.parentGrid == "object") {
 					var parentRow = getSelectedRowData(options.parentGrid.type, options.parentGrid.id);
-					var jsonData = getSelectedRowJson(options.parentGrid.param, parentRow);
+					var jsonData = getSelectedRowJson(options.parentGrid.params, parentRow);
 					$dialogObj.form('load', jsonData);
 				}
 			},
