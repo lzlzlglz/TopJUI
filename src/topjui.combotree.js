@@ -113,7 +113,7 @@
                  getTabWindow().$("#" + dialogIdArr[i]).form('load', jsonData);
                  }
                  }*/
-                var $formObj = $combotreeObj.closest('form');
+                var $formObj = $("#" + options.id).closest('form');
                 if (options.params) {
                     var jsonData = getSelectedRowJson(options.params, node);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);

@@ -17056,7 +17056,7 @@ if ($.fn.datetimespinner){
                  getTabWindow().$("#" + dialogIdArr[i]).form('load', jsonData);
                  }
                  }*/
-                var $formObj = $combotreeObj.closest('form');
+                var $formObj = $("#" + options.id).closest('form');
                 if (options.params) {
                     var jsonData = getSelectedRowJson(options.params, node);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
@@ -18835,7 +18835,7 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
 		var defaults = {
 			currentDialogId : this.selector,
 			width   : 650,
-			height  : 'auto',//最高限制450
+			height  : 'auto',//宽高限制650*450,900*500
 			title   : '编辑',
 			modal   : true,
 			closed  : true,
