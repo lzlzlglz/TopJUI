@@ -11,7 +11,9 @@ EasyUI是比较流行的前端框架，适用于企业信息系统或网站后�
 ##### 整合第三方插件
 KindEditor/UEditor编辑器、附件上传、Echarts图表等插件
 
-##### 项目演示及文档
+##### 使用文档及演示
+
+GIT下载：http://git.oschina.net/xvpindex/TopJUI
 
 官方网站：http://www.topjui.com
 
