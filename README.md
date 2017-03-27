@@ -13,8 +13,12 @@ KindEditor/UEditor编辑器、附件上传、Echarts图表等插件
 
 ##### 项目演示及文档
 
-项目演示及使用文档：http://www.topjui.com/system/index/index
+官方网站：http://www.topjui.com
 
-用户名：topjui 密码：topjui （数据库每10分钟自动还原，可修改数据，但不要修改用户密码）
+项目演示：http://demo.topjui.com/system/index/index
 
-如有问题或建议欢迎反馈！QQ交流群：593783047
+用户名：topjui 密码：topjui （数据库每5分钟自动还原，测试时可修改数据，但不要修改用户密码）
+
+QQ交流群：593783047
+
+如有问题或建议欢迎反馈！
