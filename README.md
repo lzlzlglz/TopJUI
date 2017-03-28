@@ -19,7 +19,7 @@ GIT下载：http://git.oschina.net/xvpindex/TopJUI
 
 演示站点：http://demo.topjui.com/system/index/index
 
-用户名：topjui 密码：topjui （数据库每5分钟自动还原，测试时可修改数据，但不要修改用户密码）
+用户名密码均为topjui（数据库每5分钟自动还原，测试时可修改数据，但不要修改用户密码）
 
 QQ交流群：593783047
 
