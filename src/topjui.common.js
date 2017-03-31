@@ -886,32 +886,23 @@ function requestHandler(options) {
     if (!authCheck(options.url)) return;
     options.url = appendSourceUrlParam(options.url);
 
-    // 替换父表的占位数据
-    if (options.url.indexOf("{parent") != -1) {
-        var parentRow = getSelectedRowData(options.parentGrid.type, options.parentGrid.id);
-        if (!parentRow) {
+    if (typeof options.grid == "object") {
+        // 替换本表的占位数据
+        var row = getSelectedRowData(options.grid.type, options.grid.id);
+        if (row == null) {
             $.messager.alert(
                 topJUI.language.message.title.operationTips,
-                topJUI.language.message.msg.selectParentGrid,
+                topJUI.language.message.msg.selectSelfGrid,
                 topJUI.language.message.icon.warning
             );
             return;
         }
-        options.newUrl = replaceUrlParamValueByBrace(options.url, parentRow, "parent");
+        // 替换本表中选择的单行字段值
+        options.newUrl = replaceUrlParamValueByBrace(options.url, row);
+    } else {
+        options.newUrl = options.url;
     }
 
-    // 替换本表的占位数据
-    var rows = getCheckedRowsData(options.grid.type, options.grid.id);
-    if (rows.length == 0) {
-        $.messager.alert(
-            topJUI.language.message.title.operationTips,
-            topJUI.language.message.msg.checkSelfGrid,
-            topJUI.language.message.icon.warning
-        );
-        return;
-    }
-    // 替换本表中选择的单行字段值
-    options.newUrl = replaceUrlParamValueByBrace(options.url, rows);
     window.location.href = options.newUrl;
 }
 
@@ -1140,7 +1131,7 @@ function exportHandler(options) {
     };
 
     //if (doAjax(options)) {
-        window.location.href = options.url + '?excelTitle=' + options.excelTitle + '&colName=' + colNameStr + '&fieldName=' + fieldNameStr;
+    window.location.href = options.url + '?excelTitle=' + options.excelTitle + '&colName=' + colNameStr + '&fieldName=' + fieldNameStr;
     //}
 }
 
