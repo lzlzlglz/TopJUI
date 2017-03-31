@@ -17425,6 +17425,15 @@ function bindMenuClickEvent($element, options) {
         $element.on("click", function () {
             doAjaxHandler(options);
         });
+    } else if (options.clickEvent == "request") {
+        defaults = {
+            iconCls: 'icon-add'
+        }
+        options = $.extend(defaults, options);
+
+        $element.on("click", function () {
+            requestHandler(options);
+        });
     } else if (options.clickEvent == "delete") {
         defaults = {
             iconCls: 'icon-delete'
@@ -17976,6 +17985,44 @@ function doAjaxHandler(options) {
 }
 
 /**
+ * 普通请求操作
+ * @param options
+ */
+function requestHandler(options) {
+    // 权限控制
+    if (!authCheck(options.url)) return;
+    options.url = appendSourceUrlParam(options.url);
+
+    // 替换父表的占位数据
+    if (options.url.indexOf("{parent") != -1) {
+        var parentRow = getSelectedRowData(options.parentGrid.type, options.parentGrid.id);
+        if (!parentRow) {
+            $.messager.alert(
+                topJUI.language.message.title.operationTips,
+                topJUI.language.message.msg.selectParentGrid,
+                topJUI.language.message.icon.warning
+            );
+            return;
+        }
+        options.url = replaceUrlParamValueByBrace(options.url, parentRow, "parent");
+    }
+
+    // 替换本表的占位数据
+    var rows = getCheckedRowsData(options.grid.type, options.grid.id);
+    if (rows.length == 0) {
+        $.messager.alert(
+            topJUI.language.message.title.operationTips,
+            topJUI.language.message.msg.checkSelfGrid,
+            topJUI.language.message.icon.warning
+        );
+        return;
+    }
+    // 替换本表中选择的单行字段值
+    options.url = replaceUrlParamValueByBrace(options.url, rows);
+    window.location.href = options.url;
+}
+
+/**
  * 删除表格数据
  * @param options
  */
@@ -18134,14 +18181,14 @@ function exportHandler(options) {
     var controllerUrl = getUrl("controller");
     var defaults = {
         gridId: 'datagrid',
-        url: '/system/index/requestSuccess',
+        //url: '/system/index/requestSuccess',
         excelTitle: parent.$('#index_tabs').tabs('getSelected').panel('options').title + "_导出数据_" + getCurrentDatetime("YmdHis"),
-        exportUrl: options.exportUrl ? options.exportUrl : controllerUrl + "exportExcel"
+        url: options.url ? options.url : controllerUrl + "exportExcel"
     }
     options = $.extend(defaults, options);
 
     // 权限控制
-    if (!authCheck(options.exportUrl)) return;
+    if (!authCheck(options.url)) return;
 
     var gridId;
     var frozenFieldName;
@@ -18199,9 +18246,9 @@ function exportHandler(options) {
         fieldName: fieldNameStr
     };
 
-    if (doAjax(options)) {
-        window.location.href = options.exportUrl + '?excelTitle=' + options.excelTitle + '&colName=' + colNameStr + '&fieldName=' + fieldNameStr;
-    }
+    //if (doAjax(options)) {
+        window.location.href = options.url + '?excelTitle=' + options.excelTitle + '&colName=' + colNameStr + '&fieldName=' + fieldNameStr;
+    //}
 }
 
 
