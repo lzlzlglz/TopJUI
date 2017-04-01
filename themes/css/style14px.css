@@ -1,7 +1,7 @@
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, table, th, td {
     margin: 0;
     padding: 0;
-    font: 12px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
+    font: 14px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
     letter-spacing: 1px;
 }
 
@@ -14,7 +14,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 树形节点文字大小 */
 .tree-title {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* 调整树形图标显示位置 */
@@ -29,18 +29,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 表格单元格 */
 .datagrid-cell {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* 更改表格标题文字大小 */
 .datagrid-header .datagrid-cell span {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
 }
 
 /* 更改表格标题文字大小 */
 .datagrid-header span {
-    font-size: 12px !important;
+    font-size: 14px !important;
 }
 
 /* 表格表头行高 */
@@ -57,14 +57,14 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 面板标题 */
 .panel-title {
-    font-size: 12px;
+    font-size: 14px;
     height: 26px;
     line-height: 26px;
 }
 
 /* panel主体字体大小 */
 .panel-body {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* 调整panel图标显示位置 */
@@ -84,7 +84,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* tabs标题字体大小 */
 .tabs-title {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* 调整tabs图标显示位置 */
@@ -133,12 +133,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 /* 工具栏按钮文字大小 */
 .l-btn-text {
     line-height: 24px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* 下拉列表字体大小 */
 .combobox-item {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* 防止menu出现滚动条 */
@@ -157,24 +157,24 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .menu-text {
     height: 24px !important;
     line-height: 24px !important;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* 分页列表 */
 .pagination-page-list {
     height: 24px !important;
     line-height: 24px !important;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* 分页文字 */
 .pagination span {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* 分页信息 */
 .pagination-info {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .datagrid-pager {
@@ -183,13 +183,13 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 输入框字体及大小 */
 .textbox .textbox-text {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* 输入框字体及大小 */
 .textbox textarea.textbox-text {
     line-height: 18px;
-    font-size: 12px;
+    font-size: 14px;
     height: 100% !important;
     width: 100% !important;
 }
@@ -336,7 +336,7 @@ ul {
 }
 
 table td {
-    font-size: 12px;
+    font-size: 14px;
     padding: 1px;
 }
 
@@ -345,7 +345,7 @@ table td {
 }
 
 .editTable .label {
-    font-size: 12px;
+    font-size: 14px;
     min-width: 131px;
     max-width: 131px;
     text-align: right;
@@ -372,7 +372,7 @@ table td {
     left: -3px;
     background: url("../image/icons/rainbow.png") no-repeat left;
     background-position: 5px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #attachTable {
