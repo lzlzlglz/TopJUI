@@ -355,15 +355,25 @@
             fitColumns: options.fitColumns,
             columns: options.columns,
             onChange: function (newValue, oldValue) {
-                if (options.editMode) {
-                    setTimeout(function () {
-                        var gridParamArr = options.param.split(",");
-                        var gridKVArr = gridParamArr[0].split(":");
-                        var textFieldName = gridKVArr[0];
-                        var textFieldValue = $('input[name="' + textFieldName + '"]').val();
-                        if (textFieldValue) $('#' + options.id).combogrid('setText', textFieldValue);
-                    }, 1000);
-                }
+                $('#' + options.id).combogrid('grid').datagrid('load', {q: newValue});
+                //$('#' + options.id).combogrid('grid').datagrid('options').queryParams.departid = newId;
+                //$('#' + options.id).combogrid('grid').datagrid('reload');
+                //setTimeout(function () {
+                $('#' + options.id).combogrid('grid').datagrid('selectRecord', newValue);
+                //}, 1000);
+                /*if (options.editMode) {
+                 setTimeout(function () {
+                 var gridParamArr = options.param.split(",");
+                 var gridKVArr = gridParamArr[0].split(":");
+                 var textFieldName = gridKVArr[0];
+                 var $formObj = $("#" + options.id).closest('form');
+                 var textFieldValue = $('#' + $formObj.attr("id") + ' input[name="' + textFieldName + '"]').val();
+                 if (textFieldValue) $('#' + options.id).combogrid('setText', textFieldValue);
+                 }, 500);
+                 }*/
+            },
+            onLoadSuccess: function (data) {
+                //$("#gridid").combogrid('grid').datagrid('selectRecord', 'admin');
             },
             onSelect: function (index, row) {
                 if (options.param) {
