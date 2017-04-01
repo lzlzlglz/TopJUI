@@ -322,6 +322,60 @@
         }
     }
 
+    $.fn.iCombogrid = function (options) {
+        var defaults = {
+            width: 153,
+            height: 30,
+            panelWidth: 450,
+            delay: 500,
+            mode: 'remote',
+            url: ctx + '/system/user/getListByKeywords',
+            idField: 'userNameId',
+            textField: 'userName',
+            fitColumns: true,
+            columns: [[
+                {field: 'userName', title: '姓名'},
+                {field: 'userNameId', title: '用户名'},
+                {field: 'orgName', title: '所属机构', width: 100},
+                {field: 'post', title: '职位', width: 100}
+            ]]
+        }
+
+        var options = $.extend(defaults, options);
+
+        $(this).combogrid({
+            width: options.width,
+            height: options.height,
+            panelWidth: options.panelWidth,
+            delay: options.delay,
+            mode: options.mode,
+            url: options.url,
+            idField: options.idField,
+            textField: options.textField,
+            fitColumns: options.fitColumns,
+            columns: options.columns,
+            onChange: function (newValue, oldValue) {
+                if (options.editMode) {
+                    setTimeout(function () {
+                        var gridParamArr = options.param.split(",");
+                        var gridKVArr = gridParamArr[0].split(":");
+                        var textFieldName = gridKVArr[0];
+                        var textFieldValue = $('input[name="' + textFieldName + '"]').val();
+                        if (textFieldValue) $('#' + options.id).combogrid('setText', textFieldValue);
+                    }, 1000);
+                }
+            },
+            onSelect: function (index, row) {
+                if (options.param) {
+                    var $formObj = $("#" + options.id).closest('form');
+                    var jsonData = getSelectedRowJson(options.param, row);
+                    getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
+                    $('#' + options.id).combogrid('textbox').focus();
+                }
+            }
+        });
+    }
+
     $.fn.iAutoComplete = function (options) {
         var defaults = {
             comboboxId: this.selector,

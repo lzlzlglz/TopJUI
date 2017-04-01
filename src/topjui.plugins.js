@@ -60,6 +60,14 @@
             $element.iCombobox(options);
         });
 
+        $('[data-toggle="topjui-combogrid"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+
+            options = setFormElementId($element, options);
+            $element.iCombogrid(options);
+        });
+
         $('[data-toggle="topjui-combotree"]').each(function (i) {
             var $element = $(this);
             var options = getOptionsJson($element);
