@@ -363,7 +363,7 @@
                 }, 400);
             },
             onShowPanel: function () {
-                $(this).combobox("reload", options.url);
+                //$(this).combobox("reload", options.url);
             },
             onChange: function (newValue, oldValue) {
                 if (newValue == null) {
@@ -376,7 +376,6 @@
                         newUrl = newUrl.replace(paramArr[i], encodeURI(encodeURI(newValue)));
                     }
                 }
-
                 $(this).combobox("reload", newUrl);
             },
             onSelect: function (record) {
