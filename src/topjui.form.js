@@ -9,7 +9,6 @@
     var currentSecond = date.getSeconds();
 
     $.fn.iTextbox = function (options) {
-
         var defaults = {
             width: 153,
             height: 30,
@@ -22,31 +21,15 @@
             buttonText: '',
             buttonIcon: '',
             required: false,
-            missingMessage: '必填'
+            missingMessage: '该输入框为必填项'
         }
 
         var options = $.extend(defaults, options);
 
-        $(this).textbox({
-            width: options.width,
-            height: options.height,
-            prompt: options.prompt,
-            type: options.type,
-            multiline: options.multiline,
-            readonly: options.readonly,
-            disabled: options.disabled,
-            iconCls: options.iconCls,
-            buttonText: options.buttonText,
-            buttonIcon: options.buttonIcon,
-            required: options.required,
-            missingMessage: options.missingMessage,
-            onChange: options.onChange,
-            onClickButton: options.onClickButton
-        });
+        $(this).textbox(options);
     }
 
     $.fn.iFilebox = function (options) {
-
         var defaults = {
             width: 450,
             height: 30,
@@ -62,16 +45,11 @@
             missingMessage: '必填',
             onChange: function () {
             }
-        };
+        }
 
         var options = $.extend(defaults, options);
 
-        $(this).filebox({
-            width: options.width,
-            height: options.height,
-            buttonText: options.buttonText,
-            buttonAlign: options.buttonAlign
-        });
+        $(this).filebox(options);
     }
 
     $.fn.iNumberspinner = function (options) {
@@ -120,25 +98,14 @@
                 options.max = 24
         }
 
-        $(this).numberspinner({
-            min: options.min,
-            max: options.max,
-            prompt: options.prompt,
-            width: options.width,
-            height: options.height,
-            editable: options.editable,
-            value: options.value,
-            min: options.min,
-            max: options.max,
-            buttonText: '',
-            required: options.required
-        });
+        $(this).numberspinner(options);
     }
 
     $.fn.iDatebox = function (options) {
         var defaults = {
             required: false,
             editable: true,
+            value: "",
             width: 153,
             height: 30,
             formatter: function (value) {
@@ -161,23 +128,14 @@
                 }
 
             },
-            value: ""
+            onSelect: function (date) {
+
+            }
         }
 
         var options = $.extend(defaults, options);
 
-        $(this).datebox({
-            required: options.required,
-            editable: options.editable,
-            width: options.width,
-            height: options.height,
-            prompt: options.prompt,
-            formatter: options.formatter,
-            parser: options.parser,
-            onSelect: function (date) {
-
-            }
-        });
+        $(this).datebox(options);
     }
 
     $.fn.iNumberbox = function (options) {
@@ -194,18 +152,7 @@
 
         var options = $.extend(defaults, options);
 
-        $(this).numberbox({
-            width: options.width,
-            height: options.height,
-            min: options.min,
-            prompt: options.prompt,
-            precision: options.precision,
-            decimalSeparator: options.decimalSeparator,
-            groupSeparator: options.groupSeparator,
-            prefix: options.prefix,
-            buttonText: '',
-            required: options.required
-        });
+        $(this).numberbox(options);
     }
 
     $.fn.iLinkbutton = function (options) {
@@ -227,11 +174,7 @@
 
         var options = $.extend(defaults, options);
 
-        getTabWindow().$(this).menubutton({
-            iconCls: options.iconCls,
-            hasDownArrow: options.hasDownArrow,
-            menu: options.menu
-        });
+        $(this).menubutton(options);
     }
 
     $.fn.iValidatebox = function (options) {
@@ -242,10 +185,7 @@
 
         var options = $.extend(defaults, options);
 
-        $(this).validatebox({
-            required: options.required,
-            validType: options.validType
-        });
+        $(this).validatebox(options);
     }
 
     $.fn.iCombobox = function (options) {
@@ -262,28 +202,6 @@
             panelHeight: 'auto',
             onSelect: combobox_onSelect,
             formatter: combobox_formatter,
-            required: false
-        }
-
-        var options = $.extend(defaults, options);
-
-        if (options.data)
-            options.url = "";
-        if (options.codeSetId)
-            options.url = options.url.replace("{codeSetId}", options.codeSetId).replace("{levelId}", options.levelId);
-
-        $(this).combobox({
-            width: options.width,
-            height: options.height,
-            prompt: options.prompt,
-            url: options.url,
-            data: options.data,
-            valueField: options.valueField,
-            textField: options.textField,
-            editable: options.editable,
-            panelHeight: options.panelHeight,
-            formatter: options.combobox_formatter,
-            required: options.required,
             onShowPanel: function () {
                 if (options.url.indexOf("{") >= 0) {
                     //将form表单数据封装成json数据
@@ -306,8 +224,16 @@
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                 }
             }
-        });
+        }
 
+        var options = $.extend(defaults, options);
+
+        if (options.data)
+            options.url = "";
+        if (options.codeSetId)
+            options.url = options.url.replace("{codeSetId}", options.codeSetId).replace("{levelId}", options.levelId);
+
+        $(this).combobox(options);
     }
 
     var combobox_onSelect = function (record) {
@@ -315,11 +241,11 @@
     }
 
     var combobox_formatter = function (row) {
-        if (value == 0) {
-            //return row.text;
+        /*if (value == 0) {
+            return row.text;
         } else {
-            //return row.text;
-        }
+            return row.text;
+        }*/
     }
 
     $.fn.iCombogrid = function (options) {
@@ -338,22 +264,7 @@
                 {field: 'userNameId', title: '用户名'},
                 {field: 'orgName', title: '所属机构', width: 100},
                 {field: 'post', title: '职位', width: 100}
-            ]]
-        }
-
-        var options = $.extend(defaults, options);
-
-        $(this).combogrid({
-            width: options.width,
-            height: options.height,
-            panelWidth: options.panelWidth,
-            delay: options.delay,
-            mode: options.mode,
-            url: options.url,
-            idField: options.idField,
-            textField: options.textField,
-            fitColumns: options.fitColumns,
-            columns: options.columns,
+            ]],
             onChange: function (newValue, oldValue) {
                 $('#' + options.id).combogrid('grid').datagrid('load', {q: newValue});
                 //$('#' + options.id).combogrid('grid').datagrid('options').queryParams.departid = newId;
@@ -383,7 +294,11 @@
                     $('#' + options.id).combogrid('textbox').focus();
                 }
             }
-        });
+        }
+
+        var options = $.extend(defaults, options);
+
+        $(this).combogrid(options);
     }
 
     $.fn.iAutoComplete = function (options) {
@@ -397,26 +312,7 @@
             panelHeight: 250,
             fieldId: 'userNameId',
             required: false,
-            formatter: ''
-        }
-
-        var options = $.extend(defaults, options);
-
-        if (options.comboboxId == "") {
-            options.comboboxId = $(this).context;
-        }
-
-        $comboboxObj = $(this);
-
-        $(this).combobox({
-            valueField: options.valueField,
-            textField: options.textField,
-            width: options.width,
-            height: options.height,
-            panelHeight: options.panelHeight,
-            prompt: options.prompt,
-            required: options.required,
-            formatter: options.formatter,
+            formatter: '',
             onLoadSuccess: function (node, data) {
                 setTimeout(function () {
                     var oriValue = $(options.comboboxId).combobox('getValue');
@@ -486,7 +382,15 @@
                     }
                 }
             }
-        });
+        }
+
+        var options = $.extend(defaults, options);
+
+        if (options.comboboxId == "") {
+            options.comboboxId = $(this).context;
+        }
+
+        $(this).combobox(options);
     }
 
 })(jQuery);
