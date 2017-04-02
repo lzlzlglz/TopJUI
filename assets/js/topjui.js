@@ -17993,33 +17993,24 @@ function requestHandler(options) {
     if (!authCheck(options.url)) return;
     options.url = appendSourceUrlParam(options.url);
 
-    // 替换父表的占位数据
-    if (options.url.indexOf("{parent") != -1) {
-        var parentRow = getSelectedRowData(options.parentGrid.type, options.parentGrid.id);
-        if (!parentRow) {
+    if (typeof options.grid == "object") {
+        // 替换本表的占位数据
+        var row = getSelectedRowData(options.grid.type, options.grid.id);
+        if (row == null) {
             $.messager.alert(
                 topJUI.language.message.title.operationTips,
-                topJUI.language.message.msg.selectParentGrid,
+                topJUI.language.message.msg.selectSelfGrid,
                 topJUI.language.message.icon.warning
             );
             return;
         }
-        options.url = replaceUrlParamValueByBrace(options.url, parentRow, "parent");
+        // 替换本表中选择的单行字段值
+        options.newUrl = replaceUrlParamValueByBrace(options.url, row);
+    } else {
+        options.newUrl = options.url;
     }
 
-    // 替换本表的占位数据
-    var rows = getCheckedRowsData(options.grid.type, options.grid.id);
-    if (rows.length == 0) {
-        $.messager.alert(
-            topJUI.language.message.title.operationTips,
-            topJUI.language.message.msg.checkSelfGrid,
-            topJUI.language.message.icon.warning
-        );
-        return;
-    }
-    // 替换本表中选择的单行字段值
-    options.url = replaceUrlParamValueByBrace(options.url, rows);
-    window.location.href = options.url;
+    window.location.href = options.newUrl;
 }
 
 /**
@@ -18247,7 +18238,7 @@ function exportHandler(options) {
     };
 
     //if (doAjax(options)) {
-        window.location.href = options.url + '?excelTitle=' + options.excelTitle + '&colName=' + colNameStr + '&fieldName=' + fieldNameStr;
+    window.location.href = options.url + '?excelTitle=' + options.excelTitle + '&colName=' + colNameStr + '&fieldName=' + fieldNameStr;
     //}
 }
 
@@ -19614,6 +19605,70 @@ $.extend($.fn.datagrid.methods, {
         }
     }
 
+    $.fn.iCombogrid = function (options) {
+        var defaults = {
+            width: 153,
+            height: 30,
+            panelWidth: 450,
+            delay: 500,
+            mode: 'remote',
+            url: ctx + '/system/user/getListByKeywords',
+            idField: 'userNameId',
+            textField: 'userName',
+            fitColumns: true,
+            columns: [[
+                {field: 'userName', title: '姓名'},
+                {field: 'userNameId', title: '用户名'},
+                {field: 'orgName', title: '所属机构', width: 100},
+                {field: 'post', title: '职位', width: 100}
+            ]]
+        }
+
+        var options = $.extend(defaults, options);
+
+        $(this).combogrid({
+            width: options.width,
+            height: options.height,
+            panelWidth: options.panelWidth,
+            delay: options.delay,
+            mode: options.mode,
+            url: options.url,
+            idField: options.idField,
+            textField: options.textField,
+            fitColumns: options.fitColumns,
+            columns: options.columns,
+            onChange: function (newValue, oldValue) {
+                $('#' + options.id).combogrid('grid').datagrid('load', {q: newValue});
+                //$('#' + options.id).combogrid('grid').datagrid('options').queryParams.departid = newId;
+                //$('#' + options.id).combogrid('grid').datagrid('reload');
+                //setTimeout(function () {
+                $('#' + options.id).combogrid('grid').datagrid('selectRecord', newValue);
+                //}, 1000);
+                /*if (options.editMode) {
+                 setTimeout(function () {
+                 var gridParamArr = options.param.split(",");
+                 var gridKVArr = gridParamArr[0].split(":");
+                 var textFieldName = gridKVArr[0];
+                 var $formObj = $("#" + options.id).closest('form');
+                 var textFieldValue = $('#' + $formObj.attr("id") + ' input[name="' + textFieldName + '"]').val();
+                 if (textFieldValue) $('#' + options.id).combogrid('setText', textFieldValue);
+                 }, 500);
+                 }*/
+            },
+            onLoadSuccess: function (data) {
+                //$("#gridid").combogrid('grid').datagrid('selectRecord', 'admin');
+            },
+            onSelect: function (index, row) {
+                if (options.param) {
+                    var $formObj = $("#" + options.id).closest('form');
+                    var jsonData = getSelectedRowJson(options.param, row);
+                    getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
+                    $('#' + options.id).combogrid('textbox').focus();
+                }
+            }
+        });
+    }
+
     $.fn.iAutoComplete = function (options) {
         var defaults = {
             comboboxId: this.selector,
@@ -19655,7 +19710,7 @@ $.extend($.fn.datagrid.methods, {
                 }, 400);
             },
             onShowPanel: function () {
-                $(this).combobox("reload", options.url);
+                //$(this).combobox("reload", options.url);
             },
             onChange: function (newValue, oldValue) {
                 if (newValue == null) {
@@ -19668,7 +19723,6 @@ $.extend($.fn.datagrid.methods, {
                         newUrl = newUrl.replace(paramArr[i], encodeURI(encodeURI(newValue)));
                     }
                 }
-
                 $(this).combobox("reload", newUrl);
             },
             onSelect: function (record) {
@@ -20202,6 +20256,14 @@ Array.prototype.remove = function (val) {
 
             options = setFormElementId($element, options);
             $element.iCombobox(options);
+        });
+
+        $('[data-toggle="topjui-combogrid"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+
+            options = setFormElementId($element, options);
+            $element.iCombogrid(options);
         });
 
         $('[data-toggle="topjui-combotree"]').each(function (i) {

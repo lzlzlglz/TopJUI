@@ -370,8 +370,7 @@ table td {
     padding: 5px 10px 5px 24px;
     position: relative;
     left: -3px;
-    background: url("../image/icons/rainbow.png") no-repeat left;
-    background-position: 5px;
+    background: url("../image/icons/application_view_list.png") no-repeat 5px;
     font-size: 12px;
 }
 
