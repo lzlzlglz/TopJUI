@@ -19,9 +19,7 @@
             disabled: false,
             iconCls: '',
             buttonText: '',
-            buttonIcon: '',
-            required: false,
-            missingMessage: '该输入框为必填项'
+            buttonIcon: ''
         }
 
         var options = $.extend(defaults, options);
