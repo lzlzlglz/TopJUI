@@ -19476,15 +19476,12 @@ $.extend($.fn.datagrid.methods, {
             width: 153,
             height: 30,
             url: ctx + '/system/codeItem/getListByCodesetidAndLevelid?codeSetId={codeSetId}&levelId={levelId}',
-            data: '',
             codeSetId: 0,
             pid: 0,
             valueField: 'text',
             textField: 'text',
             editable: false,
             panelHeight: 'auto',
-            onSelect: combobox_onSelect,
-            formatter: combobox_formatter,
             onShowPanel: function () {
                 if (options.url.indexOf("{") >= 0) {
                     //将form表单数据封装成json数据

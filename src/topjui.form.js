@@ -193,15 +193,12 @@
             width: 153,
             height: 30,
             url: ctx + '/system/codeItem/getListByCodesetidAndLevelid?codeSetId={codeSetId}&levelId={levelId}',
-            data: '',
             codeSetId: 0,
             pid: 0,
             valueField: 'text',
             textField: 'text',
             editable: false,
             panelHeight: 'auto',
-            onSelect: combobox_onSelect,
-            formatter: combobox_formatter,
             onShowPanel: function () {
                 if (options.url.indexOf("{") >= 0) {
                     //将form表单数据封装成json数据
@@ -234,18 +231,6 @@
             options.url = options.url.replace("{codeSetId}", options.codeSetId).replace("{levelId}", options.levelId);
 
         $(this).combobox(options);
-    }
-
-    var combobox_onSelect = function (record) {
-        //console.log(record);
-    }
-
-    var combobox_formatter = function (row) {
-        /*if (value == 0) {
-            return row.text;
-        } else {
-            return row.text;
-        }*/
     }
 
     $.fn.iCombogrid = function (options) {
