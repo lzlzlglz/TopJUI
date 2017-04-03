@@ -186,6 +186,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 12px;
 }
 
+/* 可编辑表格输入框样式 */
+.datagrid-editable .textbox-text {
+    width: auto !important;
+}
+
 /* 输入框字体及大小 */
 .textbox textarea.textbox-text {
     line-height: 18px;
