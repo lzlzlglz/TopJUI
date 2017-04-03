@@ -76,6 +76,14 @@
             $element.iCombotree(options);
         });
 
+        $('[data-toggle="topjui-combotreegrid"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+
+            options = setFormElementId($element, options);
+            $element.iCombotreegrid(options);
+        });
+
         $('[data-toggle="topjui-textarea"]').each(function (i) {
             var $element = $(this);
             var options = getOptionsJson($element);

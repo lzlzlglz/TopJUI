@@ -15906,10 +15906,13 @@ return opts.min+(opts.max-opts.min)*(pos/size);
 	$.fn.pagination.defaults.displayMsg = '显示{from}到{to},共{total}记录';
 }
 if ($.fn.datagrid){
-	$.fn.datagrid.defaults.loadMsg = '正在处理，请稍待。。。';
+	$.fn.datagrid.defaults.loadMsg = '数据加载中，请稍候...';
 }
 if ($.fn.treegrid && $.fn.datagrid){
 	$.fn.treegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;
+}
+if ($.fn.combotreegrid){
+	$.fn.combotreegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;
 }
 if ($.messager){
 	$.messager.defaults.ok = '确定';
@@ -17440,7 +17443,7 @@ if ($.fn.datetimespinner){
 
         var defaults = {
             combotreeId: this.selector,
-            url: ctx + '/system/codeItem/getListByCodesetidAndLevelid?codeSetId={codeSetId}&levelId={levelId}',
+            url: ctx + '/system/codeItem/getListByCodeSetIdAndLevelId?codeSetId={codeSetId}&levelId={levelId}',
             expandUrl: ctx + '/system/codeItem/getListByPid?pid={pid}',
             getFatherIdsUrl: '',
             width: 153,
@@ -19157,7 +19160,6 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
             searchButton: true,
             addDialogTitle: '新增',
             editDialogTitle: '编辑',
-            loadMsg: "数据加载中,请稍后...",
             rownumbers: true,
             pagination: true,
             pageNumber: 1,
@@ -19497,7 +19499,6 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
             searchButton: true,
             addDialogTitle: '新增',
             editDialogTitle: '编辑',
-            loadMsg: "数据加载中,请稍后...",
             rownumbers: true,
             pagination: true,
             pageNumber: 1,
@@ -19936,7 +19937,7 @@ $.extend($.fn.datagrid.methods, {
         var defaults = {
             width: 153,
             height: 30,
-            url: ctx + '/system/codeItem/getListByCodesetidAndLevelid?codeSetId={codeSetId}&levelId={levelId}',
+            url: ctx + '/system/codeItem/getListByCodeSetIdAndLevelId?codeSetId={codeSetId}&levelId={levelId}',
             codeSetId: 0,
             pid: 0,
             valueField: 'text',
@@ -20028,6 +20029,53 @@ $.extend($.fn.datagrid.methods, {
         var options = $.extend(defaults, options);
 
         $(this).combogrid(options);
+    }
+
+    $.fn.iCombotreegrid = function (options) {
+        var defaults = {
+            width: 153,
+            height: 30,
+            panelWidth: 450,
+            url: ctx + '/system/user/getListByKeywords',
+            idField: 'id',
+            treeField: 'text',
+            fitColumns: true,
+            animate: true,
+            columns: [[
+                {field: 'id', title: '标识'},
+                {field: 'text', title: '名称', width: 100},
+                {field: 'levelId', title: '层级'},
+                {field: 'sort', title: '排序'}
+            ]],
+            onBeforeExpand: function (node, param) {
+                var grid = $('#' + options.id).combotreegrid('grid');
+                grid.treegrid('options').url = replaceUrlParamValueByBrace(options.expandUrl, node);
+            },
+            onChange: function (newValue, oldValue) {
+
+            },
+            onLoadSuccess: function (node, data) {
+                var grid = $('#' + options.id).combotreegrid('grid');
+                // 展开根节点
+                grid.treegrid("expand", grid.treegrid('getRoot').id);
+
+                if (options.expandAll) {
+                    grid.treegrid("expandAll");
+                }
+            },
+            onSelect: function (index, row) {
+                if (options.param) {
+                    var $formObj = $("#" + options.id).closest('form');
+                    var jsonData = getSelectedRowJson(options.param, row);
+                    getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
+                    $('#' + options.id).combogrid('textbox').focus();
+                }
+            }
+        }
+
+        var options = $.extend(defaults, options);
+
+        $(this).combotreegrid(options);
     }
 
     $.fn.iAutoComplete = function (options) {
@@ -20622,6 +20670,14 @@ Array.prototype.remove = function (val) {
 
             options = setFormElementId($element, options);
             $element.iCombotree(options);
+        });
+
+        $('[data-toggle="topjui-combotreegrid"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+
+            options = setFormElementId($element, options);
+            $element.iCombotreegrid(options);
         });
 
         $('[data-toggle="topjui-textarea"]').each(function (i) {
@@ -21626,7 +21682,7 @@ $(function () {
 	$.fn.iTree = function(options) {
 		var defaults = {
 			treeId : this.selector,
-			url    : ctx + '/system/codeItem/getListByCodesetidAndLevelid?codeSetId={codeSetId}&levelId={levelId}',
+			url    : ctx + '/system/codeItem/getListByCodeSetIdAndLevelId?codeSetId={codeSetId}&levelId={levelId}',
 			expandUrl : ctx + '/system/codeItem/getListByPid?pid={pid}',
 	        lines : false,
 	        animate : true,
@@ -21723,13 +21779,12 @@ $(function () {
             //gridId       : element.get(0).id,
             gridId: this.selector,
             treegridContextId: 'treegridContext',
-            url: ctx + '/system/codeItem/getListByCodesetidAndLevelid',
+            url: ctx + '/system/codeItem/getListByCodeSetIdAndLevelId',
             queryParams: {"codeSetId": $.getUrlParam("codeSetId"), "levelId": $.getUrlParam("levelId")},//首次查询参数
             onBeforeExpandUrl: ctx + "/system/codeItem/getListByPid",
             idField: 'id',
             treeField: 'text',
             border: false,
-            loadMsg: "数据加载中,请稍后...",
             toolbar: this.selector + "-toolbar",
             pagination: false,
             pageNumber: 1,

@@ -51,7 +51,6 @@
             searchButton: true,
             addDialogTitle: '新增',
             editDialogTitle: '编辑',
-            loadMsg: "数据加载中,请稍后...",
             rownumbers: true,
             pagination: true,
             pageNumber: 1,

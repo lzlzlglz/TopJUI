@@ -3,7 +3,7 @@
 	$.fn.iTree = function(options) {
 		var defaults = {
 			treeId : this.selector,
-			url    : ctx + '/system/codeItem/getListByCodesetidAndLevelid?codeSetId={codeSetId}&levelId={levelId}',
+			url    : ctx + '/system/codeItem/getListByCodeSetIdAndLevelId?codeSetId={codeSetId}&levelId={levelId}',
 			expandUrl : ctx + '/system/codeItem/getListByPid?pid={pid}',
 	        lines : false,
 	        animate : true,

@@ -4,10 +4,13 @@ if ($.fn.pagination){
 	$.fn.pagination.defaults.displayMsg = '显示{from}到{to},共{total}记录';
 }
 if ($.fn.datagrid){
-	$.fn.datagrid.defaults.loadMsg = '正在处理，请稍待。。。';
+	$.fn.datagrid.defaults.loadMsg = '数据加载中，请稍候...';
 }
 if ($.fn.treegrid && $.fn.datagrid){
 	$.fn.treegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;
+}
+if ($.fn.combotreegrid){
+	$.fn.combotreegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;
 }
 if ($.messager){
 	$.messager.defaults.ok = '确定';

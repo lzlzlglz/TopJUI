@@ -190,7 +190,7 @@
         var defaults = {
             width: 153,
             height: 30,
-            url: ctx + '/system/codeItem/getListByCodesetidAndLevelid?codeSetId={codeSetId}&levelId={levelId}',
+            url: ctx + '/system/codeItem/getListByCodeSetIdAndLevelId?codeSetId={codeSetId}&levelId={levelId}',
             codeSetId: 0,
             pid: 0,
             valueField: 'text',
@@ -282,6 +282,53 @@
         var options = $.extend(defaults, options);
 
         $(this).combogrid(options);
+    }
+
+    $.fn.iCombotreegrid = function (options) {
+        var defaults = {
+            width: 153,
+            height: 30,
+            panelWidth: 450,
+            url: ctx + '/system/user/getListByKeywords',
+            idField: 'id',
+            treeField: 'text',
+            fitColumns: true,
+            animate: true,
+            columns: [[
+                {field: 'id', title: '标识'},
+                {field: 'text', title: '名称', width: 100},
+                {field: 'levelId', title: '层级'},
+                {field: 'sort', title: '排序'}
+            ]],
+            onBeforeExpand: function (node, param) {
+                var grid = $('#' + options.id).combotreegrid('grid');
+                grid.treegrid('options').url = replaceUrlParamValueByBrace(options.expandUrl, node);
+            },
+            onChange: function (newValue, oldValue) {
+
+            },
+            onLoadSuccess: function (node, data) {
+                var grid = $('#' + options.id).combotreegrid('grid');
+                // 展开根节点
+                grid.treegrid("expand", grid.treegrid('getRoot').id);
+
+                if (options.expandAll) {
+                    grid.treegrid("expandAll");
+                }
+            },
+            onSelect: function (index, row) {
+                if (options.param) {
+                    var $formObj = $("#" + options.id).closest('form');
+                    var jsonData = getSelectedRowJson(options.param, row);
+                    getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
+                    $('#' + options.id).combogrid('textbox').focus();
+                }
+            }
+        }
+
+        var options = $.extend(defaults, options);
+
+        $(this).combotreegrid(options);
     }
 
     $.fn.iAutoComplete = function (options) {
