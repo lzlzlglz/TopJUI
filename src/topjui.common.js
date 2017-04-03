@@ -317,11 +317,11 @@ function bindMenuClickEvent($element, options) {
 
         $element.on("click", function () {
             if (options.type == "addRow")
-                addRow(options);
+                $('#' + options.grid.id).edatagrid('addRow', 0);
             if (options.type == "saveRow")
-                saveRow(options);
+                $('#' + options.grid.id).edatagrid('saveRow');
             if (options.type == "cancelRow")
-                cancelRow(options);
+                $('#' + options.grid.id).edatagrid('cancelRow');
         });
     } else if (options.clickEvent == "doAjax") {
         defaults = {
@@ -390,19 +390,6 @@ function bindMenuClickEvent($element, options) {
         });
     }
     return options;
-}
-
-function addRow(options) {
-    console.log(options);
-    $('#' + options.grid.id).edatagrid('addRow', 0);
-}
-
-function saveRow(options) {
-    $('#' + options.grid.id).edatagrid('saveRow');
-}
-
-function cancelRow(options) {
-    $('#' + options.grid.id).edatagrid('cancelRow');
 }
 
 /**
