@@ -295,7 +295,7 @@
             fitColumns: true,
             animate: true,
             columns: [[
-                {field: 'id', title: '标识'},
+                {field: 'id', title: '标识', hidden: true},
                 {field: 'text', title: '名称', width: 100},
                 {field: 'levelId', title: '层级'},
                 {field: 'sort', title: '排序'}
@@ -314,6 +314,31 @@
 
                 if (options.expandAll) {
                     grid.treegrid("expandAll");
+                }
+
+                if (options.getFatherIdsUrl) {
+                    setTimeout(function () {
+                        var selectedNode = grid.treegrid('getSelected');
+                        var dataObj = {id: $('#' + options.id).combotreegrid("getValue")};
+                        if (selectedNode == null && dataObj.id != "") {
+                            var findNode;
+                            $.ajax({
+                                type: "POST",
+                                url: replaceUrlParamValueByBrace(options.getFatherIdsUrl, dataObj),
+                                success: function (data) {
+                                    var fatherIdsArray = data.split(",");
+                                    for (i = fatherIdsArray.length - 1; i >= 0; i--) {
+                                        findNode = grid.treegrid('find', fatherIdsArray[i].replace(/'/g, ""));
+                                        if (findNode) {
+                                            grid.treegrid('expand', findNode.id);
+                                        }
+                                    }
+                                }
+                            });
+                            if (dataObj.id != undefined)
+                                $(options.id).combotreegrid('setValue', dataObj.id);//数据加载完毕可以设置值了
+                        }
+                    }, 100);
                 }
             },
             onSelect: function (index, row) {

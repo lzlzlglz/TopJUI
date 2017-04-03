@@ -17516,31 +17516,9 @@ if ($.fn.datetimespinner){
                     $treeObj.tree("expandAll");
                 }
 
-                //setInterval(resetCombotree, 1000);
                 if (options.getFatherIdsUrl) {
                     setTimeout(function () {
-                        var n = $treeObj.tree('getSelected');
-                        var dataObj = {id: $(options.combotreeId).combotree("getValue")};
-                        if (n == undefined && dataObj.id != "") {
-                            var findNode;
-                            $.ajax({
-                                type: "POST",
-                                url: replaceUrlParamValueByBrace(options.getFatherIdsUrl, dataObj),
-                                //data : {"codeSetId":options.codeSetId, "id":id, "levelId":0},
-                                success: function (data) {
-                                    //$(options.combotreeId).combotree('tree').tree("collapseAll");
-                                    var fatherIdsArray = data.split(",");
-                                    for (i = fatherIdsArray.length - 1; i >= 0; i--) {
-                                        findNode = $(options.combotreeId).combotree('tree').tree('find', fatherIdsArray[i].replace(/'/g, ""));
-                                        if (findNode) {
-                                            $(options.combotreeId).combotree('tree').tree('expand', findNode.target);
-                                        }
-                                    }
-                                }
-                            });
-                            if (dataObj.id != undefined)
-                                $(options.combotreeId).combotree('setValue', dataObj.id);//数据加载完毕可以设置值了
-                        }
+                        expandToTargetNode($treeObj, options);
                     }, 100);
                 }
             },
@@ -17573,30 +17551,29 @@ if ($.fn.datetimespinner){
             onChange: options.onChange
         });
 
-        function resetCombotree() {
-            var t = $(options.combotreeId).combotree('tree');
-            var n = t.tree('getSelected');
-            var id = $(options.combotreeId).combotree("getValue");
-            if (n == undefined && id != "") {
+        function expandToTargetNode($treeObj, options) {
+            var n = $treeObj.tree('getSelected');
+            var dataObj = {id: $(options.combotreeId).combotree("getValue")};
+            if (n == undefined && dataObj.id != "") {
                 var findNode;
                 $.ajax({
                     type: "POST",
-                    url: ctx + "/system/codeItem/getFatherIds",
-                    data: {"codeSetId": options.codeSetId, "id": id, "levelId": 0},
+                    url: replaceUrlParamValueByBrace(options.getFatherIdsUrl, dataObj),
+                    //data : {"codeSetId":options.codeSetId, "id":id, "levelId":0},
                     success: function (data) {
-                        $(options.combotreeId).combotree('tree').tree("collapseAll");
+                        //$(options.combotreeId).combotree('tree').tree("collapseAll");
                         var fatherIdsArray = data.split(",");
-                        for (i = 0; i < fatherIdsArray.length; i++) {
-                            findNode = $(options.combotreeId).combotree('tree').tree('find', fatherIdsArray[i]);
+                        for (i = fatherIdsArray.length - 1; i >= 0; i--) {
+                            findNode = $(options.combotreeId).combotree('tree').tree('find', fatherIdsArray[i].replace(/'/g, ""));
                             if (findNode) {
                                 $(options.combotreeId).combotree('tree').tree('expand', findNode.target);
                             }
                         }
                     }
                 });
-                $(options.combotreeId).combotree('setValue', id);//数据加载完毕可以设置值了
+                if (dataObj.id != undefined)
+                    $(options.combotreeId).combotree('setValue', dataObj.id);//数据加载完毕可以设置值了
             }
-
         }
 
     }
@@ -20042,7 +20019,7 @@ $.extend($.fn.datagrid.methods, {
             fitColumns: true,
             animate: true,
             columns: [[
-                {field: 'id', title: '标识'},
+                {field: 'id', title: '标识', hidden: true},
                 {field: 'text', title: '名称', width: 100},
                 {field: 'levelId', title: '层级'},
                 {field: 'sort', title: '排序'}
@@ -20061,6 +20038,31 @@ $.extend($.fn.datagrid.methods, {
 
                 if (options.expandAll) {
                     grid.treegrid("expandAll");
+                }
+
+                if (options.getFatherIdsUrl) {
+                    setTimeout(function () {
+                        var selectedNode = grid.treegrid('getSelected');
+                        var dataObj = {id: $('#' + options.id).combotreegrid("getValue")};
+                        if (selectedNode == null && dataObj.id != "") {
+                            var findNode;
+                            $.ajax({
+                                type: "POST",
+                                url: replaceUrlParamValueByBrace(options.getFatherIdsUrl, dataObj),
+                                success: function (data) {
+                                    var fatherIdsArray = data.split(",");
+                                    for (i = fatherIdsArray.length - 1; i >= 0; i--) {
+                                        findNode = grid.treegrid('find', fatherIdsArray[i].replace(/'/g, ""));
+                                        if (findNode) {
+                                            grid.treegrid('expand', findNode.id);
+                                        }
+                                    }
+                                }
+                            });
+                            if (dataObj.id != undefined)
+                                $(options.id).combotreegrid('setValue', dataObj.id);//数据加载完毕可以设置值了
+                        }
+                    }, 100);
                 }
             },
             onSelect: function (index, row) {
