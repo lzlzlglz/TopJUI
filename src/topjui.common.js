@@ -309,6 +309,20 @@ function bindMenuClickEvent($element, options) {
         $element.on("click", function () {
             openWindow(options);
         });
+    } else if (options.clickEvent == "edatagrid") {
+        defaults = {
+            iconCls: 'icon-add'
+        }
+        options = $.extend(defaults, options);
+
+        $element.on("click", function () {
+            if (options.type == "addRow")
+                addRow(options);
+            if (options.type == "saveRow")
+                saveRow(options);
+            if (options.type == "cancelRow")
+                cancelRow(options);
+        });
     } else if (options.clickEvent == "doAjax") {
         defaults = {
             iconCls: 'icon-add'
@@ -376,6 +390,19 @@ function bindMenuClickEvent($element, options) {
         });
     }
     return options;
+}
+
+function addRow(options) {
+    console.log(options);
+    $('#' + options.grid.id).edatagrid('addRow', 0);
+}
+
+function saveRow(options) {
+    $('#' + options.grid.id).edatagrid('saveRow');
+}
+
+function cancelRow(options) {
+    $('#' + options.grid.id).edatagrid('cancelRow');
 }
 
 /**
