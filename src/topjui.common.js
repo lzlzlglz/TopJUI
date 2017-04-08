@@ -200,7 +200,8 @@ function bindMenuClickEvent($element, options) {
         }
 
         var dialogDom = "";
-        dialogDom = '<form data-toggle="topjui-dialog" data-options="id:\'' + options.dialog.id + '\',href:\'' + options.dialog.href + '\',url:\'' + options.dialog.url + '\',title:\'' + options.dialog.title + '\',beforeOpenCheckUrl:\'' + options.dialog.beforeOpenCheckUrl + '\'' + extendDoc + '"></form>';
+        var divOrForm = options.form == false ? "div" : "form";
+        dialogDom = '<' + divOrForm + ' data-toggle="topjui-dialog" data-options="id:\'' + options.dialog.id + '\',href:\'' + options.dialog.href + '\',url:\'' + options.dialog.url + '\',title:\'' + options.dialog.title + '\',beforeOpenCheckUrl:\'' + options.dialog.beforeOpenCheckUrl + '\'' + extendDoc + '"></' + divOrForm + '>';
 
         // 判断dialog是否存在linkbutton按钮组
         var buttonsDom = "";
