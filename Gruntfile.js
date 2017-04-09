@@ -31,8 +31,8 @@ module.exports = function(grunt) {
                  "src/topjui.window.js",
                  "plugins/jquery.base64.js"
              ],
-             //dest: 'assets/js/topjui.js'
-             dest: 'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.js'
+             dest: 'assets/js/topjui.js'
+             //dest: 'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.js'
          }
      },
      uglify: {

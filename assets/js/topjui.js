@@ -21032,6 +21032,329 @@ Array.prototype.remove = function (val) {
             $(this).iMenubutton(options);
         });
 
+        getTabWindow().$('[data-toggle="topjui-uploader"]').each(function () {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+
+            // 生成菜单按钮
+            $(this).iMenubutton(options);
+
+            var uploader;
+            var upfileGrid;
+            var state = 'pending';
+            var initfilesize = 0;
+            var md5value = "";
+            var isUpFile = false;//判断是否有文件上传成功，来提示dialog进行下部操作
+            var parentRow;
+
+            //easyloader.load('../../webuploader/css/webuploader.css', function () {
+            //easyloader.load('../../webuploader/js/webuploader.min.js', function () {
+
+            var dialogDom = '<div id="uploaderDialog">' +
+                '<div id="upfileGrid-toolbar" data-options="border:false">' +
+                '<div style="float: left;margin-right:5px;">' +
+                '<div id="chooseFile">选择文件</div>' +
+                '</div>' +
+                '<a id="addUpFile" style="margin-right:5px;">开始上传</a>' +
+                '<a id="removeUpFile">移除文件</a>' +
+                '</div>' +
+                '<table id="upfileGrid"></table>' +
+                '</div>';
+
+            getTabWindow().$('body').append(
+                dialogDom +
+                '<div id="uploaderDialog-buttons" style="display:none">' +
+                '<a href="#" id="closeUploaderDialog">关闭</a>' +
+                '</div>'
+            );
+
+            upfileGrid = $("#upfileGrid").datagrid({
+                fit: true,
+                fitColumns: true,
+                rownumbers: true,
+                nowrap: true,
+                animate: false,
+                border: false,
+                singleSelect: false,
+                idField: 'fileId',
+                pagination: false,
+                toolbar: '#upfileGrid-toolbar',
+                columns: [[
+                    {field: 'ck', checkbox: true},
+                    {field: 'fileId', title: 'fileId', hidden: true},
+                    {field: 'fileName', title: '文件名称', width: 100},
+                    {field: 'fileSize', title: '文件大小', width: 30},
+                    {field: 'validateMd5', title: '文件验证', width: 20},
+                    {
+                        field: 'progress',
+                        title: '上传进度',
+                        width: 180,
+                        fixed: true,
+                        formatter: function (value, rec) {
+                            var htmlstr = '<div class="easyui-progressbar progressbar" style="width: 170px; height: 20px;" value="' + value + '" text="' + value + '%">' +
+                                '<div class="progressbar-text" style="width: 170px; height: 20px; line-height: 20px;">' + value + '%</div>' +
+                                '<div class="progressbar-value" style="width: ' + value + '%; height: 20px; line-height: 20px;">' +
+                                '<div class="progressbar-text" style="width: 170px; height: 20px; line-height: 20px;">' + value + '%</div>' +
+                                '</div>' +
+                                '</div>';
+                            return htmlstr;
+                        }
+                    },
+                    {field: 'fileState', title: '上传状态', width: 20},
+                ]]
+            });
+
+            // 在文件开始发送前做些异步操作。做md5验证
+            // WebUploader会等待此异步操作完成后，开始发送文件。
+            WebUploader.Uploader.register({
+                "before-send-file": "beforeSendFile"
+            }, {
+                beforeSendFile: function (file) {
+                    var task = new $.Deferred();
+                    (new WebUploader.Uploader()).md5File(file, 0, 10 * 1024 * 1024).progress(function (percentage) {
+                        upfileGrid.datagrid('updateRow',
+                            {
+                                index: upfileGrid.datagrid('getRowIndex', file.id),
+                                row: {validateMd5: (percentage * 100) + "%"}
+                            });
+                    }).then(function (val) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/system/attachment/md5Validate",
+                            data: {
+                                type: "md5Check", md5: val
+                            },
+                            cache: false,
+                            timeout: 3000,
+                            dataType: "json"
+                        }).then(function (data, textStatus, jqXHR) {
+                            if (data.isHave) {   //若存在，这返回失败给WebUploader，表明该文件不需要上传
+                                task.reject();
+                                uploader.skipFile(file);
+                                upfileGrid.datagrid('updateRow',
+                                    {
+                                        index: upfileGrid.datagrid('getRowIndex', file.id),
+                                        row: {fileState: "秒传", progress: 100}
+                                    });
+                            } else {
+                                $.extend(uploader.options.formData, {md5: val});
+                                task.resolve();
+                            }
+                        }, function (jqXHR, textStatus, errorThrown) {    //任何形式的验证失败，都触发重新上传
+                            task.resolve();
+                        });
+                    });
+                    return $.when(task);
+                }
+            });
+
+            uploader = WebUploader.create({
+                // 不压缩image
+                resize: false,
+                // swf文件路径
+                swf: '/static/webuploader/js/Uploader.swf',
+                // 默认文件接收服务端。
+                server: '/system/attachment/upload',
+                // 选择文件的按钮。可选。
+                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                pick: '#chooseFile',
+                fileSingleSizeLimit: 100 * 1024 * 1024,//单个文件大小
+                accept: [{
+                    title: 'file',
+                    extensions: 'doc,docx,pdf,xls,xlsx,ppt,pptx,gif,jpg,jpeg,bmp,png,rar,zip',
+                    mimeTypes: '.doc,.docx,.pdf,.xls,.xlsx,.ppt,.pptx,.gif,.jpg,.jpeg,.bmp,.png,.rar,.zip'
+                }]
+            });
+
+            // 当有文件添加进来的时候
+            uploader.on('fileQueued', function (file) {
+                var fileSize = bytesToSize(file.size);
+                var row = {
+                    fileId: file.id,
+                    fileName: file.name,
+                    fileSize: fileSize,
+                    validateMd5: '0%',
+                    progress: 0,
+                    fileState: "等待上传"
+                };
+                upfileGrid.datagrid('insertRow', {
+                    index: 0,
+                    row: row
+                });
+            });
+
+            // 文件上传过程中创建进度条实时显示。
+            uploader.on('uploadProgress', function (file, percentage) {
+                upfileGrid.datagrid('updateRow',
+                    {
+                        index: upfileGrid.datagrid('getRowIndex', file.id),
+                        row: {progress: (percentage * 100).toFixed(2)}
+                    });
+            });
+
+            //文件上传成功
+            uploader.on('uploadSuccess', function (file) {
+                var rows = upfileGrid.datagrid("getRows");
+                //上传成功设置checkbox不可用
+                for (var i = 0; i < rows.length; i++) {
+                    if (rows[i].fileId == file.id) {
+                        $("input[type='checkbox']")[i + 1].disabled = true;
+                    }
+                }
+                $("#removeUpFile").linkbutton("disable");
+                upfileGrid.datagrid('updateRow',
+                    {index: upfileGrid.datagrid('getRowIndex', file.id), row: {fileState: '上传成功'}});
+                isUpFile = true;
+            });
+            //文件上传失败
+            uploader.on('uploadError', function (file) {
+                upfileGrid.datagrid('updateRow',
+                    {index: upfileGrid.datagrid('getRowIndex', file.id), row: {fileState: '上传失败'}});
+            });
+
+            uploader.on('uploadComplete', function (file) {
+
+            });
+
+            uploader.on('uploadFinished', function () {//成功后
+                $("#attachmentDg").datagrid('reload');
+            });
+
+            uploader.on('error', function (handler) {
+                if (handler == 'F_EXCEED_SIZE') {
+                    tim.parentAlert('error', '上传的单个文件不能大于' + initfilesize + '。<br>操作无法进行,如有需求请联系管理员', 'error');
+                } else if (handler == 'Q_TYPE_DENIED') {
+                    tim.parentAlert('error', '不允许上传此类文件!。<br>操作无法进行,如有需求请联系管理员', 'error');
+                }
+            });
+
+            //});
+            //});
+
+            /*从队列中移除文件*/
+            var removeFile = function () {
+                var fileRows = upfileGrid.datagrid("getSelections");
+                var copyRows = [];
+                for (var j = 0; j < fileRows.length; j++) {
+                    copyRows.push(fileRows[j]);
+                }
+                for (var i = 0; i < copyRows.length; i++) {
+                    var index = upfileGrid.datagrid('getRowIndex', copyRows[i]);
+                    uploader.removeFile(copyRows[i].fileId, true);
+                    upfileGrid.datagrid('deleteRow', index);
+                }
+                upfileGrid.datagrid('clearSelections');
+            }
+
+            var uploadToServer = function (uploader, parentRow) {
+                if (uploader.getFiles().length <= 0) {
+                    $.messager.alert('提示', '没有上传的文件!', 'error');
+                    return;
+                }
+                if (state === 'uploading') {
+                    uploader.stop();
+                }
+                else {
+                    uploader.option('formData', {
+                        puuid: parentRow.uuid
+                    });
+                    uploader.upload();
+                }
+            }
+
+            //初始化上传参数
+            var initUpLoad = function (args) {
+                var opts = {};
+                if (args) {
+                    if (args.url != null && args.url != "") {
+                        opts.server = args.url;
+                    }
+                    if (args.size != null && args.size != "") {
+                        initfilesize = args.size;
+                        opts.fileSingleSizeLimit = args.size;
+                    }
+                    if (args.args != null && args.args != "") {
+                        opts.formData = args.args;
+                    }
+                    if (opts) {
+                        $.extend(uploader.options, opts);
+                    }
+                }
+            }
+
+            var getSuccess = function () {
+                return isUpFile;
+            }
+
+            $element.on("click", function () {
+
+                if (typeof options.parentGrid == "object") {
+                    //判断父表数据是否被选中
+                    parentRow = getSelectedRowData(options.parentGrid.type, options.parentGrid.id);
+                    if (!parentRow) {
+                        $.messager.alert(
+                            topJUI.language.message.title.operationTips,
+                            options.parentGrid.unselectedMsg || topJUI.language.message.msg.selectParentGrid,
+                            topJUI.language.message.icon.warning
+                        );
+                        return;
+                    }
+                }
+
+                var fileRows = upfileGrid.datagrid("getRows");
+                if (fileRows.length > 0) {
+                    upfileGrid.datagrid("selectAll");
+                    removeFile();
+                }
+
+                var uploaderDialog = $("#uploaderDialog");
+
+                var defaults = {
+                    iconCls: 'icon-add',
+                    parentGridUnselectedMsg: '请先选中一条主表数据！',
+                    dialog: {
+                        title: '附件上传',
+                        width: 900,
+                        height: 500,
+                        maximized: false,
+                        maximizable: true,
+                        buttons: '#uploaderDialog-buttons'
+                    }
+                };
+                options = $.extend(defaults, options);
+
+                uploaderDialog.dialog({
+                    title: options.dialog.title,
+                    width: options.dialog.width,
+                    height: options.dialog.height,
+                    maximized: options.dialog.maximized,
+                    maximizable: options.dialog.maximizable,
+                    buttons: options.dialog.buttons
+                });
+                uploaderDialog.dialog('open');
+
+                $('#addUpFile').linkbutton({
+                    iconCls: 'icon-add',
+                    height: 37,
+                    onClick: function () {
+                        uploadToServer(uploader, parentRow);
+                    }
+                });
+                $('#removeUpFile').linkbutton({
+                    iconCls: 'icon-no',
+                    height: 37,
+                    onClick: removeFile
+                });
+                $('#closeUploaderDialog').linkbutton({
+                    iconCls: 'icon-no',
+                    onClick: function () {
+                        uploaderDialog.dialog('close');
+                    }
+                });
+            });
+
+        });
+
         getTabWindow().$('[data-toggle="topjui-submenubutton"]').each(function () {
             var $element = $(this);
             var options = getOptionsJson($element);
