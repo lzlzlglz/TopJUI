@@ -19151,8 +19151,9 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
                 {field: 'title', title: '标题', align: 'left'},
                 {field: 'creator', title: '发布人', align: 'center'},
                 {field: 'createTime', title: '发布时间', align: 'center'}]],
-            sortName: "createTime",
-            sortOrder: "desc",
+            multiSort: true,
+            sortName: "",
+            sortOrder: "",
             //toolbar          : this.selector + 'Toolbar',
             addButton: true,
             editButton: true,
@@ -19219,6 +19220,7 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
             pageList: options.pageList,
             frozenColumns: options.frozenColumns,
             columns: options.columns,
+            multiSort: options.multiSort,
             sortName: options.sortName,
             sortOrder: options.sortOrder,
             fit: options.fit,
@@ -19490,8 +19492,9 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
                 {field: 'title', title: '标题', align: 'left'},
                 {field: 'creator', title: '发布人', align: 'center'},
                 {field: 'createTime', title: '发布时间', align: 'center'}]],
-            sortName: "createTime",
-            sortOrder: "desc",
+            multiSort: true,
+            sortName: "",
+            sortOrder: "",
             //toolbar          : this.selector + 'Toolbar',
             addButton: true,
             editButton: true,
@@ -19558,6 +19561,7 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
             pageList: options.pageList,
             frozenColumns: options.frozenColumns,
             columns: options.columns,
+            multiSort: options.multiSort,
             sortName: options.sortName,
             sortOrder: options.sortOrder,
             fit: options.fit,
@@ -21047,9 +21051,6 @@ Array.prototype.remove = function (val) {
             var isUpFile = false;//判断是否有文件上传成功，来提示dialog进行下部操作
             var parentRow;
 
-            //easyloader.load('../../webuploader/css/webuploader.css', function () {
-            //easyloader.load('../../webuploader/js/webuploader.min.js', function () {
-
             var dialogDom = '<div id="uploaderDialog">' +
                 '<div id="upfileGrid-toolbar" data-options="border:false">' +
                 '<div style="float: left;margin-right:5px;">' +
@@ -21227,9 +21228,6 @@ Array.prototype.remove = function (val) {
                     tim.parentAlert('error', '不允许上传此类文件!。<br>操作无法进行,如有需求请联系管理员', 'error');
                 }
             });
-
-            //});
-            //});
 
             /*从队列中移除文件*/
             var removeFile = function () {
