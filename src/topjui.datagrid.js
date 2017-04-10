@@ -42,7 +42,7 @@
                 {field: 'title', title: '标题', align: 'left'},
                 {field: 'creator', title: '发布人', align: 'center'},
                 {field: 'createTime', title: '发布时间', align: 'center'}]],
-            multiSort: true,
+            multiSort: false,
             sortName: "",
             sortOrder: "",
             //toolbar          : this.selector + 'Toolbar',
