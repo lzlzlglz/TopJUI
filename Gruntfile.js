@@ -9,8 +9,6 @@ module.exports = function(grunt) {
          },
          dist: {
              src: [
-                 "plugins/jquery.easyui.min.js",
-                 "plugins/easyui-lang-zh_CN.js",
                  "plugins/datagrid-filter.js",
                  "plugins/jquery.edatagrid.js",
                  "src/topjui.combotree.js",
@@ -41,8 +39,8 @@ module.exports = function(grunt) {
          },
          dist: {
              files: {
-                 //'assets/js/topjui.min.js': 'assets/js/topjui.js'
-                 'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.min.js': 'assets/js/topjui.js'
+                 'assets/js/topjui.min.js': 'assets/js/topjui.js'
+                 //'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.min.js': 'assets/js/topjui.js'
                  //'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.min.js': 'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.js'
              }
          }
