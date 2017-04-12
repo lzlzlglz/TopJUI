@@ -25,10 +25,8 @@ var dynamicLoading = {
 
 <!-- EasyUI样式 -->
 dynamicLoading.css("/topjui/themes/default/easyui.css", "easyuiTheme");
-<!-- 小图标样式 -->
-dynamicLoading.css("/topjui/css/icon.css");
-<!-- 自定义样式 -->
-dynamicLoading.css("/topjui/css/style.css");
+<!-- TopJUI样式 -->
+dynamicLoading.css("/topjui/css/topjui.min.css");
 <!-- TopJUI配置 -->
 dynamicLoading.js("/topjui/js/topjui.config.js");
 <!-- jQuery核心 -->
@@ -38,4 +36,4 @@ dynamicLoading.js("/topjui/plugins/jquery/jquery.cookie.js");
 dynamicLoading.js("/topjui/plugins/easyui/jquery.easyui.min.js");
 dynamicLoading.js("/topjui/plugins/easyui/easyui-lang-zh_CN.js");
 <!-- TopJUI框架 -->
-dynamicLoading.js("/topjui/js/topjui.all.js");
+dynamicLoading.js("/topjui/js/topjui.all.min.js");
