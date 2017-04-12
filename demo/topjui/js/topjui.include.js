@@ -26,7 +26,7 @@ var dynamicLoading = {
 <!-- EasyUI样式 -->
 dynamicLoading.css("/topjui/themes/default/easyui.css", "easyuiTheme");
 <!-- TopJUI样式 -->
-dynamicLoading.css("/topjui/css/topjui.min.css");
+dynamicLoading.css("/topjui/css/topjui.all.min.css");
 <!-- TopJUI配置 -->
 dynamicLoading.js("/topjui/js/topjui.config.js");
 <!-- jQuery核心 -->
