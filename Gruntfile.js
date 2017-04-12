@@ -29,8 +29,8 @@ module.exports = function(grunt) {
                  "src/topjui.window.js",
                  "plugins/jquery.base64.js"
              ],
-             dest: 'assets/js/topjui.js'
-             //dest: 'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.js'
+             dest: 'assets/js/topjui.all.js'
+             //dest: 'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.all.js'
          }
      },
      uglify: {
@@ -39,9 +39,9 @@ module.exports = function(grunt) {
          },
          dist: {
              files: {
-                 'assets/js/topjui.min.js': 'assets/js/topjui.js'
-                 //'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.min.js': 'assets/js/topjui.js'
-                 //'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.min.js': 'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.js'
+                 'assets/js/topjui.all.min.js': 'assets/js/topjui.all.js'
+                 //'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.all.min.js': 'assets/js/topjui.all.js'
+                 //'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.all.min.js': 'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/core/topjui.all.js'
              }
          }
      },
