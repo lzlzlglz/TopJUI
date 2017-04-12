@@ -209,16 +209,7 @@ function logout() {
             $.messager.progress({
                 text: '正在退出中...'
             });
-            //window.location.href='http://sso.cni23.com/cas/logout';
             window.location.href = ctx + '/system/login/logout' + location.search;
-            /*
-             $.post('http://sso.cni23.com:8080/sso/logout', function(result) {
-             if(result.success){
-             $.messager.progress('close');
-             window.location.href='http://sso.cni23.com:8080/cas/login';
-             }
-             }, 'json');
-             */
         }
     });
 }

@@ -1,9 +1,9 @@
-var ctx = "";
+var ctx = "http://demo.topjui.com";
 
 var topJUI = {
     config: {
         ctx: "",
-        mainPagePath: "/demo/index.html" //系统主页面路径，不包含域名及参数
+        mainPagePath: "/" //系统主页面路径，不包含域名及参数
     },
     language: {
         message: {
