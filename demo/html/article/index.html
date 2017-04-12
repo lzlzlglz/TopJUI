@@ -33,20 +33,20 @@
         <table data-toggle="topjui-treegrid"
                data-options="id:'channelDg',
 			   idField:'id',treeField:'text',
-			   url:'/system/channel/getChannelsById?id=1',
-        expandUrl:'/system/channel/getChannelsByPid?pid={id}',
-        childGrid:{
-        params:'id:id',
-        grids:[
-        {type:'datagrid',id:'articleDg'},
-        ]
-        }">
-        <thead>
-        <tr>
-            <th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
-            <th data-options="field:'text',title:'栏目名称',width:100"></th>
-        </tr>
-        </thead>
+			   url:ctx + '/system/channel/getChannelsById?id=1',
+            expandUrl:ctx + '/system/channel/getChannelsByPid?pid={id}',
+            childGrid:{
+            params:'id:id',
+            grids:[
+            {type:'datagrid',id:'articleDg'},
+            ]
+            }">
+            <thead>
+            <tr>
+                <th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
+                <th data-options="field:'text',title:'栏目名称',width:100"></th>
+            </tr>
+            </thead>
         </table>
     </div>
 
@@ -58,7 +58,7 @@
 				 ]">
             <div title="文章详情"
                  data-options="id:'detail1Panel',iconCls:'icon-table',
-					 dynamicHref:'/system/article/detail?uuid={uuid}',
+					 dynamicHref:ctx + '/system/article/detail?uuid={uuid}',
 							parentGrid:{
 								type:'datagrid',
 								id:'articleDg',
@@ -66,7 +66,7 @@
 							}"></div>
             <div title="打印页面"
                  data-options="id:'detail2Panel',iconCls:'icon-table',
-					 dynamicHref:'/system/article/print?uuid={uuid}',
+					 dynamicHref:ctx + '/system/article/print?uuid={uuid}',
 							parentGrid:{
 								type:'datagrid',
 								id:'articleDg',
@@ -80,7 +80,7 @@
         <table data-toggle="topjui-datagrid"
                data-options="id:'articleDg',
                fitColumns:true,
-               url:'${ctx}/system/article/getPageSetData',
+               url:ctx+'/system/article/getPageSetData',
                childTab: {
                    tabs:[
                         {id:'eastTabs',params:'uuid'}
@@ -101,10 +101,10 @@
 
 <script>
     function openNewWindow(value, row, index) {
-        return '<a href=\"/system/article/detail?uuid=' + row.uuid + '\" target=\"_blank\">' + value + '</a>'
+        return '<a href=\"' + ctx + '/system/article/detail?uuid=' + row.uuid + '\" target=\"_blank\">' + value + '</a>'
     }
     function openNewTab(value, row, index) {
-        return '<a href="javascript:window.parent.addParentTab({href:\'/system/article/detail?uuid=' + row.uuid + '\',title:\'' + row.title + '\'})\">' + value + '</a>'
+        return '<a href="javascript:window.parent.addParentTab({href:\'' + ctx + '/system/article/detail?uuid=' + row.uuid + '\',title:\'' + row.title + '\'})\">' + value + '</a>'
     }
 </script>
 
@@ -125,7 +125,7 @@
        },
        dialog:{
            id:'articleAddDialog',
-           href:'${ctx}/system/article/add',
+           href:ctx + '/system/article/add',
            width:900,
 	  	   height:500,
 	  	   maximizable:false,
@@ -133,7 +133,7 @@
 			   {id:'contentAddEditor',field:'content'}
 		   ],
            buttonsGroup:[
-               {text:'保存',url:'${ctx}/system/article/save',iconCls:'icon-add',handler:'ajaxForm'}
+               {text:'保存',url:ctx + '/system/article/save',iconCls:'icon-add',handler:'ajaxForm'}
            ]
        }">新增</a>
     <a href="javascript:void(0)"
@@ -142,8 +142,8 @@
        iconCls:'icon-edit',
        dialog:{
            id:'articleEditDialog',
-           href:'${ctx}/system/article/edit?uuid={uuid}',
-           url:'/system/article/getDetailByUuid?uuid={uuid}',
+           href:'/html/article/edit.html?uuid={uuid}',
+           url:ctx+'/system/article/getDetailByUuid?uuid={uuid}',
            width:900,
 	  	   height:500,
 	  	   maximizable:false,
@@ -151,7 +151,7 @@
 			   {id:'contentEditEditor',field:'content'}
 		   ],
            buttonsGroup:[
-               {text:'更新',url:'${ctx}/system/article/update',iconCls:'icon-save',handler:'ajaxForm'}
+               {text:'更新',url:ctx + '/system/article/update',iconCls:'icon-save',handler:'ajaxForm'}
            ]
        }">编辑</a>
     <a href="javascript:void(0)"
@@ -168,8 +168,8 @@
        data-options="clickEvent:'export'">导出</a>
 </div>
 
-<script type="text/javascript" src="${ctx}/static/ueditor/utf8-jsp/1.4.3.3/ueditor.config.js"></script>
-<script type="text/javascript" src="${ctx}/static/ueditor/utf8-jsp/1.4.3.3/ueditor.all.min.js"></script>
+<script type="text/javascript" src="/topjui/plugins/ueditor/utf8-jsp/1.4.3.3/ueditor.config.js"></script>
+<script type="text/javascript" src="/topjui/plugins/ueditor/utf8-jsp/1.4.3.3/ueditor.all.min.js"></script>
 
 </body>
 </html>

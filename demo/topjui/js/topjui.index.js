@@ -102,7 +102,7 @@ $(function () {
         indexTab.text = "系统门户";
         var portal = $.getUrlParam("portal");
         if (portal == "system" || portal == null) portal = "system";
-        indexTab.url = "/" + portal + "/portal/index";
+        indexTab.url = "/html/article/index.html";
         indexTab.closable = false;
         indexTab.border = false;
         addTab(indexTab);
@@ -219,7 +219,7 @@ function editUserPwd() {
         title: '修改密码',
         width: 400,
         height: 'auto',
-        href: ctx + '/system/user/modifyPassword',
+        href: '/html/user/modifyPassword.html',
         buttons: [{
             text: '确定',
             iconCls: 'icon-save',
