@@ -36,4 +36,4 @@ dynamicLoading.js("/topjui/plugins/jquery/jquery.cookie.js");
 dynamicLoading.js("/topjui/plugins/easyui/jquery.easyui.min.js");
 dynamicLoading.js("/topjui/plugins/easyui/easyui-lang-zh_CN.js");
 <!-- TopJUI框架 -->
-dynamicLoading.js("/topjui/js/topjui.all.min.js");
+dynamicLoading.js("/topjui/js/topjui.all.js");
