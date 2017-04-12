@@ -161,7 +161,7 @@ function tabMenuOprate(menu, type) {
 }
 
 $('#channgyongLink').tree({
-    url: '/system/link/getListById?id=1',
+    url: ctx + '/system/link/getListById?id=1',
     formatter: function (node) {
         if (node.url)
             return '<a href="' + node.url + '" target="_blank">' + node.text + '</a>';
@@ -172,7 +172,7 @@ $('#channgyongLink').tree({
         $(this).tree("expandAll");
     },
     onBeforeExpand: function (node) {
-        $(this).tree('options').url = '/system/link/getListByPid?pid=' + node.id;
+        $(this).tree('options').url = ctx + '/system/link/getListByPid?pid=' + node.id;
     }
 });
 
