@@ -876,7 +876,7 @@ function doAjaxHandler(options) {
         if (rows.length == 0) {
             $.messager.alert(
                 topJUI.language.message.title.operationTips,
-                topJUI.language.message.msg.checkSelfGrid,
+                options.grid.uncheckedMsg,
                 topJUI.language.message.icon.warning
             );
             return;
