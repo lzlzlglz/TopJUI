@@ -16,8 +16,8 @@
         <table data-toggle="topjui-treegrid"
                data-options="id:'channelDg',
 			   idField:'id',treeField:'text',
-			   url:ctx + '/system/channel/getChannelsById?id=1',
-            expandUrl:ctx + '/system/channel/getChannelsByPid?pid={id}',
+			   url:ctx + '/system/api/getChannelsById?id=1',
+            expandUrl:ctx + '/system/api/getChannelsByPid?pid={id}',
             childGrid:{
             params:'id:id',
             grids:[
@@ -63,7 +63,7 @@
         <table data-toggle="topjui-datagrid"
                data-options="id:'articleDg',
                fitColumns:true,
-               url:ctx+'/system/article/getPageSetData',
+               url:ctx+'/system/api/getArticlePageSet',
                childTab: {
                    tabs:[
                         {id:'eastTabs',params:'uuid'}
@@ -116,7 +116,7 @@
 			   {id:'contentAddEditor',field:'content'}
 		   ],
            buttonsGroup:[
-               {text:'保存',url:ctx + '/system/article/save',iconCls:'icon-add',handler:'ajaxForm'}
+               {text:'保存',url:ctx + '/system/api/saveArticle',iconCls:'icon-add',handler:'ajaxForm'}
            ]
        }">新增</a>
     <a href="javascript:void(0)"
@@ -126,7 +126,7 @@
        dialog:{
            id:'articleEditDialog',
            href:'/html/article/edit.html?uuid={uuid}',
-           url:ctx+'/system/article/getDetailByUuid?uuid={uuid}',
+           url:ctx+'/system/api/getArticleDetailByUuid?uuid={uuid}',
            width:900,
 	  	   height:500,
 	  	   maximizable:false,
@@ -134,7 +134,7 @@
 			   {id:'contentEditEditor',field:'content'}
 		   ],
            buttonsGroup:[
-               {text:'更新',url:ctx + '/system/article/update',iconCls:'icon-save',handler:'ajaxForm'}
+               {text:'更新',url:ctx + '/system/api/updateArticle',iconCls:'icon-save',handler:'ajaxForm'}
            ]
        }">编辑</a>
     <a href="javascript:void(0)"
