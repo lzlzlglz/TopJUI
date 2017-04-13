@@ -272,7 +272,7 @@ function generateMenu(menuId) {
         }
     }
 
-    var url = ctx + "/system/authAccess/getMenuListByRoleIdAndCodeSetIdAndLevelId?codeSetId=menu";
+    var url = ctx + "/system/api/getMenuListByRoleIdAndCodeSetIdAndLevelId?codeSetId=menu";
     $.get(url, {"levelId": "2", "menuId": 2}, // 获取第一层目录
         function (data) {
             if (data == "0") {
@@ -287,13 +287,13 @@ function generateMenu(menuId) {
                     iconCls: e.iconCls,
                 });
                 $.parser.parse();
-                $.get(ctx + "/system/authAccess/getMenuListByPid?pid=" + e.id, function (data) {// 循环创建树的项
+                $.get(ctx + "/system/api/getMenuListByPid?pid=" + e.id, function (data) {// 循环创建树的项
                     $("#tree" + e.id).tree({
                         data: data,
                         lines: false,
                         animate: true,
                         onBeforeExpand: function (node, param) {
-                            $("#tree" + e.id).tree('options').url = ctx + "/system/authAccess/getMenuListByPid?pid=" + node.id;
+                            $("#tree" + e.id).tree('options').url = ctx + "/system/api/getMenuListByPid?pid=" + node.id;
                         },
                         onClick: function (node) {
                             if (node.url) {
