@@ -616,27 +616,31 @@ function addHandler(options) {
  * @param resource 资源值，可以是url也可以是标识
  */
 function authCheck(resource) {
-    var isAuth = false;
-    $.ajax({
-        type: 'post',
-        url: ctx + "/system/authAccess/getAuthByRoleIdAndUrl",
-        data: {url: resource},
-        async: false,
-        success: function (data) {
-            if (data == 0) {
-                var msgJson = {
-                    title: topJUI.language.message.title.operationTips,
-                    msg: topJUI.language.message.msg.permissionDenied,
-                    icon: topJUI.language.message.icon.warning
-                };
-                $.messager.alert(msgJson);
-                isAuth = false;
-            } else {
-                isAuth = true;
+    if (topJUI.config.authUrl == "") {
+        return true;
+    } else {
+        var isAuth = false;
+        $.ajax({
+            type: 'post',
+            url: ctx + "/system/authAccess/getAuthByRoleIdAndUrl",
+            data: {url: resource},
+            async: false,
+            success: function (data) {
+                if (data == 0) {
+                    var msgJson = {
+                        title: topJUI.language.message.title.operationTips,
+                        msg: topJUI.language.message.msg.permissionDenied,
+                        icon: topJUI.language.message.icon.warning
+                    };
+                    $.messager.alert(msgJson);
+                    isAuth = false;
+                } else {
+                    isAuth = true;
+                }
             }
-        }
-    });
-    return isAuth;
+        });
+        return isAuth;
+    }
 }
 
 function beforeOpenCheck($checkUrl) {
