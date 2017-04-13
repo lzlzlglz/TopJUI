@@ -283,6 +283,23 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 覆盖easyui样式结束 */
 
+/* IE低版本浏览器提示 */
+#ie6-warning {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fae692;
+    padding: 5px 0;
+    font-size: 12px
+}
+
+/* IE低版本浏览器提示 */
+#ie6-warning p {
+    width: 960px;
+    margin: 0 auto;
+}
+
 .red {
     color: red !important;
 }
