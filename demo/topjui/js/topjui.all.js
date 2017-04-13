@@ -3340,7 +3340,7 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
                             var panelOptions = $element.panel('options');
                             var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, row);
                             //$element.panel('refresh', newHref);
-                            var iframe = '<iframe src="' + newHref + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
+                            var iframe = '<iframe src="' + newHref + '" scrolling="auto" frameborder="0" style="width:100%;height:99.5%;"></iframe>';
                             $element.panel({
                                 content: iframe
                             });
