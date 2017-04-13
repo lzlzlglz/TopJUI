@@ -10,6 +10,14 @@ if (sessionInfo_userId) {// 如果没有登录,直接跳转到登录页面
 } else {
     // window.location.href='${ctx}/system/login/index';
 }
+
+/**
+ * 首页加载完后，取消加载中状态
+ */
+$(window).load(function () {
+    $("#loading").fadeOut();
+});
+
 $(function () {
 
     //监听右键事件，创建右键菜单
@@ -24,6 +32,7 @@ $(function () {
             }
         }
     });
+
     //右键菜单click
     $("#mm").menu({
         onClick: function (item) {
@@ -31,10 +40,12 @@ $(function () {
         }
     });
 
+    // 首页布局
     index_layout = $('#index_layout').layout({
         fit: true
     });
 
+    // 首页tabs选项卡
     index_tabs = $('#index_tabs').tabs({
         fit: true,
         border: false,
@@ -67,6 +78,7 @@ $(function () {
         }]
     });
 
+    // 首页左侧导航树
     layout_west_tree = $('#layout_west_tree').tree({
         url: layout_west_tree_url,
         parentField: 'pid',
@@ -84,7 +96,8 @@ $(function () {
         }
     });
 
-    jQuery("#RightAccordion").accordion({ // 初始化accordion
+    // 初始化accordion
+    jQuery("#RightAccordion").accordion({
         fillSpace: true,
         fit: true,
         border: false,
@@ -110,7 +123,7 @@ $(function () {
 
 });
 
-//Tab菜单操作
+// Tab菜单操作
 function tabMenuOprate(menu, type) {
     var allTabs = $("#index_tabs").tabs('tabs');
     var allTabtitle = [];
@@ -160,6 +173,7 @@ function tabMenuOprate(menu, type) {
 
 }
 
+// 常用链接树
 $('#channgyongLink').tree({
     url: ctx + '/system/link/getListById?id=1',
     formatter: function (node) {
@@ -203,6 +217,7 @@ if ($.cookie('easyuiThemeName')) {
     changeTheme($.cookie('easyuiThemeName'));
 }
 
+// 退出系统
 function logout() {
     $.messager.confirm('提示', '确定要退出吗?', function (r) {
         if (r) {
@@ -214,6 +229,7 @@ function logout() {
     });
 }
 
+// 修改密码
 function editUserPwd() {
     $("#modifyPassword").dialog({
         title: '修改密码',
@@ -261,6 +277,7 @@ function editUserPwd() {
     });
 }
 
+// 生成左侧导航菜单
 function generateMenu(menuId) {
 
     var allPanel = $("#RightAccordion").accordion('panels');
@@ -273,7 +290,8 @@ function generateMenu(menuId) {
     }
 
     var url = ctx + "/system/api/getMenuListByRoleIdAndCodeSetIdAndLevelId?codeSetId=menu";
-    $.get(url, {"levelId": "2", "menuId": 2}, // 获取第一层目录
+    $.get(
+        url, {"levelId": "2", "menuId": 2}, // 获取第一层目录
         function (data) {
             if (data == "0") {
                 window.location = "/Account";
@@ -312,6 +330,7 @@ function generateMenu(menuId) {
                     });
                 }, 'json');
             });
-        }, "json");
+        }, "json"
+    );
 
 }
