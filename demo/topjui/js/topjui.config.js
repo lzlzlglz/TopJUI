@@ -2,7 +2,8 @@
  * 配置文件说明
  * @type {string}
  *
- * ctx: 请求远程数据的服务器网址，在实际应用中，此地址可根据实际情况设置
+ * ctx: 在本demo中，用于跨域请求远程服务器数据的网址，
+ * 在实际应用中，大部分情况下topjui.all.min.js与应用程序在同一个域下，设置为空即可
  *
  * topJUI.config.mainPagePath: 系统主页面路径，不包含域名端口及参数，
  * 如果主页面访问的地址为http://localhost:8080/index.html?param=123，则此处填写/index.html
