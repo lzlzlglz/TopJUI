@@ -6163,11 +6163,13 @@ $(function () {
             onBeforeExpandUrl: ctx + "/system/codeItem/getListByPid",
             idField: 'id',
             treeField: 'text',
+            fit: true,
+            fitColumns: true,
             border: false,
             toolbar: this.selector + "-toolbar",
             pagination: false,
             pageNumber: 1,
-            pageSize: 1,
+            pageSize: 20,
             pageList: [10, 20, 30, 40, 50],
             animate: true,
             columns: [[
@@ -6182,31 +6184,6 @@ $(function () {
             ]],
             checkOnSelect: false,
             selectOnCheck: false,
-            onClickRow: function (row) {
-
-            }
-        }
-
-        var options = $.extend(defaults, options);
-
-        $(this).treegrid({
-            url: appendSourceUrlParam(options.url),
-            //queryParams:options.queryParams,
-            idField: options.idField,
-            treeField: options.treeField,
-            fit: true,
-            fitColumns: true,
-            toolbar: options.toolbar,
-            pagination: options.pagination,
-            pageNumber: 1,
-            pageSize: 20,
-            pageList: [10, 20, 30, 40, 50],
-            animate: options.animate,
-            columns: options.columns,
-            border: options.border,
-            loadMsg: options.loadMsg,
-            checkOnSelect: options.checkOnSelect,
-            selectOnCheck: options.selectOnCheck,
             onBeforeExpand: function (row) {
                 $(this).treegrid('options').url = replaceUrlParamValueByBrace(options.expandUrl, row);
             },
@@ -6228,6 +6205,12 @@ $(function () {
                  });*/
             },
             onClickRow: function (row) {
+                //级联选择
+                $(this).treegrid('cascadeCheck', {
+                    id: row.code, //节点ID
+                    deepCascade: true //深度级联
+                });
+
                 //传递给要刷新表格的参数
                 if (typeof options.childGrid == "object") {
                     var newQueryParams = {};
@@ -6290,9 +6273,170 @@ $(function () {
                 }
 
             }
-        });
+        }
 
+        var options = $.extend(defaults, options);
+        options.url = appendSourceUrlParam(options.url);
+
+        $(this).treegrid(options);
     }
+
+    /**
+     * 扩展树表格级联勾选方法：
+     * @param {Object} container
+     * @param {Object} options
+     * @return {TypeName}
+     */
+    $.extend($.fn.treegrid.methods, {
+        /**
+         * 级联选择
+         * @param {Object} target
+         * @param {Object} param
+         *      param包括两个参数:
+         *          id:勾选的节点ID
+         *          deepCascade:是否深度级联
+         * @return {TypeName}
+         */
+        cascadeCheck: function (target, param) {
+            var opts = $.data(target[0], "treegrid").options;
+            if (opts.singleSelect)
+                return;
+            var idField = opts.idField;//这里的idField其实就是API里方法的id参数
+            var status = false;//用来标记当前节点的状态，true:勾选，false:未勾选
+            var selectNodes = $(target).treegrid('getSelections');//获取当前选中项
+            for (var i = 0; i < selectNodes.length; i++) {
+                if (selectNodes[i][idField] == param.id)
+                    status = true;
+            }
+            //级联选择父节点
+            selectParent(target[0], param.id, idField, status);
+            selectChildren(target[0], param.id, idField, param.deepCascade, status);
+            /**
+             * 级联选择父节点
+             * @param {Object} target
+             * @param {Object} id 节点ID
+             * @param {Object} status 节点状态，true:勾选，false:未勾选
+             * @return {TypeName}
+             */
+            function selectParent(target, id, idField, status) {
+                var parent = $(target).treegrid('getParent', id);
+                if (parent) {
+                    var parentId = parent[idField];
+                    if (status)
+                        $(target).treegrid('select', parentId);
+                    else
+                        $(target).treegrid('unselect', parentId);
+                    selectParent(target, parentId, idField, status);
+                }
+            }
+
+            /**
+             * 级联选择子节点
+             * @param {Object} target
+             * @param {Object} id 节点ID
+             * @param {Object} deepCascade 是否深度级联
+             * @param {Object} status 节点状态，true:勾选，false:未勾选
+             * @return {TypeName}
+             */
+            function selectChildren(target, id, idField, deepCascade, status) {
+                //深度级联时先展开节点
+                if (!status && deepCascade)
+                    $(target).treegrid('expand', id);
+                //根据ID获取下层孩子节点
+                var children = $(target).treegrid('getChildren', id);
+                for (var i = 0; i < children.length; i++) {
+                    var childId = children[i][idField];
+                    if (status)
+                        $(target).treegrid('select', childId);
+                    else
+                        $(target).treegrid('unselect', childId);
+                    selectChildren(target, childId, idField, deepCascade, status);//递归选择子节点
+                }
+            }
+        }
+    });
+
+    /**
+     * 扩展树表格级联选择（点击checkbox才生效）：
+     *        自定义属性：
+     *        threeLinkCheck  :  三级联动(父节点和子节点都被选中)
+     *        cascadeCheck    :  普通级联(不包括未加载的子节点),针对子节点。(这种个人认为主要区别应该在异步加载，如果非异步加载，看不出区别)
+     *        deepCascadeCheck:  深度级联(包括未加载的子节点),针对子节点
+     */
+    $.extend($.fn.treegrid.defaults, {
+        onLoadSuccess: function () {
+            var target = $(this);
+            var opts = $.data(this, "treegrid").options;
+            var panel = $(this).datagrid("getPanel");
+            var gridBody = panel.find("div.datagrid-body");
+            var idField = opts.idField;//这里的idField其实就是API里方法的id参数
+            gridBody.find("div.datagrid-cell-check input[type=checkbox]").click(function (e) {
+                //if(opts.singleSelect) return;//单选不管
+                if (opts.cascadeCheck || opts.deepCascadeCheck || opts.threeLinkCheck) {
+                    var id = $(this).parent().parent().parent().attr("node-id");
+                    var status = false;
+                    if ($(this).attr("checked")) status = true;
+
+                    if (opts.threeLinkCheck) {
+                        //三级联动,是否深度级联还需要设置deepCascadeCheck的值
+                        selectParent(target, id, idField, status);
+                        selectChildren(target, id, idField, opts.deepCascadeCheck, status);
+                    } else {
+                        //只设置cascadeCheck或者deepCascadeCheck
+                        if (opts.cascadeCheck || opts.deepCascadeCheck) {
+                            //普通级联
+                            selectChildren(target, id, idField, opts.deepCascadeCheck, status);
+                        }
+                    }
+                    /**
+                     * 级联选择父节点
+                     * @param {Object} target
+                     * @param {Object} id 节点ID
+                     * @param {Object} status 节点状态，true:勾选，false:未勾选
+                     * @return {TypeName}
+                     */
+                    function selectParent(target, id, idField, status) {
+                        var parent = target.treegrid('getParent', id);
+                        if (parent) {
+                            var parentId = parent[idField];
+                            if (status)
+                                $("input[type=checkbox][value='" + parentId + "']").attr("checked", true);
+                            else
+                                $("input[type=checkbox][value='" + parentId + "']").attr("checked", false);
+                            selectParent(target, parentId, idField, status);
+                        }
+                    }
+
+                    /**
+                     * 级联选择子节点
+                     * @param {Object} target
+                     * @param {Object} id 节点ID
+                     * @param {Object} deepCascade 是否深度级联
+                     * @param {Object} status 节点状态，true:勾选，false:未勾选
+                     * @return {TypeName}
+                     */
+                    function selectChildren(target, id, idField, deepCascade, status) {
+                        //深度级联时先展开节点
+                        if (status && deepCascade) {
+                            target.treegrid('expand', id);
+                        }
+
+                        //根据ID获取所有孩子节点
+                        var children = target.treegrid('getChildren', id);
+                        for (var i = 0; i < children.length; i++) {
+                            var childId = children[i][idField];//可以根据key取到任意值
+                            if (status) {
+                                $("input[type=checkbox][value='" + childId + "']").attr("checked", true);
+                            } else {
+                                $("input[type=checkbox][value='" + childId + "']").attr("checked", false);
+                            }
+                        }
+                    }
+                }
+                e.stopPropagation();//停止事件传播
+            });
+        }
+    });
 
 })(jQuery);;(function($){
 	

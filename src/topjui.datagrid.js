@@ -268,5 +268,97 @@
     $.fn.datagrid.defaults.onHeaderContextMenu = createGridHeaderContextMenu;
     $.fn.treegrid.defaults.onHeaderContextMenu = createGridHeaderContextMenu;
 
+    $.extend($.fn.datagrid.methods, {
+        /**
+         * 单选ajax提交
+         * @param target
+         * @param options
+         */
+        singleSelectedAjax: function (target, options) {
+            // 替换本表的占位数据
+            var row = getSelectedRowData(options.grid.type, options.grid.id);
+            if (row == null) {
+                $.messager.alert(
+                    topJUI.language.message.title.operationTips,
+                    topJUI.language.message.msg.selectSelfGrid,
+                    topJUI.language.message.icon.warning
+                );
+                return;
+            }
+            // 替换本表中选择的单行字段值
+            options.url = replaceUrlParamValueByBrace(options.url, row);
+            $.messager.confirm(
+                topJUI.language.message.title.confirmTips,
+                options.comfirmMsg,
+                function (flag) {
+                    if (flag && doAjax(options)) {
+                        refreshGrid(options.grid.type, options.grid.id);
+                    }
+                }
+            );
+        },
+        /**
+         * 多选ajax提交
+         * @param target
+         * @param options
+         */
+        multiSelectedAjax: function (target, options) {
+            //var datagridOpts = $.data(target[0], "datagrid").options;
+            // 替换本表的占位数据
+            var rows = getSelectedRowsData(options.grid.type, options.grid.id);
+            if (rows.length == 0) {
+                $.messager.alert(
+                    topJUI.language.message.title.operationTips,
+                    topJUI.language.message.msg.selectSelfGrid,
+                    topJUI.language.message.icon.warning
+                );
+                return;
+            }
+            $.messager.confirm(
+                topJUI.language.message.title.confirmTips,
+                options.comfirmMsg,
+                function (flag) {
+                    if (options.grid.params == undefined)
+                        options.grid.params = {uuid: topJUI.config.pkName};
+                    options.ajaxData = convertParamObj2ObjData(options.grid.params, rows);
+                    if (flag && doAjax(options)) {
+                        refreshGrid(options.grid.type, options.grid.id);
+                    }
+                }
+            );
+        },
+        /**
+         * 勾选ajax提交
+         * @param target
+         * @param options
+         */
+        multiCheckedAjax: function (target, options) {
+            //var datagridOpts = $.data(target[0], "datagrid").options;
+            // 替换本表的占位数据
+            var rows = getCheckedRowsData(options.grid.type, options.grid.id);
+            if (rows.length == 0) {
+                $.messager.alert(
+                    topJUI.language.message.title.operationTips,
+                    options.grid.uncheckedMsg,
+                    topJUI.language.message.icon.warning
+                );
+                return;
+            }
+            $.messager.confirm(
+                topJUI.language.message.title.confirmTips,
+                options.comfirmMsg,
+                function (flag) {
+                    if (options.grid.params == undefined)
+                        options.grid.params = {uuid: topJUI.config.pkName};
+                    options.ajaxData = convertParamObj2ObjData(options.grid.params, rows);
+                    if (flag && doAjax(options)) {
+                        refreshGrid(options.grid.type, options.grid.id);
+                    }
+                }
+            );
+        }
+    })
+    ;
+
 
 })(jQuery);
