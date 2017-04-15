@@ -2,7 +2,8 @@
 $.getUrlParam = function (name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
-    if (r != null) return unescape(r[2]); return null;
+    if (r != null) return unescape(r[2]);
+    return null;
 }
 
 // 获取网址字符串参数值
@@ -10,7 +11,8 @@ $.getUrlStrParam = function (urlStr, name) {
     urlParam = urlStr.substring(urlStr.indexOf("?"));
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = urlParam.substr(1).match(reg);
-    if (r != null) return unescape(r[2]); return null;
+    if (r != null) return unescape(r[2]);
+    return null;
 }
 
 /**
@@ -274,6 +276,33 @@ function jsonLength(obj) {
     return size;
 };
 
+/**
+ * 获取了当前毫秒的时间戳
+ * @returns {number}
+ */
+function getTimestamp() {
+    return new Date().getTime();
+}
+
+/**
+ * 生成指定范围内的随机整数
+ * @param minNum
+ * @param maxNum
+ * @returns {*}
+ */
+function getRandomNum(minNum, maxNum) {
+    switch (arguments.length) {
+        case 1:
+            return parseInt(Math.random() * minNum + 1);
+            break;
+        case 2:
+            return parseInt(Math.random() * (maxNum - minNum + 1) + minNum);
+            break;
+        default:
+            return 0;
+            break;
+    }
+}
 
 /*Array.prototype.remove = function (dx) {
  if (isNaN(dx) || dx > this.length) {

@@ -153,28 +153,6 @@
         $(this).numberbox(options);
     }
 
-    $.fn.iLinkbutton = function (options) {
-        var defaults = {
-            iconCls: 'icon-edit',
-            plain: false
-        }
-
-        var options = $.extend(defaults, options);
-
-        $(this).linkbutton(options);
-    }
-
-    $.fn.iMenubutton = function (options) {
-        var defaults = {
-            iconCls: 'icon-save',
-            hasDownArrow: false
-        }
-
-        var options = $.extend(defaults, options);
-
-        $(this).menubutton(options);
-    }
-
     $.fn.iValidatebox = function (options) {
         var defaults = {
             required: true,

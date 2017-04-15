@@ -167,131 +167,135 @@ function bindMenuClickEvent($element, options) {
         options.dialog.height = options.dialog.height ? options.dialog.height : 'auto';
         options = $.extend(defaults, options);
 
-        var extendDoc = "";
-        // 判断是否存在父grid
-        if (typeof options.parentGrid == "object") {
-            extendDoc += ',parentGrid:{type:\'' + options.parentGrid.type + '\',id:\'' + options.parentGrid.id + '\',params:\'' + options.parentGrid.params + '\',unselectedMsg:\'' + options.parentGrid.unselectedMsg + '\'}';
-        }
-        // 判断是否存在自身grid
-        if (typeof options.grid == "object") {
-            extendDoc += ',grid:{type:\'' + options.grid.type + '\',id:\'' + options.grid.id + '\',pkName:\'' + options.grid.pkName + '\',parentIdField:\'' + options.grid.parentIdField + '\',unselectedMsg:\'' + options.grid.unselectedMsg + '\',uncheckedMsg:\'' + options.grid.uncheckedMsg + '\'}';
-        }
-        // 判断dialog中是否存在editor编辑器
-        if (typeof options.dialog.editor == "object") {
-            var editorStr = "";
-            var dh = "";
-            for (var i = 0; i < options.dialog.editor.length; i++) {
-                if (i != options.dialog.editor.length - 1)
-                    dh = ",";
-                editorStr += '{id:\'' + options.dialog.editor[i].id + '\',type:\'' + options.dialog.editor[i].type + '\',field:\'' + options.dialog.editor[i].field + '\'}' + dh;
-            }
-            extendDoc += ',editor:[' + editorStr + ']';
+        if (typeof options.dialog == "object") {
+            generateDialogDoc(options);
         }
 
-        // 如果未设置dialog标题，直接调用按钮名称
-        !options.dialog.title ? options.dialog.title = $element.text().replace(/[\r\n]/g, "") : '';
-        !options.dialog.url ? options.dialog.url = "" : '';
-        !options.dialog.beforeOpenCheckUrl ? options.dialog.beforeOpenCheckUrl = "" : options.dialog.beforeOpenCheckUrl;
+        /*var extendDoc = "";
+         // 判断是否存在父grid
+         if (typeof options.parentGrid == "object") {
+         extendDoc += ',parentGrid:{type:\'' + options.parentGrid.type + '\',id:\'' + options.parentGrid.id + '\',params:\'' + options.parentGrid.params + '\',unselectedMsg:\'' + options.parentGrid.unselectedMsg + '\'}';
+         }
+         // 判断是否存在自身grid
+         if (typeof options.grid == "object") {
+         extendDoc += ',grid:{type:\'' + options.grid.type + '\',id:\'' + options.grid.id + '\',pkName:\'' + options.grid.pkName + '\',parentIdField:\'' + options.grid.parentIdField + '\',unselectedMsg:\'' + options.grid.unselectedMsg + '\',uncheckedMsg:\'' + options.grid.uncheckedMsg + '\'}';
+         }
+         // 判断dialog中是否存在editor编辑器
+         if (typeof options.dialog.editor == "object") {
+         var editorStr = "";
+         var dh = "";
+         for (var i = 0; i < options.dialog.editor.length; i++) {
+         if (i != options.dialog.editor.length - 1)
+         dh = ",";
+         editorStr += '{id:\'' + options.dialog.editor[i].id + '\',type:\'' + options.dialog.editor[i].type + '\',field:\'' + options.dialog.editor[i].field + '\'}' + dh;
+         }
+         extendDoc += ',editor:[' + editorStr + ']';
+         }
 
-        var userDefineDialogId = true;
-        if (options.dialog.id == "" || options.dialog.id == null) {
-            userDefineDialogId = false;
-            options.dialog.id = "dialog-" + parseInt(Math.random() * 99999999 + 1);
-        }
+         // 如果未设置dialog标题，直接调用按钮名称
+         !options.dialog.title ? options.dialog.title = $element.text().replace(/[\r\n]/g, "") : '';
+         !options.dialog.url ? options.dialog.url = "" : '';
+         !options.dialog.beforeOpenCheckUrl ? options.dialog.beforeOpenCheckUrl = "" : options.dialog.beforeOpenCheckUrl;
 
-        var dialogDom = "";
-        var divOrForm = options.form == false ? "div" : "form";
-        dialogDom = '<' + divOrForm + ' data-toggle="topjui-dialog" data-options="id:\'' + options.dialog.id + '\',href:\'' + options.dialog.href + '\',url:\'' + options.dialog.url + '\',title:\'' + options.dialog.title + '\',beforeOpenCheckUrl:\'' + options.dialog.beforeOpenCheckUrl + '\'' + extendDoc + '"></' + divOrForm + '>';
+         var userDefineDialogId = true;
+         if (options.dialog.id == "" || options.dialog.id == null) {
+         userDefineDialogId = false;
+         options.dialog.id = "dialog-" + parseInt(Math.random() * 99999999 + 1);
+         }
 
-        // 判断dialog是否存在linkbutton按钮组
-        var buttonsDom = "";
-        if (typeof options.dialog.buttonsGroup == "object") {
-            var buttonsArr = options.dialog.buttonsGroup;
-            var btLength = buttonsArr.length;
-            if (btLength > 0) {
-                for (var i = 0; i < btLength; i++) {
-                    // 默认为ajaxForm提交方式
-                    if (!buttonsArr[i].handler) {
-                        buttonsArr[i].handler = 'ajaxForm';
-                    }
-                    // 传递本grid参数
-                    var gridDoc = "";
-                    if (typeof options.grid == "object") {
-                        gridDoc = ',grid:{type:\'' + options.grid.type + '\',id:\'' + options.grid.id + '\'}';
-                    }
-                    // 传递其它grid参数
-                    if (typeof buttonsArr[i].reload == "object") {
-                        var reloadStr = "";
-                        var dh2 = "";
-                        for (var j = 0; j < buttonsArr[i].reload.length; j++) {
-                            if (j != buttonsArr[i].reload.length - 1)
-                                dh2 = ",";
+         var dialogDom = "";
+         var divOrForm = options.form == false ? "div" : "form";
+         dialogDom = '<' + divOrForm + ' data-toggle="topjui-dialog" data-options="id:\'' + options.dialog.id + '\',href:\'' + options.dialog.href + '\',url:\'' + options.dialog.url + '\',title:\'' + options.dialog.title + '\',beforeOpenCheckUrl:\'' + options.dialog.beforeOpenCheckUrl + '\'' + extendDoc + '"></' + divOrForm + '>';
 
-                            reloadStr += '{type:\'' + buttonsArr[i].reload[j].type + '\', id:\'' + buttonsArr[i].reload[j].id + '\', clearQueryParams:\'' + buttonsArr[i].reload[j].clearQueryParams + '\'}' + dh2;
-                        }
-                        extendDoc += ',reload:[' + reloadStr + ']';
-                    }
-                    buttonsDom += '<a href="#" data-toggle="topjui-linkbutton" data-options="handlerBefore:\'' + buttonsArr[i].handlerBefore + '\',handler:\'' + buttonsArr[i].handler + '\',dialog:{id:\'' + options.dialog.id + '\'},url:\'' + buttonsArr[i].url + '\',iconCls:\'' + buttonsArr[i].iconCls + '\'' + extendDoc + '">' + buttonsArr[i].text + '</a>';
-                }
-            }
-        }
+         // 判断dialog是否存在linkbutton按钮组
+         var buttonsDom = "";
+         if (typeof options.dialog.buttonsGroup == "object") {
+         var buttonsArr = options.dialog.buttonsGroup;
+         var btLength = buttonsArr.length;
+         if (btLength > 0) {
+         for (var i = 0; i < btLength; i++) {
+         // 默认为ajaxForm提交方式
+         if (!buttonsArr[i].handler) {
+         buttonsArr[i].handler = 'ajaxForm';
+         }
+         // 传递本grid参数
+         var gridDoc = "";
+         if (typeof options.grid == "object") {
+         gridDoc = ',grid:{type:\'' + options.grid.type + '\',id:\'' + options.grid.id + '\'}';
+         }
+         // 传递其它grid参数
+         if (typeof buttonsArr[i].reload == "object") {
+         var reloadStr = "";
+         var dh2 = "";
+         for (var j = 0; j < buttonsArr[i].reload.length; j++) {
+         if (j != buttonsArr[i].reload.length - 1)
+         dh2 = ",";
 
-        getTabWindow().$('body').append(
-            dialogDom +
-            '<div id="' + options.dialog.id + '-buttons" style="display:none">' +
-            buttonsDom +
-            '<a href="#" data-toggle="topjui-linkbutton" data-options="iconCls:\'icon-no\'" onclick="javascript:$(\'#' + options.dialog.id + '\').dialog(\'close\')">关闭</a>' +
-            '</div>'
-        )
+         reloadStr += '{type:\'' + buttonsArr[i].reload[j].type + '\', id:\'' + buttonsArr[i].reload[j].id + '\', clearQueryParams:\'' + buttonsArr[i].reload[j].clearQueryParams + '\'}' + dh2;
+         }
+         extendDoc += ',reload:[' + reloadStr + ']';
+         }
+         buttonsDom += '<a href="#" data-toggle="topjui-linkbutton" data-options="handlerBefore:\'' + buttonsArr[i].handlerBefore + '\',handler:\'' + buttonsArr[i].handler + '\',dialog:{id:\'' + options.dialog.id + '\'},url:\'' + buttonsArr[i].url + '\',iconCls:\'' + buttonsArr[i].iconCls + '\'' + extendDoc + '">' + buttonsArr[i].text + '</a>';
+         }
+         }
+         }
 
-        $element.on("click", function () {
-            // 权限控制
-            if (userDefineDialogId) {
-                if (!authCheck(options.dialog.id)) return;
-            } else {
-                if (!authCheck(options.dialog.href)) return;
-            }
+         getTabWindow().$('body').append(
+         dialogDom +
+         '<div id="' + options.dialog.id + '-buttons" style="display:none">' +
+         buttonsDom +
+         '<a href="#" data-toggle="topjui-linkbutton" data-options="iconCls:\'icon-no\'" onclick="javascript:$(\'#' + options.dialog.id + '\').dialog(\'close\')">关闭</a>' +
+         '</div>'
+         )*/
 
-            options.dialog.leftMargin = ($(document.body).width() * 0.5) - (options.dialog.width * 0.5);
-            options.dialog.topMargin = ($(document.body).height() * 0.5) - (options.dialog.height * 0.5);
+        /*$element.on("click", function () {
+         // 权限控制
+         if (userDefineDialogId) {
+         if (!authCheck(options.dialog.id)) return;
+         } else {
+         if (!authCheck(options.dialog.href)) return;
+         }
 
-            if (typeof options.parentGrid == "object") {
-                openDialogAndloadDataByParentGrid(options);
-            } else if (options.dialog.url) {
-                openDialogAndloadDataByUrl(options);
-            } else {
-                if (options.grid.uncheckedMsg) {
-                    var rows = getCheckedRowsData(options.grid.type, options.grid.id);
-                    if (rows.length == 0) {
-                        $.messager.alert(
-                            topJUI.language.message.title.operationTips,
-                            options.grid.uncheckedMsg,
-                            topJUI.language.message.icon.warning
-                        );
-                        return;
-                    }
-                }
-                if (options.dialog.onBeforeOpen != "undefined") {
-                    // 回调执行传入的自定义函数
-                    executeCallBackFun(options.dialog.onBeforeOpen, options);
-                }
-                var $dialogObj = $("#" + options.dialog.id);
-                $dialogObj.dialog({
-                    width: options.dialog.width,
-                    height: options.dialog.height,
-                    maximized: options.dialog.maximized,
-                    maximizable: options.dialog.maximizable,
-                    left: options.dialog.leftMargin,
-                    top: options.dialog.topMargin,
-                    buttons: options.dialog.buttons
-                });
-                //$dialogObj.dialog('refresh', appendSourceUrlParam(options.dialog.href)); //加载两次href指定的页面
-                $dialogObj.dialog({
-                    href: appendSourceUrlParam(options.dialog.href)
-                });
-                $dialogObj.dialog('open');
-            }
-        });
+         options.dialog.leftMargin = ($(document.body).width() * 0.5) - (options.dialog.width * 0.5);
+         options.dialog.topMargin = ($(document.body).height() * 0.5) - (options.dialog.height * 0.5);
+
+         if (typeof options.parentGrid == "object") {
+         openDialogAndloadDataByParentGrid(options);
+         } else if (options.dialog.url) {
+         openDialogAndloadDataByUrl(options);
+         } else {
+         if (options.grid.uncheckedMsg) {
+         var rows = getCheckedRowsData(options.grid.type, options.grid.id);
+         if (rows.length == 0) {
+         $.messager.alert(
+         topJUI.language.message.title.operationTips,
+         options.grid.uncheckedMsg,
+         topJUI.language.message.icon.warning
+         );
+         return;
+         }
+         }
+         if (options.dialog.onBeforeOpen != "undefined") {
+         // 回调执行传入的自定义函数
+         executeCallBackFun(options.dialog.onBeforeOpen, options);
+         }
+         var $dialogObj = $("#" + options.dialog.id);
+         $dialogObj.dialog({
+         width: options.dialog.width,
+         height: options.dialog.height,
+         maximized: options.dialog.maximized,
+         maximizable: options.dialog.maximizable,
+         left: options.dialog.leftMargin,
+         top: options.dialog.topMargin,
+         buttons: options.dialog.buttons
+         });
+         //$dialogObj.dialog('refresh', appendSourceUrlParam(options.dialog.href)); //加载两次href指定的页面
+         $dialogObj.dialog({
+         href: appendSourceUrlParam(options.dialog.href)
+         });
+         $dialogObj.dialog('open');
+         }
+         });*/
     } else if (options.clickEvent == "openTab") {
         defaults = {
             iconCls: 'icon-add'
@@ -427,15 +431,7 @@ function openDialogAndloadDataByParentGrid(options) {
     }
 
     var $dialogObj = $("#" + options.dialog.id);
-    $dialogObj.dialog({
-        width: options.dialog.width,
-        height: options.dialog.height,
-        maximized: options.dialog.maximized,
-        maximizable: options.dialog.maximizable,
-        left: options.dialog.leftMargin,
-        top: options.dialog.topMargin,
-        buttons: options.dialog.buttons
-    });
+    $dialogObj.iDialog(options);
 
     // 保存原始href，以便在占位参数替换后还原
     var oriHref = options.dialog.href;
@@ -481,15 +477,7 @@ function openDialogAndloadDataByUrl(options) {
     }
 
     var $dialogObj = $("#" + options.dialog.id);
-    $dialogObj.dialog({
-        width: options.dialog.width,
-        height: options.dialog.height,
-        maximized: options.dialog.maximized,
-        maximizable: options.dialog.maximizable,
-        left: options.dialog.leftMargin,
-        top: options.dialog.topMargin,
-        buttons: options.dialog.buttons
-    });
+    $dialogObj.iDialog(options);
 
     // 保存原始url，以便在占位参数替换后还原
     var oriHref = options.dialog.href;
@@ -505,63 +493,6 @@ function openDialogAndloadDataByUrl(options) {
         $dialogObj.dialog('open');
     }
 
-}
-
-openDialog = function (options) {
-
-    var defaults = {
-        dialogId: 'testDialog',
-        title: '新增数据',
-        href: '',
-        url: '',
-        width: 600,
-        height: 400,
-        btnText: '新增'
-    }
-
-    options = $.extend(defaults, options);
-
-    $("#" + options.dialogId).dialog({
-        title: options.title,
-        href: options.href,
-        width: options.width,
-        height: options.height,
-        buttons: [{
-            text: options.btnText,
-            //id : 'saveBtn',
-            iconCls: 'icon-add',
-            handler: function () {
-
-                if ($(this).form('validate')) {
-
-                    var ajaxData = $("#" + options.dialogId).serialize();
-                    $.ajax({
-                        url: options.url,
-                        type: 'post',
-                        data: ajaxData,
-                        beforeSend: function () {
-                            $.messager.progress({
-                                text: '正在操作...'
-                            });
-                        },
-                        success: function (data, response, status) {
-                            $.messager.progress('close');
-                            msgFn(data);
-                        }
-                    });
-                }
-            }
-        }, {
-            text: '取消',
-            iconCls: 'icon-cancel',
-            handler: function () {
-                $("#" + options.dialogId).dialog('close').form('reset');
-            }
-        }],
-        onLoad: function () {
-            $(this).trigger(topJUI.eventType.initUI.form);
-        }
-    });
 }
 
 /**

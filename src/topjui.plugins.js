@@ -406,6 +406,10 @@
         getTabWindow().$('[data-toggle="topjui-menubutton"]').each(function () {
             var $element = $(this);
             var options = getOptionsJson($element);
+
+            options.id = getTimestamp();
+            $(this).attr("id", options.id);
+
             options = bindMenuClickEvent($element, options);
 
             $(this).iMenubutton(options);
@@ -753,7 +757,7 @@
 
             } else {
                 $element.attr('id', options.id);
-                getTabWindow().$('#' + options.id).iDialog(options);
+                //getTabWindow().$('#' + options.id).iDialog(options);
             }
         });
 
@@ -762,73 +766,6 @@
             var options = getOptionsJson($element);
 
             $element.iLinkbutton(options);
-
-            if (options.handler == "ajaxForm" || options.handler == "multiAjaxForm") {
-                $element.on("click", function () {
-
-                    if (options.handlerBefore != "undefined") {
-                        // 回调执行传入的自定义函数
-                        executeCallBackFun(options.handlerBefore);
-                    }
-
-                    var defaults = {
-                        gridId: 'datagrid',
-                        dialogId: 'editDialog'
-                    }
-                    options = $.extend(defaults, options);
-                    // 判断数据是否通过验证
-                    if (getTabWindow().$("#" + options.dialog.id).form('validate')) {
-                        // 序列化表单数据
-                        options.ajaxData = getTabWindow().$("#" + options.dialog.id).serialize();
-                        if (options.combotreeFields != undefined) {
-                            var combotreeParams = '';
-                            $.each(options.combotreeFields, function (k, v) {
-                                combotreeParams += '&' + v.replace(options.postfix, "") + '=' + getTabWindow().$("#" + options.dialogId + ' input[textboxname="' + v + '"]').combotree('getValues').join(',') + ', ';
-                            });
-                            options.ajaxData += combotreeParams;
-                        }
-                        // 提交更新多条数据
-                        if (options.handler == "multiAjaxForm") {
-                            var rows = getCheckedRowsData(options.grid.type, options.grid.id);
-                            if (rows.length == 0) {
-                                $.messager.alert(
-                                    topJUI.language.message.title.operationTips,
-                                    topJUI.language.message.msg.checkSelfGrid,
-                                    topJUI.language.message.icon.warning
-                                );
-                                return;
-                            }
-                            var pkName = options.grid.pkName == "undefined" ? topJUI.config.pkName : options.grid.pkName;
-                            options.ajaxData += '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
-                        }
-                        // 执行ajax动作
-                        getTabWindow().doAjax(options);
-                        // 关闭dialog
-                        getTabWindow().$("#" + options.dialog.id).dialog("close");
-                        // 重新加载本grid数据
-                        if (typeof options.grid == "object") {
-                            if (options.grid.type == "datagrid") {
-                                getTabWindow().$("#" + options.grid.id).datagrid("reload");
-                            } else if (options.grid.type == "treegrid") {
-                                var row = getSelectedRowData(options.grid.type, options.grid.id);
-                                if (row == null)
-                                    getTabWindow().$("#" + options.grid.id).treegrid("reload");
-                                else
-                                    getTabWindow().$("#" + options.grid.id).treegrid("reload", row[options.grid.parentIdField]);
-                            }
-                        }
-                        // 重新加载指定的Grid数据
-                        refreshGrids(options.reload);
-                    } else {
-                        showMessage({
-                            statusCode: 300,
-                            title: topJUI.language.message.title.operationTips,
-                            message: '显示红底色的输入框为必填字段',
-                            icon: topJUI.language.message.icon.warning
-                        });
-                    }
-                });
-            }
         });
         //}, 10);
     });
