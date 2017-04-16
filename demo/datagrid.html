@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <!-- 公共css/js文件 -->
+    <script type="text/javascript" src="topjui/js/topjui.include.js"></script>
+</head>
+
+<body>
+<table data-toggle="topjui-datagrid" 
+    data-options="id:'issueInvoiceDatagrid',
+    url:'/json/goodslist.json'">
+    <thead>
+        <tr>
+            <th data-options="field:'id',title:'ID',hidden:true"></th>
+            <th data-options="field:'name',title:'商品名称'"></th>
+            <th data-options="field:'code',title:'商品编号'"></th>
+            <th data-options="field:'spec',title:'规格型号'"></th>
+            <th data-options="field:'danwei',title:'规格型号'"></th>
+            <th data-options="field:'sale_price',title:'销售单价'"></th>
+        </tr>
+    </thead>
+</table>
+</body>
+</html>
