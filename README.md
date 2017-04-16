@@ -12,8 +12,8 @@ EasyUI是比较流行的前端框架，适用于企业信息系统或网站后�
 
 ## 本项目测试环境 ##
 
-- 将demo文件夹中的所有文件放至应用服务器（nginx/tomcat等）的根目录下，确保可以通过http://localhost:80/访问即可
-- 注意：如果访问地址与http://localhost:80/形式不一致，则需要配置主页面参数
+- 将demo文件夹中的所有文件放至应用服务器（nginx/tomcat等）的根目录下，确保可以通过[http://localhost:80/](http://localhost:80/)访问即可
+- 注意：如果访问地址与[http://localhost:80/](http://localhost:80/)形式不一致，则需要配置主页面参数
 
 ## 整合第三方组件 ##
 
