@@ -47,5 +47,5 @@ EasyUI是比较流行的前端框架，适用于企业信息系统或网站后�
 - GIT下载：http://git.oschina.net/xvpindex/TopJUI
 - 官方网站：http://www.topjui.com
 - 演示站点：http://demo.topjui.com/system/index/index
-- 用户名/密码：topjui/topjui
+- 用户名 / 密码：topjui / topjui
 - QQ交流群：593783047，如有问题或建议欢迎反馈！
