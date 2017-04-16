@@ -20,7 +20,8 @@ var topJUI = {
     config: {
         ctx: "",
         mainPagePath: "/",
-        authUrl: ""
+        authUrl: "",
+        aloneUse:  true
     },
     language: {
         message: {

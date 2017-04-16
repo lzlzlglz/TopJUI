@@ -1609,10 +1609,14 @@
 
 })(jQuery);;function getTabWindow() {
     var curTabWin = null;
-    var curTab = parent.$('#index_tabs').tabs('getSelected');
-    // var curTab = $('#index_tabs').tabs('getSelected');
-    if (curTab && curTab.find('iframe').length > 0) {
-        curTabWin = curTab.find('iframe')[0].contentWindow;
+    if (topJUI.config.aloneUse) {
+        curTabWin = window;
+    } else {
+        var curTab = parent.$('#index_tabs').tabs('getSelected');
+        // var curTab = $('#index_tabs').tabs('getSelected');
+        if (curTab && curTab.find('iframe').length > 0) {
+            curTabWin = curTab.find('iframe')[0].contentWindow;
+        }
     }
     return curTabWin;
 }
@@ -1776,131 +1780,135 @@ function bindMenuClickEvent($element, options) {
         options.dialog.height = options.dialog.height ? options.dialog.height : 'auto';
         options = $.extend(defaults, options);
 
-        var extendDoc = "";
-        // 判断是否存在父grid
-        if (typeof options.parentGrid == "object") {
-            extendDoc += ',parentGrid:{type:\'' + options.parentGrid.type + '\',id:\'' + options.parentGrid.id + '\',params:\'' + options.parentGrid.params + '\',unselectedMsg:\'' + options.parentGrid.unselectedMsg + '\'}';
-        }
-        // 判断是否存在自身grid
-        if (typeof options.grid == "object") {
-            extendDoc += ',grid:{type:\'' + options.grid.type + '\',id:\'' + options.grid.id + '\',pkName:\'' + options.grid.pkName + '\',parentIdField:\'' + options.grid.parentIdField + '\',unselectedMsg:\'' + options.grid.unselectedMsg + '\',uncheckedMsg:\'' + options.grid.uncheckedMsg + '\'}';
-        }
-        // 判断dialog中是否存在editor编辑器
-        if (typeof options.dialog.editor == "object") {
-            var editorStr = "";
-            var dh = "";
-            for (var i = 0; i < options.dialog.editor.length; i++) {
-                if (i != options.dialog.editor.length - 1)
-                    dh = ",";
-                editorStr += '{id:\'' + options.dialog.editor[i].id + '\',type:\'' + options.dialog.editor[i].type + '\',field:\'' + options.dialog.editor[i].field + '\'}' + dh;
-            }
-            extendDoc += ',editor:[' + editorStr + ']';
+        if (typeof options.dialog == "object") {
+            generateDialogDoc(options);
         }
 
-        // 如果未设置dialog标题，直接调用按钮名称
-        !options.dialog.title ? options.dialog.title = $element.text().replace(/[\r\n]/g, "") : '';
-        !options.dialog.url ? options.dialog.url = "" : '';
-        !options.dialog.beforeOpenCheckUrl ? options.dialog.beforeOpenCheckUrl = "" : options.dialog.beforeOpenCheckUrl;
+        /*var extendDoc = "";
+         // 判断是否存在父grid
+         if (typeof options.parentGrid == "object") {
+         extendDoc += ',parentGrid:{type:\'' + options.parentGrid.type + '\',id:\'' + options.parentGrid.id + '\',params:\'' + options.parentGrid.params + '\',unselectedMsg:\'' + options.parentGrid.unselectedMsg + '\'}';
+         }
+         // 判断是否存在自身grid
+         if (typeof options.grid == "object") {
+         extendDoc += ',grid:{type:\'' + options.grid.type + '\',id:\'' + options.grid.id + '\',pkName:\'' + options.grid.pkName + '\',parentIdField:\'' + options.grid.parentIdField + '\',unselectedMsg:\'' + options.grid.unselectedMsg + '\',uncheckedMsg:\'' + options.grid.uncheckedMsg + '\'}';
+         }
+         // 判断dialog中是否存在editor编辑器
+         if (typeof options.dialog.editor == "object") {
+         var editorStr = "";
+         var dh = "";
+         for (var i = 0; i < options.dialog.editor.length; i++) {
+         if (i != options.dialog.editor.length - 1)
+         dh = ",";
+         editorStr += '{id:\'' + options.dialog.editor[i].id + '\',type:\'' + options.dialog.editor[i].type + '\',field:\'' + options.dialog.editor[i].field + '\'}' + dh;
+         }
+         extendDoc += ',editor:[' + editorStr + ']';
+         }
 
-        var userDefineDialogId = true;
-        if (options.dialog.id == "" || options.dialog.id == null) {
-            userDefineDialogId = false;
-            options.dialog.id = "dialog-" + parseInt(Math.random() * 99999999 + 1);
-        }
+         // 如果未设置dialog标题，直接调用按钮名称
+         !options.dialog.title ? options.dialog.title = $element.text().replace(/[\r\n]/g, "") : '';
+         !options.dialog.url ? options.dialog.url = "" : '';
+         !options.dialog.beforeOpenCheckUrl ? options.dialog.beforeOpenCheckUrl = "" : options.dialog.beforeOpenCheckUrl;
 
-        var dialogDom = "";
-        var divOrForm = options.form == false ? "div" : "form";
-        dialogDom = '<' + divOrForm + ' data-toggle="topjui-dialog" data-options="id:\'' + options.dialog.id + '\',href:\'' + options.dialog.href + '\',url:\'' + options.dialog.url + '\',title:\'' + options.dialog.title + '\',beforeOpenCheckUrl:\'' + options.dialog.beforeOpenCheckUrl + '\'' + extendDoc + '"></' + divOrForm + '>';
+         var userDefineDialogId = true;
+         if (options.dialog.id == "" || options.dialog.id == null) {
+         userDefineDialogId = false;
+         options.dialog.id = "dialog-" + parseInt(Math.random() * 99999999 + 1);
+         }
 
-        // 判断dialog是否存在linkbutton按钮组
-        var buttonsDom = "";
-        if (typeof options.dialog.buttonsGroup == "object") {
-            var buttonsArr = options.dialog.buttonsGroup;
-            var btLength = buttonsArr.length;
-            if (btLength > 0) {
-                for (var i = 0; i < btLength; i++) {
-                    // 默认为ajaxForm提交方式
-                    if (!buttonsArr[i].handler) {
-                        buttonsArr[i].handler = 'ajaxForm';
-                    }
-                    // 传递本grid参数
-                    var gridDoc = "";
-                    if (typeof options.grid == "object") {
-                        gridDoc = ',grid:{type:\'' + options.grid.type + '\',id:\'' + options.grid.id + '\'}';
-                    }
-                    // 传递其它grid参数
-                    if (typeof buttonsArr[i].reload == "object") {
-                        var reloadStr = "";
-                        var dh2 = "";
-                        for (var j = 0; j < buttonsArr[i].reload.length; j++) {
-                            if (j != buttonsArr[i].reload.length - 1)
-                                dh2 = ",";
+         var dialogDom = "";
+         var divOrForm = options.form == false ? "div" : "form";
+         dialogDom = '<' + divOrForm + ' data-toggle="topjui-dialog" data-options="id:\'' + options.dialog.id + '\',href:\'' + options.dialog.href + '\',url:\'' + options.dialog.url + '\',title:\'' + options.dialog.title + '\',beforeOpenCheckUrl:\'' + options.dialog.beforeOpenCheckUrl + '\'' + extendDoc + '"></' + divOrForm + '>';
 
-                            reloadStr += '{type:\'' + buttonsArr[i].reload[j].type + '\', id:\'' + buttonsArr[i].reload[j].id + '\', clearQueryParams:\'' + buttonsArr[i].reload[j].clearQueryParams + '\'}' + dh2;
-                        }
-                        extendDoc += ',reload:[' + reloadStr + ']';
-                    }
-                    buttonsDom += '<a href="#" data-toggle="topjui-linkbutton" data-options="handlerBefore:\'' + buttonsArr[i].handlerBefore + '\',handler:\'' + buttonsArr[i].handler + '\',dialog:{id:\'' + options.dialog.id + '\'},url:\'' + buttonsArr[i].url + '\',iconCls:\'' + buttonsArr[i].iconCls + '\'' + extendDoc + '">' + buttonsArr[i].text + '</a>';
-                }
-            }
-        }
+         // 判断dialog是否存在linkbutton按钮组
+         var buttonsDom = "";
+         if (typeof options.dialog.buttonsGroup == "object") {
+         var buttonsArr = options.dialog.buttonsGroup;
+         var btLength = buttonsArr.length;
+         if (btLength > 0) {
+         for (var i = 0; i < btLength; i++) {
+         // 默认为ajaxForm提交方式
+         if (!buttonsArr[i].handler) {
+         buttonsArr[i].handler = 'ajaxForm';
+         }
+         // 传递本grid参数
+         var gridDoc = "";
+         if (typeof options.grid == "object") {
+         gridDoc = ',grid:{type:\'' + options.grid.type + '\',id:\'' + options.grid.id + '\'}';
+         }
+         // 传递其它grid参数
+         if (typeof buttonsArr[i].reload == "object") {
+         var reloadStr = "";
+         var dh2 = "";
+         for (var j = 0; j < buttonsArr[i].reload.length; j++) {
+         if (j != buttonsArr[i].reload.length - 1)
+         dh2 = ",";
 
-        getTabWindow().$('body').append(
-            dialogDom +
-            '<div id="' + options.dialog.id + '-buttons" style="display:none">' +
-            buttonsDom +
-            '<a href="#" data-toggle="topjui-linkbutton" data-options="iconCls:\'icon-no\'" onclick="javascript:$(\'#' + options.dialog.id + '\').dialog(\'close\')">关闭</a>' +
-            '</div>'
-        )
+         reloadStr += '{type:\'' + buttonsArr[i].reload[j].type + '\', id:\'' + buttonsArr[i].reload[j].id + '\', clearQueryParams:\'' + buttonsArr[i].reload[j].clearQueryParams + '\'}' + dh2;
+         }
+         extendDoc += ',reload:[' + reloadStr + ']';
+         }
+         buttonsDom += '<a href="#" data-toggle="topjui-linkbutton" data-options="handlerBefore:\'' + buttonsArr[i].handlerBefore + '\',handler:\'' + buttonsArr[i].handler + '\',dialog:{id:\'' + options.dialog.id + '\'},url:\'' + buttonsArr[i].url + '\',iconCls:\'' + buttonsArr[i].iconCls + '\'' + extendDoc + '">' + buttonsArr[i].text + '</a>';
+         }
+         }
+         }
 
-        $element.on("click", function () {
-            // 权限控制
-            if (userDefineDialogId) {
-                if (!authCheck(options.dialog.id)) return;
-            } else {
-                if (!authCheck(options.dialog.href)) return;
-            }
+         getTabWindow().$('body').append(
+         dialogDom +
+         '<div id="' + options.dialog.id + '-buttons" style="display:none">' +
+         buttonsDom +
+         '<a href="#" data-toggle="topjui-linkbutton" data-options="iconCls:\'icon-no\'" onclick="javascript:$(\'#' + options.dialog.id + '\').dialog(\'close\')">关闭</a>' +
+         '</div>'
+         )*/
 
-            options.dialog.leftMargin = ($(document.body).width() * 0.5) - (options.dialog.width * 0.5);
-            options.dialog.topMargin = ($(document.body).height() * 0.5) - (options.dialog.height * 0.5);
+        /*$element.on("click", function () {
+         // 权限控制
+         if (userDefineDialogId) {
+         if (!authCheck(options.dialog.id)) return;
+         } else {
+         if (!authCheck(options.dialog.href)) return;
+         }
 
-            if (typeof options.parentGrid == "object") {
-                openDialogAndloadDataByParentGrid(options);
-            } else if (options.dialog.url) {
-                openDialogAndloadDataByUrl(options);
-            } else {
-                if (options.grid.uncheckedMsg) {
-                    var rows = getCheckedRowsData(options.grid.type, options.grid.id);
-                    if (rows.length == 0) {
-                        $.messager.alert(
-                            topJUI.language.message.title.operationTips,
-                            options.grid.uncheckedMsg,
-                            topJUI.language.message.icon.warning
-                        );
-                        return;
-                    }
-                }
-                if (options.dialog.onBeforeOpen != "undefined") {
-                    // 回调执行传入的自定义函数
-                    executeCallBackFun(options.dialog.onBeforeOpen, options);
-                }
-                var $dialogObj = $("#" + options.dialog.id);
-                $dialogObj.dialog({
-                    width: options.dialog.width,
-                    height: options.dialog.height,
-                    maximized: options.dialog.maximized,
-                    maximizable: options.dialog.maximizable,
-                    left: options.dialog.leftMargin,
-                    top: options.dialog.topMargin,
-                    buttons: options.dialog.buttons
-                });
-                //$dialogObj.dialog('refresh', appendSourceUrlParam(options.dialog.href)); //加载两次href指定的页面
-                $dialogObj.dialog({
-                    href: appendSourceUrlParam(options.dialog.href)
-                });
-                $dialogObj.dialog('open');
-            }
-        });
+         options.dialog.leftMargin = ($(document.body).width() * 0.5) - (options.dialog.width * 0.5);
+         options.dialog.topMargin = ($(document.body).height() * 0.5) - (options.dialog.height * 0.5);
+
+         if (typeof options.parentGrid == "object") {
+         openDialogAndloadDataByParentGrid(options);
+         } else if (options.dialog.url) {
+         openDialogAndloadDataByUrl(options);
+         } else {
+         if (options.grid.uncheckedMsg) {
+         var rows = getCheckedRowsData(options.grid.type, options.grid.id);
+         if (rows.length == 0) {
+         $.messager.alert(
+         topJUI.language.message.title.operationTips,
+         options.grid.uncheckedMsg,
+         topJUI.language.message.icon.warning
+         );
+         return;
+         }
+         }
+         if (options.dialog.onBeforeOpen != "undefined") {
+         // 回调执行传入的自定义函数
+         executeCallBackFun(options.dialog.onBeforeOpen, options);
+         }
+         var $dialogObj = $("#" + options.dialog.id);
+         $dialogObj.dialog({
+         width: options.dialog.width,
+         height: options.dialog.height,
+         maximized: options.dialog.maximized,
+         maximizable: options.dialog.maximizable,
+         left: options.dialog.leftMargin,
+         top: options.dialog.topMargin,
+         buttons: options.dialog.buttons
+         });
+         //$dialogObj.dialog('refresh', appendSourceUrlParam(options.dialog.href)); //加载两次href指定的页面
+         $dialogObj.dialog({
+         href: appendSourceUrlParam(options.dialog.href)
+         });
+         $dialogObj.dialog('open');
+         }
+         });*/
     } else if (options.clickEvent == "openTab") {
         defaults = {
             iconCls: 'icon-add'
@@ -2036,15 +2044,7 @@ function openDialogAndloadDataByParentGrid(options) {
     }
 
     var $dialogObj = $("#" + options.dialog.id);
-    $dialogObj.dialog({
-        width: options.dialog.width,
-        height: options.dialog.height,
-        maximized: options.dialog.maximized,
-        maximizable: options.dialog.maximizable,
-        left: options.dialog.leftMargin,
-        top: options.dialog.topMargin,
-        buttons: options.dialog.buttons
-    });
+    $dialogObj.iDialog(options);
 
     // 保存原始href，以便在占位参数替换后还原
     var oriHref = options.dialog.href;
@@ -2090,15 +2090,7 @@ function openDialogAndloadDataByUrl(options) {
     }
 
     var $dialogObj = $("#" + options.dialog.id);
-    $dialogObj.dialog({
-        width: options.dialog.width,
-        height: options.dialog.height,
-        maximized: options.dialog.maximized,
-        maximizable: options.dialog.maximizable,
-        left: options.dialog.leftMargin,
-        top: options.dialog.topMargin,
-        buttons: options.dialog.buttons
-    });
+    $dialogObj.iDialog(options);
 
     // 保存原始url，以便在占位参数替换后还原
     var oriHref = options.dialog.href;
@@ -2114,63 +2106,6 @@ function openDialogAndloadDataByUrl(options) {
         $dialogObj.dialog('open');
     }
 
-}
-
-openDialog = function (options) {
-
-    var defaults = {
-        dialogId: 'testDialog',
-        title: '新增数据',
-        href: '',
-        url: '',
-        width: 600,
-        height: 400,
-        btnText: '新增'
-    }
-
-    options = $.extend(defaults, options);
-
-    $("#" + options.dialogId).dialog({
-        title: options.title,
-        href: options.href,
-        width: options.width,
-        height: options.height,
-        buttons: [{
-            text: options.btnText,
-            //id : 'saveBtn',
-            iconCls: 'icon-add',
-            handler: function () {
-
-                if ($(this).form('validate')) {
-
-                    var ajaxData = $("#" + options.dialogId).serialize();
-                    $.ajax({
-                        url: options.url,
-                        type: 'post',
-                        data: ajaxData,
-                        beforeSend: function () {
-                            $.messager.progress({
-                                text: '正在操作...'
-                            });
-                        },
-                        success: function (data, response, status) {
-                            $.messager.progress('close');
-                            msgFn(data);
-                        }
-                    });
-                }
-            }
-        }, {
-            text: '取消',
-            iconCls: 'icon-cancel',
-            handler: function () {
-                $("#" + options.dialogId).dialog('close').form('reset');
-            }
-        }],
-        onLoad: function () {
-            $(this).trigger(topJUI.eventType.initUI.form);
-        }
-    });
 }
 
 /**
@@ -2458,9 +2393,12 @@ function refreshGrid(gridType, gridId, clearQueryParams) {
 function doAjaxHandler(options) {
     var defaults = {
         gridId: 'datagrid',
-        comfirmMsg: "确定要执行该操作吗？"
+        comfirmMsg: "确定要执行该操作吗？",
+        grid: {
+            uncheckedMsg: topJUI.language.message.msg.checkSelfGrid
+        }
     }
-    options = $.extend(defaults, options);
+    options = $.extend({}, defaults, options);
     // 权限控制
     if (!authCheck(options.url)) return;
     options.url = appendSourceUrlParam(options.url);
@@ -2479,52 +2417,22 @@ function doAjaxHandler(options) {
         options.url = replaceUrlParamValueByBrace(options.url, parentRow, "parent");
     }
 
-    if (options.grid.uncheckedMsg != undefined) { // 勾选复选框提交多条数据
-        // 替换本表的占位数据
-        var rows = getCheckedRowsData(options.grid.type, options.grid.id);
-        if (rows.length == 0) {
-            $.messager.alert(
-                topJUI.language.message.title.operationTips,
-                options.grid.uncheckedMsg,
-                topJUI.language.message.icon.warning
-            );
-            return;
-        }
-        $.messager.confirm(
-            topJUI.language.message.title.confirmTips,
-            options.comfirmMsg,
-            function (flag) {
-                if (options.grid.params == undefined)
-                    options.grid.params = {uuid: topJUI.config.pkName};
-                options.ajaxData = convertParamObj2ObjData(options.grid.params, rows);
-                if (flag && doAjax(options)) {
-                    refreshGrid(options.grid.type, options.grid.id);
-                }
+    if (typeof options.grid == "object") {
+        var dgOpts = $("#" + options.grid.id).datagrid('options');
+
+        if (options.grid.multiCheck == true || options.grid.uncheckedMsg != undefined) {
+            // 勾选复选框提交多条数据
+            $("#" + options.grid.id).datagrid('multiCheckedAjax', options);
+        } else {
+            if (dgOpts.singleSelect == false) {
+                $("#" + options.grid.id).datagrid('multiSelectedAjax', options);
+            } else { // 提交单条记录
+                $("#" + options.grid.id).datagrid('singleSelectedAjax', options);
             }
-        );
-    } else { // 选中行提交单条数据
-        // 替换本表的占位数据
-        var row = getSelectedRowData(options.grid.type, options.grid.id);
-        if (row == null) {
-            $.messager.alert(
-                topJUI.language.message.title.operationTips,
-                topJUI.language.message.msg.selectSelfGrid,
-                topJUI.language.message.icon.warning
-            );
-            return;
         }
-        // 替换本表中选择的单行字段值
-        options.url = replaceUrlParamValueByBrace(options.url, row);
-        $.messager.confirm(
-            topJUI.language.message.title.confirmTips,
-            options.comfirmMsg,
-            function (flag) {
-                if (flag && doAjax(options)) {
-                    refreshGrid(options.grid.type, options.grid.id);
-                }
-            }
-        );
     }
+
+
 }
 
 /**
@@ -3410,11 +3318,103 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
     $.fn.datagrid.defaults.onHeaderContextMenu = createGridHeaderContextMenu;
     $.fn.treegrid.defaults.onHeaderContextMenu = createGridHeaderContextMenu;
 
+    $.extend($.fn.datagrid.methods, {
+        /**
+         * 单选ajax提交
+         * @param target
+         * @param options
+         */
+        singleSelectedAjax: function (target, options) {
+            // 替换本表的占位数据
+            var row = getSelectedRowData(options.grid.type, options.grid.id);
+            if (row == null) {
+                $.messager.alert(
+                    topJUI.language.message.title.operationTips,
+                    topJUI.language.message.msg.selectSelfGrid,
+                    topJUI.language.message.icon.warning
+                );
+                return;
+            }
+            // 替换本表中选择的单行字段值
+            options.url = replaceUrlParamValueByBrace(options.url, row);
+            $.messager.confirm(
+                topJUI.language.message.title.confirmTips,
+                options.comfirmMsg,
+                function (flag) {
+                    if (flag && doAjax(options)) {
+                        refreshGrid(options.grid.type, options.grid.id);
+                    }
+                }
+            );
+        },
+        /**
+         * 多选ajax提交
+         * @param target
+         * @param options
+         */
+        multiSelectedAjax: function (target, options) {
+            //var datagridOpts = $.data(target[0], "datagrid").options;
+            // 替换本表的占位数据
+            var rows = getSelectedRowsData(options.grid.type, options.grid.id);
+            if (rows.length == 0) {
+                $.messager.alert(
+                    topJUI.language.message.title.operationTips,
+                    topJUI.language.message.msg.selectSelfGrid,
+                    topJUI.language.message.icon.warning
+                );
+                return;
+            }
+            $.messager.confirm(
+                topJUI.language.message.title.confirmTips,
+                options.comfirmMsg,
+                function (flag) {
+                    if (options.grid.params == undefined)
+                        options.grid.params = {uuid: topJUI.config.pkName};
+                    options.ajaxData = convertParamObj2ObjData(options.grid.params, rows);
+                    if (flag && doAjax(options)) {
+                        refreshGrid(options.grid.type, options.grid.id);
+                    }
+                }
+            );
+        },
+        /**
+         * 勾选ajax提交
+         * @param target
+         * @param options
+         */
+        multiCheckedAjax: function (target, options) {
+            //var datagridOpts = $.data(target[0], "datagrid").options;
+            // 替换本表的占位数据
+            var rows = getCheckedRowsData(options.grid.type, options.grid.id);
+            if (rows.length == 0) {
+                $.messager.alert(
+                    topJUI.language.message.title.operationTips,
+                    options.grid.uncheckedMsg,
+                    topJUI.language.message.icon.warning
+                );
+                return;
+            }
+            $.messager.confirm(
+                topJUI.language.message.title.confirmTips,
+                options.comfirmMsg,
+                function (flag) {
+                    if (options.grid.params == undefined)
+                        options.grid.params = {uuid: topJUI.config.pkName};
+                    options.ajaxData = convertParamObj2ObjData(options.grid.params, rows);
+                    if (flag && doAjax(options)) {
+                        refreshGrid(options.grid.type, options.grid.id);
+                    }
+                }
+            );
+        }
+    });
+
 
 })(jQuery);;(function ($) {
 
     $.fn.iDialog = function (options) {
-        var $dialogObj = $("#" + options.id);
+        var dialogOptions = options.dialog;
+        var $dialogObj = $("#" + dialogOptions.id);
         var defaults = {
             currentDialogId: this.selector,
             width: 650,
@@ -3444,25 +3444,25 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
             onLoad: function () {
                 $(this).trigger(topJUI.eventType.initUI.form);
                 $(this).dialog("center");
-                if (options.url.length > 1) {
+                if (dialogOptions.url != undefined) {
                     // 获取选中行的数据
                     var row = getSelectedRowData(options.grid.type, options.grid.id);
                     // 如果指定了数据来源URL，则通过URL加载数据
-                    var newDialogUrl = replaceUrlParamValueByBrace(options.url, row);
+                    var newDialogUrl = replaceUrlParamValueByBrace(dialogOptions.url, row);
                     $.getJSON(newDialogUrl, function (data) {
                         $dialogObj.form('load', data);
-                        if (typeof options.editor == "string" || typeof options.editor == "object") {
+                        if (typeof dialogOptions.editor == "string" || typeof dialogOptions.editor == "object") {
                             // kindeditor编辑器处理
-                            if (typeof options.editor == "string") {
+                            if (typeof dialogOptions.editor == "string") {
                                 // 富文本编辑器字符串
                                 var ke = [], keObj = [];
-                                ke = options.editor.replace(/'/g, '"').split(",");
+                                ke = dialogOptions.editor.replace(/'/g, '"').split(",");
                                 for (var i = 0; i < ke.length; i++) {
                                     keObj.push(strToJson(ke[i]));
                                 }
                             } else {
                                 // 富文本编辑数组
-                                keObj = options.editor;
+                                keObj = dialogOptions.editor;
                             }
                             for (var i = 0; i < keObj.length; i++) {
                                 var editorType = keObj[i]["type"];
@@ -3493,16 +3493,59 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
                 }
             },
             onClose: function () {
-                $(options.currentDialogId).form('clear');
+                $(dialogOptions.currentDialogId).form('clear');
             }
         }
 
-        var options = $.extend(defaults, options);
+        dialogOptions = $.extend(defaults, options.dialog);
 
         var controllerUrl = getUrl('controller');
-        options.href = options.href ? options.href + location.search : controllerUrl + "edit" + location.search;
+        dialogOptions.href = dialogOptions.href ? dialogOptions.href + location.search : controllerUrl + "edit" + location.search;
 
-        $(this).dialog(options);
+        $(this).dialog(dialogOptions);
+    }
+
+    generateDialogDoc = function (options) {
+
+        defaults = {
+            iconCls: 'icon-add',
+            parentGridUnselectedMsg: '请先选中一条主表数据！',
+            dialog: {
+                title: '数据详情',
+                width: 650,
+                height: 450
+            }
+        }
+
+        options = $.extend(defaults, options);
+
+        var divOrForm = options.dialog.form == false ? "div" : "form";
+        var dialogDom = '<' + divOrForm + ' data-toggle="topjui-dialog" data-options="id:\'' + options.dialog.id + '\',href:\'' + options.dialog.href + '\',url:\'' + options.dialog.url + '\',title:\'' + options.dialog.title + '\',beforeOpenCheckUrl:\'' + options.dialog.beforeOpenCheckUrl + '\'"></' + divOrForm + '>';
+
+        // 判断dialog是否存在linkbutton按钮组
+        var buttonsDom = "";
+        if (typeof options.dialog.buttonsGroup == "object") {
+            var buttonsArr = options.dialog.buttonsGroup;
+            var btLength = buttonsArr.length;
+            if (btLength > 0) {
+                for (var i = 0; i < btLength; i++) {
+                    // 默认为ajaxForm提交方式
+                    if (!buttonsArr[i].handler) {
+                        buttonsArr[i].handler = 'ajaxForm';
+                    }
+                    buttonsDom += '<a href="#" data-toggle="topjui-linkbutton" data-options="menubuttonId:\'' + options.id + '\',handlerBefore:\'' + buttonsArr[i].handlerBefore + '\',handler:\'' + buttonsArr[i].handler + '\',dialog:{id:\'' + options.dialog.id + '\'},url:\'' + buttonsArr[i].url + '\',iconCls:\'' + buttonsArr[i].iconCls + '\'">' + buttonsArr[i].text + '</a>';
+                }
+            }
+        }
+
+        getTabWindow().$('body').append(
+            dialogDom +
+            '<div id="' + options.dialog.id + '-buttons" style="display:none">' +
+            buttonsDom +
+            '<a href="#" data-toggle="topjui-linkbutton" data-options="iconCls:\'icon-no\'" onclick="javascript:$(\'#' + options.dialog.id + '\').dialog(\'close\')">关闭</a>' +
+            '</div>'
+        );
+
     }
 
 })(jQuery);;(function ($) {
@@ -3937,28 +3980,6 @@ $.extend($.fn.datagrid.methods, {
         $(this).numberbox(options);
     }
 
-    $.fn.iLinkbutton = function (options) {
-        var defaults = {
-            iconCls: 'icon-edit',
-            plain: false
-        }
-
-        var options = $.extend(defaults, options);
-
-        $(this).linkbutton(options);
-    }
-
-    $.fn.iMenubutton = function (options) {
-        var defaults = {
-            iconCls: 'icon-save',
-            hasDownArrow: false
-        }
-
-        var options = $.extend(defaults, options);
-
-        $(this).menubutton(options);
-    }
-
     $.fn.iValidatebox = function (options) {
         var defaults = {
             required: true,
@@ -4236,7 +4257,8 @@ $.extend($.fn.datagrid.methods, {
 $.getUrlParam = function (name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
-    if (r != null) return unescape(r[2]); return null;
+    if (r != null) return unescape(r[2]);
+    return null;
 }
 
 // 获取网址字符串参数值
@@ -4244,7 +4266,8 @@ $.getUrlStrParam = function (urlStr, name) {
     urlParam = urlStr.substring(urlStr.indexOf("?"));
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = urlParam.substr(1).match(reg);
-    if (r != null) return unescape(r[2]); return null;
+    if (r != null) return unescape(r[2]);
+    return null;
 }
 
 /**
@@ -4508,6 +4531,33 @@ function jsonLength(obj) {
     return size;
 };
 
+/**
+ * 获取了当前毫秒的时间戳
+ * @returns {number}
+ */
+function getTimestamp() {
+    return new Date().getTime();
+}
+
+/**
+ * 生成指定范围内的随机整数
+ * @param minNum
+ * @param maxNum
+ * @returns {*}
+ */
+function getRandomNum(minNum, maxNum) {
+    switch (arguments.length) {
+        case 1:
+            return parseInt(Math.random() * minNum + 1);
+            break;
+        case 2:
+            return parseInt(Math.random() * (maxNum - minNum + 1) + minNum);
+            break;
+        default:
+            return 0;
+            break;
+    }
+}
 
 /*Array.prototype.remove = function (dx) {
  if (isNaN(dx) || dx > this.length) {
@@ -4543,118 +4593,158 @@ Array.prototype.remove = function (val) {
         this.splice(index, 1);
         index = this.indexOf(val);
     }
-};;(function($){
-	
-	$.fn.iMenu = function(options) {
-		var defaults = {
-			menuId : this.selector,
-			width   : 600,
-			height  : 400,
-			title   : '修改管理',
-			modal   : false,
-			closed  : true,
-			iconCls : 'icon-save',
-			collapsible : true,
-			maximizable : true,
-			minimizable : false,
-			maximized : false,
-			openAnimation : 'show',
-			openDuration : 600,
-			postfix : 'Edit',
-			combotreeFields : '',
-			refreshTreeId : '',
-			datagridId : 'datagrid',
-			treegridId : 'treegrid',
-			editDialogId : 'editDialog'
-		}
-		
-		var options = $.extend(defaults, options);
-		$(options.menuId).menu({
-	        onClick : function (item) {
-	        	var itemOptions;
-	        	var currentItemOptions;
-	        	$(options.menuId+" .menu-item").each(function(i, e){
-	        		itemOptions = getOptionsJson($(this));
-	        		if(item.name == itemOptions.name) {
-	        			currentItemOptions = itemOptions;
-	        		}
-	        	});
+};;(function ($) {
 
-	        	treegridContextOprate(currentItemOptions, options.treegridId);
-	        }
-	    });
-		
-		function treegridContextOprate(currentItemOptions, treegridId) {
-	    	var selectedRow = $("#"+treegridId).treegrid('getSelected');
-	        switch (currentItemOptions.name) {
-	            case "add":
-	            	
-	            	//clearDialogHrefKeyValue(editDialogId, "action");
-	                $("#"+currentItemOptions.dialogId).dialog("open");
-	                
-	                var treegridParamArr = currentItemOptions.treegridParam.split(",");
-	                var jsonData = {};
-	         	    //传递给要刷新表格的参数
-	         	    for(var i=0; i<treegridParamArr.length; i++) {
-	         	    	jsonData[treegridParamArr[i]] = selectedRow[treegridParamArr[i]];
-	         	    }
-	                jsonData.pid = selectedRow.id;
-	                
-	                setTimeout(function() {
-	                	$("#"+currentItemOptions.dialogId).form('load', jsonData);
-	                }, 100);
-					
-	                return false;
-	                break;
-	            case "edit":
-	            	//clearDialogHrefKeyValue(editDialogId, "action");
-	            	//setDialogHrefKeyValue(editDialogId, "action", "edit");
-	            	
-	                $("#"+currentItemOptions.dialogId).dialog("open");
-	                
-	                //$("#"+params.editDialogId).dialog('setTitle', params.editDialogTitle);
-	                
-	                setTimeout(function() {
-	                	$("#"+currentItemOptions.dialogId).form('load', currentItemOptions.dialogUrl.replace("{uuid}", selectedRow.uuid));
-	                }, 100);
-	                return false;
-	                break;
-	            case "refresh":
-	                $("#"+treegridId).treegrid('reload', selectedRow.id);
-	                break;
-	            case "remove":
-	            	$.messager.confirm('提示','确定要删除吗？',function(r){
-	            		if (r){
-	            			$.ajax({
-	        					url : ctx + '/System/Menu/delete',
-	        					type : 'post',
-	        					data : {"uuids":"'" + selectedRow.uuid + "'"},
-	        					beforeSend : function () {
-	        						$.messager.progress({
-	        							text : '正在操作...'
-	        						});
-	        					},
-	        					success : function (data, response, status) {
-	        						$.messager.progress('close');
-	        						if (data > 0) {
-	        							$.messager.show({
-	        								title : '提示',
-	        								msg : '操作成功'
-	        							});
-	        							$(treegridId).treegrid('reload', selectedRow.pid);
-	        						} else {
-	        							$.messager.alert('操作失败！', '未知错误或没有任何修改，请重试！', 'warning');
-	        						}
-	        					}
-	        				});
-	            		}
-	            	});
-	                break;
-	        }
-	    }
+    $.fn.iLinkbutton = function (options) {
+        var defaults = {
+            iconCls: 'icon-edit',
+            plain: false
+        }
 
-		
-	}
+        var options = $.extend(defaults, options);
+
+        $(this).linkbutton(options);
+    }
+
+    $.extend($.fn.linkbutton.defaults, {
+
+        onClick: function () {
+            var linkbuttonOptions = $(this).linkbutton('options'); //事件中获取参数
+
+            if (linkbuttonOptions.handler == "ajaxForm" || linkbuttonOptions.handler == "multiAjaxForm") {
+                if (linkbuttonOptions.handlerBefore != "undefined") {
+                    // 回调执行传入的自定义函数
+                    executeCallBackFun(linkbuttonOptions.handlerBefore);
+                }
+
+                var defaults = {
+                    gridId: 'datagrid',
+                    dialogId: 'editDialog'
+                }
+                linkbuttonOptions = $.extend(defaults, linkbuttonOptions);
+                var menubuttonOptions = $("#" + linkbuttonOptions.menubuttonId).linkbutton('options');
+                var gridOptions = menubuttonOptions.grid, dialogOptions = menubuttonOptions.dialog;
+
+                // 判断数据是否通过验证
+                if (getTabWindow().$("#" + dialogOptions.id).form('validate')) {
+                    // 序列化表单数据
+                    linkbuttonOptions.ajaxData = getTabWindow().$("#" + dialogOptions.id).serialize();
+                    if (linkbuttonOptions.combotreeFields != undefined) {
+                        var combotreeParams = '';
+                        $.each(options.combotreeFields, function (k, v) {
+                            combotreeParams += '&' + v.replace(linkbuttonOptions.postfix, "") + '=' + getTabWindow().$("#" + dialogOptions.id + ' input[textboxname="' + v + '"]').combotree('getValues').join(',') + ', ';
+                        });
+                        linkbuttonOptions.ajaxData += combotreeParams;
+                    }
+                    // 提交更新多条数据
+                    if (linkbuttonOptions.handler == "multiAjaxForm") {
+                        var rows = getCheckedRowsData(gridOptions.type, gridOptions.id);
+                        if (rows.length == 0) {
+                            $.messager.alert(
+                                topJUI.language.message.title.operationTips,
+                                topJUI.language.message.msg.checkSelfGrid,
+                                topJUI.language.message.icon.warning
+                            );
+                            return;
+                        }
+                        var pkName = gridOptions.pkName == "undefined" ? topJUI.config.pkName : gridOptions.pkName;
+                        linkbuttonOptions.ajaxData += '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
+                    }
+                    // 执行ajax动作
+                    getTabWindow().doAjax(linkbuttonOptions);
+                    // 关闭dialog
+                    getTabWindow().$("#" + dialogOptions.id).dialog("close");
+                    // 重新加载本grid数据
+                    if (typeof gridOptions == "object") {
+                        if (gridOptions.type == "datagrid") {
+                            getTabWindow().$("#" + gridOptions.id).datagrid("reload");
+                        } else if (gridOptions.type == "treegrid") {
+                            var row = getSelectedRowData(gridOptions.type, gridOptions.id);
+                            if (row == null)
+                                getTabWindow().$("#" + gridOptions.id).treegrid("reload");
+                            else
+                                getTabWindow().$("#" + gridOptions.id).treegrid("reload", row[gridOptions.parentIdField]);
+                        }
+                    }
+                    // 重新加载指定的Grid数据
+                    refreshGrids(linkbuttonOptions.reload);
+                } else {
+                    showMessage({
+                        statusCode: 300,
+                        title: topJUI.language.message.title.operationTips,
+                        message: '显示红底色的输入框为必填字段',
+                        icon: topJUI.language.message.icon.warning
+                    });
+                }
+            }
+
+        }
+
+    });
+
+})(jQuery);;(function ($) {
+
+    $.fn.iMenubutton = function (options) {
+        var defaults = {
+            iconCls: 'icon-save',
+            hasDownArrow: false,
+            onClick: function () {
+                $(this).menubutton(options.clickEvent)
+            }
+        }
+
+        var options = $.extend(defaults, options);
+
+        $(this).menubutton(options);
+    }
+
+    $.extend($.fn.menubutton.methods, {
+
+        openDialog: function (target, options) {
+            //var options = $(this).menubutton('options'); // 事件中获取参数
+            var options = $.data(target[0], "menubutton").options;
+            var dialog = options.dialog;
+            var grid = options.grid;
+            var parentGrid = options.parentGrid;
+
+            // 权限控制
+            if (dialog.id != undefined) {
+                if (!authCheck(dialog.id)) return;
+            } else {
+                if (!authCheck(dialog.href)) return;
+            }
+
+            options.dialog.leftMargin = ($(document.body).width() * 0.5) - (dialog.width * 0.5);
+            options.dialog.topMargin = ($(document.body).height() * 0.5) - (dialog.height * 0.5);
+
+            if (typeof parentGrid == "object") {
+                openDialogAndloadDataByParentGrid(options);
+            } else if (dialog.url) {
+                openDialogAndloadDataByUrl(options);
+            } else {
+                if (grid.uncheckedMsg) {
+                    var rows = getCheckedRowsData(grid.type, grid.id);
+                    if (rows.length == 0) {
+                        $.messager.alert(
+                            topJUI.language.message.title.operationTips,
+                            options.grid.uncheckedMsg,
+                            topJUI.language.message.icon.warning
+                        );
+                        return;
+                    }
+                }
+                if (dialog.onBeforeOpen != "undefined") {
+                    // 回调执行传入的自定义函数
+                    executeCallBackFun(dialog.onBeforeOpen, options);
+                }
+                options.href = appendSourceUrlParam(dialog.href);
+                var $dialogObj = $("#" + dialog.id);
+                $dialogObj.iDialog(options);
+                $dialogObj.dialog('open');
+            }
+        }
+
+    });
 
 })(jQuery);;+function ($) {
     'use strict';
@@ -5064,6 +5154,10 @@ Array.prototype.remove = function (val) {
         getTabWindow().$('[data-toggle="topjui-menubutton"]').each(function () {
             var $element = $(this);
             var options = getOptionsJson($element);
+
+            options.id = getTimestamp();
+            $(this).attr("id", options.id);
+
             options = bindMenuClickEvent($element, options);
 
             $(this).iMenubutton(options);
@@ -5411,7 +5505,7 @@ Array.prototype.remove = function (val) {
 
             } else {
                 $element.attr('id', options.id);
-                getTabWindow().$('#' + options.id).iDialog(options);
+                //getTabWindow().$('#' + options.id).iDialog(options);
             }
         });
 
@@ -5420,73 +5514,6 @@ Array.prototype.remove = function (val) {
             var options = getOptionsJson($element);
 
             $element.iLinkbutton(options);
-
-            if (options.handler == "ajaxForm" || options.handler == "multiAjaxForm") {
-                $element.on("click", function () {
-
-                    if (options.handlerBefore != "undefined") {
-                        // 回调执行传入的自定义函数
-                        executeCallBackFun(options.handlerBefore);
-                    }
-
-                    var defaults = {
-                        gridId: 'datagrid',
-                        dialogId: 'editDialog'
-                    }
-                    options = $.extend(defaults, options);
-                    // 判断数据是否通过验证
-                    if (getTabWindow().$("#" + options.dialog.id).form('validate')) {
-                        // 序列化表单数据
-                        options.ajaxData = getTabWindow().$("#" + options.dialog.id).serialize();
-                        if (options.combotreeFields != undefined) {
-                            var combotreeParams = '';
-                            $.each(options.combotreeFields, function (k, v) {
-                                combotreeParams += '&' + v.replace(options.postfix, "") + '=' + getTabWindow().$("#" + options.dialogId + ' input[textboxname="' + v + '"]').combotree('getValues').join(',') + ', ';
-                            });
-                            options.ajaxData += combotreeParams;
-                        }
-                        // 提交更新多条数据
-                        if (options.handler == "multiAjaxForm") {
-                            var rows = getCheckedRowsData(options.grid.type, options.grid.id);
-                            if (rows.length == 0) {
-                                $.messager.alert(
-                                    topJUI.language.message.title.operationTips,
-                                    topJUI.language.message.msg.checkSelfGrid,
-                                    topJUI.language.message.icon.warning
-                                );
-                                return;
-                            }
-                            var pkName = options.grid.pkName == "undefined" ? topJUI.config.pkName : options.grid.pkName;
-                            options.ajaxData += '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
-                        }
-                        // 执行ajax动作
-                        getTabWindow().doAjax(options);
-                        // 关闭dialog
-                        getTabWindow().$("#" + options.dialog.id).dialog("close");
-                        // 重新加载本grid数据
-                        if (typeof options.grid == "object") {
-                            if (options.grid.type == "datagrid") {
-                                getTabWindow().$("#" + options.grid.id).datagrid("reload");
-                            } else if (options.grid.type == "treegrid") {
-                                var row = getSelectedRowData(options.grid.type, options.grid.id);
-                                if (row == null)
-                                    getTabWindow().$("#" + options.grid.id).treegrid("reload");
-                                else
-                                    getTabWindow().$("#" + options.grid.id).treegrid("reload", row[options.grid.parentIdField]);
-                            }
-                        }
-                        // 重新加载指定的Grid数据
-                        refreshGrids(options.reload);
-                    } else {
-                        showMessage({
-                            statusCode: 300,
-                            title: topJUI.language.message.title.operationTips,
-                            message: '显示红底色的输入框为必填字段',
-                            icon: topJUI.language.message.icon.warning
-                        });
-                    }
-                });
-            }
         });
         //}, 10);
     });
@@ -6206,8 +6233,8 @@ $(function () {
             },
             onClickRow: function (row) {
                 //级联选择
-                $(this).treegrid('cascadeCheck', {
-                    id: row.code, //节点ID
+                $("#" + options.id).treegrid('cascadeCheck', {
+                    id: row.id, //节点ID
                     deepCascade: true //深度级联
                 });
 
@@ -6281,6 +6308,8 @@ $(function () {
         $(this).treegrid(options);
     }
 
+    /* http://blog.csdn.net/yongjiandan/article/details/8061944 */
+
     /**
      * 扩展树表格级联勾选方法：
      * @param {Object} container
@@ -6303,14 +6332,14 @@ $(function () {
                 return;
             var idField = opts.idField;//这里的idField其实就是API里方法的id参数
             var status = false;//用来标记当前节点的状态，true:勾选，false:未勾选
-            var selectNodes = $(target).treegrid('getSelections');//获取当前选中项
+            var selectNodes = $(target.selector).treegrid('getSelections');//获取当前选中项
             for (var i = 0; i < selectNodes.length; i++) {
                 if (selectNodes[i][idField] == param.id)
                     status = true;
             }
             //级联选择父节点
-            selectParent(target[0], param.id, idField, status);
-            selectChildren(target[0], param.id, idField, param.deepCascade, status);
+            selectParent(target, param.id, idField, status);
+            selectChildren(target, param.id, idField, param.deepCascade, status);
             /**
              * 级联选择父节点
              * @param {Object} target
@@ -6319,13 +6348,13 @@ $(function () {
              * @return {TypeName}
              */
             function selectParent(target, id, idField, status) {
-                var parent = $(target).treegrid('getParent', id);
+                var parent = $(target.selector).treegrid('getParent', id);
                 if (parent) {
                     var parentId = parent[idField];
                     if (status)
-                        $(target).treegrid('select', parentId);
+                        $(target.selector).treegrid('select', parentId);
                     else
-                        $(target).treegrid('unselect', parentId);
+                        $(target.selector).treegrid('unselect', parentId);
                     selectParent(target, parentId, idField, status);
                 }
             }
@@ -6358,85 +6387,73 @@ $(function () {
 
     /**
      * 扩展树表格级联选择（点击checkbox才生效）：
-     *        自定义属性：
-     *        threeLinkCheck  :  三级联动(父节点和子节点都被选中)
-     *        cascadeCheck    :  普通级联(不包括未加载的子节点),针对子节点。(这种个人认为主要区别应该在异步加载，如果非异步加载，看不出区别)
-     *        deepCascadeCheck:  深度级联(包括未加载的子节点),针对子节点
+     *        自定义两个属性：
+     *        cascadeCheck ：普通级联（不包括未加载的子节点）
+     *        deepCascadeCheck ：深度级联（包括未加载的子节点）
      */
-    $.extend($.fn.treegrid.defaults, {
+    /*$.extend($.fn.treegrid.defaults, {
         onLoadSuccess: function () {
             var target = $(this);
             var opts = $.data(this, "treegrid").options;
             var panel = $(this).datagrid("getPanel");
             var gridBody = panel.find("div.datagrid-body");
             var idField = opts.idField;//这里的idField其实就是API里方法的id参数
-            gridBody.find("div.datagrid-cell-check input[type=checkbox]").click(function (e) {
-                //if(opts.singleSelect) return;//单选不管
-                if (opts.cascadeCheck || opts.deepCascadeCheck || opts.threeLinkCheck) {
+            gridBody.find("div.datagrid-cell-check input[type=checkbox]").unbind(".treegrid").click(function (e) {
+                if (opts.singleSelect) return;//单选不管
+                if (opts.cascadeCheck || opts.deepCascadeCheck) {
                     var id = $(this).parent().parent().parent().attr("node-id");
                     var status = false;
                     if ($(this).attr("checked")) status = true;
-
-                    if (opts.threeLinkCheck) {
-                        //三级联动,是否深度级联还需要设置deepCascadeCheck的值
-                        selectParent(target, id, idField, status);
-                        selectChildren(target, id, idField, opts.deepCascadeCheck, status);
-                    } else {
-                        //只设置cascadeCheck或者deepCascadeCheck
-                        if (opts.cascadeCheck || opts.deepCascadeCheck) {
-                            //普通级联
-                            selectChildren(target, id, idField, opts.deepCascadeCheck, status);
-                        }
-                    }
-                    /**
+                    //级联选择父节点
+                    selectParent(target, id, idField, status);
+                    selectChildren(target, id, idField, opts.deepCascadeCheck, status);
+                    /!**
                      * 级联选择父节点
                      * @param {Object} target
                      * @param {Object} id 节点ID
                      * @param {Object} status 节点状态，true:勾选，false:未勾选
                      * @return {TypeName}
-                     */
+                     *!/
                     function selectParent(target, id, idField, status) {
                         var parent = target.treegrid('getParent', id);
                         if (parent) {
                             var parentId = parent[idField];
                             if (status)
-                                $("input[type=checkbox][value='" + parentId + "']").attr("checked", true);
+                                target.treegrid('select', parentId);
                             else
-                                $("input[type=checkbox][value='" + parentId + "']").attr("checked", false);
+                                target.treegrid('unselect', parentId);
                             selectParent(target, parentId, idField, status);
                         }
                     }
 
-                    /**
+                    /!**
                      * 级联选择子节点
                      * @param {Object} target
                      * @param {Object} id 节点ID
                      * @param {Object} deepCascade 是否深度级联
                      * @param {Object} status 节点状态，true:勾选，false:未勾选
                      * @return {TypeName}
-                     */
+                     *!/
                     function selectChildren(target, id, idField, deepCascade, status) {
                         //深度级联时先展开节点
-                        if (status && deepCascade) {
+                        if (status && deepCascade)
                             target.treegrid('expand', id);
-                        }
-
-                        //根据ID获取所有孩子节点
+                        //根据ID获取下层孩子节点
                         var children = target.treegrid('getChildren', id);
                         for (var i = 0; i < children.length; i++) {
-                            var childId = children[i][idField];//可以根据key取到任意值
-                            if (status) {
-                                $("input[type=checkbox][value='" + childId + "']").attr("checked", true);
-                            } else {
-                                $("input[type=checkbox][value='" + childId + "']").attr("checked", false);
-                            }
+                            var childId = children[i][idField];
+                            if (status)
+                                target.treegrid('select', childId);
+                            else
+                                target.treegrid('unselect', childId);
+                            selectChildren(target, childId, idField, deepCascade, status);//递归选择子节点
                         }
                     }
                 }
                 e.stopPropagation();//停止事件传播
             });
         }
-    });
+    });*/
 
 })(jQuery);;(function($){
 	

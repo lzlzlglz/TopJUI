@@ -1,9 +1,13 @@
 function getTabWindow() {
     var curTabWin = null;
-    var curTab = parent.$('#index_tabs').tabs('getSelected');
-    // var curTab = $('#index_tabs').tabs('getSelected');
-    if (curTab && curTab.find('iframe').length > 0) {
-        curTabWin = curTab.find('iframe')[0].contentWindow;
+    if (topJUI.config.aloneUse) {
+        curTabWin = window;
+    } else {
+        var curTab = parent.$('#index_tabs').tabs('getSelected');
+        // var curTab = $('#index_tabs').tabs('getSelected');
+        if (curTab && curTab.find('iframe').length > 0) {
+            curTabWin = curTab.find('iframe')[0].contentWindow;
+        }
     }
     return curTabWin;
 }
