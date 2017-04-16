@@ -115,7 +115,7 @@ $(function () {
         indexTab.text = "系统门户";
         var portal = $.getUrlParam("portal");
         if (portal == "system" || portal == null) portal = "system";
-        indexTab.url = "/html/article/index.html";
+        indexTab.url = "/html/portal/index.html";
         indexTab.closable = false;
         indexTab.border = false;
         addTab(indexTab);
@@ -289,9 +289,9 @@ function generateMenu(menuId) {
         }
     }
 
-    var url = ctx + "/system/menu/api/getListByCodeSetIdAndLevelId?codeSetId=menu";
+    var url = ctx + "/json/menu/menu.json";
     $.get(
-        url, {"levelId": "2", "menuId": 2}, // 获取第一层目录
+        url, {"levelId": "2"}, // 获取第一层目录
         function (data) {
             if (data == "0") {
                 window.location = "/Account";
@@ -305,13 +305,13 @@ function generateMenu(menuId) {
                     iconCls: e.iconCls,
                 });
                 $.parser.parse();
-                $.get(ctx + "/system/menu/api/getListByPid?pid=" + e.id, function (data) {// 循环创建树的项
+                $.get(ctx + "/json/menu/menu_" + e.id + ".json", function (data) {// 循环创建树的项
                     $("#tree" + e.id).tree({
                         data: data,
                         lines: false,
                         animate: true,
                         onBeforeExpand: function (node, param) {
-                            $("#tree" + e.id).tree('options').url = ctx + "/system/menu/api/getListByPid?pid=" + node.id;
+                            $("#tree" + e.id).tree('options').url = ctx + "/json/menu/menu_" + node.id + ".json";
                         },
                         onClick: function (node) {
                             if (node.url) {

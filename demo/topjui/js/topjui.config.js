@@ -15,7 +15,7 @@
  *
  */
 
-var ctx = "http://demo.topjui.com";
+var ctx = "";
 var topJUI = {
     config: {
         ctx: "",

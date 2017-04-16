@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="renderer" content="webkit">
     <!-- 公共css/js文件 -->
-    <script type="text/javascript" src="topjui/js/topjui.include.js"></script>
+    <script type="text/javascript" src="../../topjui/js/topjui.include.js"></script>
 </head>
 
 <body>
@@ -14,8 +14,8 @@
        data-options="id:'menuTreegrid',
         idField:'id',
         treeField:'text',
-        url:ctx+'/system/menu/api/getListByCodeSetIdAndLevelId?codeSetId=menu&levelId=1',
-        expandUrl:ctx+'/system/menu/api/getListByPid?pid={id}',
+        url:'../../json/menu/menu.json',
+        expandUrl:'../../json/menu/menu_{id}.json',
         fitColumns:true">
     <thead>
     <tr>
