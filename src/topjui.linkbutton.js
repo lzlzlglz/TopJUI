@@ -52,7 +52,7 @@
                             );
                             return;
                         }
-                        var pkName = gridOptions.pkName == "undefined" ? topJUI.config.pkName : gridOptions.pkName;
+                        var pkName = gridOptions.pkName == undefined ? topJUI.config.pkName : gridOptions.pkName;
                         linkbuttonOptions.ajaxData += '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
                     }
                     // 执行ajax动作

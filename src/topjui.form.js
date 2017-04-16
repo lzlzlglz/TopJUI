@@ -248,9 +248,9 @@
                 //$("#gridid").combogrid('grid').datagrid('selectRecord', 'admin');
             },
             onSelect: function (index, row) {
-                if (options.param) {
+                if (options.params) {
                     var $formObj = $("#" + options.id).closest('form');
-                    var jsonData = getSelectedRowJson(options.param, row);
+                    var jsonData = getSelectedRowJson(options.params, row);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                     $('#' + options.id).combogrid('textbox').focus();
                 }

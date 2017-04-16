@@ -4075,9 +4075,9 @@ $.extend($.fn.datagrid.methods, {
                 //$("#gridid").combogrid('grid').datagrid('selectRecord', 'admin');
             },
             onSelect: function (index, row) {
-                if (options.param) {
+                if (options.params) {
                     var $formObj = $("#" + options.id).closest('form');
-                    var jsonData = getSelectedRowJson(options.param, row);
+                    var jsonData = getSelectedRowJson(options.params, row);
                     getTabWindow().$("#" + $formObj.attr("id")).form('load', jsonData);
                     $('#' + options.id).combogrid('textbox').focus();
                 }
@@ -4647,7 +4647,7 @@ Array.prototype.remove = function (val) {
                             );
                             return;
                         }
-                        var pkName = gridOptions.pkName == "undefined" ? topJUI.config.pkName : gridOptions.pkName;
+                        var pkName = gridOptions.pkName == undefined ? topJUI.config.pkName : gridOptions.pkName;
                         linkbuttonOptions.ajaxData += '&' + pkName + 's=' + getMultiRowsFieldValue(rows, pkName);
                     }
                     // 执行ajax动作
