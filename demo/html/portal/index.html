@@ -17,76 +17,95 @@
     <p></p>
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-primary">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="text-center">TopJUI前端框架</h3>
                 </div>
-                <div class="list-group">
-                    <div class="list-group-item">
-                        <span>
-                            <i class="fa fa-info-circle"></i>
-                            TopJUI前端框架主页及使用文档：<a href="http://www.topjui.com" target="_blank">http://www.topjui.com</a>
-                        </span>
-                    </div>
-                    <div class="list-group-item">
-                        <span>
-                            <i class="fa fa-info-circle"></i>
-                            本演示系统只作为TopJUI前端框架静态演示，部分功能在静态演示系统上无法实现
-                        </span>
-                    </div>
-                    <div class="list-group-item">
-                        <span>
-                            <i class="fa fa-info-circle"></i>
-                            本演示系统左侧菜单的“系统管理平台”仅作为的菜单示例，里面的操作无法使用，暂时也不会更新该部分功能
-                        </span>
-                    </div>
-                    <div class="list-group-item">
-                        <span class="text-danger">
-                            <i class="fa fa-info-circle"></i>
-                            由于时间关系，目前本演示系统功能还不完全，后续会一步步完善，请关注GIT更新：
-                            <a href="http://git.oschina.net/xvpindex/TopJUI" target="_blank">http://git.oschina.net/xvpindex/TopJUI</a>
-                        </span>
-                    </div>
-                    <div class="list-group-item">
-                        <span class="text-primary">
-                            <i class="fa fa-info-circle"></i>
-                            目前该演示系统已更新的可供演示的功能组件如下：
-                        </span>
-                    </div>
-                    <div class="list-group-item">
-                        <span class="text-success">
-                            <i class="fa fa-info-circle"></i>
-                            表格组件：普通表格、树形表格、可编辑表格（双击行编辑）
-                        </span>
-                    </div>
-                    <div class="list-group-item">
-                        <span>
-                            <i class="fa fa-info-circle"></i>
-                            更多功能及使用文档详见TopJUI前端框架与JAVA（Spring + Spring MVC + Hibernate）整合的项目：
-                            <a href="http://demo.topjui.com/system/index/index" target="_blank">http://demo.topjui.com/system/index/index</a>
-                            ，用户名/密码：topjui / topjui
-                        </span>
-                    </div>
+                <div class="panel-body">
+                    <h3 class="text-center" style="font-weight: bold">关于本演示系统</h3>
+                    <p style="text-indent: 2em;line-height: 2em;">
+                        本演示系统只作为TopJUI前端框架静态演示之用，部分功能在静态页面上不便实现，
+                        与后端整合项目详见右边。本演示系统左侧菜单的“系统管理平台”仅作为的菜单示例，里面的操作无法使用，暂时也不会更新该部分功能。
+                        因时间关系，该演示系统只有部分组件可供演示，后续会进一步完善，请关注TopJUI项目GIT，目前该演示系统已更新的可供演示的功能组件如下：</p>
+                    <p>表格组件：普通表格、树形表格、可编辑表格（双击行编辑）</p>
+                    <br>
+                    <h3 class="text-danger text-center" style="font-weight: bold">TopJUI前端框架</h3>
+                    <h4 class="text-success text-center" style="font-weight: bold">
+                        纯HTML调用功能组件，不用写JS代码的EasyUI，专注你的后端业务开发！</h4>
+                    <p style="text-indent: 2em;line-height: 2em;">
+                        EasyUI是比较流行的前端框架，适用于企业信息系统或网站后台管理，随着IE所占市场份额越来越小，EasyUI的兼容性也越来越强，但在开发过程中，对于EasyUI稍微复杂的组件功能，大多需要通过手写JS代码实现，因此增加了开发难度，降低了开发效率。
+                        我们在企业信息系统的开发过程中，经过近两年时间的研发，通过封装EasyUI组件功能，同时在EasyUI原有组件的基础上，扩展了常用的组件功能，整合了常用的第三方插件，形成具有特色的，通过纯HTML调用组件功能的TopJUI前端框架，目前已成功应用在多个企业信息管理系统中。
+                    </p>
+                    <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 下载演示</h3>
+                    <p>GIT下载：<a href="http://git.oschina.net/xvpindex/TopJUI" target="_blank">http://git.oschina.net/xvpindex/TopJUI</a>
+                    </p>
+                    <p>官方网站：<a href="http://www.topjui.com" target="_blank">http://www.topjui.com</a></p>
+                    <p>演示站点：<a href="http://demo.topjui.com/system/index/index" target="_blank">http://demo.topjui.com/system/index/index</a>
+                    </p>
+                    <p>用户名 / 密码：topjui / topjui</p>
+                    <p>QQ交流群：593783047，如有问题或建议欢迎反馈！</p>
+
+                    <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 兼容性</h3>
+                    <p>IE9.0+, Chrome[最佳], Firefox, Safari</p>
+                    <p>本框架不适用于需要兼容IE6、7、8的开发者或使用者</p>
+
+                    <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 测试环境</h3>
+                    <p>
+                        将demo文件夹中的所有文件放至应用服务器（nginx/tomcat等）的根目录下</p>
+                    <p></p>确保可以通过[http://localhost:80/](http://localhost:80/)访问即可</p>
+                    <p>注意：如果访问地址与[http://localhost:80/](http://localhost:80/)形式不一致，则需要配置主页面参数
+
+                    <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 第三方组件</h3>
+                    <p>jQuery v1.11.3</p>
+                    <p>EasyUI v1.5.1</p>
+                    <p>Bootstrap v3.3.5</p>
+                    <p>Font Awesome 4.7.0</p>
+                    <p>Echarts v3.5.3</p>
+                    <p>Ueditor v1.4.3.3</p>
+                    <p>WebUploader v0.1.5</p>
+
+                    <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 扩展组件</h3>
+
+                    <p>图形报表</p>
+                    <p>富文本编辑器</p>
+                    <p>附件上传</p>
+                    <p>主子表关联</p>
+                    <p>提交表格数据</p>
+                    <p>可编辑表格</p>
+                    <p>查找带回</p>
+                    <p>自动完成</p>
+                    <p>多级联动</p>
+                    <p>动态联动</p>
+                    <p>多项选择</p>
+                    <p>按钮启动弹窗</p>
+                    <p>内页打开Tab页</p>
+                    <p>通用过滤及自定义查询</p>
+                    <p>通用导入导出</p>
+                    <p>其它组件功能</p>
+
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="panel panel-primary">
+            <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <h3 class="text-center">企业级信息管理系统开发平台</h3>
-                </div>
-                <div class="list-group-item">
-                    <span>
-                        系统访问地址：
-                        <a href="http://demo.topjui.com/system/index/index" target="_blank">http://demo.topjui.com/system/index/index</a>
-                            ，用户名/密码：topjui / topjui
-                    </span>
+                    <h3 class="text-center">TopJUI与后端整合</h3>
                 </div>
                 <div class="panel-body">
-                    <h3><i class="fa fa-info-circle"></i> 与TopJUI整合实现的功能</h3>
-                    <p>
-                        根据TopJUI前端框架的一些特性，通过与JAVA后端（Spring + Spring MVC + Hibernate）整合，实现的部分功能如下：
+                    <h3><i class="fa fa-info-circle"></i> 关于开发平台</h3>
+                    <p style="text-indent: 2em;line-height: 2em">
+                        通过十年的企业级信息系统开发经验积累总结与沉淀，我们根据客户的通用需求及软件开发中遇到的一些问题，成功开发了TopJUI前端框架，
+                        在满足客户需求的同时，大大提高了前端开发的工作效率，同时根据TopJUI框架的特性，
+                        结合后端JAVA开发框架（Spring + Spring MVC + Hibernate）及第三方插件整合，
+                        成功研发了适用于企业管理的信息化系统开发平台“易网时代企业管理信息系统开发平台”（以下简称“开发平台”）。
                     </p>
+                    <p style="text-indent: 2em;line-height: 2em">
+                        开发平台演示地址：
+                        <a href="http://demo.topjui.com/system/index/index" target="_blank">http://demo.topjui.com/system/index/index</a>
+                        ，用户名/密码：topjui / topjui
+                    </p>
+
+                    <h3><i class="fa fa-info-circle"></i> 开发平台部分功能</h3>
                     <p>多数据源连接：实现数据库分布式部署或集成已有信息系统的数据，实现系统整合</p>
                     <p>HQL查询：可通过HQL（Hibernate查询）实现查询或新增、更新、删除等操作</p>
                     <p>SQL查询：可通过SQL（JDBC Template查询）实现查询或新增、更新、删除等操作</p>
