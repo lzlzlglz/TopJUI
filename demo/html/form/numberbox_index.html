@@ -11,7 +11,7 @@
 
 <body>
 <table data-toggle="topjui-datagrid" 
-    data-options="id:'issueInvoiceDatagrid',
+    data-options="id:'productDg',
     url:'../../json/goodslist.json'">
     <thead>
         <tr>
@@ -24,5 +24,26 @@
         </tr>
     </thead>
 </table>
+
+<!-- 用户 表格工具栏 -->
+<div id="productDg-toolbar"
+     data-options="grid:{
+           type:'datagrid',
+           id:'productDg'
+       }" style="display:none">
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="clickEvent:'openDialog',
+       dialog:{
+           id:'userAddDialog',
+           href:'/html/form/numberbox.html',
+           height:450,
+           width:700,
+           buttonsGroup:[
+               {text:'保存',url:'/system/user/save',iconCls:'icon-add',handler:'ajaxForm'}
+           ]
+       }">数值输入演示</a>
+</div>
+
 </body>
 </html>
