@@ -14,13 +14,16 @@
             font: 12px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
             letter-spacing: 1px;
         }
+
+        ul li {
+            line-height: 2em;
+        }
     </style>
 </head>
 
 <body>
 
-<div class="container-fluid">
-    <p></p>
+<div class="container" style="margin-top: 20px;">
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-success">
@@ -43,67 +46,74 @@
                         我们在企业信息系统的开发过程中，经过近两年时间的研发，通过封装EasyUI组件功能，同时在EasyUI原有组件的基础上，扩展了常用的组件功能，整合了常用的第三方插件，形成具有特色的，通过纯HTML调用组件功能的TopJUI前端框架，目前已成功应用在多个企业信息管理系统中。
                     </p>
                     <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 下载演示</h3>
-                    <p>GIT下载：<a href="http://git.oschina.net/xvpindex/TopJUI" target="_blank">http://git.oschina.net/xvpindex/TopJUI</a>
-                    </p>
-                    <p>官方网站：<a href="http://www.topjui.com" target="_blank">http://www.topjui.com</a></p>
-                    <p>演示站点：<a href="http://demo.topjui.com" target="_blank">http://demo.topjui.com</a></p>
-                    <p>整合项目：<a href="http://demo.ewsd.cn/system/index/index" target="_blank">http://demo.ewsd.cn/system/index/index</a>
-                    （用户名/密码：topjui / topjui）</p>
-                    <p>QQ交流群：593783047，如有问题或建议欢迎反馈！</p>
+                    <ul>
+                        <li>官方网站：<a href="http://www.topjui.com" target="_blank">http://www.topjui.com</a></li>
+                        <li>演示站点：<a href="http://demo.topjui.com" target="_blank">http://demo.topjui.com</a></li>
+                        <li>GIT下载：<a href="http://git.oschina.net/xvpindex/TopJUI" target="_blank">http://git.oschina.net/xvpindex/TopJUI</a>
+                        </li>
+                        <li>QQ交流群：593783047，如有问题或建议欢迎反馈！</li>
+                    </ul>
 
                     <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 兼容性</h3>
-                    <p>IE9.0+, Chrome[最佳], Firefox, Safari</p>
-                    <p>本框架不适用于需要兼容IE6、7、8的开发者或使用者</p>
-
+                    <ul>
+                        <li>IE9.0+, Chrome[最佳], Firefox, Safari</li>
+                        <li>本框架不适用于需要兼容IE6、7、8的开发者或使用者</li>
+                    </ul>
                     <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 测试环境</h3>
-                    <p>
-                        将demo文件夹中的所有文件放至应用服务器（nginx/tomcat等）的根目录下</p>
-                    <p></p>确保可以通过[http://localhost:80/](http://localhost:80/)访问即可</p>
-                    <p>注意：如果访问地址与[http://localhost:80/](http://localhost:80/)形式不一致，则需要配置主页面参数
+                    <ul>
+                        <li>
+                            将demo文件夹中的所有文件放至应用服务器（nginx/tomcat等）的根目录下
+                        </li>
+                        <li>确保可以通过http://localhost:80/访问即可</li>
+                        <li>注意：如果访问地址与http://localhost:80/形式不一致，则需要配置主页面参数
+                    </ul>
 
                     <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 第三方组件</h3>
-                    <p>jQuery v1.11.3</p>
-                    <p>EasyUI v1.5.1</p>
-                    <p>Bootstrap v3.3.5</p>
-                    <p>Font Awesome 4.7.0</p>
-                    <p>Echarts v3.5.3</p>
-                    <p>Ueditor v1.4.3.3</p>
-                    <p>WebUploader v0.1.5</p>
+                    <ul>
+                        <li>jQuery v1.11.3</li>
+                        <li>EasyUI v1.5.1</li>
+                        <li>Bootstrap v3.3.5</li>
+                        <li>Font Awesome 4.7.0</li>
+                        <li>Echarts v3.5.3</li>
+                        <li>Ueditor v1.4.3.3</li>
+                        <li>WebUploader v0.1.5</li>
+                    </ul>
 
                     <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 扩展组件</h3>
 
-                    <p>图形报表</p>
-                    <p>富文本编辑器</p>
-                    <p>附件上传</p>
-                    <p>主子表关联</p>
-                    <p>提交表格数据</p>
-                    <p>可编辑表格</p>
-                    <p>查找带回</p>
-                    <p>自动完成</p>
-                    <p>多级联动</p>
-                    <p>动态联动</p>
-                    <p>多项选择</p>
-                    <p>按钮启动弹窗</p>
-                    <p>内页打开Tab页</p>
-                    <p>通用过滤及自定义查询</p>
-                    <p>通用导入导出</p>
-                    <p>其它组件功能</p>
-
+                    <ul>
+                        <li>图形报表</li>
+                        <li>富文本编辑器</li>
+                        <li>附件上传</li>
+                        <li>主子表关联</li>
+                        <li>提交表格数据</li>
+                        <li>可编辑表格</li>
+                        <li>查找带回</li>
+                        <li>自动完成</li>
+                        <li>多级联动</li>
+                        <li>动态联动</li>
+                        <li>多项选择</li>
+                        <li>按钮启动弹窗</li>
+                        <li>内页打开Tab页</li>
+                        <li>通用过滤及自定义查询</li>
+                        <li>通用导入导出</li>
+                        <li>其它组件功能</li>
+                    </ul>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <h3 class="text-center">TopJUI与后端整合</h3>
+                    <h3 class="text-center">TopJUI与JAVA整合</h3>
                 </div>
                 <div class="panel-body">
-                    <h3 class="text-danger"><i class="fa fa-info-circle"></i> 关于开发平台</h3>
+                    <h3 class="text-danger"><i class="fa fa-info-circle"></i> 关于整合项目</h3>
                     <p style="text-indent: 2em;line-height: 2em">
-                        通过十年的企业级信息系统开发经验积累总结与沉淀，我们根据客户的通用需求及软件开发中遇到的问题，开发了TopJUI前端框架，
-                        在满足客户需求的同时，大大提高了前端开发的工作效率。我们根据TopJUI框架的特性，
-                        整合后端JAVA开发框架（Spring + Spring MVC + Hibernate）及第三方JAVA组件，
-                        研发了适用于企业管理的信息化系统开发平台“易网时代企业管理信息系统开发平台”（以下简称“开发平台”），通过此开发平台，
+                        我们通过十年的企业级信息系统开发经验积累总结与沉淀，根据客户的通用需求及软件开发中遇到的问题，开发了TopJUI前端框架，
+                        在满足客户需求的同时，大大提高了前端开发的工作效率。根据TopJUI框架的特性，
+                        我们整合了后端JAVA开发框架（Spring + Spring MVC + Hibernate）及第三方JAVA组件，
+                        研发了适用于企业管理的企业级信息化系统开发平台“易网时代企业管理信息系统开发平台”（以下简称“EMIS开发平台”），通过此开发平台，
                         我们实现了企业管理信息系统的快速开发，目前已应用在多个企业的信息管理系统中，提供了在一个平台下支撑数十个子系统，
                         几百个子模块同时运行的企业级信息管理系统解决方案。
                     <p style="text-indent: 2em;line-height: 2em">
@@ -112,48 +122,52 @@
                         ，用户名/密码：topjui / topjui
                     </p>
 
-                    <h3 class="text-danger"><i class="fa fa-info-circle"></i> 开发平台通用功能</h3>
-                    <p>多数据源：实现数据库分布式部署或集成已有信息系统的数据，实现系统整合</p>
-                    <p>HQL查询：可通过HQL（Hibernate查询）实现查询或新增、更新、删除等操作</p>
-                    <p>SQL查询：可通过SQL（JDBC Template查询）实现查询或新增、更新、删除等操作</p>
-                    <p>视图查询：可通过调用视图查询数据，实现表与表之间复杂的关联查询功能</p>
-                    <p>存储过程：可通过封装好的方法调用存储过程，实现数据库的强大数据处理功能</p>
-                    <p>RESTful风格：在控制器中自由配置请求地址参数，实现URL地址的RESTful风格</p>
-                    <p>数据导出：封装通用的数据导出Excel功能，可导出每个表格界面中过滤查询数据</p>
-                    <p>报表导出：通过调用封装的导出接口，根据模板文件导出Word、Excel、Pdf报表</p>
-                    <p>Json输出：统一Json格式数据输出，一套后端程序同时实现网页端、移动APP端的数据调用</p>
-                    <p>数据过滤：每个表格界面，自带数据过滤功能，可同时过滤多个字段完成过滤查询</p>
-                    <p>自定义查询：每个表格界面，通过自定义查询条件，实现可自由组合的数据查询</p>
-                    <p>数据排序：可结合数据过滤或自定义组合查询，实现单个字段或多个字段组合排序</p>
+                    <h3 class="text-danger"><i class="fa fa-info-circle"></i> EMIS开发平台基础功能</h3>
+                    <ul>
+                        <li>多数据源：实现数据库分布式部署或集成已有信息系统的数据，实现系统整合</li>
+                        <li>HQL查询：可通过HQL（Hibernate查询）实现查询或新增、更新、删除等操作</li>
+                        <li>SQL查询：可通过SQL（JDBC Template查询）实现查询或新增、更新、删除等操作</li>
+                        <li>视图查询：可通过调用视图查询数据，实现表与表之间复杂的关联查询功能</li>
+                        <li>存储过程：可通过封装好的方法调用存储过程，实现数据库的强大数据处理功能</li>
+                        <li>RESTful风格：在控制器中自由配置请求地址参数，实现URL地址的RESTful风格</li>
+                        <li>数据导出：封装通用的数据导出Excel功能，可导出每个表格界面中过滤查询数据</li>
+                        <li>报表导出：通过调用封装的导出接口，根据模板文件导出Word、Excel、Pdf报表</li>
+                        <li>Json输出：统一Json格式数据输出，一套后端程序同时实现网页端、移动APP端的数据调用</li>
+                        <li>数据过滤：每个表格界面，自带数据过滤功能，可同时过滤多个字段完成过滤查询</li>
+                        <li>自定义查询：每个表格界面，通过自定义查询条件，实现可自由组合的数据查询</li>
+                        <li>数据排序：可结合数据过滤或自定义组合查询，实现单个字段或多个字段组合排序</li>
 
-                    <p>主子表关联：在子表中新增数据时，提示先选中主表数据，点击主表数据过滤子表数据</p>
-                    <p>按需加载：只有点击子表所在的Tab页时才加载子表或子页面的信息，按需加载提高效率</p>
-                    <p>查找带回：查询勾选某行数据，将与该数据行相关的信息回填到当前表单的其它输入框中</p>
-                    <p>自动完成：类似百度的搜索功能，输入关键字后自动过滤显示相关的信息，如查找人员</p>
-                    <p>多级联动：根据前一个下拉框选择的内容，动态关联下一个下拉框中的内容，如省市县关联</p>
-                    <p>批量处理：实现表格数据的批量提交，如批量审批通过，批量修改部分字段信息等</p>
-                    <p>可编辑表格：在可编辑表格中双击行实现编辑，通过ajax请求与后台同步提交修改</p>
-                    <p>文件上传：整合百度的webuploader插件，同时具有flash及Html5上传效果，轻松实现附件上传</p>
-                    <p>图形报表：整合百度的echarts插件，可实现如柱状图、拆线图、饼图等图形报表生成</p>
-                    <p>文字编辑器：整合百度的Ueditor编辑器，实现富文本的编辑，文章发布等</p>
+                        <li>主子表关联：在子表中新增数据时，提示先选中主表数据，点击主表数据过滤子表数据</li>
+                        <li>按需加载：只有点击子表所在的Tab页时才加载子表或子页面的信息，按需加载提高效率</li>
+                        <li>查找带回：查询勾选某行数据，将与该数据行相关的信息回填到当前表单的其它输入框中</li>
+                        <li>自动完成：类似百度的搜索功能，输入关键字后自动过滤显示相关的信息，如查找人员</li>
+                        <li>多级联动：根据前一个下拉框选择的内容，动态关联下一个下拉框中的内容，如省市县关联</li>
+                        <li>批量处理：实现表格数据的批量提交，如批量审批通过，批量修改部分字段信息等</li>
+                        <li>可编辑表格：在可编辑表格中双击行实现编辑，通过ajax请求与后台同步提交修改</li>
+                        <li>文件上传：整合百度的webuploader插件，同时具有flash及Html5上传效果，轻松实现附件上传</li>
+                        <li>图形报表：整合百度的echarts插件，可实现如柱状图、拆线图、饼图等图形报表生成</li>
+                        <li>文字编辑器：整合百度的Ueditor编辑器，实现富文本的编辑，文章发布等</li>
+                    </ul>
 
-                    <h3 class="text-danger"><i class="fa fa-info-circle"></i> 开发平台模块功能</h3>
-                    <p>栏目管理：设置文章发布的栏目信息，开发企业门户网站时可调用相关栏目</p>
-                    <p>文章管理：文章发布管理模块，所有文章类的信息可在此发布在不同的栏目中</p>
-                    <p>知识文档：文档管理模块，通用的附件上传功能附件数据也保存在此模块中</p>
+                    <h3 class="text-danger"><i class="fa fa-info-circle"></i> EMIS开发平台模块功能</h3>
+                    <ul>
+                        <li>栏目管理：设置文章发布的栏目信息，开发企业门户网站时可调用相关栏目</li>
+                        <li>文章管理：文章发布管理模块，所有文章类的信息可在此发布在不同的栏目中</li>
+                        <li>知识文档：文档管理模块，通用的附件上传功能附件数据也保存在此模块中</li>
 
-                    <p>组织架构：通过树形结构实现无限级的人员组织架构，包括设置各级负责人</p>
-                    <p>用户信息：系统用户基本信息，如需其它字段信息，可通过扩展表新增</p>
-                    <p>角色授权：基于RBAC的权限控制系统，可控制权限到所有页面、按钮及链接</p>
-                    <p>会员管理：会员管理模块，可通过前台会员注册或后台手动录入会员信息</p>
+                        <li>组织架构：通过树形结构实现无限级的人员组织架构，包括设置各级负责人</li>
+                        <li>用户信息：系统用户基本信息，如需其它字段信息，可通过扩展表新增</li>
+                        <li>角色授权：基于RBAC的权限控制系统，可控制权限到所有页面、按钮及链接</li>
+                        <li>会员管理：会员管理模块，可通过前台会员注册或后台手动录入会员信息</li>
 
-                    <p>基础配置：可自定义增加调整系统配置信息，在系统任何界面都可实现调用</p>
-                    <p>系统菜单：系统后台的所有菜单，均在此模块进行配置，通过授权后显示在左侧导航中</p>
-                    <p>代码生成：通过代码生成器一键自动生成Controller、Service层的通用增删改查代码</p>
-                    <p>指标体系：指标体系即数据字典信息，通过无限级分类，实现数据字典的信息调用</p>
+                        <li>基础配置：可自定义增加调整系统配置信息，在系统任何界面都可实现调用</li>
+                        <li>系统菜单：系统后台的所有菜单，均在此模块进行配置，通过授权后显示在左侧导航中</li>
+                        <li>代码生成：通过代码生成器一键自动生成Controller、Service层的通用增删改查代码</li>
+                        <li>指标体系：指标体系即数据字典信息，通过无限级分类，实现数据字典的信息调用</li>
 
-                    <p>日志记录：记录所有用户操作信息，包括请求地址、传递参数，耗时、IP地址等信息</p>
-                    <p>异常记录：记录系统运行过程中的异常报错信息，及时主动发现问题，修复系统BUG</p>
+                        <li>日志记录：记录所有用户操作信息，包括请求地址、传递参数，耗时、IP地址等信息</li>
+                        <li>异常记录：记录系统运行过程中的异常报错信息，及时主动发现问题，修复系统BUG</li>
+                    </ul>
                 </div>
             </div>
         </div>
