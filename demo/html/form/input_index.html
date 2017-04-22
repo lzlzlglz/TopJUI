@@ -10,22 +10,58 @@
 </head>
 
 <body>
-<table data-toggle="topjui-datagrid"
-       data-options="id:'productDg',
-    url:'../../json/goodslist.json'">
-    <thead>
-    <tr>
-        <th data-options="field:'id',title:'ID',checkbox:true"></th>
-        <th data-options="field:'name',title:'商品名称'"></th>
-        <th data-options="field:'code',title:'商品编号'"></th>
-        <th data-options="field:'spec',title:'规格型号'"></th>
-        <th data-options="field:'danwei',title:'规格型号'"></th>
-        <th data-options="field:'sale_price',title:'销售单价'"></th>
-    </tr>
-    </thead>
-</table>
 
-<!-- 用户 表格工具栏 -->
+<!-- layout布局 开始 -->
+<div class="easyui-layout" data-options="fit:true">
+
+    <div data-options="region:'center',iconCls:'icon-reload',title:'',fit:false,split:true,border:false,bodyCls:'border_left_right'">
+        <table data-toggle="topjui-datagrid" data-options="id:'productDg',
+        url:'../../json/goodslist.json',
+        childTab: {
+            tabs:[
+                {id:'eastTabs',params:'uuid'}
+            ]
+        }">
+            <thead>
+            <tr>
+                <th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
+                <th data-options="field:'name',title:'商品名称'"></th>
+                <th data-options="field:'code',title:'商品编号'"></th>
+                <th data-options="field:'spec',title:'规格型号'"></th>
+                <th data-options="field:'danwei',title:'规格型号'"></th>
+                <th data-options="field:'sale_price',title:'销售单价'"></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div data-options="region:'east',iconCls:'icon-chart_pie',title:'',split:true,border:false,width:'40%',bodyCls:'border_left'">
+        <div data-toggle="topjui-tabs" data-options="id:'eastTabs',fit:true,border:false,
+				 tabs:[
+				 	{type:'panel',id:'document'},
+				 	{type:'panel',id:'warning'}
+				 ]">
+            <div title="开发文档" data-options="id:'document',iconCls:'icon-table',
+            dynamicHref:'http://www.topjui.com/system/article/api/detail?uuid=00000000594ac24c01594e2ae7082b27',
+            parentGrid:{
+                type:'datagrid',
+                id:'productDg',
+                params:'uuid'
+            }"></div>
+            <div title="使用示例" data-options="id:'warning',iconCls:'icon-table',
+            dynamicHref:'http://www.topjui.com/system/article/api/detail?uuid=00000000594ac24c01594e2ae7082b27',
+            parentGrid:{
+                type:'datagrid',
+                id:'productDg',
+                params:'uuid'
+            }"></div>
+        </div>
+    </div>
+
+</div>
+<!-- layout布局 结束 -->
+
+<!-- 表格工具栏开始 -->
 <div id="productDg-toolbar"
      data-options="grid:{
            type:'datagrid',
@@ -38,17 +74,11 @@
            id:'userAddDialog',
            href:'/html/form/input.html',
            height:450,
-           width:700,
            buttonsGroup:[
                {text:'保存',url:'/json/response/success.json',iconCls:'icon-add',handler:'ajaxForm'}
            ]
        }">文本输入演示</a>
 </div>
-
+<!-- 表格工具栏结束 -->
 </body>
-<script>
-    setTimeout(function () {
-        $.messager.alert('操作提示','请点击表格左上角的“文本输入演示”按钮');
-    }, 1500);
-</script>
 </html>
