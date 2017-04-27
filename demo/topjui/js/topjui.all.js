@@ -1772,11 +1772,11 @@ function bindMenuClickEvent($element, options) {
             parentGridUnselectedMsg: '请先选中一条主表数据！',
             dialog: {
                 title: '数据详情',
-                width: 650,
+                width: 700,
                 height: 450
             }
         }
-        options.dialog.width = options.dialog.width ? options.dialog.width : 650;
+        options.dialog.width = options.dialog.width ? options.dialog.width : 700;
         options.dialog.height = options.dialog.height ? options.dialog.height : 'auto';
         options = $.extend(defaults, options);
 
@@ -6329,8 +6329,6 @@ $(function () {
                 $(this).treegrid('options').url = replaceUrlParamValueByBrace(options.expandUrl, row);
             },
             onLoadSuccess: function () {
-                $('#' + options.id).treegrid('doCellTip', {cls: {}, delay: 500});
-
                 var rootNode = $(options.gridId).treegrid('getRoot');
                 if (rootNode) {
                     $(options.gridId).treegrid("expand", rootNode.id);
