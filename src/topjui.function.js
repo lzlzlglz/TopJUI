@@ -204,8 +204,9 @@ function getOptionsJson($element) {
  */
 function setFormElementId($element, options) {
     if (options.id == undefined) {
-        options.id = $element[0].name;
-        $element.attr('id', $element[0].name)
+        options.id = getTimestamp();
+        //options.id = $element[0].name; // 以字段名作为id值
+        $element.attr("id", options.id);
     } else {
         $element.attr('id', options.id)
     }

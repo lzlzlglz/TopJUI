@@ -305,7 +305,7 @@
                                 url: replaceUrlParamValueByBrace(options.getFatherIdsUrl, dataObj),
                                 success: function (data) {
                                     var fatherIdsArray = data.split(",");
-                                    for (i = fatherIdsArray.length - 1; i >= 0; i--) {
+                                    for (var i = fatherIdsArray.length - 1; i >= 0; i--) {
                                         findNode = grid.treegrid('find', fatherIdsArray[i].replace(/'/g, ""));
                                         if (findNode) {
                                             grid.treegrid('expand', findNode.id);
@@ -314,7 +314,7 @@
                                 }
                             });
                             if (dataObj.id != undefined)
-                                $(options.id).combotreegrid('setValue', dataObj.id);//数据加载完毕可以设置值了
+                                $("#" + options.id).combotreegrid('setValue', dataObj.id);//数据加载完毕可以设置值了
                         }
                     }, 100);
                 }

@@ -68,7 +68,7 @@
             },
             onBeforeSelect: options.onBeforeSelect,
             onLoadSuccess: function (node, data) {
-                var $treeObj = $(options.combotreeId).combotree('tree');
+                var $treeObj = $("#" + options.id).combotree('tree');
 
                 // 展开根节点
                 $treeObj.tree("expand", $treeObj.tree('getRoot').target);
