@@ -14,7 +14,7 @@
             fit: true,
             onSelect: function (title, index) {
                 var tabs = options.tabs;
-                var $element = $('#' + tabs[index].id);
+                var $element = $('#' + options.id).tabs('getTab', index);
 
                 var panelOptions = $element.panel('options');
                 if (panelOptions.href != undefined) {

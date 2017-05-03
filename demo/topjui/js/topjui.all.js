@@ -4861,6 +4861,7 @@ Array.prototype.remove = function (val) {
     'use strict';
 
     $(document).on(topJUI.eventType.initUI.form, function (e) {
+        console.log("topJUI.eventType.initUI.form");
 
         //var $box = $(e.target);
 
@@ -5989,7 +5990,7 @@ $(function () {
             fit: true,
             onSelect: function (title, index) {
                 var tabs = options.tabs;
-                var $element = $('#' + tabs[index].id);
+                var $element = $('#' + options.id).tabs('getTab', index);
 
                 var panelOptions = $element.panel('options');
                 if (panelOptions.href != undefined) {
