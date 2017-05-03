@@ -1536,7 +1536,7 @@
             },
             onBeforeSelect: options.onBeforeSelect,
             onLoadSuccess: function (node, data) {
-                var $treeObj = $(options.combotreeId).combotree('tree');
+                var $treeObj = $("#" + options.id).combotree('tree');
 
                 // 展开根节点
                 $treeObj.tree("expand", $treeObj.tree('getRoot').target);
@@ -4153,7 +4153,7 @@ $.extend($.fn.datagrid.methods, {
             width: 153,
             height: 30,
             panelWidth: 450,
-            delay: 500,
+            delay: 1000,
             mode: 'remote',
             url: ctx + '/system/user/getListByKeywords',
             idField: 'userNameId',
@@ -4244,7 +4244,7 @@ $.extend($.fn.datagrid.methods, {
                                 url: replaceUrlParamValueByBrace(options.getFatherIdsUrl, dataObj),
                                 success: function (data) {
                                     var fatherIdsArray = data.split(",");
-                                    for (i = fatherIdsArray.length - 1; i >= 0; i--) {
+                                    for (var i = fatherIdsArray.length - 1; i >= 0; i--) {
                                         findNode = grid.treegrid('find', fatherIdsArray[i].replace(/'/g, ""));
                                         if (findNode) {
                                             grid.treegrid('expand', findNode.id);
@@ -4253,7 +4253,7 @@ $.extend($.fn.datagrid.methods, {
                                 }
                             });
                             if (dataObj.id != undefined)
-                                $(options.id).combotreegrid('setValue', dataObj.id);//数据加载完毕可以设置值了
+                                $("#" + options.id).combotreegrid('setValue', dataObj.id);//数据加载完毕可以设置值了
                         }
                     }, 100);
                 }
@@ -4571,8 +4571,9 @@ function getOptionsJson($element) {
  */
 function setFormElementId($element, options) {
     if (options.id == undefined) {
-        options.id = $element[0].name;
-        $element.attr('id', $element[0].name)
+        options.id = getTimestamp();
+        //options.id = $element[0].name; // 以字段名作为id值
+        $element.attr("id", options.id);
     } else {
         $element.attr('id', options.id)
     }
