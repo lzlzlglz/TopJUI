@@ -8,7 +8,7 @@ $.getUrlParam = function (name) {
 
 // 获取网址字符串参数值
 $.getUrlStrParam = function (urlStr, name) {
-    urlParam = urlStr.substring(urlStr.indexOf("?"));
+    var urlParam = urlStr.substring(urlStr.indexOf("?"));
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = urlParam.substr(1).match(reg);
     if (r != null) return unescape(r[2]);

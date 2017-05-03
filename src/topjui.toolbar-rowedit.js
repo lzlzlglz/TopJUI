@@ -1,5 +1,5 @@
 $(function(){
-	managerTool = {
+	var managerTool = {
 		reload : function (options) {
 			$(options.datagridId).datagrid('reload');
 		},

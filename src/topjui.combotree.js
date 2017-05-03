@@ -48,7 +48,7 @@
             options.combotreeId = $(this).context;
         }
 
-        $combotreeObj = $(this);
+        var $combotreeObj = $(this);
 
         $combotreeObj.combotree({
             url: options.url,

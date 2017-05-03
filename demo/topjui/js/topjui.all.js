@@ -1516,7 +1516,7 @@
             options.combotreeId = $(this).context;
         }
 
-        $combotreeObj = $(this);
+        var $combotreeObj = $(this);
 
         $combotreeObj.combotree({
             url: options.url,
@@ -3619,7 +3619,7 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
 
     generateDialogDoc = function (options) {
 
-        defaults = {
+        var defaults = {
             iconCls: 'icon-add',
             parentGridUnselectedMsg: '请先选中一条主表数据！',
             dialog: {
@@ -3991,8 +3991,6 @@ $.extend($.fn.datagrid.methods, {
 
     $.fn.iNumberspinner = function (options) {
         var defaults = {
-            min: 0,
-            max: 10000,
             width: 153,
             height: 30,
             editable: true,
@@ -4375,7 +4373,7 @@ $.getUrlParam = function (name) {
 
 // 获取网址字符串参数值
 $.getUrlStrParam = function (urlStr, name) {
-    urlParam = urlStr.substring(urlStr.indexOf("?"));
+    var urlParam = urlStr.substring(urlStr.indexOf("?"));
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = urlParam.substr(1).match(reg);
     if (r != null) return unescape(r[2]);
@@ -6106,7 +6104,7 @@ $(function () {
     });
 
 })(jQuery);;$(function(){
-	managerTool = {
+	var managerTool = {
 		reload : function (options) {
 			$(options.datagridId).datagrid('reload');
 		},
@@ -6250,7 +6248,7 @@ $(function () {
                     	//if(node.attributes) {
                     		var dg = $(options.refreshDatagridId);
                      	    var queryParams = dg.datagrid('options').queryParams;
-                     	    newQueryParams = options.queryParams;
+                     	    var newQueryParams = options.queryParams;
                      	    newQueryParams.codeSetId = node.codesetid;
                      	    newQueryParams.codeItemId = node.id;
                      	    newQueryParams.pid = node.pid;

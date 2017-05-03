@@ -52,8 +52,6 @@
 
     $.fn.iNumberspinner = function (options) {
         var defaults = {
-            min: 0,
-            max: 10000,
             width: 153,
             height: 30,
             editable: true,

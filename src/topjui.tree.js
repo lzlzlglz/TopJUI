@@ -50,7 +50,7 @@
                     	//if(node.attributes) {
                     		var dg = $(options.refreshDatagridId);
                      	    var queryParams = dg.datagrid('options').queryParams;
-                     	    newQueryParams = options.queryParams;
+                     	    var newQueryParams = options.queryParams;
                      	    newQueryParams.codeSetId = node.codesetid;
                      	    newQueryParams.codeItemId = node.id;
                      	    newQueryParams.pid = node.pid;
