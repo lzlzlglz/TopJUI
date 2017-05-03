@@ -214,7 +214,7 @@
             width: 153,
             height: 30,
             panelWidth: 450,
-            delay: 500,
+            delay: 1000,
             mode: 'remote',
             url: ctx + '/system/user/getListByKeywords',
             idField: 'userNameId',
