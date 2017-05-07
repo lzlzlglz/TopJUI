@@ -26,9 +26,11 @@
                 } else {
                     //初始化显示tabs时，不加载里面的内容
                     if (!initShow) {
+                        // 获得grid或panel对象
+                        var $gridOrPanelObj = $("#" + tabs[index].id);
                         var newQueryParams = {};
                         if (tabs[index].type == "datagrid") {
-                            var gridOptions = $element.datagrid('options');
+                            var gridOptions = $gridOrPanelObj.datagrid('options');
                             var $parentGrid = $('#' + gridOptions.parentGrid.id);
                             if (gridOptions.parentGrid.type == "datagrid")
                                 var selectedRow = $parentGrid.datagrid("getSelected");
@@ -37,14 +39,14 @@
                             if (selectedRow) {
                                 newQueryParams = getSelectedRowJson(gridOptions.parentGrid.param, selectedRow);
                                 //获得表格原有的参数
-                                var queryParams = $element.datagrid('options').queryParams;
-                                $element.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
-                                $element.datagrid('load');
+                                var queryParams = $gridOrPanelObj.datagrid('options').queryParams;
+                                $gridOrPanelObj.datagrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                                $gridOrPanelObj.datagrid('load');
                             } else {
-                                $element.datagrid('load');
+                                $gridOrPanelObj.datagrid('load');
                             }
                         } else if (tabs[index].type == "treegrid") {
-                            var gridOptions = $element.panel('options');
+                            var gridOptions = $gridOrPanelObj.panel('options');
                             var $parentGrid = $('#' + gridOptions.parentGrid.id);
                             if (gridOptions.parentGrid.type == "datagrid")
                                 var selectedRow = $parentGrid.datagrid("getSelected");
@@ -53,14 +55,14 @@
                             if (selectedRow) {
                                 newQueryParams = getSelectedRowJson(gridOptions.parentGrid.param, selectedRow);
                                 //获得表格原有的参数
-                                var queryParams = $element.datagrid('options').queryParams;
-                                $element.treegrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
-                                $element.treegrid('load');
+                                var queryParams = $gridOrPanelObj.datagrid('options').queryParams;
+                                $gridOrPanelObj.treegrid('options').queryParams = $.extend({}, queryParams, newQueryParams);
+                                $gridOrPanelObj.treegrid('load');
                             } else {
-                                $element.treegrid('load');
+                                $gridOrPanelObj.treegrid('load');
                             }
                         } else if (tabs[index].type == "panel") {
-                            var panelOptions = $element.panel('options');
+                            var panelOptions = $gridOrPanelObj.panel('options');
                             var $parentGrid = $('#' + panelOptions.parentGrid.id);
                             if (panelOptions.parentGrid.type == "datagrid")
                                 var selectedRow = $parentGrid.datagrid("getSelected");
@@ -70,11 +72,11 @@
                                 var newHref = replaceUrlParamValueByBrace(panelOptions.dynamicHref, selectedRow);
                                 //$element.panel('refresh', newHref);
                                 var iframe = '<iframe src="' + newHref + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
-                                $element.panel({
+                                $gridOrPanelObj.panel({
                                     content: iframe
                                 });
                             } else {
-                                $element.panel('refresh');
+                                $gridOrPanelObj.panel('refresh');
                             }
                         }
                     }
