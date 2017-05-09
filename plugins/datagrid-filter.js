@@ -104,6 +104,7 @@
 					state.filterSource.rows = newRows;
 					$(this).treegrid('loadData', state.filterSource);
 
+					//noinspection JSAnnotator
 					function getNodeIndex(id){
 						var rows = state.filterSource.rows;
 						for(var i=0; i<rows.length; i++){

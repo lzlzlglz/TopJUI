@@ -104,6 +104,7 @@
 					state.filterSource.rows = newRows;
 					$(this).treegrid('loadData', state.filterSource);
 
+					//noinspection JSAnnotator
 					function getNodeIndex(id){
 						var rows = state.filterSource.rows;
 						for(var i=0; i<rows.length; i++){
@@ -4861,8 +4862,6 @@ Array.prototype.remove = function (val) {
     'use strict';
 
     $(document).on(topJUI.eventType.initUI.form, function (e) {
-        console.log("topJUI.eventType.initUI.form");
-
         //var $box = $(e.target);
 
         //var $iTextbox = $box.find('[data-toggle="topjui-textbox"]');

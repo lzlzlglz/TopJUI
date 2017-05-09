@@ -2,8 +2,6 @@
     'use strict';
 
     $(document).on(topJUI.eventType.initUI.form, function (e) {
-        console.log("topJUI.eventType.initUI.form");
-
         //var $box = $(e.target);
 
         //var $iTextbox = $box.find('[data-toggle="topjui-textbox"]');

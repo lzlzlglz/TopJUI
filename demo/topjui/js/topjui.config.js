@@ -21,7 +21,7 @@ var topJUI = {
         ctx: "",
         mainPagePath: "/",
         authUrl: "",
-        aloneUse:  true
+        aloneUse:  false
     },
     language: {
         message: {
