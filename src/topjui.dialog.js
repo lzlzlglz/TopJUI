@@ -7,10 +7,10 @@
             currentDialogId: this.selector,
             width: 700,
             height: 'auto',//宽高限制650*450,900*500
-            title: '编辑',
+            title: '新增/编辑',
             modal: true,
             closed: true,
-            iconCls: 'icon-save',
+            iconCls: 'icon-application_form',
             collapsible: true,
             maximizable: true,
             minimizable: false,

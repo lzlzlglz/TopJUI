@@ -1911,23 +1911,23 @@ function bindMenuClickEvent($element, options) {
          }
          });*/
     } else if (options.clickEvent == "openTab") {
-        defaults = {
+        /*defaults = {
             iconCls: 'icon-add'
         }
         options = $.extend(defaults, options);
 
         $element.on("click", function () {
             addParentTab(options);
-        });
+        });*/
     } else if (options.clickEvent == "openWindow") {
-        defaults = {
+        /*defaults = {
             iconCls: 'icon-add'
         }
         options = $.extend(defaults, options);
 
         $element.on("click", function () {
             openWindow(options);
-        });
+        });*/
     } else if (options.clickEvent == "edatagrid") {
         defaults = {
             iconCls: 'icon-add'
@@ -1943,23 +1943,23 @@ function bindMenuClickEvent($element, options) {
                 $('#' + options.grid.id).edatagrid('cancelRow');
         });
     } else if (options.clickEvent == "doAjax") {
-        defaults = {
+        /*defaults = {
             iconCls: 'icon-add'
         }
         options = $.extend(defaults, options);
 
         $element.on("click", function () {
-            doAjaxHandler(options);
-        });
+            //doAjaxHandler(options);
+        });*/
     } else if (options.clickEvent == "request") {
-        defaults = {
+        /*defaults = {
             iconCls: 'icon-add'
         }
         options = $.extend(defaults, options);
 
         $element.on("click", function () {
             requestHandler(options);
-        });
+        });*/
     } else if (options.clickEvent == "delete") {
         defaults = {
             iconCls: 'icon-delete'
@@ -3532,10 +3532,10 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
             currentDialogId: this.selector,
             width: 700,
             height: 'auto',//宽高限制650*450,900*500
-            title: '编辑',
+            title: '新增/编辑',
             modal: true,
             closed: true,
-            iconCls: 'icon-save',
+            iconCls: 'icon-application_form',
             collapsible: true,
             maximizable: true,
             minimizable: false,
@@ -4798,7 +4798,8 @@ Array.prototype.remove = function (val) {
 
     $.fn.iMenubutton = function (options) {
         var defaults = {
-            iconCls: 'icon-save',
+            plain: false,
+            iconCls: 'icon-cog',
             hasDownArrow: false,
             onClick: function () {
                 $(this).menubutton(options.clickEvent)
@@ -4854,6 +4855,22 @@ Array.prototype.remove = function (val) {
                 $dialogObj.iDialog(options);
                 $dialogObj.dialog('open');
             }
+        },
+        openTab: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            addParentTab(options);
+        },
+        openWindow: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            openWindow(options);
+        },
+        doAjax: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            doAjaxHandler(options);
+        },
+        request: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            requestHandler(options);
         }
 
     });
@@ -4966,9 +4983,13 @@ Array.prototype.remove = function (val) {
         });
 
         $('[data-toggle="topjui-ueditor"]').each(function (i) {
+            var defaults = {
+                height: 300
+            };
+
             var $element = $(this);
             var options = getOptionsJson($element);
-
+            options = $.extend(defaults, options);
             options = setFormElementId($element, options);
 
             UE.delEditor(options.id);
@@ -4984,6 +5005,7 @@ Array.prototype.remove = function (val) {
             UE.getEditor(options.id, {
                 toolbars: options.mode == "simple" ? simpleToolbars : toolbars,
                 initialFrameWidth: 700,
+                initialFrameHeight: options.height,
                 autoHeightEnabled: true,
                 autoFloatEnabled: true,
                 readonly: options.readonly ? true : false

@@ -301,23 +301,23 @@ function bindMenuClickEvent($element, options) {
          }
          });*/
     } else if (options.clickEvent == "openTab") {
-        defaults = {
+        /*defaults = {
             iconCls: 'icon-add'
         }
         options = $.extend(defaults, options);
 
         $element.on("click", function () {
             addParentTab(options);
-        });
+        });*/
     } else if (options.clickEvent == "openWindow") {
-        defaults = {
+        /*defaults = {
             iconCls: 'icon-add'
         }
         options = $.extend(defaults, options);
 
         $element.on("click", function () {
             openWindow(options);
-        });
+        });*/
     } else if (options.clickEvent == "edatagrid") {
         defaults = {
             iconCls: 'icon-add'
@@ -333,23 +333,23 @@ function bindMenuClickEvent($element, options) {
                 $('#' + options.grid.id).edatagrid('cancelRow');
         });
     } else if (options.clickEvent == "doAjax") {
-        defaults = {
+        /*defaults = {
             iconCls: 'icon-add'
         }
         options = $.extend(defaults, options);
 
         $element.on("click", function () {
-            doAjaxHandler(options);
-        });
+            //doAjaxHandler(options);
+        });*/
     } else if (options.clickEvent == "request") {
-        defaults = {
+        /*defaults = {
             iconCls: 'icon-add'
         }
         options = $.extend(defaults, options);
 
         $element.on("click", function () {
             requestHandler(options);
-        });
+        });*/
     } else if (options.clickEvent == "delete") {
         defaults = {
             iconCls: 'icon-delete'

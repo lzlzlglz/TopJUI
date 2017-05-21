@@ -2,7 +2,8 @@
 
     $.fn.iMenubutton = function (options) {
         var defaults = {
-            iconCls: 'icon-save',
+            plain: false,
+            iconCls: 'icon-cog',
             hasDownArrow: false,
             onClick: function () {
                 $(this).menubutton(options.clickEvent)
@@ -58,6 +59,22 @@
                 $dialogObj.iDialog(options);
                 $dialogObj.dialog('open');
             }
+        },
+        openTab: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            addParentTab(options);
+        },
+        openWindow: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            openWindow(options);
+        },
+        doAjax: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            doAjaxHandler(options);
+        },
+        request: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            requestHandler(options);
         }
 
     });

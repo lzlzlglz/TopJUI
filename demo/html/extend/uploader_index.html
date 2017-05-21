@@ -19,12 +19,15 @@
     <script type="text/javascript" src="../../topjui/plugins/easyui/easyui-lang-zh_CN.js"></script>
     <!-- TopJUI框架 -->
     <script type="text/javascript" src="../../topjui/js/topjui.all.js"></script>
+    <!-- 上传组件 -->
+    <link type="text/css" rel="stylesheet" href="../../topjui/plugins/webuploader/css/webuploader.css">
+    <script type="text/javascript" src="../../topjui/plugins/webuploader/js/webuploader.min.js"></script>
 </head>
 
 <body>
 <table data-toggle="topjui-datagrid"
-       data-options="id:'issueInvoiceDatagrid',
-    url:'../../json/goodslist.json'">
+       data-options="id:'productDg',
+       url:'../../json/goodslist.json'">
     <thead>
     <tr>
         <th data-options="field:'id',title:'ID',checkbox:true"></th>
@@ -36,5 +39,22 @@
     </tr>
     </thead>
 </table>
+
+<!-- 用户 表格工具栏 -->
+<div id="productDg-toolbar"
+     data-options="grid:{
+           type:'datagrid',
+           id:'productDg'
+       }" style="display:none">
+    <a href="javascript:void(0)"
+       data-toggle="topjui-uploader"
+       data-options="iconCls:'icon-add',
+       parentGrid:{
+           type:'datagrid',
+           id:'productDg',
+           unselectedMsg:'请先选中要上传附件的数据！'
+       }">打开上传组件窗口</a>
+</div>
+
 </body>
 </html>

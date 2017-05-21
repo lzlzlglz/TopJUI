@@ -22,7 +22,7 @@ var dynamicLoading = {
         head.appendChild(script);
     }
 };
-
+dynamicLoading.js("../../topjui/plugins/jquery/jquery.min.js");
 <!-- EasyUI样式 -->
 dynamicLoading.css("../../topjui/themes/default/easyui.css", "easyuiTheme");
 <!-- TopJUI样式 -->
@@ -30,7 +30,7 @@ dynamicLoading.css("../../topjui/css/topjui.all.min.css");
 <!-- TopJUI配置 -->
 dynamicLoading.js("../../topjui/js/topjui.config.js");
 <!-- jQuery核心 -->
-dynamicLoading.js("../../topjui/plugins/jquery/jquery.min.js");
+
 dynamicLoading.js("../../topjui/plugins/jquery/jquery.cookie.js");
 <!-- EasyUI核心 -->
 dynamicLoading.js("../../topjui/plugins/easyui/jquery.easyui.min.js");

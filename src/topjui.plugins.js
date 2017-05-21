@@ -106,9 +106,13 @@
         });
 
         $('[data-toggle="topjui-ueditor"]').each(function (i) {
+            var defaults = {
+                height: 300
+            };
+
             var $element = $(this);
             var options = getOptionsJson($element);
-
+            options = $.extend(defaults, options);
             options = setFormElementId($element, options);
 
             UE.delEditor(options.id);
@@ -124,6 +128,7 @@
             UE.getEditor(options.id, {
                 toolbars: options.mode == "simple" ? simpleToolbars : toolbars,
                 initialFrameWidth: 700,
+                initialFrameHeight: options.height,
                 autoHeightEnabled: true,
                 autoFloatEnabled: true,
                 readonly: options.readonly ? true : false
