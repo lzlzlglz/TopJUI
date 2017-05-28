@@ -1,74 +1,34 @@
 [
   {
     "id": 1339,
-    "codeSetId": "menu",
-    "resourceType": "menu",
-    "levelId": 4,
     "pid": 1329,
-    "mstate": "open",
     "state": "open",
     "iconCls": "",
     "text": "打开弹出窗口",
-    "url": "/html/menu/openDialog_index.html",
-    "isDel": 0,
-    "sort": 1,
-    "uuid": "8548678cce3a11e69dea00163e2e86f2",
-    "roleId": 34,
-    "accessAuth": 1,
-    "COUNT(DISTINCT id)": 1
+    "url": "/html/menu/openDialog_index.html"
   },
   {
     "id": 1340,
-    "codeSetId": "menu",
-    "resourceType": "menu",
-    "levelId": 4,
     "pid": 1329,
-    "mstate": "open",
     "state": "open",
     "iconCls": "",
     "text": "打开Tab窗口",
-    "url": "/html/menu/openTab_index.html",
-    "isDel": 0,
-    "sort": 2,
-    "uuid": "9ace64bcce3a11e69dea00163e2e86f2",
-    "roleId": 34,
-    "accessAuth": 1,
-    "COUNT(DISTINCT id)": 1
+    "url": "/html/menu/openTab_index.html"
   },
   {
     "id": 1341,
-    "codeSetId": "menu",
-    "resourceType": "menu",
-    "levelId": 4,
     "pid": 1329,
-    "mstate": "open",
     "state": "open",
     "iconCls": "",
     "text": "执行Ajax请求",
-    "url": "/html/menu/doAjax_index.html",
-    "isDel": 0,
-    "sort": 3,
-    "uuid": "b40520d8ce3a11e69dea00163e2e86f2",
-    "roleId": 34,
-    "accessAuth": 1,
-    "COUNT(DISTINCT id)": 1
+    "url": "/html/menu/doAjax_index.html"
   },
   {
     "id": 1341,
-    "codeSetId": "menu",
-    "resourceType": "menu",
-    "levelId": 4,
     "pid": 1329,
-    "mstate": "open",
     "state": "open",
     "iconCls": "",
     "text": "执行普通请求",
-    "url": "/html/menu/request_index.html",
-    "isDel": 0,
-    "sort": 3,
-    "uuid": "b40520d8ce3a11e69dea00163e2e86f2",
-    "roleId": 34,
-    "accessAuth": 1,
-    "COUNT(DISTINCT id)": 1
+    "url": "/html/menu/request_index.html"
   }
 ]

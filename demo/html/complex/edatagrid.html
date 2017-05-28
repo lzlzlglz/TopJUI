@@ -22,39 +22,23 @@
 </head>
 
 <body>
-<table data-toggle="topjui-datagrid"
-       data-options="id:'productDg',
-    url:'../../json/product/list.json'">
+<table data-toggle="topjui-edatagrid"
+       data-options="id:'configDatagrid',
+                   selectOnCheck:true,
+                   url:'../../json/config/config_1.json'">
     <thead>
     <tr>
-        <th data-options="field:'id',title:'ID',checkbox:true"></th>
-        <th data-options="field:'name',title:'商品名称'"></th>
-        <th data-options="field:'code',title:'商品编号'"></th>
-        <th data-options="field:'spec',title:'规格型号'"></th>
-        <th data-options="field:'danwei',title:'规格型号'"></th>
-        <th data-options="field:'sale_price',title:'销售单价'"></th>
+        <th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
+        <th data-options="field:'type',title:'类型',sortable:true,editor:{type:'textbox',options:{required:true}}"></th>
+        <th data-options="field:'sort',title:'排序',sortable:true,width:60,editor:{type:'numberspinner',options:{required:true}}"></th>
+        <th data-options="field:'name',title:'名称',sortable:true,editor:{type:'textbox',options:{required:true}}"></th>
+        <th data-options="field:'code',title:'代码',sortable:true,editor:{type:'textbox',options:{required:true}}"></th>
+        <th data-options="field:'value',title:'值',sortable:true,editor:{type:'textbox',options:{required:true}}"></th>
+        <th data-options="field:'description',title:'描述',sortable:true,editor:{type:'textbox',options:{required:true}}"></th>
+        <th data-options="field:'creator',title:'创建人',sortable:true"></th>
+        <th data-options="field:'createTime',title:'创建时间',sortable:true"></th>
     </tr>
     </thead>
 </table>
-
-<!-- 用户 表格工具栏 -->
-<div id="productDg-toolbar"
-     data-options="grid:{
-           type:'datagrid',
-           id:'productDg'
-       }" style="display:none">
-    <a href="javascript:void(0)"
-       data-toggle="topjui-menubutton"
-       data-options="clickEvent:'openDialog',
-       dialog:{
-           id:'userAddDialog',
-           href:'/html/form/numberbox.html',
-           height:450,
-           buttonsGroup:[
-               {text:'保存',url:'/json/response/success.json',iconCls:'icon-add',handler:'ajaxForm'}
-           ]
-       }">数值输入演示</a>
-</div>
-
 </body>
 </html>

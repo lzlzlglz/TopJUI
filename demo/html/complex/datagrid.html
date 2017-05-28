@@ -19,28 +19,24 @@
     <script type="text/javascript" src="../../topjui/plugins/easyui/easyui-lang-zh_CN.js"></script>
     <!-- TopJUI框架 -->
     <script type="text/javascript" src="../../topjui/js/topjui.all.js"></script>
-    <!-- Ueditor编辑器插件 -->
-    <script type="text/javascript" src="../../topjui/plugins/ueditor/utf8-jsp/1.4.3.3/ueditor.config.js"></script>
-    <script type="text/javascript" src="../../topjui/plugins/ueditor/utf8-jsp/1.4.3.3/ueditor.all.min.js"></script>
 </head>
 
 <body>
 <table data-toggle="topjui-datagrid"
        data-options="id:'productDg',
-       url:'../../json/product/list.json'">
+    url:'../../json/product/list.json'">
     <thead>
     <tr>
-        <th data-options="field:'id',title:'ID',checkbox:true"></th>
+        <th data-options="field:'uuid',title:'ID',checkbox:true"></th>
         <th data-options="field:'name',title:'商品名称'"></th>
         <th data-options="field:'code',title:'商品编号'"></th>
         <th data-options="field:'spec',title:'规格型号'"></th>
-        <th data-options="field:'danwei',title:'规格型号'"></th>
         <th data-options="field:'sale_price',title:'销售单价'"></th>
     </tr>
     </thead>
 </table>
 
-<!-- 用户 表格工具栏 -->
+<!-- 表格工具栏开始 -->
 <div id="productDg-toolbar"
      data-options="grid:{
            type:'datagrid',
@@ -51,18 +47,37 @@
        data-options="clickEvent:'openDialog',
        dialog:{
            id:'userAddDialog',
-           href:'/html/extend/editor.html',
-           width:900,
-           height:500,
-           editor:[
-			   {id:'descriptionAddEditor',field:'description'},
-			   {id:'contentAddEditor',field:'content'}
-		   ],
+           href:'/html/complex/edit.html',
            buttonsGroup:[
                {text:'保存',url:'/json/response/success.json',iconCls:'icon-add',handler:'ajaxForm'}
            ]
-       }">打开文字编辑器窗口</a>
+       }">新增</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="clickEvent:'openDialog',
+       iconCls:'icon-edit',
+       dialog:{
+           id:'articleEditDialog',
+           href:'/html/complex/edit.html',
+           url:'/json/product/detail.json',
+	  	   maximizable:false,
+           buttonsGroup:[
+               {text:'更新',url:'/json/response/success.json',iconCls:'icon-save',handler:'ajaxForm'}
+           ]
+       }">编辑</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="clickEvent:'delete'">删除</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="clickEvent:'filter'">过滤</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="clickEvent:'search'">查询</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="clickEvent:'export'">导出</a>
 </div>
-
+<!-- 表格工具栏结束 -->
 </body>
 </html>
