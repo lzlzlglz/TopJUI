@@ -151,10 +151,10 @@ openWindow = function (options) {
  * @param options
  */
 function bindMenuClickEvent($element, options) {
-    if (typeof options.grid != "object") {
+    //if (typeof options.grid != "object") {
         var toolbarOptions = getOptionsJson($element.closest("div"));
-        options = $.extend(options, toolbarOptions);
-    }
+        options = $.extend(true, toolbarOptions, options);
+    //}
     var defaults = {};
     // 打开dialog事件
     if (options.clickEvent == "openDialog") {
@@ -365,9 +365,9 @@ function bindMenuClickEvent($element, options) {
         }
         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
+        /*$element.on("click", function () {
             filterHandler(options);
-        });
+        });*/
     } else if (options.clickEvent == "search") {
         defaults = {
             iconCls: 'icon-search',
@@ -375,18 +375,18 @@ function bindMenuClickEvent($element, options) {
         }
         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
+        /*$element.on("click", function () {
             searchHandler(options);
-        });
+        });*/
     } else if (options.clickEvent == "export") {
         defaults = {
             iconCls: 'icon-table_go'
         }
         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
+        /*$element.on("click", function () {
             exportHandler(options);
-        });
+        });*/
     } else if (options.clickEvent == "import") {
         defaults = {
             iconCls: 'icon-table_go',
@@ -394,9 +394,9 @@ function bindMenuClickEvent($element, options) {
         }
         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
+        /*$element.on("click", function () {
             importHandler(options);
-        });
+        });*/
     }
     return options;
 }

@@ -2,15 +2,41 @@
 $.getUrlParam = function (name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
-    if (r != null) return unescape(r[2]); return null;
+    if (r != null) return unescape(r[2]);
+    return null;
 }
+
+/**
+ * 获得URL变量
+ * 使用方法：$.getUrlVar("param")
+ * @Description
+ * @Author 小策一喋<xvpindex@qq.com>
+ * @Date 2017/5/30 18:02
+ */
+$.extend({
+    getUrlVars: function () {
+        var vars = [],
+            hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    },
+    getUrlVar: function (name) {
+        return $.getUrlVars()[name];
+    }
+});
 
 // 获取网址字符串参数值
 $.getUrlStrParam = function (urlStr, name) {
-    urlParam = urlStr.substring(urlStr.indexOf("?"));
+    var urlParam = urlStr.substring(urlStr.indexOf("?"));
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = urlParam.substr(1).match(reg);
-    if (r != null) return unescape(r[2]); return null;
+    if (r != null) return unescape(r[2]);
+    return null;
 }
 
 /**
@@ -202,8 +228,9 @@ function getOptionsJson($element) {
  */
 function setFormElementId($element, options) {
     if (options.id == undefined) {
-        options.id = $element[0].name;
-        $element.attr('id', $element[0].name)
+        options.id = getTimestamp();
+        //options.id = $element[0].name; // 以字段名作为id值
+        $element.attr("id", options.id);
     } else {
         $element.attr('id', options.id)
     }
@@ -274,6 +301,33 @@ function jsonLength(obj) {
     return size;
 };
 
+/**
+ * 获取了当前毫秒的时间戳
+ * @returns {number}
+ */
+function getTimestamp() {
+    return new Date().getTime();
+}
+
+/**
+ * 生成指定范围内的随机整数
+ * @param minNum
+ * @param maxNum
+ * @returns {*}
+ */
+function getRandomNum(minNum, maxNum) {
+    switch (arguments.length) {
+        case 1:
+            return parseInt(Math.random() * minNum + 1);
+            break;
+        case 2:
+            return parseInt(Math.random() * (maxNum - minNum + 1) + minNum);
+            break;
+        default:
+            return 0;
+            break;
+    }
+}
 
 /*Array.prototype.remove = function (dx) {
  if (isNaN(dx) || dx > this.length) {

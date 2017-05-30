@@ -75,6 +75,22 @@
         request: function (target, options) {
             var options = $.data(target[0], "menubutton").options;
             requestHandler(options);
+        },
+        filter: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            filterHandler(options);
+        },
+        search: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            searchHandler(options);
+        },
+        export: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            exportHandler(options);
+        },
+        import: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            importHandler(options);
         }
 
     });

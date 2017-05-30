@@ -6,6 +6,30 @@ $.getUrlParam = function (name) {
     return null;
 }
 
+/**
+ * 获得URL变量
+ * 使用方法：$.getUrlVar("param")
+ * @Description
+ * @Author 小策一喋<xvpindex@qq.com>
+ * @Date 2017/5/30 18:02
+ */
+$.extend({
+    getUrlVars: function () {
+        var vars = [],
+            hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    },
+    getUrlVar: function (name) {
+        return $.getUrlVars()[name];
+    }
+});
+
 // 获取网址字符串参数值
 $.getUrlStrParam = function (urlStr, name) {
     var urlParam = urlStr.substring(urlStr.indexOf("?"));

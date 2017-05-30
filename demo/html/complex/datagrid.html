@@ -67,7 +67,9 @@
        }">编辑</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
-       data-options="clickEvent:'delete'">删除</a>
+       data-options="clickEvent:'doAjax',
+       url:'/json/response/success.json?uuid={uuid}',
+       grid: {uncheckedMsg:'请先勾选要删除的数据'}">删除</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'filter'">过滤</a>
@@ -76,7 +78,8 @@
        data-options="clickEvent:'search'">查询</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
-       data-options="clickEvent:'export'">导出</a>
+       data-options="clickEvent:'export',
+       url:'/json/response/export.html'">导出</a>
 </div>
 <!-- 表格工具栏结束 -->
 </body>

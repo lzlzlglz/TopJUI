@@ -1761,10 +1761,10 @@ openWindow = function (options) {
  * @param options
  */
 function bindMenuClickEvent($element, options) {
-    if (typeof options.grid != "object") {
+    //if (typeof options.grid != "object") {
         var toolbarOptions = getOptionsJson($element.closest("div"));
-        options = $.extend(options, toolbarOptions);
-    }
+        options = $.extend(true, toolbarOptions, options);
+    //}
     var defaults = {};
     // 打开dialog事件
     if (options.clickEvent == "openDialog") {
@@ -1975,9 +1975,9 @@ function bindMenuClickEvent($element, options) {
         }
         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
+        /*$element.on("click", function () {
             filterHandler(options);
-        });
+        });*/
     } else if (options.clickEvent == "search") {
         defaults = {
             iconCls: 'icon-search',
@@ -1985,18 +1985,18 @@ function bindMenuClickEvent($element, options) {
         }
         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
+        /*$element.on("click", function () {
             searchHandler(options);
-        });
+        });*/
     } else if (options.clickEvent == "export") {
         defaults = {
             iconCls: 'icon-table_go'
         }
         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
+        /*$element.on("click", function () {
             exportHandler(options);
-        });
+        });*/
     } else if (options.clickEvent == "import") {
         defaults = {
             iconCls: 'icon-table_go',
@@ -2004,9 +2004,9 @@ function bindMenuClickEvent($element, options) {
         }
         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
+        /*$element.on("click", function () {
             importHandler(options);
-        });
+        });*/
     }
     return options;
 }
@@ -4372,6 +4372,30 @@ $.getUrlParam = function (name) {
     return null;
 }
 
+/**
+ * 获得URL变量
+ * 使用方法：$.getUrlVar("param")
+ * @Description
+ * @Author 小策一喋<xvpindex@qq.com>
+ * @Date 2017/5/30 18:02
+ */
+$.extend({
+    getUrlVars: function () {
+        var vars = [],
+            hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    },
+    getUrlVar: function (name) {
+        return $.getUrlVars()[name];
+    }
+});
+
 // 获取网址字符串参数值
 $.getUrlStrParam = function (urlStr, name) {
     var urlParam = urlStr.substring(urlStr.indexOf("?"));
@@ -4871,6 +4895,22 @@ Array.prototype.remove = function (val) {
         request: function (target, options) {
             var options = $.data(target[0], "menubutton").options;
             requestHandler(options);
+        },
+        filter: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            filterHandler(options);
+        },
+        search: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            searchHandler(options);
+        },
+        export: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            exportHandler(options);
+        },
+        import: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            importHandler(options);
         }
 
     });
