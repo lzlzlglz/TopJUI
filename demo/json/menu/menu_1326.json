@@ -5,7 +5,7 @@
     "state": "open",
     "iconCls": "",
     "text": "TopJUI简介",
-    "url": "/html/common/waiting.html"
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c01594dff69e5293e"
   },
   {
     "id": 1348,
@@ -13,7 +13,7 @@
     "state": "open",
     "iconCls": "",
     "text": "约定俗成",
-    "url": "/html/common/waiting.html"
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c01594e28e3372ae7"
   },
   {
     "id": 1347,
@@ -21,6 +21,6 @@
     "state": "open",
     "iconCls": "",
     "text": "快速开始",
-    "url": "/html/common/waiting.html"
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c01594e29967f2b0c"
   }
 ]

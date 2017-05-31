@@ -2,33 +2,57 @@
   {
     "id": 1364,
     "pid": 60,
-    "text": "一级菜单演示1",
-    "state": "open",
+    "text": "框架简介",
+    "state": "closed",
     "iconCls": "icon-book",
     "url": ""
   },
   {
     "id": 214,
     "pid": 60,
-    "text": "一级菜单演示2",
-    "state": "open",
-    "iconCls": "icon-client",
+    "text": "页面布局",
+    "state": "closed",
+    "iconCls": "icon-application_side_boxes",
     "url": ""
   },
   {
     "id": 215,
     "pid": 60,
-    "text": "一级菜单演示3",
-    "state": "open",
-    "iconCls": "icon-cog_start",
+    "text": "表单组件",
+    "state": "closed",
+    "iconCls": "icon-layout_sidebar",
     "url": ""
   },
   {
     "id": 658,
     "pid": 60,
-    "text": "一级菜单演示4",
-    "state": "open",
-    "iconCls": "icon-application_xp_terminal",
+    "text": "表格组件",
+    "state": "closed",
+    "iconCls": "icon-database_table",
+    "url": ""
+  },
+  {
+    "id": 659,
+    "pid": 60,
+    "text": "菜单按钮",
+    "state": "closed",
+    "iconCls": "icon-piechart",
+    "url": ""
+  },
+  {
+    "id": 660,
+    "pid": 60,
+    "text": "图形报表",
+    "state": "closed",
+    "iconCls": "icon-chart_bar",
+    "url": ""
+  },
+  {
+    "id": 661,
+    "pid": 60,
+    "text": "扩展组件",
+    "state": "closed",
+    "iconCls": "icon-calendar",
     "url": ""
   }
 ]
