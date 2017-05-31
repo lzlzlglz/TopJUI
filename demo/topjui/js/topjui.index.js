@@ -136,9 +136,16 @@ function tabMenuOprate(menu, type) {
     var curTabIndex = $("#index_tabs").tabs("getTabIndex", $("#index_tabs").tabs("getTab", curTabTitle));
     switch (type) {
         case "1"://关闭当前
-            $("#index_tabs").tabs("close", curTabTitle);
-            return false;
-            break;
+            if (curTabIndex > 0) {
+                $("#index_tabs").tabs("close", curTabTitle);
+                return false;
+                break;
+            } else {
+                $.messager.show({
+                    title: '操作提示',
+                    msg: '首页不允许关闭！'
+                });
+            }
         case "2"://全部关闭
             for (var i = 0; i < allTabtitle.length; i++) {
                 $('#index_tabs').tabs('close', allTabtitle[i]);
