@@ -4822,7 +4822,7 @@ Array.prototype.remove = function (val) {
 
     $.fn.iMenubutton = function (options) {
         var defaults = {
-            plain: false,
+            plain: true,
             iconCls: 'icon-cog',
             hasDownArrow: false,
             onClick: function () {
