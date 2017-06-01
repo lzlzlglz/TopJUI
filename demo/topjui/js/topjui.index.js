@@ -145,6 +145,7 @@ function tabMenuOprate(menu, type) {
                     title: '操作提示',
                     msg: '首页不允许关闭！'
                 });
+                break;
             }
         case "2"://全部关闭
             for (var i = 0; i < allTabtitle.length; i++) {
