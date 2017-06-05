@@ -1,179 +1,209 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <!-- 避免IE使用兼容模式 -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="renderer" content="webkit">
-    <link rel="stylesheet" type="text/css" href="../../topjui/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../../topjui/plugins/bootstrap/css/bootstrap.min.css">
-    <script type="text/javascript" src="../../topjui/plugins/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="../../topjui/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <style>
+    <meta http-equiv="x-ua-compatible" content="IE=5;IE=7;IE=8;"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="edge"/>
+    <link type="text/css" rel="stylesheet" id="easyuiTheme"
+          href="/topjui/themes/default/easyui.css">
+    <link type="text/css" rel="stylesheet" href="/topjui/css/icon.css">
+
+    <script type="text/javascript" src="/topjui/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/topjui/plugins/jquery/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/topjui/plugins/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/topjui/js/topjui.config.js"></script>
+    <script type="text/javascript" src="/topjui/js/topjui.all.min.js"></script>
+    <script type="text/javascript" src="/topjui/plugins/easyui/extension/jquery.portal.js"></script>
+    <script type="text/javascript" src="/topjui/plugins/echarts/echarts.min.js"></script>
+    <style type="text/css">
         body {
-            font: 12px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
+            margin: 0;
+            padding: 0;
+            font: 14px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
             letter-spacing: 1px;
         }
 
-        ul li {
-            line-height: 2em;
+        a {
+            text-decoration: none;
+        }
+
+        .panel-header {
+            border-radius: 5px 5px 0 0;
+        }
+
+        /* 面板标题 */
+        .panel-title {
+            font-size: 14px;
+            height: 24px;
+            line-height: 24px;
+        }
+
+        /* panel主体字体大小 */
+        .panel-body {
+            font-size: 14px;
+        }
+
+        /* 调整panel图标显示位置 */
+        .panel-icon {
+            margin-top: -9px;
+        }
+
+        .border_top_none {
+            border-top: none;
+        }
+
+        .portal-list {
+            padding: 4px 4px 4px 6px;
         }
     </style>
+    <script>
+        $(function () {
+            $('#pp').portal({
+                border: false
+            });
+            setTimeout(function () {
+                $('#pp').portal({
+                    border: false
+                });
+            }, 10);
+
+            $(function () {
+                // 页面加载完成后触发echarts图表加载事件
+                $(this).trigger(topJUI.eventType.initUI.echarts);
+            });
+        });
+    </script>
 </head>
 
 <body>
-
-<div class="container-fluid" style="margin-top: 20px;">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="text-center">TopJUI前端框架</h3>
+<!-- layout布局 开始 -->
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'center',title:'',fit:true,split:true,border:false,bodyCls:'border_top_none'">
+        <div id="pp" style="overflow: hidden;">
+            <div style="width:35%;">
+                <div title="公告通知" iconCls="icon-databases" collapsible="true" closable="true" style="height:210px;">
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头发布权威信息'})">李克强：地方和部门主要负责同志要带头发布权威信息</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长 王安顺因工作调动请辞</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'问中国：民生保障不是“清谈馆”办好实事方能得民心'})">问中国：民生保障不是“清谈馆”办好实事方能得民心</a>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <h3 class="text-center" style="font-weight: bold">关于本演示系统</h3>
-                    <p style="text-indent: 2em;line-height: 2em;">
-                        本演示系统只作为TopJUI前端框架静态演示之用，部分功能在静态页面上不便实现，
-                        与后端整合项目详见右侧介绍。本演示系统左侧菜单的“系统管理平台”仅作为的菜单示例，里面的操作无法使用，暂时也不会更新该部分功能。
-                        因时间关系，该演示系统暂时只有部分组件可供演示，后续会进一步完善，请关注TopJUI项目GIT，目前该演示系统已更新的可供演示的功能组件如下：</p>
-                    <p>表格组件：普通表格、树形表格、可编辑表格（双击行编辑）</p>
-                    <br>
-                    <h3 class="text-danger text-center" style="font-weight: bold">TopJUI前端框架</h3>
-                    <h4 class="text-success text-center" style="font-weight: bold">
-                        纯HTML调用功能组件，不用写JS代码的EasyUI，专注你的后端业务开发！</h4>
-                    <p style="text-indent: 2em;line-height: 2em;">
-                        EasyUI是比较流行的前端框架，适用于企业信息系统或网站后台管理，随着IE所占市场份额越来越小，EasyUI的兼容性也越来越强，但在开发过程中，对于EasyUI稍微复杂的组件功能，大多需要通过手写JS代码实现，因此增加了开发难度，降低了开发效率。
-                        我们在企业信息系统的开发过程中，经过近两年时间的研发，通过封装EasyUI组件功能，同时在EasyUI原有组件的基础上，扩展了常用的组件功能，整合了常用的第三方插件，形成具有特色的，通过纯HTML调用组件功能的TopJUI前端框架，目前已成功应用在多个企业信息管理系统中。
-                    </p>
-                    <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 下载演示</h3>
-                    <ul>
-                        <li>官方网站：<a href="http://www.topjui.com" target="_blank">http://www.topjui.com</a></li>
-                        <li>演示站点：<a href="http://demo.topjui.com" target="_blank">http://demo.topjui.com</a></li>
-                        <li>GIT下载：<a href="http://git.oschina.net/xvpindex/TopJUI" target="_blank">http://git.oschina.net/xvpindex/TopJUI</a>
-                        </li>
-                        <li>QQ交流群：593783047，如有问题或建议欢迎反馈！</li>
-                    </ul>
-
-                    <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 兼容性</h3>
-                    <ul>
-                        <li>IE9.0+, Chrome[最佳], Firefox, Safari</li>
-                        <li>本框架不适用于需要兼容IE6、7、8的开发者或使用者</li>
-                    </ul>
-                    <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 测试环境</h3>
-                    <ul>
-                        <li>
-                            将demo文件夹中的所有文件放至应用服务器（nginx/tomcat等）的根目录下
-                        </li>
-                        <li>确保可以通过http://localhost:80/访问即可</li>
-                        <li>注意：如果访问地址与http://localhost:80/形式不一致，则需要配置主页面参数
-                    </ul>
-
-                    <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 第三方组件</h3>
-                    <ul>
-                        <li>jQuery v1.11.3</li>
-                        <li>EasyUI v1.5.1</li>
-                        <li>Bootstrap v3.3.5</li>
-                        <li>Font Awesome 4.7.0</li>
-                        <li>Echarts v3.5.3</li>
-                        <li>Ueditor v1.4.3.3</li>
-                        <li>WebUploader v0.1.5</li>
-                    </ul>
-
-                    <h3 class="text-success" style="font-weight: bold"><i class="fa fa-info-circle"></i> 扩展组件</h3>
-
-                    <ul>
-                        <li>图形报表</li>
-                        <li>富文本编辑器</li>
-                        <li>附件上传</li>
-                        <li>主子表关联</li>
-                        <li>提交表格数据</li>
-                        <li>可编辑表格</li>
-                        <li>查找带回</li>
-                        <li>自动完成</li>
-                        <li>多级联动</li>
-                        <li>动态联动</li>
-                        <li>多项选择</li>
-                        <li>按钮启动弹窗</li>
-                        <li>内页打开Tab页</li>
-                        <li>通用过滤及自定义查询</li>
-                        <li>通用导入导出</li>
-                        <li>其它组件功能</li>
-                    </ul>
+                <div title="最新文章" iconCls="icon-dic" collapsible="true" closable="true" style="height:210px;">
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头发布权威信息'})">李克强：地方和部门主要负责同志要带头发布权威信息</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长 王安顺因工作调动请辞</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'问中国：民生保障不是“清谈馆”办好实事方能得民心'})">问中国：民生保障不是“清谈馆”办好实事方能得民心</a>
+                    </div>
+                </div>
+                <div title="知识文档" iconCls="icon-basket_put" collapsible="true" closable="true" style="height:210px;">
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头发布权威信息'})">李克强：地方和部门主要负责同志要带头发布权威信息</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长 王安顺因工作调动请辞</a>
+                    </div>
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'问中国：民生保障不是“清谈馆”办好实事方能得民心'})">问中国：民生保障不是“清谈馆”办好实事方能得民心</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h3 class="text-center">TopJUI与JAVA整合</h3>
+            <div style="width:35%;">
+                <div title="系统用户" iconCls="icon-vcard" collapsible="true" closable="true" style="height:210px;">
+                    <table class="easyui-datagrid"
+                           fit="true"
+                           border="false"
+                           singleSelect="true"
+                           fitColumns="true"
+                           idField="itemid" url="/json/datagrid/user.json">
+                        <thead>
+                        <tr>
+                            <th field="userNameId" width="100">用户名</th>
+                            <th field="userName" width="100">姓名</th>
+                            <th field="orgName" width="100">所属机构</th>
+                            <th field="mobile" width="100" align="center">联系电话</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
-                <div class="panel-body">
-                    <h3 class="text-danger"><i class="fa fa-info-circle"></i> 关于整合项目</h3>
-                    <p style="text-indent: 2em;line-height: 2em">
-                        我们通过十年的企业级信息系统开发经验积累总结与沉淀，根据客户的通用需求及软件开发中遇到的问题，开发了TopJUI前端框架，
-                        在满足客户需求的同时，大大提高了前端开发的工作效率。根据TopJUI框架的特性，
-                        我们整合了后端JAVA开发框架（Spring + Spring MVC + Hibernate + Mybatis）及第三方JAVA组件，
-                        研发了适用于企业管理的企业级信息化系统开发平台“易网时代企业管理信息系统开发平台”（以下简称“EMIS开发平台”），通过此开发平台，
-                        我们实现了企业管理信息系统的快速开发，目前已应用在多个企业的信息管理系统中，提供了在一个平台下支撑数十个子系统，
-                        几百个子模块同时运行的企业级信息管理系统解决方案。
-                    <p style="text-indent: 2em;line-height: 2em">
-                        开发平台演示地址：
-                        <a href="http://demo.ewsd.cn/system/index/index" target="_blank">http://demo.ewsd.cn/system/index/index</a>
-                        ，用户名/密码：topjui / topjui
-                    </p>
-
-                    <h3 class="text-danger"><i class="fa fa-info-circle"></i> EMIS开发平台基础功能</h3>
-                    <ul>
-                        <li>多数据源：实现数据库分布式部署或集成已有信息系统的数据，实现系统整合</li>
-                        <li>HQL查询：可通过HQL（Hibernate查询）实现查询或新增、更新、删除等操作</li>
-                        <li>SQL查询：可通过SQL（Mybatis或JDBC查询）实现查询或新增、更新、删除等操作</li>
-                        <li>视图查询：可通过调用视图查询数据，实现表与表之间复杂的关联查询功能</li>
-                        <li>存储过程：可通过封装好的方法调用存储过程，实现数据库的强大数据处理功能</li>
-                        <li>RESTful风格：在控制器中自由配置请求地址参数，实现URL地址的RESTful风格</li>
-                        <li>数据导出：封装通用的数据导出Excel功能，可导出每个表格界面中过滤查询数据</li>
-                        <li>报表导出：通过调用封装的导出接口，根据模板文件导出Word、Excel、Pdf报表</li>
-                        <li>Json输出：统一Json格式数据输出，一套后端程序同时实现网页端、移动APP端的数据调用</li>
-                        <li>数据过滤：每个表格界面，自带数据过滤功能，可同时过滤多个字段完成过滤查询</li>
-                        <li>自定义查询：每个表格界面，通过自定义查询条件，实现可自由组合的数据查询</li>
-                        <li>数据排序：可结合数据过滤或自定义组合查询，实现单个字段或多个字段组合排序</li>
-
-                        <li>主子表关联：在子表中新增数据时，提示先选中主表数据，点击主表数据过滤子表数据</li>
-                        <li>按需加载：只有点击子表所在的Tab页时才加载子表或子页面的信息，按需加载提高效率</li>
-                        <li>查找带回：查询勾选某行数据，将与该数据行相关的信息回填到当前表单的其它输入框中</li>
-                        <li>自动完成：类似百度的搜索功能，输入关键字后自动过滤显示相关的信息，如查找人员</li>
-                        <li>多级联动：根据前一个下拉框选择的内容，动态关联下一个下拉框中的内容，如省市县关联</li>
-                        <li>批量处理：实现表格数据的批量提交，如批量审批通过，批量修改部分字段信息等</li>
-                        <li>可编辑表格：在可编辑表格中双击行实现编辑，通过ajax请求与后台同步提交修改</li>
-                        <li>文件上传：整合百度的webuploader插件，同时具有flash及Html5上传效果，轻松实现附件上传</li>
-                        <li>图形报表：整合百度的echarts插件，可实现如柱状图、拆线图、饼图等图形报表生成</li>
-                        <li>文字编辑器：整合百度的Ueditor编辑器，实现富文本的编辑，文章发布等</li>
-                    </ul>
-
-                    <h3 class="text-danger"><i class="fa fa-info-circle"></i> EMIS开发平台模块功能</h3>
-                    <ul>
-                        <li>栏目管理：设置文章发布的栏目信息，开发企业门户网站时可调用相关栏目</li>
-                        <li>文章管理：文章发布管理模块，所有文章类的信息可在此发布在不同的栏目中</li>
-                        <li>知识文档：文档管理模块，通用的附件上传功能附件数据也保存在此模块中</li>
-
-                        <li>组织架构：通过树形结构实现无限级的人员组织架构，包括设置各级负责人</li>
-                        <li>用户信息：系统用户基本信息，如需其它字段信息，可通过扩展表新增</li>
-                        <li>角色授权：基于RBAC的权限控制系统，可控制权限到所有页面、按钮及链接</li>
-                        <li>会员管理：会员管理模块，可通过前台会员注册或后台手动录入会员信息</li>
-
-                        <li>基础配置：可自定义增加调整系统配置信息，在系统任何界面都可实现调用</li>
-                        <li>系统菜单：系统后台的所有菜单，均在此模块进行配置，通过授权后显示在左侧导航中</li>
-                        <li>代码生成：通过代码生成器一键自动生成Controller、Service层的通用增删改查代码</li>
-                        <li>指标体系：指标体系即数据字典信息，通过无限级分类，实现数据字典的信息调用</li>
-
-                        <li>日志记录：记录所有用户操作信息，包括请求地址、传递参数，耗时、IP地址等信息</li>
-                        <li>异常记录：记录系统运行过程中的异常报错信息，及时主动发现问题，修复系统BUG</li>
-                    </ul>
+                <div title="内容分布" iconCls="icon-chart_pie" collapsible="true" closable="true" style="height:430px;">
+                    <div id="agePieChartData" data-toggle="topjui-echarts"
+                         data-options="type:'pie',url:'/json/chart/pie.json'"
+                         style="width:99%;height:99%;"></div>
+                </div>
+            </div>
+            <div style="width:30%;">
+                <div title="最新会员" iconCls="icon-user" collapsible="true" closable="true" style="height:210px;">
+                    <table class="easyui-datagrid"
+                           fit="true"
+                           border="false"
+                           singleSelect="true"
+                           fitColumns="true"
+                           idField="itemid" url="/json/datagrid/member.json">
+                        <thead>
+                        <tr>
+                            <th field="userNameId" width="100">用户名</th>
+                            <th field="userName" width="100">呢称</th>
+                            <th field="telephone" align="center">联系电话</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div title="服务器信息" iconCls="icon-application_xp_terminal" collapsible="true" closable="true"
+                     style="height:210px;">
+                    <div class="portal-list">服务器地址：127.0.0.1</div>
+                    <div class="portal-list">JDK运行版本：1.8.0_60</div>
+                    <div class="portal-list">服务器运行时区：Asia/Shanghai</div>
+                    <div class="portal-list">服务器系统名称：Linux</div>
+                    <div class="portal-list">服务器系统架构：amd64</div>
+                    <div class="portal-list">服务器系统版本：2.6.32-573.22.1.el6.x86_64</div>
+                </div>
+                <div title="关于本系统" iconCls="icon-shield" collapsible="true" closable="true" style="height:210px;">
+                    <div class="portal-list">系统名称：TopJUI前端框架 V1.0正式版</div>
+                    <div class="portal-list">GIT 下载：<a href="http://git.oschina.net/xvpindex/TopJUI" target="_blank">http://git.oschina.net/xvpindex/TopJUI</a></div>
+                    <div class="portal-list">官方网站：<a href="http://www.topjui.com" target="_blank">http://www.topjui.com</a></div>
+                    <div class="portal-list">开发文档：<a href="http://www.topjui.com/doc.html" target="_blank">http://www.topjui.com/doc.html</a></div>
+                    <div class="portal-list">联系我们：<a href="http://www.ewsd.cn/contact.html" target="_blank">http://www.ewsd.cn/contact.html</a></div>
+                    <div class="portal-list">系统提供：<a href="http://www.ewsd.cn" target="_blank">易网时代（深圳）信息技术有限公司</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-
 </body>
 </html>
