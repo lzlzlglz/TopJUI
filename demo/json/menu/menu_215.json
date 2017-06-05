@@ -5,7 +5,7 @@
     "state": "open",
     "iconCls": "",
     "text": "文本输入",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c01594e2ae7082b27"
+    "url": "http://www.topjui.com/doc/form/textbox.html"
   },
   {
     "id": 1348,
@@ -13,7 +13,7 @@
     "state": "open",
     "iconCls": "",
     "text": "下拉选择",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c01594fd2fcdd33bf"
+    "url": "http://www.topjui.com/doc/form/combobox.html"
   },
   {
     "id": 1347,
@@ -21,7 +21,7 @@
     "state": "open",
     "iconCls": "",
     "text": "日期选择",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c01594fd349a233d2"
+    "url": "http://www.topjui.com/doc/form/datebox.html"
   },
   {
     "id": 1349,
@@ -29,7 +29,7 @@
     "state": "open",
     "iconCls": "",
     "text": "数值输入",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c01594fd4025e341a"
+    "url": "http://www.topjui.com/doc/form/numberbox.html"
   },
   {
     "id": 1350,
@@ -37,7 +37,7 @@
     "state": "open",
     "iconCls": "",
     "text": "树形下拉",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c01594fd43c97342f"
+    "url": "http://www.topjui.com/doc/form/combotree.html"
   },
   {
     "id": 1351,
@@ -45,7 +45,7 @@
     "state": "open",
     "iconCls": "",
     "text": "自动完成",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c01594fd4748c3442"
+    "url": "http://www.topjui.com/doc/form/autocomplete.html"
   },
   {
     "id": 1352,
@@ -53,6 +53,6 @@
     "state": "open",
     "iconCls": "",
     "text": "查找带回",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=000000005959e9b801595ce6273d02a8"
+    "url": "http://www.topjui.com/doc/form/findfill.html"
   }
 ]
