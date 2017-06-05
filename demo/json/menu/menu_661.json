@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1346,
+    "pid": 661,
+    "state": "open",
+    "iconCls": "",
+    "text": "文字编辑器",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952fefaff42d0"
+  },
+  {
+    "id": 1348,
+    "pid": 661,
+    "state": "open",
+    "iconCls": "",
+    "text": "附件上传",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952ff279d42e1"
+  },
+  {
+    "id": 1347,
+    "pid": 661,
+    "state": "open",
+    "iconCls": "",
+    "text": "多项选择",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952ff4df942f0"
+  },
+  {
+    "id": 1348,
+    "pid": 661,
+    "state": "open",
+    "iconCls": "",
+    "text": "数据过滤",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952ff76f04301"
+  },
+  {
+    "id": 1349,
+    "pid": 661,
+    "state": "open",
+    "iconCls": "",
+    "text": "组合查询",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952ff9ce84310"
+  },
+  {
+    "id": 1350,
+    "pid": 661,
+    "state": "open",
+    "iconCls": "",
+    "text": "数据导入",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952ffcdba431f"
+  },
+  {
+    "id": 1351,
+    "pid": 661,
+    "state": "open",
+    "iconCls": "",
+    "text": "数据导出",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952fff8f3432e"
+  }
+]

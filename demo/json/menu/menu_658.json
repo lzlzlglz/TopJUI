@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1346,
+    "pid": 658,
+    "state": "open",
+    "iconCls": "",
+    "text": "数据表格",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c01595282bae73f3c"
+  },
+  {
+    "id": 1348,
+    "pid": 658,
+    "state": "open",
+    "iconCls": "",
+    "text": "树形表格",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c01595282f5663f4b"
+  },
+  {
+    "id": 1347,
+    "pid": 658,
+    "state": "open",
+    "iconCls": "",
+    "text": "可编辑表格",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952831e223f5a"
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1346,
+    "pid": 659,
+    "state": "open",
+    "iconCls": "",
+    "text": "打开弹出窗口",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c0159529fd96040c8"
+  },
+  {
+    "id": 1348,
+    "pid": 659,
+    "state": "open",
+    "iconCls": "",
+    "text": "打开Tab窗口",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952a00d4940db"
+  },
+  {
+    "id": 1347,
+    "pid": 659,
+    "state": "open",
+    "iconCls": "",
+    "text": "执行Ajax请求",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952a03a7340ee"
+  },
+  {
+    "id": 1348,
+    "pid": 659,
+    "state": "open",
+    "iconCls": "",
+    "text": "执行普通请求",
+    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952a03a7340ee"
+  }
+]
