@@ -81,11 +81,41 @@
     <div data-options="region:'center',title:'',fit:true,split:true,border:false,bodyCls:'border_top_none'">
         <div id="pp" style="overflow: hidden;">
             <div style="width:35%;">
-                <div title="常见问题" iconCls="icon-databases" collapsible="true" closable="true" style="height:210px;">
-                    <div class="portal-list">
-                        <a href="javascript:window.parent.addParentTab({href:'http://www.topjui.com/doc/question/fullscreen.html',title:'TopJUI前端框架'})" target="_blank">静态演示系统中首页初始化为什么有时不能全屏？</a>
+                <div title="关于本系统" iconCls="icon-shield" collapsible="true" closable="true" style="height:210px;">
+                    <div class="portal-list">系统名称：TopJUI前端框架 V1.0正式版</div>
+                    <div class="portal-list">GIT 下载：<a href="http://git.oschina.net/xvpindex/TopJUI" target="_blank">http://git.oschina.net/xvpindex/TopJUI</a>
+                    </div>
+                    <div class="portal-list">官方网站：<a href="http://www.topjui.com"
+                                                     target="_blank">http://www.topjui.com</a></div>
+                    <div class="portal-list">开发文档：<a href="http://www.topjui.com/doc.html" target="_blank">http://www.topjui.com/doc.html</a>
+                    </div>
+                    <div class="portal-list">联系我们：<a href="http://www.ewsd.cn/contact.html" target="_blank">http://www.ewsd.cn/contact.html</a>
+                    </div>
+                    <div class="portal-list">系统提供：<a href="http://www.ewsd.cn" target="_blank">易网时代（深圳）信息技术有限公司</a>
                     </div>
                 </div>
+                <div title="常见问题" iconCls="icon-databases" collapsible="true" closable="true" style="height:210px;">
+                    <div class="portal-list">
+                        <a href="javascript:window.parent.addParentTab({href:'http://www.topjui.com/doc/question/fullscreen.html',title:'TopJUI前端框架'})"
+                           target="_blank">静态演示系统中首页初始化为什么有时不能全屏？</a>
+                    </div>
+                </div>
+                <div title="动态演示" iconCls="icon-basket_put" collapsible="true" closable="true" style="height:210px;">
+                    <div class="portal-list">
+                        系统简介：<a href="http://www.ewsd.cn/emis.html" target="_blank">企业级快速开发平台</a>
+                    </div>
+                    <div class="portal-list">
+                        演示地址：<a href="http://demo.ewsd.cn/system/index/index" target="_blank">http://demo.ewsd.cn/system/index/index</a>
+                    </div>
+                    <div class="portal-list">
+                        帐号：topjui，密码：topjui
+                    </div>
+                    <div class="portal-list">
+                        本动态演示系统为 <a href="http://www.ewsd.cn" target="_blank">易网时代</a> 商业产品，欢迎洽谈合作！
+                    </div>
+                </div>
+            </div>
+            <div style="width:35%;">
                 <div title="公告通知" iconCls="icon-dic" collapsible="true" closable="true" style="height:210px;">
                     <div class="portal-list">
                         <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
@@ -107,22 +137,13 @@
                         <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'问中国：民生保障不是“清谈馆”办好实事方能得民心'})">问中国：民生保障不是“清谈馆”办好实事方能得民心</a>
                     </div>
                 </div>
-                <div title="动态演示" iconCls="icon-basket_put" collapsible="true" closable="true" style="height:210px;">
-                    <div class="portal-list">
-                        系统简介：<a href="http://www.ewsd.cn/emis.html" target="_blank">企业级快速开发平台</a>
-                    </div>
-                    <div class="portal-list">
-                        演示地址：<a href="http://demo.ewsd.cn/system/index/index" target="_blank">http://demo.ewsd.cn/system/index/index</a>
-                    </div>
-                    <div class="portal-list">
-                        帐号：topjui，密码：topjui
-                    </div>
-                    <div class="portal-list">
-                        本动态演示系统为 <a href="http://www.ewsd.cn" target="_blank">易网时代</a> 商业产品，欢迎洽谈合作！
-                    </div>
+                <div title="内容分布" iconCls="icon-chart_pie" collapsible="true" closable="true" style="height:430px;">
+                    <div id="agePieChartData" data-toggle="topjui-echarts"
+                         data-options="type:'pie',url:'/json/chart/pie.json'"
+                         style="width:99%;height:99%;"></div>
                 </div>
             </div>
-            <div style="width:35%;">
+            <div style="width:30%;">
                 <div title="系统用户" iconCls="icon-vcard" collapsible="true" closable="true" style="height:210px;">
                     <table class="easyui-datagrid"
                            fit="true"
@@ -140,13 +161,6 @@
                         </thead>
                     </table>
                 </div>
-                <div title="内容分布" iconCls="icon-chart_pie" collapsible="true" closable="true" style="height:430px;">
-                    <div id="agePieChartData" data-toggle="topjui-echarts"
-                         data-options="type:'pie',url:'/json/chart/pie.json'"
-                         style="width:99%;height:99%;"></div>
-                </div>
-            </div>
-            <div style="width:30%;">
                 <div title="最新会员" iconCls="icon-user" collapsible="true" closable="true" style="height:210px;">
                     <table class="easyui-datagrid"
                            fit="true"
@@ -171,19 +185,6 @@
                     <div class="portal-list">服务器系统名称：Linux</div>
                     <div class="portal-list">服务器系统架构：amd64</div>
                     <div class="portal-list">服务器系统版本：2.6.32-573.22.1.el6.x86_64</div>
-                </div>
-                <div title="关于本系统" iconCls="icon-shield" collapsible="true" closable="true" style="height:210px;">
-                    <div class="portal-list">系统名称：TopJUI前端框架 V1.0正式版</div>
-                    <div class="portal-list">GIT 下载：<a href="http://git.oschina.net/xvpindex/TopJUI" target="_blank">http://git.oschina.net/xvpindex/TopJUI</a>
-                    </div>
-                    <div class="portal-list">官方网站：<a href="http://www.topjui.com"
-                                                     target="_blank">http://www.topjui.com</a></div>
-                    <div class="portal-list">开发文档：<a href="http://www.topjui.com/doc.html" target="_blank">http://www.topjui.com/doc.html</a>
-                    </div>
-                    <div class="portal-list">联系我们：<a href="http://www.ewsd.cn/contact.html" target="_blank">http://www.ewsd.cn/contact.html</a>
-                    </div>
-                    <div class="portal-list">系统提供：<a href="http://www.ewsd.cn" target="_blank">易网时代（深圳）信息技术有限公司</a>
-                    </div>
                 </div>
             </div>
         </div>
