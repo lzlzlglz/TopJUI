@@ -45,7 +45,7 @@
 </div>
 
 <div id="index_layout">
-    <div data-options="region:'north',split:false,collapsible:true,border:false" style="height:50px;" id="header">
+    <div id="header" data-options="region:'north',split:false,collapsible:true,border:false" style="height:50px;">
         <span class="header_system"></span>
     		<span style="float: right; padding-right: 10px;">
                 <a href="javascript:void(0)" class="easyui-menubutton"
@@ -79,6 +79,51 @@
     			<a href="javascript:void(0)" onclick="logout()" class="easyui-menubutton"
                    data-options="iconCls:'icon-door_out',hasDownArrow:false" style="color:#fff;">安全退出</a>
     		</span>
+        <style>
+            #topMenu {
+                position: absolute;
+                left: 360px;
+                bottom: 0;
+                height: 35px;
+            }
+
+            #topMenu li {
+                list-style: none;
+                float: left;
+                border-top: solid 4px #F7B824;
+                background-color: #f2f2f2;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                height: 35px;
+                margin-right: 5px;
+                padding: 5px 10px 5px 10px;
+            }
+
+            #topMenu li:hover {
+                background-color: #dddddd;
+            }
+
+            #topMenu a {
+                font-size: 14px;
+                font-weight: bold;
+                color: #0E2D5F;
+            }
+
+            #topMenu a:hover {
+                text-decoration: none;
+            }
+        </style>
+        <div id="topMenu">
+            <ul>
+                <li><a href="#">协同办公</a></li>
+                <li><a href="#">人力资源</a></li>
+                <li><a href="#">财务管理</a></li>
+                <li><a href="#">设计管理</a></li>
+                <li><a href="#">客商管理</a></li>
+                <li><a href="#">网站管理</a></li>
+                <li><a href="#">系统设置</a></li>
+            </ul>
+        </div>
     </div>
 
     <div data-options="region:'west',split:true,width:212" title="轻松工作，快乐办公！" iconCls="icon-monitor"
