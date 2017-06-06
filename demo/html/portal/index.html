@@ -66,7 +66,6 @@
                     border: false
                 });
             }, 10);
-
             $(function () {
                 // 页面加载完成后触发echarts图表加载事件
                 $(this).trigger(topJUI.eventType.initUI.echarts);
@@ -145,11 +144,10 @@
             <div style="width:30%;">
                 <div title="系统用户" iconCls="icon-vcard" collapsible="true" closable="true" style="height:210px;">
                     <table class="easyui-datagrid"
-                           fit="true"
-                           border="false"
-                           singleSelect="true"
-                           fitColumns="true"
-                           idField="itemid" url="/json/datagrid/user.json">
+                           data-options="fit:true,
+                           border:false,
+                           fitColumns:true,
+                           url:'/json/datagrid/user.json'">
                         <thead>
                         <tr>
                             <th field="userNameId" width="100">用户名</th>
@@ -162,16 +160,15 @@
                 </div>
                 <div title="最新会员" iconCls="icon-user" collapsible="true" closable="true" style="height:210px;">
                     <table class="easyui-datagrid"
-                           fit="true"
-                           border="false"
-                           singleSelect="true"
-                           fitColumns="true"
-                           idField="itemid" url="/json/datagrid/member.json">
+                           data-options="fit:true,
+                           border:false,
+                           fitColumns:true,
+                           url:'/json/datagrid/member.json'">
                         <thead>
                         <tr>
                             <th field="userNameId" width="100">用户名</th>
                             <th field="userName" width="100">呢称</th>
-                            <th field="telephone" align="center">联系电话</th>
+                            <th field="telephone" width="100">联系电话</th>
                         </tr>
                         </thead>
                     </table>
