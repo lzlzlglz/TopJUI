@@ -104,7 +104,7 @@ $(function () {
 
     // 主页打开初始化时显示第一个系统的菜单
     //$('.systemName').eq('0').trigger('click');
-    generateMenu(1);
+    generateMenu(1325);
 
     // 显示系统首页
     setTimeout(function () {
@@ -295,7 +295,7 @@ function generateMenu(menuId) {
         }
     }
 
-    var url = ctx + "json/menu/menu.json";
+    var url = ctx + "json/menu/menu_" + menuId + ".json";
     $.get(
         url, {"levelId": "2"}, // 获取第一层目录
         function (data) {
