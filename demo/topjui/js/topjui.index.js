@@ -97,11 +97,9 @@ $(function () {
     });
 
     // 初始化accordion
-    jQuery("#RightAccordion").accordion({
-        fillSpace: true,
+    $("#RightAccordion").accordion({
         fit: true,
-        border: false,
-        animate: true
+        border: false
     });
 
     // 主页打开初始化时显示第一个系统的菜单
