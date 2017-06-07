@@ -112,6 +112,20 @@
             #topMenu a:hover {
                 text-decoration: none;
             }
+
+            .topmenu-icon {
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                left: auto;
+                top: 50%;
+                margin-top: -4px;
+                margin-right: 5px;
+            }
+
+            .topmenu-with-icon {
+                padding-left: 20px;
+            }
         </style>
         <script>
             function noMenu() {
@@ -120,12 +134,42 @@
         </script>
         <div id="topMenu">
             <ul>
-                <li><a href="javascript:generateMenu(1325)">TopJUI静态演示</a></li>
-                <li><a href="javascript:generateMenu(60)">TopJUI开发文档</a></li>
-                <li><a href="javascript:noMenu()">人力资源</a></li>
-                <li><a href="javascript:noMenu()">财务管理</a></li>
-                <li><a href="javascript:noMenu()">业务系统</a></li>
-                <li><a href="javascript:noMenu()">系统设置</a></li>
+                <li>
+                    <a href="javascript:generateMenu(1325)">
+                        <span class="topmenu-icon icon-piechart"></span>
+                        <span class="tabs-title topmenu-with-icon">TopJUI静态演示</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:generateMenu(60)">
+                        <span class="topmenu-icon icon-book"></span>
+                        <span class="tabs-title topmenu-with-icon">TopJUI开发文档</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:noMenu()">
+                        <span class="topmenu-icon icon-user"></span>
+                        <span class="tabs-title topmenu-with-icon">人力资源</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:noMenu()">
+                        <span class="topmenu-icon icon-database_table"></span>
+                        <span class="tabs-title topmenu-with-icon">财务管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:noMenu()">
+                        <span class="topmenu-icon icon-calendar"></span>
+                        <span class="tabs-title topmenu-with-icon">业务系统</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:noMenu()">
+                        <span class="topmenu-icon icon-cog"></span>
+                        <span class="tabs-title topmenu-with-icon">系统设置</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
