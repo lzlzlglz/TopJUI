@@ -52,14 +52,14 @@
                    data-options="iconCls:'icon-user',hasDownArrow:false"
                    style="color:#fff;">欢迎 TopJUI前端框架（topjui）</a>|
 				<a href="javascript:void(0)" id="mb3" class="easyui-menubutton"
-                   data-options="menu:'#mm3',iconCls:'icon-cog'" style="color:#fff;">个人设置</a>
+                   data-options="menu:'#mm3',iconCls:'icon-cog'" style="color:#fff;">设置</a>
     			<div id="mm3" style="width:74px;">
                     <div data-options="iconCls:'icon-6'" onclick="editUserPwd()">资料修改</div>
                     <div class="menu-sep"></div>
                     <div data-options="iconCls:'icon-key'" onclick="editUserPwd()">修改密码</div>
                 </div>
                 <a href="javascript:void(0)" id="mb2" class="easyui-menubutton"
-                   data-options="menu:'#mm2',iconCls:'icon-color_wheel'" style="color:#fff;">更换主题</a>|
+                   data-options="menu:'#mm2',iconCls:'icon-color_wheel'" style="color:#fff;">主题</a>|
     			<div id="mm2" style="width:180px;">
                     <div onclick="changeTheme('default')">默认风格</div>
                     <div onclick="changeTheme('black')">黑色风格</div>
@@ -77,26 +77,24 @@
                     <div onclick="changeTheme('ui-sunny')">ui-sunny</div>
                 </div>
     			<a href="javascript:void(0)" onclick="logout()" class="easyui-menubutton"
-                   data-options="iconCls:'icon-door_out',hasDownArrow:false" style="color:#fff;">安全退出</a>
+                   data-options="iconCls:'icon-door_out',hasDownArrow:false" style="color:#fff;">退出</a>
     		</span>
         <style>
             #topMenu {
                 position: absolute;
                 left: 360px;
-                bottom: 0;
-                height: 35px;
             }
 
             #topMenu li {
                 list-style: none;
                 float: left;
-                border-top: solid 4px #F7B824;
+                border: solid 1px #F7B824;
                 background-color: #f2f2f2;
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
-                height: 35px;
+                border-radius: 5px;
                 margin-right: 5px;
-                padding: 5px;
+                height: 36px;
+                padding: 0 5px;
+                margin-top: 2px;
             }
 
             #topMenu li:hover {
@@ -107,6 +105,9 @@
                 font-size: 12px;
                 font-weight: bold;
                 color: #0E2D5F;
+                height: 35px;
+                line-height: 35px;
+                display: block;
             }
 
             #topMenu a:hover {
@@ -119,7 +120,7 @@
                 height: 16px;
                 left: auto;
                 top: 50%;
-                margin-top: -4px;
+                margin-top: -6px;
                 margin-right: 5px;
             }
 
