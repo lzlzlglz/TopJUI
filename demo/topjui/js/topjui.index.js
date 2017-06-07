@@ -102,9 +102,14 @@ $(function () {
         border: false
     });
 
+    // 绑定横向导航菜单点击事件
+    $(".systemName").on("click", function (e) {
+        generateMenu(e.currentTarget.dataset.menuid, e.target.textContent);
+    });
+
     // 主页打开初始化时显示第一个系统的菜单
-    //$('.systemName').eq('0').trigger('click');
-    generateMenu(1325);
+    $('.systemName').eq('0').trigger('click');
+    //generateMenu(1325);
 
     // 显示系统首页
     setTimeout(function () {
@@ -284,61 +289,64 @@ function editUserPwd() {
 }
 
 // 生成左侧导航菜单
-function generateMenu(menuId) {
-
-    var allPanel = $("#RightAccordion").accordion('panels');
-    var size = allPanel.length;
-    if (size > 0) {
-        for (i = 0; i < size; i++) {
-            var index = $("#RightAccordion").accordion('getPanelIndex', allPanel[i]);
-            $("#RightAccordion").accordion('remove', 0);
-        }
-    }
-
-    var url = ctx + "json/menu/menu_" + menuId + ".json";
-    $.get(
-        url, {"levelId": "2"}, // 获取第一层目录
-        function (data) {
-            if (data == "0") {
-                window.location = "/Account";
+function generateMenu(menuId, systemName) {
+    if (menuId == "") {
+        $.messager.show({title: '操作提示', msg: '还未设置该系统对应的菜单ID！'});
+    } else {
+        $(".panel-header .panel-title:first").html(systemName);
+        var allPanel = $("#RightAccordion").accordion('panels');
+        var size = allPanel.length;
+        if (size > 0) {
+            for (i = 0; i < size; i++) {
+                var index = $("#RightAccordion").accordion('getPanelIndex', allPanel[i]);
+                $("#RightAccordion").accordion('remove', 0);
             }
-            $.each(data, function (i, e) {// 循环创建手风琴的项
-                var pid = e.pid;
-                $('#RightAccordion').accordion('add', {
-                    title: e.text,
-                    content: "<ul id='tree" + e.id + "' ></ul>",
-                    selected: true,
-                    iconCls: e.iconCls,
-                });
-                $.parser.parse();
-                $.get(ctx + "json/menu/menu_" + e.id + ".json", function (data) {// 循环创建树的项
-                    $("#tree" + e.id).tree({
-                        data: data,
-                        lines: false,
-                        animate: true,
-                        onBeforeExpand: function (node, param) {
-                            $("#tree" + e.id).tree('options').url = ctx + "json/menu/menu_" + node.id + ".json";
-                        },
-                        onClick: function (node) {
-                            if (node.url) {
-                                /*if(typeof node.attributes != "object") {
-                                 node.attributes = $.parseJSON(node.attributes);
-                                 }*/
-                                addTab(node);
-                            } else {
-                                if (node.state == "closed") {
-                                    $("#tree" + e.id).tree('expand', node.target);
-                                } else if (node.state == 'open') {
-                                    $("#tree" + e.id).tree('collapse', node.target);
+        }
+
+        var url = ctx + "json/menu/menu_" + menuId + ".json";
+        $.get(
+            url, {"levelId": "2"}, // 获取第一层目录
+            function (data) {
+                if (data == "0") {
+                    window.location = "/Account";
+                }
+                $.each(data, function (i, e) {// 循环创建手风琴的项
+                    var pid = e.pid;
+                    $('#RightAccordion').accordion('add', {
+                        title: e.text,
+                        content: "<ul id='tree" + e.id + "' ></ul>",
+                        selected: true,
+                        iconCls: e.iconCls,
+                    });
+                    $.parser.parse();
+                    $.get(ctx + "json/menu/menu_" + e.id + ".json", function (data) {// 循环创建树的项
+                        $("#tree" + e.id).tree({
+                            data: data,
+                            lines: false,
+                            animate: true,
+                            onBeforeExpand: function (node, param) {
+                                $("#tree" + e.id).tree('options').url = ctx + "json/menu/menu_" + node.id + ".json";
+                            },
+                            onClick: function (node) {
+                                if (node.url) {
+                                    /*if(typeof node.attributes != "object") {
+                                     node.attributes = $.parseJSON(node.attributes);
+                                     }*/
+                                    addTab(node);
+                                } else {
+                                    if (node.state == "closed") {
+                                        $("#tree" + e.id).tree('expand', node.target);
+                                    } else if (node.state == 'open') {
+                                        $("#tree" + e.id).tree('collapse', node.target);
+                                    }
                                 }
                             }
-                        }
-                    });
-                }, 'json');
-            });
-        }, "json"
-    );
-
+                        });
+                    }, 'json');
+                });
+            }, "json"
+        );
+    }
 }
 
 var _hmt = _hmt || [];

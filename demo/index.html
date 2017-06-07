@@ -131,45 +131,40 @@
                 padding-left: 20px;
             }
         </style>
-        <script>
-            function noMenu() {
-                $.messager.show({title: '操作提示', msg: '请点击最前面两个菜单，此菜单是演示充数用的！'});
-            }
-        </script>
         <div id="topMenu">
             <ul>
                 <li>
-                    <a href="javascript:generateMenu(1325)">
+                    <a data-menuid="1325" class="systemName" href="javascript:void(0)">
                         <span class="topmenu-icon icon-piechart"></span>
                         <span class="tabs-title topmenu-with-icon">静态演示</span>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:generateMenu(60)">
+                    <a data-menuid="60" class="systemName" href="javascript:void(0)">
                         <span class="topmenu-icon icon-book"></span>
                         <span class="tabs-title topmenu-with-icon">开发文档</span>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:noMenu()">
+                    <a data-menuid="" class="systemName" href="javascript:void(0)">
                         <span class="topmenu-icon icon-user"></span>
                         <span class="tabs-title topmenu-with-icon">人力资源</span>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:noMenu()">
+                    <a data-menuid="" class="systemName" href="javascript:void(0)">
                         <span class="topmenu-icon icon-database_table"></span>
                         <span class="tabs-title topmenu-with-icon">财务管理</span>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:noMenu()">
+                    <a data-menuid="" class="systemName" href="javascript:void(0)">
                         <span class="topmenu-icon icon-calendar"></span>
                         <span class="tabs-title topmenu-with-icon">业务系统</span>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:noMenu()">
+                    <a data-menuid="" class="systemName" href="javascript:void(0)">
                         <span class="topmenu-icon icon-cog"></span>
                         <span class="tabs-title topmenu-with-icon">系统设置</span>
                     </a>
