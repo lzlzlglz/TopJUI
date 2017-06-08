@@ -14,7 +14,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 左侧导航菜单高度及样式 */
 .tree li {
-    height: 38px;
+    /*height: 38px;*/
     border-bottom: dashed 1px #dddddd;
 }
 
