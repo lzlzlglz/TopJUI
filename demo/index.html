@@ -33,7 +33,7 @@
          style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;"/>
 </div>
 
-<div id="mm" class="easyui-menu" style="width: 140px;">
+<div id="mm" class="easyui-menu submenubutton" style="width: 140px;">
     <div id="mm-tabclose" name="6" iconCls="icon-reload">刷新</div>
     <div class="menu-sep"></div>
     <div id="Div1" name="1" iconCls="icon-no">关闭</div>
@@ -53,14 +53,14 @@
                    style="color:#fff;">欢迎 TopJUI前端框架（topjui）</a>|
 				<a href="javascript:void(0)" id="mb3" class="easyui-menubutton"
                    data-options="menu:'#mm3',iconCls:'icon-cog'" style="color:#fff;">设置</a>
-    			<div id="mm3" style="width:74px;">
+    			<div id="mm3" class="submenubutton" style="width:74px;">
                     <div data-options="iconCls:'icon-6'" onclick="editUserPwd()">资料修改</div>
                     <div class="menu-sep"></div>
                     <div data-options="iconCls:'icon-key'" onclick="editUserPwd()">修改密码</div>
                 </div>
                 <a href="javascript:void(0)" id="mb2" class="easyui-menubutton"
                    data-options="menu:'#mm2',iconCls:'icon-color_wheel'" style="color:#fff;">主题</a>|
-    			<div id="mm2" style="width:180px;">
+    			<div id="mm2" class="submenubutton" style="width:180px;">
                     <div onclick="changeTheme('default')">默认风格</div>
                     <div onclick="changeTheme('black')">黑色风格</div>
                     <div onclick="changeTheme('bootstrap')">Bootstrap风格</div>

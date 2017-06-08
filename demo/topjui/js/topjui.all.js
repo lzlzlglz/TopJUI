@@ -4835,6 +4835,23 @@ Array.prototype.remove = function (val) {
         $(this).menubutton(options);
     }
 
+    $.fn.iSubMenubutton = function (options) {
+        var defaults = {
+            plain: true,
+            iconCls: 'icon-cog',
+            hasDownArrow: false,
+            onClick: function () {
+                $(this).menubutton(options.clickEvent)
+            }
+        }
+
+        var options = $.extend(defaults, options);
+
+        $(this).on("click", function () {
+            $(this).menubutton(options.clickEvent);
+        });
+    }
+
     $.extend($.fn.menubutton.methods, {
 
         openDialog: function (target, options) {
@@ -5657,6 +5674,7 @@ Array.prototype.remove = function (val) {
             var $element = $(this);
             var options = getOptionsJson($element);
             bindMenuClickEvent($element, options);
+            $(this).iSubMenubutton(options);
         });
         //}, 1);
 

@@ -740,6 +740,7 @@
             var $element = $(this);
             var options = getOptionsJson($element);
             bindMenuClickEvent($element, options);
+            $(this).iSubMenubutton(options);
         });
         //}, 1);
 
