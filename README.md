@@ -2,52 +2,16 @@
 
 **纯HTML调用功能组件，不用写JS代码的EasyUI，专注你的后端业务开发！**
 
-EasyUI是比较流行的前端框架，适用于企业信息系统或网站后台管理，随着IE所占市场份额越来越小，EasyUI的兼容性也越来越强，但在开发过程中，对于EasyUI稍微复杂的组件功能，大多需要通过手写JS代码实现，因此增加了开发难度，降低了开发效率。
-我们在企业信息系统的开发过程中，经过近两年时间的研发，通过封装EasyUI组件功能，同时在EasyUI原有组件的基础上，扩展了常用的组件功能，整合了常用的第三方插件，形成具有特色的，通过纯HTML调用组件功能的TopJUI前端框架，目前已成功应用在多个企业信息管理系统中。
 
-## 兼容性 ##
+## 官方网站 ##
+- 网站地址：[http://www.topjui.com](http://www.topjui.com)
+- 开发文档：[http://www.topjui.com/doc/start/guider.html](http://www.topjui.com/doc/start/guider.html)
 
-- IE9.0+, Chrome[最佳], Firefox, Safari
-- 本框架不适用于需要兼容IE6、7、8的开发者或使用者
+## 静态演示 ##
+- 演示地址：[http://demo.topjui.com](http://demo.topjui.com)
 
-## 本项目测试环境 ##
+## 动态演示 ##
+- 演示地址：[http://demo.ewsd.cn/system/index/index](http://demo.ewsd.cn/system/index/index)（用户名/密码：topjui / topjui）
 
-- 将demo文件夹中的所有文件放至应用服务器（nginx/tomcat等）的根目录下，确保可以通过[http://localhost:80/](http://localhost:80/)访问即可
-- 注意：如果访问地址与[http://localhost:80/](http://localhost:80/)形式不一致，则需要配置主页面参数
-
-## 整合第三方组件 ##
-
-- jQuery v1.11.3
-- EasyUI v1.5.1
-- Bootstrap v3.3.5
-- Font Awesome 4.7.0
-- Echarts v3.5.3
-- Ueditor v1.4.3.3
-- WebUploader v0.1.5
-
-## 扩展的组件功能 ##
-
-- 图形报表
-- 富文本编辑器
-- 附件上传
-- 主子表关联
-- 提交表格数据
-- 可编辑表格
-- 查找带回
-- 自动完成
-- 多级联动
-- 动态联动
-- 多项选择
-- 按钮启动弹窗
-- 内页打开Tab页
-- 通用过滤及自定义查询
-- 通用导入导出
-- 其它组件功能
-
-## 其他 ##
-
-- GIT下载：[http://git.oschina.net/xvpindex/TopJUI](http://git.oschina.net/xvpindex/TopJUI)
-- 官方网站：[http://www.topjui.com](http://www.topjui.com)
-- 演示站点：[http://demo.topjui.com](http://demo.topjui.com)
-- 整合项目：[http://demo.ewsd.cn/system/index/index](http://demo.ewsd.cn/system/index/index)（用户名/密码：topjui / topjui）
+## 交流反馈 ##
 - QQ交流群：593783047，如有问题或建议欢迎反馈！
