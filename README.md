@@ -11,7 +11,7 @@
 - 演示地址：[http://demo.topjui.com](http://demo.topjui.com)
 
 ## 动态演示 ##
-- 演示地址：[http://demo.ewsd.cn/system/index/index](http://demo.ewsd.cn/system/index/index)（用户名/密码：topjui / topjui）
+- 演示地址：[http://demo.ewsd.cn/system/index/index](http://demo.ewsd.cn/system/index/index)（帐号：topjui 密码：topjui）
 
 ## 交流反馈 ##
 - QQ交流群：593783047，如有问题或建议欢迎反馈！
