@@ -7,6 +7,8 @@
  *
  * topJUI.config.mainPagePath: 系统主页面路径，不包含域名端口及参数，
  * 如果主页面访问的地址为http://localhost:8080/index.html?param=123，则此处填写/index.html
+ * 如果主页面访问的地址为http://localhost:8080/topjui，则此处填写/topjui
+ * 如果主页面访问的地址为http://localhost:8080/topjui/index.html?param=123，则此处填写/topjui/index.html
  *
  * topJUI.config.authUrl: 权限控制Url，请求后台判断用户是否有权限操作某个窗体或链接，
  * 后台返回true为有权限，false为无权限，不填表示不进行权限控制
