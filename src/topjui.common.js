@@ -356,9 +356,9 @@ function bindMenuClickEvent($element, options) {
         }
         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
+       /* $element.on("click", function () {
             deleteHandler(options);
-        });
+        });*/
     } else if (options.clickEvent == "filter") {
         defaults = {
             iconCls: 'icon-filter'

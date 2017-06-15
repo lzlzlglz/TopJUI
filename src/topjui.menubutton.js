@@ -20,6 +20,7 @@
         openDialog: function (target, options) {
             //var options = $(this).menubutton('options'); // 事件中获取参数
             var options = $.data(target[0], "menubutton").options;
+            //var options = target[0].dataset.options;
             var dialog = options.dialog;
             var grid = options.grid;
             var parentGrid = options.parentGrid;
@@ -75,6 +76,10 @@
         request: function (target, options) {
             var options = $.data(target[0], "menubutton").options;
             requestHandler(options);
+        },
+        delete: function (target, options) {
+            var options = $.data(target[0], "menubutton").options;
+            deleteHandler(options);
         },
         filter: function (target, options) {
             var options = $.data(target[0], "menubutton").options;
