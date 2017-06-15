@@ -1,192 +1,261 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="x-ua-compatible" content="IE=5;IE=7;IE=8;"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="edge"/>
-    <link type="text/css" rel="stylesheet" id="easyuiTheme"
-          href="/topjui/themes/default/easyui.css">
-    <link type="text/css" rel="stylesheet" href="/topjui/css/icon.css">
-
-    <script type="text/javascript" src="/topjui/plugins/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/topjui/plugins/jquery/jquery.cookie.js"></script>
-    <script type="text/javascript" src="/topjui/plugins/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="/topjui/js/topjui.config.js"></script>
-    <script type="text/javascript" src="/topjui/js/topjui.all.min.js"></script>
-    <script type="text/javascript" src="/topjui/plugins/easyui/extension/jquery.portal.js"></script>
-    <script type="text/javascript" src="/topjui/plugins/echarts/echarts.min.js"></script>
-    <style type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" type="text/css" href="../../topjui/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../topjui/plugins/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="../../topjui/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../topjui/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <style>
         body {
-            margin: 0;
-            padding: 0;
-            font: 14px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
+            font: 13px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
             letter-spacing: 1px;
         }
 
-        a {
-            text-decoration: none;
+        .container-fluid {
+            margin-top: 5px !important;
         }
 
-        .panel-header {
-            border-radius: 5px 5px 0 0;
+        .panel {
+            margin-bottom: 10px;
         }
 
-        /* 面板标题 */
-        .panel-title {
-            font-size: 12px;
-            height: 24px;
-            line-height: 24px;
+        .panel-heading {
+            font-weight: bold;
         }
 
-        /* panel主体字体大小 */
-        .panel-body {
-            font-size: 14px;
+        ul {
+            margin: 0;
+            padding-left: 10px;
         }
 
-        /* 调整panel图标显示位置 */
-        .panel-icon {
-            margin-top: -9px;
+        ul li {
+            line-height: 28px;
         }
 
-        .border_top_none {
-            border-top: none;
+        .colorPic {
+            padding-left: 0;
         }
 
-        .portal-list {
-            padding: 4px 4px 4px 6px;
+        .colorPic li {
+            list-style: none;
+            width: 46%;
+            height: 120px;
+            float: left;
+            margin: 10px;;
+        }
+
+        /*div[class^=col-] {
+            position: relative;
+            min-height: 1px;
+            padding-right: 5px;
+            padding-left: 5px;
+        }*/
+
+        .row .no_gutter[class^="col-"], .row .no_gutter [class*="col-"] {
+            padding-right: 5px;
+            padding-left: 5px;
         }
     </style>
-    <script>
-        jQuery(function () {
-            $('#pp').portal({
-                border: false
-            });
-            setTimeout(function () {
-                $('#pp').portal({
-                    border: false
-                });
-            }, 10);
-            $(function () {
-                // 页面加载完成后触发echarts图表加载事件
-                $(this).trigger(topJUI.eventType.initUI.echarts);
-            });
-        });
-    </script>
 </head>
 
 <body>
-<!-- layout布局 开始 -->
-<div class="easyui-layout" data-options="fit:true">
-    <div data-options="region:'center',title:'',fit:true,split:true,border:false,bodyCls:'border_top_none'">
-        <div id="pp" style="overflow: hidden;">
-            <div style="width:35%;">
-                <div title="关于TopJUI" iconCls="icon-shield" style="height:210px;">
-                    <div class="portal-list">框架名称：TopJUI前端框架 v1.0正式版</div>
-                    <div class="portal-list">开源下载：<a href="http://git.oschina.net/xvpindex/TopJUI" target="_blank">http://git.oschina.net/xvpindex/TopJUI</a>
+
+<div class="container-fluid" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row no_gutter">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div style="background-color: #009688; margin-left: 10px; height: 136px; line-height: 136px;">
+                                <div class="fa fa-users fa-5x"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="background-color: #5FB878; margin-right: 10px; height: 136px;"></div>
+                        </div>
                     </div>
-                    <div class="portal-list">官方网站：<a href="http://www.topjui.com"
-                                                     target="_blank">http://www.topjui.com</a></div>
-                    <div class="portal-list">开发文档：<a href="http://www.topjui.com/doc.html" target="_blank">http://www.topjui.com/doc.html</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div style="background-color: #1E9FFF; margin-left: 10px; margin-top: 10px; height: 136px;"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="background-color: #F7B824; margin-right: 10px; margin-top: 10px; height: 136px;"></div>
+                        </div>
                     </div>
-                    <div class="portal-list">交流讨论：<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=625ca4e1e6ca0b06cc18e4b7b1efcad50c21dd1d5cc350bf13123b07991e6292"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="TopJUI前端框架" title="TopJUI前端框架"></a>
-                    </div>
-                    <div class="portal-list">技术支持：<a href="http://www.ewsd.cn" target="_blank">易网时代（深圳）信息技术有限公司</a>
+                    <div class="row no_gutter">
+                        <div class="col-md-6">
+                            <div style="background-color: #FF5722; margin-left: 10px; margin-top: 10px; height: 136px;"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="background-color: #01AAED; margin-right: 10px; margin-top: 10px; height: 136px;"></div>
+                        </div>
                     </div>
                 </div>
-                <div title="常见问题" iconCls="icon-databases" style="height:210px;">
-                    <div class="portal-list">
-                        <a href="javascript:window.parent.addParentTab({href:'http://www.topjui.com/doc/question/fullscreen.html',title:'TopJUI前端框架'})">静态演示系统中首页初始化为什么有时不能全屏？</a>
+
+                <div class="col-md-6">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-edge"></i> TopJUI前端框架
+                        </div>
+                        <div class="panel-body">
+                            <ul>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头...'})">李克强：地方和部门主要负责同志要带头...</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长王安顺因工作调动请辞</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="portal-list">
-                        <a href="javascript:window.parent.addParentTab({href:'http://www.topjui.com/doc/question/fullscreen.html',title:'TopJUI前端框架'})">静态演示系统中部分组件（如对话框）风格和整体风格不一致？</a>
-                    </div>
-                </div>
-                <div title="动态演示" iconCls="icon-basket_put" style="height:210px;">
-                    <div class="portal-list">
-                        系统简介：<a href="http://www.ewsd.cn/emis.html" target="_blank">企业级快速开发平台</a>
-                    </div>
-                    <div class="portal-list">
-                        演示地址：<a href="http://demo.ewsd.cn/system/index/index" target="_blank">http://demo.ewsd.cn/system/index/index</a>
-                    </div>
-                    <div class="portal-list">
-                        帐号：topjui，密码：topjui
-                    </div>
-                    <div class="portal-list">
-                        本动态演示系统为 <a href="http://www.ewsd.cn" target="_blank">易网时代</a> 商业产品，欢迎洽谈合作！
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-user"></i> 客商管理
+                        </div>
+                        <div class="panel-body">
+                            <ul>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头...'})">李克强：地方和部门主要负责同志要带头...</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长王安顺因工作调动请辞</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div style="width:35%;">
-                <div title="公告通知" iconCls="icon-dic" style="height:210px;">
-                    <div class="portal-list">
-                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
+
+            <div class="row no_gutter">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart"></i> 系统使用情况
+                        </div>
+                        <div class="panel-body">
+                            <h3 class="text-center" style="font-weight: bold">关于本演示系统</h3>
+                        </div>
                     </div>
-                    <div class="portal-list">
-                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头发布权威信息'})">李克强：地方和部门主要负责同志要带头发布权威信息</a>
-                    </div>
-                    <div class="portal-list">
-                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
-                    </div>
-                    <div class="portal-list">
-                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
-                    </div>
-                    <div class="portal-list">
-                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长
-                            王安顺因工作调动请辞</a>
-                    </div>
-                    <div class="portal-list">
-                        <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'问中国：民生保障不是“清谈馆”办好实事方能得民心'})">问中国：民生保障不是“清谈馆”办好实事方能得民心</a>
-                    </div>
-                </div>
-                <div title="内容分布" iconCls="icon-chart_pie" style="height:430px;">
-                    <div id="agePieChartData" data-toggle="topjui-echarts"
-                         data-options="type:'pie',url:'/json/chart/pie.json'"
-                         style="width:99%;height:99%;"></div>
                 </div>
             </div>
-            <div style="width:30%;">
-                <div title="系统用户" iconCls="icon-vcard" style="height:210px;">
-                    <table class="easyui-datagrid"
-                           data-options="fit:true,
-                           border:false,
-                           fitColumns:true,
-                           url:'/json/datagrid/user.json'">
-                        <thead>
-                        <tr>
-                            <th field="userNameId" width="100">用户名</th>
-                            <th field="userName" width="100">姓名</th>
-                            <th field="orgName" width="100">所属机构</th>
-                            <th field="mobile" width="100" align="center">联系电话</th>
-                        </tr>
-                        </thead>
-                    </table>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row no_gutter">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-sticky-note"></i> 通知公告
+                        </div>
+                        <div class="panel-body">
+                            <ul>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头...'})">李克强：地方和部门主要负责同志要带头...</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长王安顺因工作调动请辞</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div title="最新会员" iconCls="icon-user" style="height:210px;">
-                    <table class="easyui-datagrid"
-                           data-options="fit:true,
-                           border:false,
-                           fitColumns:true,
-                           url:'/json/datagrid/member.json'">
-                        <thead>
-                        <tr>
-                            <th field="userNameId" width="100">用户名</th>
-                            <th field="userName" width="100">呢称</th>
-                            <th field="telephone" width="100">联系电话</th>
-                        </tr>
-                        </thead>
-                    </table>
+            </div>
+
+            <div class="row no_gutter">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-newspaper-o"></i> 公司新闻
+                        </div>
+                        <div class="panel-body">
+                            <ul>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头...'})">李克强：地方和部门主要负责同志要带头...</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长王安顺因工作调动请辞</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div title="服务器信息" iconCls="icon-application_xp_terminal" style="height:210px;">
-                    <div class="portal-list">服务器地址：127.0.0.1</div>
-                    <div class="portal-list">JDK运行版本：1.8.0_60</div>
-                    <div class="portal-list">服务器运行时区：Asia/Shanghai</div>
-                    <div class="portal-list">服务器系统名称：Linux</div>
-                    <div class="portal-list">服务器系统架构：amd64</div>
-                    <div class="portal-list">服务器系统版本：2.6.32-573.22.1.el6.x86_64</div>
+            </div>
+
+            <div class="row no_gutter">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-edge"></i> 行业资讯
+                        </div>
+                        <div class="panel-body">
+                            <ul>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头...'})">李克强：地方和部门主要负责同志要带头...</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长王安顺因工作调动请辞</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
+
 </body>
 </html>
