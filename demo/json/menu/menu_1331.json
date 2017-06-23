@@ -5,7 +5,7 @@
     "state": "open",
     "iconCls": "",
     "text": "文字编辑器",
-    "url": "/html/extend/editor_index.html"
+    "url": "./html/extend/editor_index.html"
   },
   {
     "id": 1344,
@@ -13,7 +13,7 @@
     "state": "open",
     "iconCls": "",
     "text": "附件上传",
-    "url": "/html/extend/uploader_index.html"
+    "url": "./html/extend/uploader_index.html"
   },
   {
     "id": 1345,
@@ -21,7 +21,7 @@
     "state": "open",
     "iconCls": "",
     "text": "多项选择",
-    "url": "/html/common/waiting.html"
+    "url": "./html/common/waiting.html"
   },
   {
     "id": 1351,
@@ -29,7 +29,7 @@
     "state": "open",
     "iconCls": "",
     "text": "数据过滤",
-    "url": "/html/common/waiting.html"
+    "url": "./html/common/waiting.html"
   },
   {
     "id": 1352,
@@ -37,7 +37,7 @@
     "state": "open",
     "iconCls": "",
     "text": "数据查询",
-    "url": "/html/common/waiting.html"
+    "url": "./html/common/waiting.html"
   },
   {
     "id": 1353,
@@ -45,7 +45,7 @@
     "state": "open",
     "iconCls": "",
     "text": "数据导入",
-    "url": "/html/common/waiting.html"
+    "url": "./html/common/waiting.html"
   },
   {
     "id": 1354,
@@ -53,6 +53,6 @@
     "state": "open",
     "iconCls": "",
     "text": "数据导出",
-    "url": "/html/common/waiting.html"
+    "url": "./html/common/waiting.html"
   }
 ]

@@ -5,7 +5,7 @@
     "state": "open",
     "iconCls": "",
     "text": "柱状图",
-    "url": "/html/common/waiting.html"
+    "url": "./html/common/waiting.html"
   },
   {
     "id": 1356,
@@ -13,7 +13,7 @@
     "state": "open",
     "iconCls": "",
     "text": "饼图",
-    "url": "/html/common/waiting.html"
+    "url": "./html/common/waiting.html"
   },
   {
     "id": 1357,
@@ -21,6 +21,6 @@
     "state": "open",
     "iconCls": "",
     "text": "拆线图",
-    "url": "/html/common/waiting.html"
+    "url": "./html/common/waiting.html"
   }
 ]

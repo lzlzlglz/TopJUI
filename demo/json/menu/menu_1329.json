@@ -5,7 +5,7 @@
     "state": "open",
     "iconCls": "",
     "text": "打开弹出窗口",
-    "url": "/html/menu/openDialog_index.html"
+    "url": "./html/menu/openDialog_index.html"
   },
   {
     "id": 1340,
@@ -13,7 +13,7 @@
     "state": "open",
     "iconCls": "",
     "text": "打开Tab窗口",
-    "url": "/html/menu/openTab_index.html"
+    "url": "./html/menu/openTab_index.html"
   },
   {
     "id": 1341,
@@ -21,7 +21,7 @@
     "state": "open",
     "iconCls": "",
     "text": "执行Ajax请求",
-    "url": "/html/menu/doAjax_index.html"
+    "url": "./html/menu/doAjax_index.html"
   },
   {
     "id": 1341,
@@ -29,6 +29,6 @@
     "state": "open",
     "iconCls": "",
     "text": "执行普通请求",
-    "url": "/html/menu/request_index.html"
+    "url": "./html/menu/request_index.html"
   }
 ]
