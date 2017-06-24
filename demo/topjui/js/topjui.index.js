@@ -112,7 +112,7 @@ $(function () {
     //generateMenu(1325);
 
     // 显示系统首页
-    setTimeout(function () {
+    /*setTimeout(function () {
         var indexTab = [];
         indexTab.iconCls = "icon-house";
         indexTab.text = "系统门户";
@@ -122,7 +122,7 @@ $(function () {
         indexTab.closable = false;
         indexTab.border = false;
         addTab(indexTab);
-    }, 1);
+    }, 1);*/
 
 });
 

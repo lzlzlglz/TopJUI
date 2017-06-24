@@ -19,8 +19,10 @@
     <script type="text/javascript" src="./topjui/plugins/easyui/easyui-lang-zh_CN.js"></script>
     <!-- TopJUI配置 -->
     <script type="text/javascript" src="./topjui/js/topjui.config.js"></script>
+    <script type="text/javascript" src="./topjui/plugins/topjui/topjui.tabs.js"></script>
+    <script type="text/javascript" src="./topjui/plugins/topjui/topjui.common.js"></script>
     <!-- TopJUI框架 -->
-    <script type="text/javascript" src="./topjui/js/topjui.all.js"></script>
+    <!--<script type="text/javascript" src="./topjui/js/topjui.all.js"></script>-->
     <!-- 首页js -->
     <script type="text/javascript" src="./topjui/js/topjui.index.js" charset="utf-8"></script>
     <title>TopJUI前端框架 - 静态演示</title>
@@ -188,7 +190,10 @@
     </div>
     <div data-options="region:'center',border:true">
         <div id="index_tabs" style="width:100%;height:100%">
+            <div title="系统首页" iconCls="icon-house" data-options="border:false,
+            content:'<iframe src=\'./html/portal/index.html\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'">
 
+            </div>
         </div>
     </div>
     <div data-options="region:'south',border:true"
