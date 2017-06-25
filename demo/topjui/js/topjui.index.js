@@ -1,3 +1,4 @@
+var ctx = "";
 var index_layout;
 var index_tabs;
 var index_tabsMenu;
@@ -332,7 +333,7 @@ function generateMenu(menuId, systemName) {
                                     /*if(typeof node.attributes != "object") {
                                      node.attributes = $.parseJSON(node.attributes);
                                      }*/
-                                    addTab(node);
+                                    addMenuTab(node);
                                 } else {
                                     if (node.state == "closed") {
                                         $("#tree" + e.id).tree('expand', node.target);
@@ -346,6 +347,39 @@ function generateMenu(menuId, systemName) {
                 });
             }, "json"
         );
+    }
+}
+
+
+//在主框架内打开Tab页，如点击左边的菜单打开Tab窗口
+function addMenuTab(params) {
+    var iframe = '<iframe src="' + params.url + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
+    var t = $('#index_tabs');
+    var opts = {
+        id: Math.random(),
+        title: params.text,
+        closable: typeof(params.closable) != "undefined" ? params.closable : true,
+        iconCls: params.iconCls ? params.iconCls : 'icon-page',
+        content: iframe,
+        //href: params.url,
+        border: params.border || false,
+        fit: true
+        //cls: 'leftBottomBorder'
+    };
+    if (t.tabs('exists', opts.title)) {
+        t.tabs('select', opts.title);
+    } else {
+        var lastMenuClickTime = $.cookie("menuClickTime");
+        var nowTime = new Date().getTime();
+        if ((nowTime - lastMenuClickTime) >= 500) {
+            $.cookie("menuClickTime", new Date().getTime());
+            t.tabs('add', opts);
+        } else {
+            $.messager.show({
+                title: '温馨提示',
+                msg: '操作过快，请稍后重试！'
+            });
+        }
     }
 }
 
