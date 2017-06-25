@@ -114,16 +114,16 @@ $(function () {
 
     // 显示系统首页
     /*setTimeout(function () {
-        var indexTab = [];
-        indexTab.iconCls = "icon-house";
-        indexTab.text = "系统门户";
-        var portal = $.getUrlParam("portal");
-        if (portal == "system" || portal == null) portal = "system";
-        indexTab.url = "html/portal/index.html";
-        indexTab.closable = false;
-        indexTab.border = false;
-        addTab(indexTab);
-    }, 1);*/
+     var indexTab = [];
+     indexTab.iconCls = "icon-house";
+     indexTab.text = "系统门户";
+     var portal = $.getUrlParam("portal");
+     if (portal == "system" || portal == null) portal = "system";
+     indexTab.url = "html/portal/index.html";
+     indexTab.closable = false;
+     indexTab.border = false;
+     addTab(indexTab);
+     }, 1);*/
 
 });
 
@@ -333,7 +333,7 @@ function generateMenu(menuId, systemName) {
                                     /*if(typeof node.attributes != "object") {
                                      node.attributes = $.parseJSON(node.attributes);
                                      }*/
-                                    addMenuTab(node);
+                                    addTab(node);
                                 } else {
                                     if (node.state == "closed") {
                                         $("#tree" + e.id).tree('expand', node.target);
@@ -351,8 +351,8 @@ function generateMenu(menuId, systemName) {
 }
 
 
-//在主框架内打开Tab页，如点击左边的菜单打开Tab窗口
-function addMenuTab(params) {
+//打开Tab窗口
+function addTab(params) {
     var iframe = '<iframe src="' + params.url + '" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>';
     var t = $('#index_tabs');
     var opts = {
@@ -381,6 +381,20 @@ function addMenuTab(params) {
             });
         }
     }
+}
+
+addParentTab = function (options) {
+    var src, title;
+    src = options.href;
+    title = options.title;
+
+    var iframe = '<iframe src="' + src + '" frameborder="0" style="border:0;width:100%;height:100%;"></iframe>';
+    parent.$('#index_tabs').tabs("add", {
+        title: title,
+        content: iframe,
+        closable: true,
+        iconCls: 'icon-page'
+    });
 }
 
 var _hmt = _hmt || [];
