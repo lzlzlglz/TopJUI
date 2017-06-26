@@ -109,7 +109,7 @@
        },
        dialog:{
            id:'articleAddDialog',
-           href:'/html/article/add.html',
+           href:contextPath + '/html/article/add.html',
            width:900,
 	  	   height:500,
 	  	   maximizable:false,
@@ -126,7 +126,7 @@
        iconCls:'icon-edit',
        dialog:{
            id:'articleEditDialog',
-           href:'/html/article/edit.html?uuid={uuid}',
+           href:contextPath + '/html/article/edit.html?uuid={uuid}',
            url:ctx+'/system/api/getArticleDetailByUuid?uuid={uuid}',
            width:900,
 	  	   height:500,

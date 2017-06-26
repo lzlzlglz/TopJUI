@@ -9,6 +9,15 @@
     <link rel="stylesheet" type="text/css" href="../../topjui/plugins/bootstrap/css/bootstrap.min.css">
     <script type="text/javascript" src="../../topjui/plugins/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="../../topjui/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        /* 静态演示中获取contextPath，动态演示非必须 开始 */
+        var contextPath = "";
+        var firstPathName = window.location.pathname.split("/")[1];
+        if (!(firstPathName == "html" || firstPathName == "json" || firstPathName == "topjui")) {
+            contextPath = "/" + firstPathName;
+        }
+        /* 静态演示中获取contextPath，动态演示非必须 结束 */
+    </script>
     <style>
         body {
             font: 13px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
@@ -166,27 +175,27 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头...'})">李克强：地方和部门主要负责同志要带头...</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头...'})">李克强：地方和部门主要负责同志要带头...</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长王安顺因工作调动请辞</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长王安顺因工作调动请辞</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -250,7 +259,7 @@
                             </style>
                             <div class="row">
                                 <div class="col-md-3 link">
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/complex/datagrid.html',title:'数据表格'})">
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/complex/datagrid.html',title:'数据表格'})">
                                         <div class="bg bg-green">
                                             <div class="fa fa-users fa-3x"></div>
                                             <span>数据表格</span>
@@ -258,7 +267,7 @@
                                     </a>
                                 </div>
                                 <div class="col-md-3 link">
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/complex/treegrid.html',title:'树形表格'})">
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/complex/treegrid.html',title:'树形表格'})">
                                         <div class="bg bg-blue">
                                             <div class="fa fa-users fa-3x"></div>
                                             <span>树形表格</span>
@@ -266,7 +275,7 @@
                                     </a>
                                 </div>
                                 <div class="col-md-3 link">
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/complex/edatagrid.html',title:'可编辑表格'})">
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/complex/edatagrid.html',title:'可编辑表格'})">
                                         <div class="bg bg-yellow">
                                             <div class="fa fa-users fa-3x"></div>
                                             <span>可编辑表格</span>
@@ -274,7 +283,7 @@
                                     </a>
                                 </div>
                                 <div class="col-md-3 link">
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/form/input_index.html',title:'文本输入'})">
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/form/input_index.html',title:'文本输入'})">
                                         <div class="bg bg-red">
                                             <div class="fa fa-users fa-3x"></div>
                                             <span>文本输入</span>
@@ -299,19 +308,19 @@
                         <div class="panel-body">
                             <ul>
                                 <li>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头...'})">李克强：地方和部门主要负责同志要带头...</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头...'})">李克强：地方和部门主要负责同志要带头...</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长王安顺因工作调动请辞</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长王安顺因工作调动请辞</a>
                                 </li>
                             </ul>
                         </div>
@@ -329,27 +338,27 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'强化党内监督是全面从严治党重要保障'})">强化党内监督是全面从严治党重要保障</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头...'})">李克强：地方和部门主要负责同志要带头...</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'李克强：地方和部门主要负责同志要带头...'})">李克强：地方和部门主要负责同志要带头...</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'李克强：政务公开是常态不公开是例外'})">李克强：政务公开是常态不公开是例外</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'军委机关将总体实行“部—局—处”三级体制'})">军委机关将总体实行“部—局—处”三级体制</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="javascript:window.parent.addParentTab({href:'/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长王安顺因工作调动请辞</a>
+                                    <a href="javascript:window.parent.addParentTab({href:contextPath + '/html/article/detail.html',title:'蔡奇就任北京代市长 王安顺因工作调动请辞'})">蔡奇就任北京代市长王安顺因工作调动请辞</a>
                                 </td>
                             </tr>
                             </tbody>

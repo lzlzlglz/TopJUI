@@ -47,9 +47,9 @@
        data-options="clickEvent:'openDialog',
        dialog:{
            id:'userAddDialog',
-           href:'/html/complex/add.html',
+           href:contextPath + '/html/complex/add.html',
            buttonsGroup:[
-               {text:'保存',url:'/json/response/success.json',iconCls:'icon-add',handler:'ajaxForm'}
+               {text:'保存',url:contextPath + '/json/response/success.json',iconCls:'icon-add',handler:'ajaxForm'}
            ]
        }">新增</a>
     <a href="javascript:void(0)"
@@ -58,17 +58,17 @@
        iconCls:'icon-edit',
        dialog:{
            id:'articleEditDialog',
-           href:'/html/complex/edit.html',
-           url:'/json/product/detail.json',
+           href:contextPath + '/html/complex/edit.html',
+           url:contextPath + '/json/product/detail.json',
 	  	   maximizable:false,
            buttonsGroup:[
-               {text:'更新',url:'/json/response/success.json',iconCls:'icon-save',handler:'ajaxForm'}
+               {text:'更新',url:contextPath + '/json/response/success.json',iconCls:'icon-save',handler:'ajaxForm'}
            ]
        }">编辑</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'doAjax',
-       url:'/json/response/success.json?uuid={uuid}',
+       url:contextPath + '/json/response/success.json?uuid={uuid}',
        grid: {uncheckedMsg:'请先勾选要删除的数据'}">删除</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
@@ -79,7 +79,7 @@
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'export',
-       url:'/json/response/export.html'">导出</a>
+       url:contextPath + '/json/response/export.html'">导出</a>
 </div>
 <!-- 表格工具栏结束 -->
 </body>

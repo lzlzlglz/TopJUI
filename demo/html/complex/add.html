@@ -35,7 +35,7 @@
             <input type="text" name="spec"
                    data-toggle="topjui-combobox"
                    data-options="valueField:'code',
-                   url:'/json/dictionary/models.json'">
+                   url:contextPath + '/json/dictionary/models.json'">
         </td>
     </tr>
     <tr>
@@ -46,13 +46,14 @@
             <input type="text" name="recommend"
                    data-toggle="topjui-combobox"
                    data-options="valueField:'code',
-                   url:'/json/dictionary/yesOrNo.json'">
+                   url:contextPath + '/json/dictionary/yesOrNo.json'">
         </td>
     </tr>
     <tr>
         <td class="label">备注信息</td>
         <td colspan="3">
-            <input type="text" name="description" data-toggle="topjui-textarea" value="由于是静态演示，所以数据不是动态加载的，如何动态加载数据请看使用文档">
+            <input type="text" name="description" data-toggle="topjui-textarea"
+                   value="由于是静态演示，所以数据不是动态加载的，如何动态加载数据请看使用文档">
         </td>
     </tr>
 </table>
