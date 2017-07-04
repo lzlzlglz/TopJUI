@@ -152,8 +152,8 @@ openWindow = function (options) {
  */
 function bindMenuClickEvent($element, options) {
     //if (typeof options.grid != "object") {
-        var toolbarOptions = getOptionsJson($element.closest("div"));
-        options = $.extend(true, toolbarOptions, options);
+    var toolbarOptions = getOptionsJson($element.closest("div"));
+    options = $.extend(true, toolbarOptions, options);
     //}
     var defaults = {};
     // 打开dialog事件
@@ -302,22 +302,22 @@ function bindMenuClickEvent($element, options) {
          });*/
     } else if (options.clickEvent == "openTab") {
         /*defaults = {
-            iconCls: 'icon-add'
-        }
-        options = $.extend(defaults, options);
+         iconCls: 'icon-add'
+         }
+         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
-            addParentTab(options);
-        });*/
+         $element.on("click", function () {
+         addParentTab(options);
+         });*/
     } else if (options.clickEvent == "openWindow") {
         /*defaults = {
-            iconCls: 'icon-add'
-        }
-        options = $.extend(defaults, options);
+         iconCls: 'icon-add'
+         }
+         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
-            openWindow(options);
-        });*/
+         $element.on("click", function () {
+         openWindow(options);
+         });*/
     } else if (options.clickEvent == "edatagrid") {
         defaults = {
             iconCls: 'icon-add'
@@ -334,31 +334,31 @@ function bindMenuClickEvent($element, options) {
         });
     } else if (options.clickEvent == "doAjax") {
         /*defaults = {
-            iconCls: 'icon-add'
-        }
-        options = $.extend(defaults, options);
+         iconCls: 'icon-add'
+         }
+         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
-            //doAjaxHandler(options);
-        });*/
+         $element.on("click", function () {
+         //doAjaxHandler(options);
+         });*/
     } else if (options.clickEvent == "request") {
         /*defaults = {
-            iconCls: 'icon-add'
-        }
-        options = $.extend(defaults, options);
+         iconCls: 'icon-add'
+         }
+         options = $.extend(defaults, options);
 
-        $element.on("click", function () {
-            requestHandler(options);
-        });*/
+         $element.on("click", function () {
+         requestHandler(options);
+         });*/
     } else if (options.clickEvent == "delete") {
         defaults = {
             iconCls: 'icon-delete'
         }
         options = $.extend(defaults, options);
 
-       /* $element.on("click", function () {
-            deleteHandler(options);
-        });*/
+        /* $element.on("click", function () {
+         deleteHandler(options);
+         });*/
     } else if (options.clickEvent == "filter") {
         defaults = {
             iconCls: 'icon-filter'
@@ -366,8 +366,8 @@ function bindMenuClickEvent($element, options) {
         options = $.extend(defaults, options);
 
         /*$element.on("click", function () {
-            filterHandler(options);
-        });*/
+         filterHandler(options);
+         });*/
     } else if (options.clickEvent == "search") {
         defaults = {
             iconCls: 'icon-search',
@@ -376,8 +376,8 @@ function bindMenuClickEvent($element, options) {
         options = $.extend(defaults, options);
 
         /*$element.on("click", function () {
-            searchHandler(options);
-        });*/
+         searchHandler(options);
+         });*/
     } else if (options.clickEvent == "export") {
         defaults = {
             iconCls: 'icon-table_go'
@@ -385,8 +385,8 @@ function bindMenuClickEvent($element, options) {
         options = $.extend(defaults, options);
 
         /*$element.on("click", function () {
-            exportHandler(options);
-        });*/
+         exportHandler(options);
+         });*/
     } else if (options.clickEvent == "import") {
         defaults = {
             iconCls: 'icon-table_go',
@@ -395,8 +395,8 @@ function bindMenuClickEvent($element, options) {
         options = $.extend(defaults, options);
 
         /*$element.on("click", function () {
-            importHandler(options);
-        });*/
+         importHandler(options);
+         });*/
     }
     return options;
 }
@@ -905,6 +905,25 @@ function filterHandler(options) {
     var gridId;
     if (typeof options.grid == "object") {
         options.filterOption = [];
+        /*options.filterOption = [{
+            field: 'userName',
+            type: 'combobox',
+            options: {
+                valueField: 'label',
+                textField: 'value',
+                data: [{
+                    label: 'java',
+                    value: 'Java'
+                }, {
+                    label: 'perl',
+                    value: 'Perl'
+                }, {
+                    label: 'ruby',
+                    value: 'Ruby'
+                }]
+            },
+            op: ['contains', 'equal', 'notequal', 'less', 'greater']
+        }];*/
         if (options.grid.type == "datagrid") {
             gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {
