@@ -278,6 +278,29 @@ function getSelectedRowJson(gridParam, row) {
 }
 
 /**
+ * 参数转json对象
+ * 形如uuid:uuid,uid:uid转{"uuid":"uuid","uid":"uid"}
+ * @param gridParam
+ * @param row
+ * @returns {{}}
+ */
+function param2JsonObj(param) {
+    var jsonObj = {};
+    if (param) {
+        var paramArr = param.split(",");
+        for (var i = 0; i < paramArr.length; i++) {
+            if (paramArr[i].indexOf(":") == -1) {
+                jsonObj[paramArr[i]] = paramArr[i];
+            } else {
+                var kvArr = paramArr[i].split(":");
+                jsonObj[kvArr[0]] = kvArr[1];
+            }
+        }
+    }
+    return jsonObj;
+}
+
+/**
  * json字符串转json对象
  * @param str
  * @returns {Object}

@@ -2514,8 +2514,8 @@ function filterHandler(options) {
     //console.log($(".l-btn-text").index($(".l-btn-text:contains('查询')")));
     var gridId;
     if (typeof options.grid == "object") {
-        //options.filterOption = [];
-        options.filterOption = [{
+        options.filterOption = [];
+        /*options.filterOption = [{
             field: 'userName',
             type: 'combobox',
             options: {
@@ -2533,7 +2533,7 @@ function filterHandler(options) {
                 }]
             },
             op: ['contains', 'equal', 'notequal', 'less', 'greater']
-        }];
+        }];*/
         if (options.grid.type == "datagrid") {
             gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {
@@ -3422,8 +3422,11 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
                 topJUI.language.message.title.confirmTips,
                 options.comfirmMsg,
                 function (flag) {
-                    if (options.grid.params == undefined)
+                    if (options.grid.params == undefined) {
                         options.grid.params = {uuid: topJUI.config.pkName};
+                    } else {
+                        options.grid.params = param2JsonObj(options.grid.params);
+                    }
                     options.ajaxData = convertParamObj2ObjData(options.grid.params, rows);
                     if (flag && doAjax(options)) {
                         refreshGrid(options.grid.type, options.grid.id);
@@ -4660,6 +4663,29 @@ function getSelectedRowJson(gridParam, row) {
         }
     }
     return jsonData;
+}
+
+/**
+ * 参数转json对象
+ * 形如uuid:uuid,uid:uid转{"uuid":"uuid","uid":"uid"}
+ * @param gridParam
+ * @param row
+ * @returns {{}}
+ */
+function param2JsonObj(param) {
+    var jsonObj = {};
+    if (param) {
+        var paramArr = param.split(",");
+        for (var i = 0; i < paramArr.length; i++) {
+            if (paramArr[i].indexOf(":") == -1) {
+                jsonObj[paramArr[i]] = paramArr[i];
+            } else {
+                var kvArr = paramArr[i].split(":");
+                jsonObj[kvArr[0]] = kvArr[1];
+            }
+        }
+    }
+    return jsonObj;
 }
 
 /**

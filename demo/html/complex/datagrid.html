@@ -14,11 +14,11 @@
     <script type="text/javascript" src="../../topjui/plugins/jquery/jquery.cookie.js"></script>
     <!-- EasyUI核心 -->
     <script type="text/javascript" src="../../topjui/plugins/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../../topjui/plugins/easyui/easyui-lang-zh_CN.js"></script>
     <!-- TopJUI配置 -->
     <script type="text/javascript" src="../../topjui/js/topjui.config.js"></script>
     <!-- TopJUI框架 -->
     <script type="text/javascript" src="../../topjui/js/topjui.all.js"></script>
+    <script type="text/javascript" src="../../topjui/plugins/easyui/easyui-lang-zh_CN.js"></script>
 </head>
 
 <body>
@@ -68,8 +68,8 @@
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'doAjax',
-       url:contextPath + '/json/response/success.json?uuid={uuid}',
-       grid: {uncheckedMsg:'请先勾选要删除的数据'}">删除</a>
+       url:contextPath + '/json/response/success.json',
+       grid: {uncheckedMsg:'请先勾选要删除的数据',params:'uuid:uuid'}">删除</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'filter'">过滤</a>
