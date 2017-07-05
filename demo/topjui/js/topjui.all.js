@@ -3423,10 +3423,10 @@ topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
                 options.comfirmMsg,
                 function (flag) {
                     if (options.grid.params == undefined) {
-                        options.grid.params = {uuid: topJUI.config.pkName};
-                    } else {
-                        options.grid.params = param2JsonObj(options.grid.params);
+                        //options.grid.params = {uuid: topJUI.config.pkName};
+                        options.grid.params = topJUI.config.pkName + ":" + topJUI.config.pkName;
                     }
+                    options.grid.params = param2JsonObj(options.grid.params);
                     options.ajaxData = convertParamObj2ObjData(options.grid.params, rows);
                     if (flag && doAjax(options)) {
                         refreshGrid(options.grid.type, options.grid.id);
