@@ -1738,6 +1738,7 @@ openWindow = function (options) {
                 );
                 return;
             }
+            href = replaceUrlParamValueByBrace(options.href, rows, "multiple");
         } else {
             var row = getSelectedRowData(options.grid.type, options.grid.id);
             if (!row) {
