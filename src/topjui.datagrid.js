@@ -322,9 +322,12 @@
                 topJUI.language.message.title.confirmTips,
                 options.comfirmMsg,
                 function (flag) {
-                    if (options.grid.params == undefined)
-                        options.grid.params = {uuid: topJUI.config.pkName};
-                    options.ajaxData = convertParamObj2ObjData(options.grid.params, rows);
+                    if (options.grid.param == undefined) {
+                        //options.grid.param = {uuid: topJUI.config.pkName};
+                        options.grid.param = topJUI.config.pkName + ":" + topJUI.config.pkName;
+                    }
+                    options.grid.param = param2JsonObj(options.grid.param);
+                    options.ajaxData = convertParamObj2ObjData(options.grid.param, rows);
                     if (flag && doAjax(options)) {
                         refreshGrid(options.grid.type, options.grid.id);
                     }
@@ -352,12 +355,12 @@
                 topJUI.language.message.title.confirmTips,
                 options.comfirmMsg,
                 function (flag) {
-                    if (options.grid.params == undefined) {
-                        //options.grid.params = {uuid: topJUI.config.pkName};
-                        options.grid.params = topJUI.config.pkName + ":" + topJUI.config.pkName;
+                    if (options.grid.param == undefined) {
+                        //options.grid.param = {uuid: topJUI.config.pkName};
+                        options.grid.param = topJUI.config.pkName + ":" + topJUI.config.pkName;
                     }
-                    options.grid.params = param2JsonObj(options.grid.params);
-                    options.ajaxData = convertParamObj2ObjData(options.grid.params, rows);
+                    options.grid.param = param2JsonObj(options.grid.param);
+                    options.ajaxData = convertParamObj2ObjData(options.grid.param, rows);
                     if (flag && doAjax(options)) {
                         refreshGrid(options.grid.type, options.grid.id);
                     }
