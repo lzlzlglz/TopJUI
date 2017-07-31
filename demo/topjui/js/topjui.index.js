@@ -105,7 +105,9 @@ $(function () {
 
     // 绑定横向导航菜单点击事件
     $(".systemName").on("click", function (e) {
-        generateMenu(e.currentTarget.dataset.menuid, e.target.textContent);
+        //generateMenu(e.currentTarget.dataset.menuid, e.target.textContent); //IE9及以下不兼容data-menuid属性
+        console.log(e.target.getAttribute('data-menuid'));
+        generateMenu(e.target.getAttribute('data-menuid'), e.target.textContent);
     });
 
     // 主页打开初始化时显示第一个系统的菜单
