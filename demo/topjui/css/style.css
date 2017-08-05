@@ -31,7 +31,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 表格行高 */
 .datagrid-row {
-    height: 32px;
+    height: 40px;
 }
 
 /* 表格单元格 */
@@ -54,7 +54,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .datagrid-header-row {
     /*background-color: #e3e3e3;
     color: #111;*/
-    height: 35px;
+    height: 38px;
 }
 
 /* 面板头部 */
@@ -165,7 +165,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     height: 24px !important;
     line-height: 24px !important;
     font-size: 12px;
-    padding-left: 5px;
+    /*padding-left: 5px;*/
 }
 
 .submenubutton .menu-text {
@@ -200,7 +200,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 可编辑表格输入框样式 */
 .datagrid-editable .textbox-text {
-    width: auto !important;
+    /*width: auto !important;*/
 }
 
 /* 输入框字体及大小 */
@@ -209,6 +209,17 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     font-size: 12px;
     height: 100% !important;
     width: 100% !important;
+}
+
+/* 下拉框选项样式 */
+.combobox-item, .combobox-group, .combobox-stick {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: dashed 1px #ddd;
+}
+
+.panel-body > .combobox-item:last-child, .combobox-group:last-child, .combobox-stick:last-child {
+    border-bottom-width: 0;
 }
 
 /* 解决iframe右侧总出两个滚条 http://blog.csdn.net/isitman/article/details/53083640 */
@@ -383,7 +394,7 @@ table td {
     min-width: 131px;
     max-width: 131px;
     text-align: right;
-    padding: 5px 5px 0 2px;
+    padding: 12px 5px 0 2px;
     font-weight: normal;
     vertical-align: top;
     font-family: "microsoft yahei", "Times New Roman", "宋体", Times, serif;

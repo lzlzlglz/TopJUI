@@ -8,7 +8,7 @@
             expandUrl: ctx + '/system/codeItem/getListByPid?pid={pid}',
             getFatherIdsUrl: '',
             width: 153,
-            height: 30,
+            height: 38,
             panelHeight: 'auto',
             required: false,
             lines: false,
