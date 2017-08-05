@@ -9,7 +9,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 树形节点高度 */
 .tree-node {
-    padding: 10px 0 !important;
+    padding: 11px 0 !important;
     border-bottom: dashed 1px #ddd;
 }
 
@@ -59,14 +59,14 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 面板头部 */
 .panel-header {
-    height: 27px;
+    height: 30px !important;
 }
 
 /* 面板标题 */
 .panel-title {
     font-size: 12px;
-    height: 26px;
-    line-height: 26px;
+    height: 28px;
+    line-height: 28px;
 }
 
 /* panel主体字体大小 */
@@ -76,7 +76,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 调整panel图标显示位置 */
 .panel-icon {
-    margin-top: -9px;
+    margin-top: -8px;
 }
 
 /* 防止右下角的消息提示窗口出现滚动条 */
@@ -86,7 +86,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* tabs显示高度 */
 .tabs {
-    height: 35px !important;
+    height: 38px !important;
 }
 
 /* tabs标题字体大小 */
@@ -101,8 +101,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* tabs链接字体大小 */
 .tabs a {
-    height: 31px !important;
-    line-height: 31px !important;
+    height: 34px !important;
+    line-height: 34px !important;
     border-bottom: none !important;
 }
 
@@ -114,7 +114,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 /* 被选中的tabs顶部边框颜色及遮盖下边框线 */
 .tabs li.tabs-selected a.tabs-inner {
     border-top-color: #3498DB;
-    height: 33px !important;
+    height: 35px !important;
 }
 
 /* tabs关闭按钮高度 */
@@ -129,7 +129,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 工具栏高度 */
 .datagrid-toolbar {
-    padding: 5.5px 2px;
+    padding: 7.5px 2px;
 }
 
 /* 工具栏图片按钮栏高度 */
