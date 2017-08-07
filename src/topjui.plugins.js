@@ -19,6 +19,13 @@
             $element.iTextbox(options);
         });
 
+        $('[data-toggle="topjui-switchbutton"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+
+            $element.iSwitchbutton(options);
+        });
+
         $('[data-toggle="topjui-filebox"]').each(function (i) {
             var $element = $(this);
             var options = getOptionsJson($element);

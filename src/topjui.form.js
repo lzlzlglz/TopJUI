@@ -27,6 +27,17 @@
         $(this).textbox(options);
     }
 
+    $.fn.iSwitchbutton = function (options) {
+        var defaults = {
+            width: 153,
+            height: 38
+        }
+
+        var options = $.extend(defaults, options);
+
+        $(this).switchbutton(options);
+    }
+
     $.fn.iFilebox = function (options) {
         var defaults = {
             width: 450,

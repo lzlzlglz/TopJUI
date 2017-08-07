@@ -3994,6 +3994,17 @@ $.extend($.fn.datagrid.methods, {
         $(this).textbox(options);
     }
 
+    $.fn.iSwitchbutton = function (options) {
+        var defaults = {
+            width: 153,
+            height: 38
+        }
+
+        var options = $.extend(defaults, options);
+
+        $(this).switchbutton(options);
+    }
+
     $.fn.iFilebox = function (options) {
         var defaults = {
             width: 450,
@@ -4989,6 +5000,13 @@ Array.prototype.remove = function (val) {
 
             options = setFormElementId($element, options);
             $element.iTextbox(options);
+        });
+
+        $('[data-toggle="topjui-switchbutton"]').each(function (i) {
+            var $element = $(this);
+            var options = getOptionsJson($element);
+
+            $element.iSwitchbutton(options);
         });
 
         $('[data-toggle="topjui-filebox"]').each(function (i) {
