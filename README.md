@@ -4,14 +4,14 @@
 
 
 ## 官方网站 ##
-- 网站地址：[http://www.topjui.com](http://www.topjui.com?_blank)
-- 开发文档：[http://www.topjui.com/document/index/index.html](http://www.topjui.com/document/index/index.html?_blank)
+- 网站地址：[http://www.topjui.com](http://www.topjui.com)
+- 开发文档：[http://www.topjui.com/document/index/index.html](http://www.topjui.com/document/index/index.html)
 
 ## 静态演示 ##
-- 演示地址：[http://demo.topjui.com](http://demo.topjui.com?_blank)
+- 演示地址：[http://demo.topjui.com](http://demo.topjui.com)
 
 ## 动态演示 ##
-- 演示地址：[http://demo.ewsd.cn](http://demo.ewsd.cn?_blank)（帐号：topjui 密码：topjui）
+- 演示地址：[http://demo.ewsd.cn](http://demo.ewsd.cn)（帐号：topjui 密码：topjui）
 
 ## 交流反馈 ##
 - QQ交流群：593783047，如有问题或建议欢迎反馈！
