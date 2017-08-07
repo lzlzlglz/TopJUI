@@ -23,6 +23,7 @@
             var $element = $(this);
             var options = getOptionsJson($element);
 
+            options = setFormElementId($element, options);
             $element.iSwitchbutton(options);
         });
 

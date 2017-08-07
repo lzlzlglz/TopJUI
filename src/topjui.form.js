@@ -30,7 +30,8 @@
     $.fn.iSwitchbutton = function (options) {
         var defaults = {
             width: 153,
-            height: 38
+            height: 38,
+            value: "1"
         }
 
         var options = $.extend(defaults, options);

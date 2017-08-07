@@ -3997,7 +3997,8 @@ $.extend($.fn.datagrid.methods, {
     $.fn.iSwitchbutton = function (options) {
         var defaults = {
             width: 153,
-            height: 38
+            height: 38,
+            value: "1"
         }
 
         var options = $.extend(defaults, options);
@@ -5006,6 +5007,7 @@ Array.prototype.remove = function (val) {
             var $element = $(this);
             var options = getOptionsJson($element);
 
+            options = setFormElementId($element, options);
             $element.iSwitchbutton(options);
         });
 
