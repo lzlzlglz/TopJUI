@@ -359,8 +359,9 @@
                         //options.grid.param = {uuid: topJUI.config.pkName};
                         options.grid.param = topJUI.config.pkName + ":" + topJUI.config.pkName;
                     }
-                    options.grid.param = param2JsonObj(options.grid.param);
-                    options.ajaxData = convertParamObj2ObjData(options.grid.param, rows);
+                    //options.grid.param = param2JsonObj(options.grid.param);
+                    //options.ajaxData = convertParamObj2ObjData(options.grid.param, rows);
+                    options.ajaxData = convertParamObj2ObjData(param2JsonObj(options.grid.param), rows);
                     if (flag && doAjax(options)) {
                         refreshGrid(options.grid.type, options.grid.id);
                     }
