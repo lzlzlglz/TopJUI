@@ -391,7 +391,7 @@ table td {
 }
 
 .editTable {
-    margin: 10px 0 20px;
+    margin: 10px auto 20px auto;
 }
 
 .editTable .label {
