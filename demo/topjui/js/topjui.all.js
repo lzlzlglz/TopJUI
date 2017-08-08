@@ -4403,10 +4403,6 @@ $.extend($.fn.datagrid.methods, {
         $(this).combobox(options);
     }
 
-    $.extend($.fn.textbox.defaults, {
-        height: 40
-    });
-
 })(jQuery);;// 获取地址栏参数
 $.getUrlParam = function (name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");

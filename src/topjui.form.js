@@ -436,8 +436,4 @@
         $(this).combobox(options);
     }
 
-    $.extend($.fn.textbox.defaults, {
-        height: 40
-    });
-
 })(jQuery);
