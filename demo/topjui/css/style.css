@@ -172,6 +172,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     padding-left: 28px;
 }
 
+/* 对话框按钮高度 */
+.dialog-button .l-btn {
+    padding: 5px;
+}
+
 /* 分页列表 */
 .pagination-page-list {
     height: 24px !important;
