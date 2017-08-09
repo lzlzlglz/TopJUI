@@ -11,7 +11,7 @@
 - 演示地址：[http://demo.topjui.com](http://demo.topjui.com)
 
 ## 动态演示 ##
-- 演示地址：[http://demo.ewsd.cn](http://demo.ewsd.cn)（帐号：topjui 密码：topjui）
+- 演示地址：[http://demo.ewsd.cn](http://demo.ewsd.cn)（整合Spring + Spring MVC + Hibernate + Mybatis框架 + Activiti流程引擎）
 
 ## 交流反馈 ##
 - QQ交流群：593783047，如有问题或建议欢迎反馈！
