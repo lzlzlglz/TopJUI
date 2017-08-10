@@ -11,7 +11,7 @@
     <!--<link type="text/css" rel="stylesheet" id="easyuiTheme" href="./topjui/themes/default/easyui.css">-->
     <!-- TopJUI样式 -->
     <link href="./topjui/themes/ymnets/base/easyui.css" rel="stylesheet" />
-    <link href="./topjui/themes/ymnets/skin-redlight.css" rel="stylesheet" />
+    <link id="easyuiTheme" href="./topjui/themes/ymnets/greenlight.css" rel="stylesheet" />
     <link type="text/css" rel="stylesheet" href="./topjui/css/topjui.all.min.css">
     <link href="./topjui/content/Site.css" rel="stylesheet" />
     <link href="./topjui/content/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -124,6 +124,43 @@
     </p>
 </div>
 <![endif]-->
+
+<div id="ModalStyle" class="easyui-dialog" style="width:600px;height:340px" data-options="iconCls:'fa fa-save',modal:true,closed:true">
+    <table style="width:100%; padding:20px; line-height:30px;text-align:center;">
+        <tr>
+            <td><img src="../../topjui/content/images/skin/skin-coolblack.png" style="width:60px;height:30px;" /><br /><input type="radio" name="themes" value="black" checked="checked" /></td>
+            <td><img src="../../topjui/content/images/skin/skin-red.png" style="width:60px;height:30px;" /><br /><input type="radio" name="themes" value="red" /></td>
+            <td><img src="../../topjui/content/images/skin/skin-green.png" style="width:60px;height:30px;" /><br /><input type="radio" name="themes" value="green" /></td>
+            <td><img src="../../topjui/content/images/skin/skin-purple.png" style="width:60px;height:30px;" /><br /><input type="radio" name="themes" value="purple" /></td>
+            <td><img src="../../topjui/content/images/skin/skin-blue.png" style="width:60px;height:30px;" /><br /><input type="radio" name="themes" value="blue" /></td>
+            <td><img src="../../topjui/content/images/skin/skin-yellow.png" style="width:60px;height:30px;" /><br /><input type="radio" name="themes" value="yellow" /></td>
+        </tr>
+        <tr>
+            <td><img src="../../topjui/content/images/skin/skin-coolblacklight.png" style="width:60px;height:30px;" /><br /><input type="radio" name="themes" value="blacklight" /></td>
+            <td><img src="../../topjui/content/images/skin/skin-redlight.png" style="width:60px;height:30px;" /><br /><input type="radio" name="themes" value="redlight" /></td>
+            <td><img src="../../topjui/content/images/skin/skin-greenlight.png" style="width:60px;height:30px;" /><br /><input type="radio" name="themes" value="greenlight" /></td>
+            <td><img src="../../topjui/content/images/skin/skin-purplelight.png" style="width:60px;height:30px;" /><br /><input type="radio" name="themes" value="purplelight" /></td>
+            <td> <img src="../../topjui/content/images/skin/skin-bluelight.png" style="width:60px;height:30px;" /><br /><input type="radio" name="themes" value="bluelight" /></td>
+            <td><img src="../../topjui/content/images/skin/skin-yellowlight.png" style="width:60px;height:30px;" /><br /><input type="radio" name="themes" value="yellowlight" /></td>
+        </tr>
+    </table>
+    <table style="width: 100%; padding: 20px; line-height: 30px; text-align: center;">
+        <tr>
+            <td>
+                <input type="radio" name="menustyle" value="accordion" checked="checked" />手风琴
+            <td>
+                <input type="radio" name="menustyle" value="tree" />树形
+            </td>
+            <td>
+                <input type="checkbox" checked="checked" name="topmenu" value="topmenu" />开启顶部菜单
+            </td>
+        </tr>
+    </table>
+    <div class="endbtndiv">
+        <a id="btnSave" href="javascript:SetThemes()" class="easyui-linkbutton btns">保存</a>
+        <a id="btnReturn" href="javascript:$('#ModalStyle').dialog('close')" class="easyui-linkbutton btnc">取消</a>
+    </div>
+</div>
 
 <form id="modifyPassword"></form>
 

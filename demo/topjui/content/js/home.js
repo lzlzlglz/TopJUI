@@ -296,10 +296,7 @@ $(function () {
     $("#SetThemes").click(function () {
         $("#ModalStyle").dialog({
             title: '个性化设置',
-
         }).dialog('open');
-
-
     });
     $("#easyMod").click(function () {
         $('#easyLayout').layout('remove', 'north');

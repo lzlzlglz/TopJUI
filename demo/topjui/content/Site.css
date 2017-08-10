@@ -40,13 +40,10 @@ label{font-weight:400;}
 .tree-node-hover .tree-title{color: #000000;}
 
 
-
-
-.tabs{padding-left:0px;}
+.tabs{padding-left:4px;}
 .tabs-header{border-width: 0px;}
 .tabs-icon{margin-top:-8px;left:12px;}
 .tabs li a.tabs-inner{padding: 0 15px;}
-
 
 .btns,.btns:hover{color: #fff;border-color:#4cae4c;background:#5cb85c;width:60px;height:26px;}
 a.btns:hover{background-color:#449d44;border-color:#398439;filter: none;}
