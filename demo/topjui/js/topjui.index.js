@@ -51,12 +51,12 @@ $(function () {
         fit: true,
         border: false,
         tools: [{
-            iconCls: 'icon-house',
+            iconCls: 'fa fa-home',
             handler: function () {
                 index_tabs.tabs('select', 0);
             }
         }, {
-            iconCls: 'icon-reload',
+            iconCls: 'fa fa-refresh',
             handler: function () {
                 var refresh_tab = $('#index_tabs').tabs('getSelected');
                 var refresh_iframe = refresh_tab.find('iframe')[0];
@@ -68,7 +68,7 @@ $(function () {
                 //index_tabs.tabs('getTab', index).panel('refresh');
             }
         }, {
-            iconCls: 'icon-no',
+            iconCls: 'fa fa-close',
             handler: function () {
                 var index = index_tabs.tabs('getTabIndex', index_tabs.tabs('getSelected'));
                 var tab = index_tabs.tabs('getTab', index);
@@ -110,7 +110,8 @@ $(function () {
     });
 
     // 主页打开初始化时显示第一个系统的菜单
-    $('.systemName').eq('0').trigger('click');
+    //$('.systemName').eq('0').trigger('click');
+    generateMenu(1325, "系统配置");
     //generateMenu(1325);
 
     // 显示系统首页
@@ -360,7 +361,7 @@ function addTab(params) {
         id: Math.random(),
         title: params.text,
         closable: typeof(params.closable) != "undefined" ? params.closable : true,
-        iconCls: params.iconCls ? params.iconCls : 'icon-page',
+        iconCls: params.iconCls ? params.iconCls : 'fa fa-file-text-o',
         content: iframe,
         //href: params.url,
         border: params.border || false,

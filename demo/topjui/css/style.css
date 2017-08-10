@@ -31,7 +31,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 表格行高 */
 .datagrid-row {
-    height: 40px;
+    height: 36px;
 }
 
 /* 表格单元格 */
@@ -129,7 +129,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 工具栏高度 */
 .datagrid-toolbar {
-    padding: 7.5px 2px;
+    padding: 3px 2px;
 }
 
 /* 工具栏图片按钮栏高度 */
@@ -139,7 +139,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 工具栏按钮文字大小 */
 .l-btn-text {
-    line-height: 24px;
+    /*line-height: 24px;*/
     font-size: 12px;
 }
 
@@ -174,7 +174,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 对话框按钮高度 */
 .dialog-button .l-btn {
-    padding: 3px 5px;
+    padding: 2px 5px;
 }
 
 /* 分页列表 */
@@ -218,8 +218,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 下拉框选项样式 */
 .combobox-item, .combobox-group, .combobox-stick {
-    height: 30px;
-    line-height: 30px;
+    height: 29px;
+    line-height: 29px;
     border-bottom: dashed 1px #ddd;
 }
 
@@ -387,7 +387,7 @@ ul {
 
 table td {
     font-size: 12px;
-    padding: 1px;
+    padding: 2px;
 }
 
 .editTable {

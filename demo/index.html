@@ -8,9 +8,16 @@
     <!-- 浏览器标签图片 -->
     <link rel="shortcut icon" href="./topjui/image/favicon.ico"/>
     <!-- EasyUI样式 -->
-    <link type="text/css" rel="stylesheet" id="easyuiTheme" href="./topjui/themes/default/easyui.css">
+    <!--<link type="text/css" rel="stylesheet" id="easyuiTheme" href="./topjui/themes/default/easyui.css">-->
     <!-- TopJUI样式 -->
+    <link href="./topjui/themes/ymnets/base/easyui.css" rel="stylesheet" />
+    <link href="./topjui/themes/ymnets/skin-redlight.css" rel="stylesheet" />
     <link type="text/css" rel="stylesheet" href="./topjui/css/topjui.all.min.css">
+    <link href="./topjui/content/Site.css" rel="stylesheet" />
+    <link href="./topjui/content/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!--<script src="./topjui/content/js/home.js"></script>
+    <script src="./topjui/content/js/common.js"></script>-->
+
     <!-- jQuery核心 -->
     <script type="text/javascript" src="./topjui/plugins/easyui/jquery.min.js"></script>
     <script type="text/javascript" src="./topjui/plugins/jquery/jquery.cookie.js"></script>
@@ -18,6 +25,7 @@
     <script type="text/javascript" src="./topjui/plugins/easyui/jquery.easyui.min.js"></script>
     <!-- 首页js -->
     <script type="text/javascript" src="./topjui/js/topjui.index.js" charset="utf-8"></script>
+
     <meta name="keywords" content='easyui,jui,jquery easyui,easyui demo,easyui中文'/>
     <meta name="description" content='TopJUI前端框架，基于最新版EasyUI前端框架构建，纯HTML调用功能组件，不用写JS代码的EasyUI，专注你的后端业务开发！'/>
     <title>TopJUI前端框架静态演示 - 不用写JS代码的EasyUI</title>
@@ -31,9 +39,9 @@
 </div>
 
 <div id="mm" class="easyui-menu submenubutton" style="width: 140px;">
-    <div id="mm-tabclose" name="6" iconCls="icon-reload">刷新</div>
+    <div id="mm-tabclose" name="6" iconCls="fa fa-refresh">刷新</div>
     <div class="menu-sep"></div>
-    <div id="Div1" name="1" iconCls="icon-no">关闭</div>
+    <div id="Div1" name="1" iconCls="fa fa-close">关闭</div>
     <div id="mm-tabcloseother" name="3">关闭其他</div>
     <div id="mm-tabcloseall" name="2">关闭全部</div>
     <div class="menu-sep"></div>
@@ -42,150 +50,56 @@
 </div>
 
 <div id="index_layout">
-    <div id="header" data-options="region:'north',split:false,collapsible:true,border:false" style="height:50px;">
-        <span class="header_system"></span>
-    		<span style="float: right; padding-right: 10px;">
-                <a href="javascript:void(0)" class="easyui-menubutton"
-                   data-options="iconCls:'icon-user',hasDownArrow:false"
-                   style="color:#fff;">欢迎 TopJUI前端框架（topjui）</a>|
-				<a href="javascript:void(0)" id="mb3" class="easyui-menubutton"
-                   data-options="menu:'#mm3',iconCls:'icon-cog'" style="color:#fff;">设置</a>
-    			<div id="mm3" class="submenubutton" style="width:74px;">
-                    <div data-options="iconCls:'icon-6'" onclick="editUserPwd()">资料修改</div>
-                    <div class="menu-sep"></div>
-                    <div data-options="iconCls:'icon-key'" onclick="editUserPwd()">修改密码</div>
-                </div>
-                <a href="javascript:void(0)" id="mb2" class="easyui-menubutton"
-                   data-options="menu:'#mm2',iconCls:'icon-color_wheel'" style="color:#fff;">主题</a>|
-    			<div id="mm2" class="submenubutton" style="width:180px;">
-                    <div onclick="changeTheme('default')">默认风格</div>
-                    <div onclick="changeTheme('black')">黑色风格</div>
-                    <div onclick="changeTheme('bootstrap')">Bootstrap风格</div>
-                    <div onclick="changeTheme('gray')">灰色风格</div>
-                    <div onclick="changeTheme('metro')">Win8风格</div>
-                    <div onclick="changeTheme('metro-blue')">Win8-蓝</div>
-                    <div onclick="changeTheme('metro-gray')">Win8-灰</div>
-                    <div onclick="changeTheme('metro-green')">Win8-绿</div>
-                    <div onclick="changeTheme('metro-orange')">Win8-橙</div>
-                    <div onclick="changeTheme('metro-red')">Win8-红</div>
-                    <div onclick="changeTheme('ui-cupertino')">ui-cupertino</div>
-                    <div onclick="changeTheme('ui-dark-hive')">ui-dark-hive</div>
-                    <div onclick="changeTheme('ui-pepper-grinder')">ui-pepper-grinder</div>
-                    <div onclick="changeTheme('ui-sunny')">ui-sunny</div>
-                </div>
-    			<a href="javascript:void(0)" onclick="logout()" class="easyui-menubutton"
-                   data-options="iconCls:'icon-door_out',hasDownArrow:false" style="color:#fff;">退出</a>
-    		</span>
-        <style>
-            #topMenu {
-                position: absolute;
-                left: 360px;
-            }
-
-            #topMenu ul {
-                padding: 0;
-            }
-
-            #topMenu li {
-                list-style: none;
-                float: left;
-                /*border-top: solid 1px #F7B824;*/
-                /*background-color: #f2f2f2;*/
-                border-radius: 5px;
-                margin-right: 5px;
-                height: 50px;
-                padding: 0 5px;
-            }
-
-            #topMenu li:hover {
-                background-color: #f2f2f2;
-            }
-
-            #topMenu a {
-                font-size: 12px;
-                font-weight: bold;
-                color: #0E2D5F;
-                height: 50px;
-                line-height: 50px;
-                display: block;
-            }
-
-            #topMenu a:hover {
-                text-decoration: none;
-            }
-
-            .topmenu-icon {
-                position: absolute;
-                width: 16px;
-                height: 16px;
-                left: auto;
-                top: 50%;
-                margin-top: -8px;
-                margin-right: 5px;
-            }
-
-            .topmenu-with-icon {
-                padding-left: 20px;
-            }
-        </style>
-        <div id="topMenu">
-            <ul>
-                <li>
-                    <a data-menuid="1325" class="systemName" style="z-index: 999;" href="javascript:void(0)">
-                        <span class="topmenu-icon icon-piechart"></span>
-                        <span data-menuid="1325" class="tabs-title topmenu-with-icon">静态演示</span>
+    <div id="north" data-options="region:'north',border:false,split:false" style="height: 50px; padding:0;margin:0; overflow: hidden;">
+        <table class="banner" style="border-spacing:0px;">
+            <tr>
+                <td class="webname">
+                    <span class="fa fa-yelp" style="font-size:26px; padding-right:8px;"></span>TopJUI前端框架
+                </td>
+                <td>
+                    <table id="topmenucontent" cellpadding="0" cellspacing="0"><td id="201605312304598866131890ede44b6" class="topmenu selected"><a onclick="loadAccordionMenu('201605312304598866131890ede44b6')" title="通过顶部菜单" class="l-btn-text bannerMenu" href="#"><lable class="fa  fa-hand-pointer-o"></lable><br><span style="white-space:nowrap;">通过顶部菜单</span></a></td><td id="20161124112512659817453d009fb84" class="topmenu"><a onclick="loadAccordionMenu('20161124112512659817453d009fb84')" title="调用方法" class="l-btn-text bannerMenu" href="#"><lable class="fa fa-puzzle-piece"></lable><br><span style="white-space:nowrap;">调用方法</span></a></td><td id="201407241558264790957ebaf9fec63" class="topmenu"><a onclick="loadAccordionMenu('201407241558264790957ebaf9fec63')" title="loadAccordionMenu" class="l-btn-text bannerMenu" href="#"><lable class="fa fa-sort-amount-asc"></lable><br><span style="white-space:nowrap;">loadAccordionMenu</span></a></td><td id="2016112411022140581745f0f582911" class="topmenu"><a onclick="loadAccordionMenu('2016112411022140581745f0f582911')" title="异步加载" class="l-btn-text bannerMenu" href="#"><lable class="fa  fa-weixin"></lable><br><span style="white-space:nowrap;">异步加载</span></a></td><td id="SystemManage" class="topmenu"><a onclick="loadAccordionMenu('SystemManage')" title="左边手风琴" class="l-btn-text bannerMenu" href="#"><lable class="fa fa-gears"></lable><br><span style="white-space:nowrap;">左边手风琴</span></a></td><td id="20161124111315488817464f920b54f" class="topmenu"><a onclick="loadAccordionMenu('20161124111315488817464f920b54f')" title="菜单" class="l-btn-text bannerMenu" href="#"><lable class="fa  fa-shield"></lable><br><span style="white-space:nowrap;">菜单</span></a></td><td id="201611241112087878174673e7fccb2" class="topmenu"><a onclick="loadAccordionMenu('201611241112087878174673e7fccb2')" title="OK！" class="l-btn-text bannerMenu" href="#"><lable class="fa  fa-bug"></lable><br><span style="white-space:nowrap;">或树形菜单</span></a></td></table>
+                </td>
+                <td>&nbsp;</td>
+                <td style="width: 40px;">
+                    <a id="WebIM" title="内部聊天" class="l-btn-text fa fa-commenting  fa-lg bannerbtn" href="#">
+                        <span id="mesCount" class="label-mes label-success">11</span>
                     </a>
-                </li>
-                <li>
-                    <a data-menuid="60" class="systemName" style="z-index: 999;" href="javascript:void(0)">
-                        <span class="topmenu-icon icon-book"></span>
-                        <span data-menuid="60" class="tabs-title topmenu-with-icon">开发文档</span>
+                </td>
+                <td style="width: 40px;">
+                    <a title="等待开放..." class="l-btn-text fa fa-envelope-o  fa-lg bannerbtn" href="#"> </a>
+                </td>
+                <td style="width: 40px;">
+                    <a title="等待开放..." class="l-btn-text fa fa-bell-o  fa-lg bannerbtn" href="#"> </a>
+                </td>
+                <td style="width: 80px;">
+                    <a title="切换主题" id="SetThemes" class="l-btn-text fa fa-cogs fa-lg bannerbtn" href="#"> </a>
+                </td>
+                <td style="width:180px; overflow:hidden; ">
+                    <a id="showUserInfo" style="display:inline-block;" class="fa bannerbtn" href="javascript:void()">
+                        <img src="../../topjui/content/Images/photo.jpg" class="user-image" alt="User Image">
+                        <span class="user-name">TopJUI</span>
                     </a>
-                </li>
-                <li>
-                    <a data-menuid="" class="systemName" href="javascript:void(0)">
-                        <span class="topmenu-icon icon-user"></span>
-                        <span data-menuid="" class="tabs-title topmenu-with-icon">人力资源</span>
-                    </a>
-                </li>
-                <li>
-                    <a data-menuid="" class="systemName" href="javascript:void(0)">
-                        <span class="topmenu-icon icon-database_table"></span>
-                        <span data-menuid="" class="tabs-title topmenu-with-icon">财务管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a data-menuid="" class="systemName" href="javascript:void(0)">
-                        <span class="topmenu-icon icon-calendar"></span>
-                        <span data-menuid="" class="tabs-title topmenu-with-icon">业务系统</span>
-                    </a>
-                </li>
-                <li>
-                    <a data-menuid="" class="systemName" href="javascript:void(0)">
-                        <span class="topmenu-icon icon-cog"></span>
-                        <span data-menuid="" class="tabs-title topmenu-with-icon">系统设置</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
-    <div data-options="region:'west',split:true,width:212" title="轻松工作，快乐办公！" iconCls="icon-color"
+    <div data-options="region:'west',split:true,width:230" title="轻松工作，快乐办公！" iconCls="fa fa-dashboard"
          style="overflow:hidden;" align="left">
-
-        <div id="menuTab" class="easyui-tabs" data-options="fit:true,border:false">
-            <div title="导航菜单" data-options="iconCls:'icon-sitemap'" style="padding:0;">
+        <div id="RightAccordion" class="easyui-accordion"></div>
+        <!--<div id="menuTab" class="easyui-tabs" data-options="fit:true,border:false">
+            <div title="导航菜单" data-options="iconCls:'fa fa-sitemap'" style="padding:0;">
                 <div id="RightAccordion" class="easyui-accordion"></div>
             </div>
-            <div title="常用链接" data-options="iconCls:'icon-star',closable:true">
+            <div title="常用链接" data-options="iconCls:'fa fa-star',closable:true">
                 <ul id="channgyongLink"></ul>
             </div>
-        </div>
+        </div>-->
 
     </div>
-    <div data-options="region:'center',border:true">
+    <div id="center" data-options="region:'center',border:true">
         <div id="index_tabs" style="width:100%;height:100%">
-            <div title="系统首页" iconCls="icon-house" data-options="border:false,
+            <div title="系统首页" iconCls="fa fa-home" data-options="border:false,
             content:'<iframe src=\'./html/portal/index.html\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'"></div>
         </div>
     </div>

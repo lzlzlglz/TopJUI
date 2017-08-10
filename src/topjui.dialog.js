@@ -10,7 +10,7 @@
             title: '新增/编辑',
             modal: true,
             closed: true,
-            iconCls: 'icon-application_form',
+            iconCls: 'fa fa-windows',
             collapsible: true,
             maximizable: true,
             minimizable: false,
@@ -130,7 +130,7 @@
             dialogDom +
             '<div id="' + options.dialog.id + '-buttons" style="display:none">' +
             buttonsDom +
-            '<a href="#" data-toggle="topjui-linkbutton" data-options="iconCls:\'icon-no\'" onclick="javascript:$(\'#' + options.dialog.id + '\').dialog(\'close\')">关闭</a>' +
+            '<a href="#" data-toggle="topjui-linkbutton" data-options="iconCls:\'fa fa-window-close\'" onclick="javascript:$(\'#' + options.dialog.id + '\').dialog(\'close\')">关闭</a>' +
             '</div>'
         );
 
