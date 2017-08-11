@@ -62,3 +62,10 @@ var defaultConfig = {
     }
 };
 topJUI = $.extend(true, defaultConfig, topJUI);
+
+/* TopJUI默认属性 */
+var defaultHeight = 34;
+$.fn.textbox.defaults.height = defaultHeight;
+$.fn.combobox.defaults.height = defaultHeight;
+$.fn.combotree.defaults.height = defaultHeight;
+$.fn.numberspinner.defaults.height = defaultHeight;

@@ -11,7 +11,6 @@
     $.fn.iTextbox = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             prompt: '',
             type: 'text',
             multiline: false,
@@ -30,7 +29,6 @@
     $.fn.iSwitchbutton = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             value: "1"
         }
 
@@ -42,7 +40,6 @@
     $.fn.iFilebox = function (options) {
         var defaults = {
             width: 450,
-            height: 36,
             prompt: '',
             type: 'text',
             multiline: false,
@@ -65,7 +62,6 @@
     $.fn.iNumberspinner = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             editable: true,
             defaultValueType: '',
             value: '',
@@ -115,7 +111,6 @@
             editable: true,
             value: "",
             width: 153,
-            height: 36,
             formatter: function (value) {
                 var y = value.getFullYear();
                 var m = value.getMonth() + 1;
@@ -149,7 +144,6 @@
     $.fn.iNumberbox = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             min: 0,
             precision: 0,
             decimalSeparator: '.',
@@ -177,7 +171,6 @@
     $.fn.iCombobox = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             url: ctx + '/system/codeItem/getListByCodeSetIdAndLevelId?codeSetId={codeSetId}&levelId={levelId}',
             codeSetId: 0,
             pid: 0,
@@ -222,7 +215,6 @@
     $.fn.iCombogrid = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             panelWidth: 450,
             delay: 1000,
             mode: 'remote',
@@ -275,7 +267,6 @@
     $.fn.iCombotreegrid = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             panelWidth: 450,
             url: ctx + '/system/user/getListByKeywords',
             idField: 'id',
@@ -351,7 +342,6 @@
             valueField: 'userNameId',
             textField: 'userName',
             width: 450,
-            height: 36,
             panelHeight: 250,
             fieldId: 'userNameId',
             required: false,

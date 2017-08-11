@@ -1,6 +1,6 @@
 ﻿/*easyui mian*/
-#west {border:0px;background:#2c3b41;}
-.layout-panel-west .panel-header{ padding-left:5px; width:220px;height:30px;border: #1e282c;background:#1e282c;color:#777; line-height:25px;;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#1e282c,endColorstr=#1e282c,GradientType=0)}
+#west {border:solid 1px;background:#2c3b41;}
+.layout-panel-west .panel-header{ padding-left:5px; width:220px;height:30px;border-color: #1e282c;background:#1e282c;color:#777; line-height:25px;;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#1e282c,endColorstr=#1e282c,GradientType=0)}
 .layout-panel-west .panel-header .panel-title{padding-left:15px;height:25px;color:#4b646f;line-height:25px;}
 .label-mes{position:absolute;top:3px;display:none;margin-left:13px;padding:2px 3px;border-radius:3px;text-align:center;font-size:9px;line-height:.9;}
 .label-success{background-color:#00a65a !important;}

@@ -9,7 +9,9 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 树形节点高度 */
 .tree-node {
-    padding: 11px 0 !important;
+    height: 15px !important;
+    line-height: 15px !important;
+    padding: 10px 0 !important;
     border-bottom: dashed 1px #ddd;
 }
 
@@ -22,11 +24,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 /* 树形节点文字大小 */
 .tree-title {
     font-size: 12px;
+    line-height: 15px !important;
 }
 
 /* 调整树形图标显示位置 */
 .tree-icon {
-    margin-top: -1px;
+    margin-top: 1px !important
 }
 
 /* 表格行高 */
@@ -218,8 +221,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 下拉框选项样式 */
 .combobox-item, .combobox-group, .combobox-stick {
-    height: 29px;
-    line-height: 29px;
+    height: 27px;
+    line-height: 27px;
     border-bottom: dashed 1px #ddd;
 }
 

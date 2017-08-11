@@ -1477,7 +1477,6 @@
             expandUrl: ctx + '/system/codeItem/getListByPid?pid={pid}',
             getFatherIdsUrl: '',
             width: 153,
-            height: 36,
             panelHeight: 'auto',
             required: false,
             lines: false,
@@ -3093,7 +3092,14 @@ $.fn.serializeObject = function () {
         afterCloseDialog: 'topjui.afterCloseDialog'
     }
 };
-topJUI = $.extend(true, defaultConfig, topJUI);;(function ($) {
+topJUI = $.extend(true, defaultConfig, topJUI);
+
+/* TopJUI默认属性 */
+var defaultHeight = 34;
+$.fn.textbox.defaults.height = defaultHeight;
+$.fn.combobox.defaults.height = defaultHeight;
+$.fn.combotree.defaults.height = defaultHeight;
+$.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
     $.fn.iDatagrid = function (options) {
         var defaults = {
             //datagridId       : element.get(0).id,
@@ -3978,7 +3984,6 @@ $.extend($.fn.datagrid.methods, {
     $.fn.iTextbox = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             prompt: '',
             type: 'text',
             multiline: false,
@@ -3997,7 +4002,6 @@ $.extend($.fn.datagrid.methods, {
     $.fn.iSwitchbutton = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             value: "1"
         }
 
@@ -4009,7 +4013,6 @@ $.extend($.fn.datagrid.methods, {
     $.fn.iFilebox = function (options) {
         var defaults = {
             width: 450,
-            height: 36,
             prompt: '',
             type: 'text',
             multiline: false,
@@ -4032,7 +4035,6 @@ $.extend($.fn.datagrid.methods, {
     $.fn.iNumberspinner = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             editable: true,
             defaultValueType: '',
             value: '',
@@ -4082,7 +4084,6 @@ $.extend($.fn.datagrid.methods, {
             editable: true,
             value: "",
             width: 153,
-            height: 36,
             formatter: function (value) {
                 var y = value.getFullYear();
                 var m = value.getMonth() + 1;
@@ -4116,7 +4117,6 @@ $.extend($.fn.datagrid.methods, {
     $.fn.iNumberbox = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             min: 0,
             precision: 0,
             decimalSeparator: '.',
@@ -4144,7 +4144,6 @@ $.extend($.fn.datagrid.methods, {
     $.fn.iCombobox = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             url: ctx + '/system/codeItem/getListByCodeSetIdAndLevelId?codeSetId={codeSetId}&levelId={levelId}',
             codeSetId: 0,
             pid: 0,
@@ -4189,7 +4188,6 @@ $.extend($.fn.datagrid.methods, {
     $.fn.iCombogrid = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             panelWidth: 450,
             delay: 1000,
             mode: 'remote',
@@ -4242,7 +4240,6 @@ $.extend($.fn.datagrid.methods, {
     $.fn.iCombotreegrid = function (options) {
         var defaults = {
             width: 153,
-            height: 36,
             panelWidth: 450,
             url: ctx + '/system/user/getListByKeywords',
             idField: 'id',
@@ -4318,7 +4315,6 @@ $.extend($.fn.datagrid.methods, {
             valueField: 'userNameId',
             textField: 'userName',
             width: 450,
-            height: 36,
             panelHeight: 250,
             fieldId: 'userNameId',
             required: false,

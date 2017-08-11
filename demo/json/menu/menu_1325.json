@@ -4,7 +4,7 @@
     "pid": 1325,
     "text": "综合演示",
     "state": "closed",
-    "iconCls": "fa fa-user",
+    "iconCls": "fa fa-heartbeat",
     "url": ""
   },
   {
@@ -12,7 +12,7 @@
     "pid": 1325,
     "text": "表单组件",
     "state": "closed",
-    "iconCls": "icon-layout_sidebar",
+    "iconCls": "fa fa-bank",
     "url": ""
   },
   {
@@ -20,7 +20,7 @@
     "pid": 1325,
     "text": "表格组件",
     "state": "closed",
-    "iconCls": "icon-database_table",
+    "iconCls": "fa fa-table",
     "url": ""
   },
   {
@@ -28,7 +28,7 @@
     "pid": 1325,
     "text": "菜单按钮",
     "state": "closed",
-    "iconCls": "icon-piechart",
+    "iconCls": "fa fa-list",
     "url": ""
   },
   {
@@ -36,7 +36,7 @@
     "pid": 1325,
     "text": "图形报表",
     "state": "closed",
-    "iconCls": "icon-chart_bar",
+    "iconCls": "fa fa-bar-chart",
     "url": ""
   },
   {
@@ -44,7 +44,7 @@
     "pid": 1325,
     "text": "扩展组件",
     "state": "closed",
-    "iconCls": "icon-calendar",
+    "iconCls": "fa fa-map",
     "url": ""
   }
 ]
