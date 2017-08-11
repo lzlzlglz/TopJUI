@@ -1,6 +1,6 @@
 ﻿/*easyui mian*/
 .layout-panel-west .panel-header{height:30px; width:220px; padding-left:5px;color:#777;background:#f9fafc;border-color:#d3d3d3}
-.layout-panel-west .panel-header .panel-title{height:25px;line-height:25px;padding-left:15px;color:#777}
+.layout-panel-west .panel-header .panel-title{height:30px;line-height:30px;padding-left:20px;color:#777}
 .label-mes{position:absolute;top:3px;margin-left:13px;text-align:center;padding:2px 3px;line-height:.9;border-radius:3px;display:none;font-size:9px;}
 .label-success{background-color:#00a65a !important}
 #west .tree-icon{margin-top: 9px;}

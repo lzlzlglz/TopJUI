@@ -111,9 +111,8 @@ $(function () {
     });
 
     // 主页打开初始化时显示第一个系统的菜单
-    //$('.systemName').eq('0').trigger('click');
-    generateMenu(1325, "系统配置");
-    //generateMenu(1325);
+    $('.systemName').eq('0').trigger('click');
+    //generateMenu(1325, "系统配置");
 
     // 显示系统首页
     /*setTimeout(function () {

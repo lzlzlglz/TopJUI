@@ -99,7 +99,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 调整tabs图标显示位置 */
 .tabs-icon {
-    margin-top: -6px;
+    margin-top: -6px !important;
 }
 
 /* tabs链接字体大小 */
