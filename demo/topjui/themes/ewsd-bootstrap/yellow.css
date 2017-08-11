@@ -50,7 +50,7 @@ background: url('base/images/accordion_arrows2.png') no-repeat 0 0;
 #center .tabs li.tabs-selected a.tabs-inner{border-top-color: #f39c12;border-top-width: 3px;}
 .banner{width: 100%;height: 50px;background: #f39c12;color: #fff;}
 .banner .l-btn-text{margin:0px;}
-.banner .webname{width: 225px;background:#e08e0b; text-align:center; font-weight:bold; font-size: 20px;line-height: 25px; }
+.banner .webname{width: 225px;background:#e08e0b; text-align:left; padding-left:10px; font-weight:bold; font-size: 20px;line-height: 25px; }
 .panel-icon, .panel-tool {margin-top:-6px;}
 #west .panel-tool a{opacity:0.8;filter:alpha(opacity=20);}
 /*easyui inner*/
@@ -71,7 +71,7 @@ background: url('base/images/accordion_arrows2.png') no-repeat 0 0;
 .accordion .accordion-header-selected {background: #e08e0b;}
 /*btn*/
 
-.bannerbtn{padding:15px 10px 0 10px;height:36px;color:#fff;text-decoration:none;line-height:36px;}
+.bannerbtn{padding:18px 10px 6px 10px;height:25px;color:#fff;text-decoration:none;line-height:36px;}
 .bannerbtn:hover{background:#e08e0b;filter:none;}
 .endbtndiv{padding:8px 10px 8px 0;border-top:1px solid #f0f0f0;background:#f9f9f9;text-align:right;}
 .l-btn-left{margin:2px;}

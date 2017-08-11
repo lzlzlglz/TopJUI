@@ -38,7 +38,7 @@
 #center .tabs li.tabs-selected a.tabs-inner{border-top-color:#605ca8;border-top-width:3px;}
 .banner{width:100%;height:50px;background:#605ca8;color:#fff;}
 .banner .l-btn-text{margin:0;}
-.banner .webname{width:215px;background:#555299;text-align:center;font-weight:700;font-size:20px;line-height:25px;}
+.banner .webname{width:215px;background:#555299;text-align:left; padding-left:10px;font-weight:700;font-size:20px;line-height:25px;}
 .panel-icon,.panel-tool{margin-top:-6px;}
 .window{padding:0;border-width:3px 1px 1px 1px;-webkit-border-radius:5px;border-radius:5px;box-shadow:1px 1px 50px rgba(0,0,0,.3);border-top-color:#605ca8;}
 .window .window-body{border-width:0;}
@@ -54,7 +54,7 @@
 .datagrid-header td.datagrid-header-over,.datagrid-row-over{background:#e7eaec;}
 .datagrid-cell,.datagrid-cell-group,.datagrid-cell-rownumber,.datagrid-header-rownumber{padding:0 7px;white-space:normal;}
 .accordion .accordion-header-selected{background:#605ca8;}
-.bannerbtn{padding:15px 10px 0 10px;height:36px;color:#fff;text-decoration:none;line-height:36px;}
+.bannerbtn{padding:18px 10px 6px 10px;height:25px;color:#fff;text-decoration:none;line-height:36px;}
 .bannerbtn:hover{background:#555299;filter:none;}
 .endbtndiv{padding:8px 10px 8px 0;border-top:1px solid #f0f0f0;background:#f9f9f9;text-align:right;}
 .l-btn-left{margin:2px;}

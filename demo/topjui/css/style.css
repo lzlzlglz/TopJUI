@@ -104,20 +104,20 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* tabs链接字体大小 */
 .tabs a {
-    height: 34px !important;
-    line-height: 34px !important;
+    height: 37px !important;
+    line-height: 37px !important;
     border-bottom: none !important;
 }
 
 /* tabs顶部边框高度 */
 .tabs li a.tabs-inner {
-    border-top-width: 4px;
+    /*border-top-width: 4px;*/
 }
 
 /* 被选中的tabs顶部边框颜色及遮盖下边框线 */
 .tabs li.tabs-selected a.tabs-inner {
     border-top-color: #3498DB;
-    height: 35px !important;
+    height: 36px !important;
 }
 
 /* tabs关闭按钮高度 */
@@ -390,11 +390,15 @@ ul {
 
 table td {
     font-size: 12px;
-    padding: 2px;
+    padding: 0px;
 }
 
 .editTable {
     margin: 10px auto 20px auto;
+}
+
+.editTable td {
+    padding: 2px;
 }
 
 .editTable .label {
