@@ -6,7 +6,7 @@
 .label-success{background-color:#00a65a !important}
 #west .tree-icon{margin-top: 9px;color:#fff}
 #west .tree-hit{margin-top: 7px;}
-#west .tree-node{height: 35px;line-height:30px;padding-left:20px;}
+#west .tree-node{height: 35px;line-height:30px;padding-left:20px;border-bottom: dashed 1px #565656;}
 #west .tree-title{line-height: 35px;color:#fff; padding-left:7px;}
 #west .tree-file{background: url('');vertical-align: middle;overflow:auto;}
 #west .tree-folder, .tree-folder-open{background: url('');line-height: 19px;}
