@@ -394,11 +394,11 @@
                     var panel = grid.datagrid('getPanel').panel('panel');
                     var defaultCls = {
                         'border': '1px solid #333',
-                        'padding': '1px',
+                        'padding': '2px',
                         'color': '#333',
                         'background': '#f7f5d1',
                         'position': 'absolute',
-                        'max-width': '400px',
+                        'max-width': '800px',
                         'border-radius': '4px',
                         '-moz-border-radius': '4px',
                         '-webkit-border-radius': '4px',

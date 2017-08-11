@@ -237,7 +237,7 @@ function changeTheme(themeName) {/* 更换主题 */
     var $easyuiTheme = $('#easyuiTheme');
     var url = $easyuiTheme.attr('href');
     //var href = url.substring(0, url.indexOf('themes')) + 'themes/' + themeName + '/easyui.css';
-    var href = url.substring(0, url.indexOf('themes')) + 'themes/ewsd-bootstrap/' + themeName + '.css';
+    var href = url.substring(0, url.indexOf('themes')) + 'themes/ewsd/' + themeName + '.css';
     $easyuiTheme.attr('href', href);
 
     var $iframe = $('iframe');

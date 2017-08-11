@@ -51,7 +51,8 @@ module.exports = function (grunt) {
             compress: {
                 files: {
                     'demo/topjui/css/topjui.all.min.css': [
-                        "demo/topjui/css/icon.css",
+                        "demo/topjui/themes/ewsd/base/easyui.css",
+                        "demo/topjui/themes/ewsd/base/site.css",
                         "demo/topjui/css/style.css"
                     ]
                 }
