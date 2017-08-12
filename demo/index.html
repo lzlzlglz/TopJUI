@@ -12,7 +12,7 @@
     <link type="text/css" href="./topjui/css/site.css" rel="stylesheet"/>
     <link type="text/css" href="./topjui/css/style.css" rel="stylesheet"/>
     <!--<link type="text/css" href="./topjui/css/topjui.all.min.css" rel="stylesheet">-->
-    <link type="text/css" href="/topjui/themes/yushan/topjui.red.css" rel="stylesheet" id="easyuiTheme"/>
+    <link type="text/css" href="/topjui/themes/yushan/topjui.redlight.css" rel="stylesheet" id="easyuiTheme"/>
     <link type="text/css" href="./topjui/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <!-- jQuery引入 -->
     <script type="text/javascript" src="./topjui/plugins/easyui/jquery.min.js"></script>
@@ -107,7 +107,7 @@
                     <a title="切换主题" id="setThemes" class="l-btn-text fa fa-cogs fa-lg bannerbtn" href="#"> </a>
                 </td>
                 <td style="width:180px; overflow:hidden; ">
-                    <a id="showUserInfo" style="display:inline-block;" class="fa bannerbtn" href="javascript:void()">
+                    <a id="showUserInfo" style="display:inline-block;" class="fa bannerbtn" href="javascript:void(0)">
                         <img src="../../topjui/image/avatar.jpg" class="user-image" alt="User Image">
                         <span class="user-name">TopJUI</span>
                     </a>
@@ -116,7 +116,7 @@
         </table>
     </div>
 
-    <div id="west" data-options="region:'west',split:true,width:230" title="轻松工作，快乐办公！" iconCls="fa fa-dashboard"
+    <div id="west" data-options="region:'west',split:true,width:230,border:true" title="轻松工作，快乐办公！" iconCls="fa fa-dashboard"
          style="overflow:hidden;" align="left">
         <div id="RightAccordion" class="easyui-accordion"></div>
         <!--<div id="menuTab" class="easyui-tabs" data-options="fit:true,border:false">
@@ -129,7 +129,7 @@
         </div>-->
 
     </div>
-    <div id="center" data-options="region:'center',border:false">
+    <div id="center" data-options="region:'center',border:false" style="overflow:hidden;">
         <div id="index_tabs" style="width:100%;height:100%">
             <div title="系统首页" iconCls="fa fa-home" data-options="border:true,
             content:'<iframe src=\'./html/portal/index.html\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'"></div>
