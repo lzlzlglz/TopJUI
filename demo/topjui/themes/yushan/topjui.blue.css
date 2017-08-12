@@ -19,8 +19,8 @@
 #west .panel-title{font-size: 12px;height: 30px;padding-left:18px; line-height: 30px;color:#b8c7ce}
 #west .accordion{background: #222d32;border:0px;}
 #west .accordion-body {border:0px;background:#2c3b41}
-#west .accordion .accordion-header{background: #222d32;height: 30px;line-height: 30px;border:0px;color:#fff;border-left:3px #222d32 solid;}
-#west .accordion .accordion-header-selected{background: #222d32;border-left:3px #3c8dbc solid;}
+#west .accordion .accordion-header{background: #222d32;height: 30px;line-height: 30px;border-top:solid 1px #2c3b41;color:#fff;border-left:3px #222d32 solid;}
+#west .accordion .accordion-header-selected{background: #222d32;border-left:3px #3c8dbc solid;border-bottom:solid 1px #2c3b41;}
 #west .accordion .accordion-header:hover{background: #1e282c;color: #fff;border-left:3px #3c8dbc solid;}
 #west .accordion .accordion-header-selected .panel-title{color:#fff}
 #west .accordion .accordion-header .panel-title:hover{color: #fff;}
@@ -35,13 +35,13 @@
 #west .panel-tool a{filter:alpha(opacity=20);opacity:0.8}
 #west .panel-tool a:hover{filter:alpha(opacity=100);opacity:1;}
 #west .accordion-collapse {
-background: url('base/images/accordion_arrows2.png') no-repeat 0 0;
+background: url('../../themes/yushan/images/accordion_arrows2.png') no-repeat 0 0;
 }
 #west .accordion-expand {
-  background: url('base/images/accordion_arrows2.png') no-repeat -16px 0;
+  background: url('../../themes/yushan/images/accordion_arrows2.png') no-repeat -16px 0;
 }
- .accordion-header .accordion-collapse {background: url('../../topjui/content/themes/base/images/accordion_arrows3.png') no-repeat 0 0;}
- .accordion-header .accordion-expand {background: url('../../topjui/content/themes/base/images/accordion_arrows3.png') no-repeat -16px 0;}
+ .accordion-header .accordion-collapse {background: url('../../themes/yushan/images/accordion_arrows3.png') no-repeat 0 0;}
+ .accordion-header .accordion-expand {background: url('../../themes/yushan/images/accordion_arrows3.png') no-repeat -16px 0;}
 .user-image {float: left;width: 30px;height: 30px;border-radius: 50%;margin-right: 10px;margin-top: -6px;}
 .user-name {padding-top:3px;display:block; float: left;width:120px;overflow:hidden;font-family:'Microsoft YaHei',Arial,Verdana}
 .user-header{text-align:center; background:#3c8dbc; padding-top:20px;font-family:'Microsoft YaHei',Arial,Verdana; color:#fff}
