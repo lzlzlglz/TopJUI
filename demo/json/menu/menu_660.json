@@ -5,7 +5,7 @@
     "state": "open",
     "iconCls": "",
     "text": "柱状图",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c0159533b6cd247b1"
+    "url": "http://www.topjui.com/document/index/index.html"
   },
   {
     "id": 1348,
@@ -13,7 +13,7 @@
     "state": "open",
     "iconCls": "",
     "text": "饼图",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c0159533b91b947c0"
+    "url": "http://www.topjui.com/document/index/index.html"
   },
   {
     "id": 1347,
@@ -21,6 +21,6 @@
     "state": "open",
     "iconCls": "",
     "text": "拆线图",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c0159533bb97347cf"
+    "url": "http://www.topjui.com/document/index/index.html"
   }
 ]

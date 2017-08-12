@@ -5,7 +5,7 @@
     "state": "open",
     "iconCls": "",
     "text": "文字编辑器",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952fefaff42d0"
+    "url": "http://www.topjui.com/document/index/index.html"
   },
   {
     "id": 1348,
@@ -13,7 +13,7 @@
     "state": "open",
     "iconCls": "",
     "text": "附件上传",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952ff279d42e1"
+    "url": "http://www.topjui.com/document/index/index.html"
   },
   {
     "id": 1347,
@@ -21,7 +21,7 @@
     "state": "open",
     "iconCls": "",
     "text": "多项选择",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952ff4df942f0"
+    "url": "http://www.topjui.com/document/index/index.html"
   },
   {
     "id": 1348,
@@ -29,7 +29,7 @@
     "state": "open",
     "iconCls": "",
     "text": "数据过滤",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952ff76f04301"
+    "url": "http://www.topjui.com/document/index/index.html"
   },
   {
     "id": 1349,
@@ -37,7 +37,7 @@
     "state": "open",
     "iconCls": "",
     "text": "组合查询",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952ff9ce84310"
+    "url": "http://www.topjui.com/document/index/index.html"
   },
   {
     "id": 1350,
@@ -45,7 +45,7 @@
     "state": "open",
     "iconCls": "",
     "text": "数据导入",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952ffcdba431f"
+    "url": "http://www.topjui.com/document/index/index.html"
   },
   {
     "id": 1351,
@@ -53,6 +53,6 @@
     "state": "open",
     "iconCls": "",
     "text": "数据导出",
-    "url": "http://demo.ewsd.cn/system/article/api/detail?uuid=00000000594ac24c015952fff8f3432e"
+    "url": "http://www.topjui.com/document/index/index.html"
   }
 ]
