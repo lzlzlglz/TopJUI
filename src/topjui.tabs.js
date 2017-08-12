@@ -10,7 +10,7 @@
             iconCls: '',
             content: '',
             //href: '/system/page/selectRow',
-            border: false,
+            border: true,
             fit: true,
             onSelect: function (title, index) {
                 var tabs = options.tabs;

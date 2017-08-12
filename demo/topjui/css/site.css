@@ -40,7 +40,7 @@ label{font-weight:400;}
 .tree-node-hover .tree-title{color: #000000;}
 
 
-.tabs{padding-left:4px;}
+.tabs{padding-left:0;}
 .tabs-header{border-width: 0px;}
 .tabs-icon{margin-top:-8px;left:12px;}
 /*.tabs li a.tabs-inner{padding: 0 15px;}*/

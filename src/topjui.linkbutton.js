@@ -77,7 +77,7 @@
                     showMessage({
                         statusCode: 300,
                         title: topJUI.language.message.title.operationTips,
-                        message: '显示红底色的输入框为必填字段',
+                        message: '显示红色边框的字段不能为空',
                         icon: topJUI.language.message.icon.warning
                     });
                 }

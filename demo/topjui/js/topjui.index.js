@@ -49,7 +49,6 @@ $(function () {
     // 首页tabs选项卡
     index_tabs = $('#index_tabs').tabs({
         fit: true,
-        border: false,
         tools: [{
             iconCls: 'fa fa-home',
             handler: function () {
@@ -127,32 +126,28 @@ $(function () {
      addTab(indexTab);
      }, 1);*/
 
-    $("#SetThemes").click(function () {
-        $("#ModalStyle").dialog({
-            title: '个性化设置',
+    $("#setThemes").click(function () {
+        $("#themeStyle").dialog({
+            title: '设置主题风格',
         }).dialog('open');
     });
 
-});
-
-// 保存主题
-function SetThemes() {
-    $.messager.confirm("确定要切换到该主题吗？", "主题切换成功后将刷新系统！", function (r) {
-        if (r) {
-            var theme = $('input[name="themes"]:checked').val();
-            var menu = $('input[name="menustyle"]:checked').val();
-            var topmenu = $('input[name="topmenu"]').is(':checked');
-            $.post("/json/response/success.json", {
-                theme: theme,
-                menu: menu,
-                topmenu: topmenu
-            }, function (data) {
-                changeTheme(theme);
-                window.location.reload();
-            }, "json");
-        }
+    // 保存主题
+    $(".topjuiTheme").on("click", function () {
+        var theme = $('input[name="themes"]:checked').val();
+        var menu = $('input[name="menustyle"]:checked').val();
+        var topmenu = $('input[name="topmenu"]').is(':checked');
+        $.post("/json/response/success.json", {
+            theme: theme,
+            menu: menu,
+            topmenu: topmenu
+        }, function (data) {
+            changeTheme(theme);
+            //window.location.reload();
+        }, "json");
     });
-}
+
+});
 
 // Tab菜单操作
 function tabMenuOprate(menu, type) {
@@ -237,7 +232,7 @@ function changeTheme(themeName) {/* 更换主题 */
     var $easyuiTheme = $('#easyuiTheme');
     var url = $easyuiTheme.attr('href');
     //var href = url.substring(0, url.indexOf('themes')) + 'themes/' + themeName + '/easyui.css';
-    var href = url.substring(0, url.indexOf('themes')) + 'themes/ewsd/' + themeName + '.css';
+    var href = url.substring(0, url.indexOf('themes')) + 'themes/yushan/topjui.' + themeName + '.css';
     $easyuiTheme.attr('href', href);
 
     var $iframe = $('iframe');
@@ -389,7 +384,7 @@ function addTab(params) {
         iconCls: params.iconCls ? params.iconCls : 'fa fa-file-text-o',
         content: iframe,
         //href: params.url,
-        border: params.border || false,
+        border: params.border || true,
         fit: true
         //cls: 'leftBottomBorder'
     };
@@ -420,7 +415,8 @@ addParentTab = function (options) {
         title: title,
         content: iframe,
         closable: true,
-        iconCls: 'icon-page'
+        iconCls: 'icon-page',
+        border: true
     });
 }
 
