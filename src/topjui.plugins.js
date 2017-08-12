@@ -699,7 +699,7 @@
                 var uploaderDialog = $("#uploaderDialog");
 
                 var defaults = {
-                    iconCls: 'icon-add',
+                    iconCls: 'fa fa-plus',
                     parentGridUnselectedMsg: '请先选中一条主表数据！',
                     dialog: {
                         title: '附件上传',
@@ -723,7 +723,7 @@
                 uploaderDialog.dialog('open');
 
                 $('#addUpFile').linkbutton({
-                    iconCls: 'icon-add',
+                    iconCls: 'fa fa-plus',
                     height: 37,
                     onClick: function () {
                         uploadToServer(uploader, parentRow);
@@ -948,12 +948,12 @@
         });
 
         $("#addCondition").menubutton({
-            iconCls: 'icon-add',
+            iconCls: 'fa fa-plus',
             hasDownArrow: false
         });
 
         $(".deleteCondition:last").menubutton({
-            iconCls: 'icon-delete',
+            iconCls: 'fa fa-trash',
             hasDownArrow: false
         });
 

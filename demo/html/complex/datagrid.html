@@ -18,6 +18,7 @@
     <script type="text/javascript" src="../../topjui/js/topjui.config.js"></script>
     <!-- TopJUI框架 -->
     <script type="text/javascript" src="../../topjui/js/topjui.all.js"></script>
+    <!-- EasyUI汉化 -->
     <script type="text/javascript" src="../../topjui/plugins/easyui/locale/easyui-lang-zh_CN.js"></script>
 </head>
 
@@ -45,7 +46,6 @@
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'openDialog',
-       iconCls:'fa fa-plus',
        dialog:{
            id:'userAddDialog',
            href:contextPath + '/html/complex/add.html',
@@ -73,14 +73,29 @@
        grid: {uncheckedMsg:'请先勾选要删除的数据',param:'uuid:uuid,code:code'}">删除</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
-       data-options="clickEvent:'filter',iconCls:'fa fa-filter'">过滤</a>
+       data-options="clickEvent:'filter'">过滤</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
-       data-options="clickEvent:'search',iconCls:'fa fa-search'">查询</a>
+       data-options="clickEvent:'search'">查询</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
-       data-options="clickEvent:'export',iconCls:'fa fa-file',
+       data-options="clickEvent:'export',
        url:contextPath + '/json/response/export.html'">导出</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="clickEvent:'openTab',
+       tab:{
+           title:'这是新的Tab窗口',
+           href:contextPath + '/html/menu/openTab_index.html'
+       }">打开Tab窗口</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="clickEvent:'openWindow',
+       href:'http://www.topjui.com?uuid={uuid}'">打开新窗口（可动态传参）</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="clickEvent:'request',
+       url:contextPath + '/json/response/success.json'">执行普通请求（文件下载等）</a>
 </div>
 <!-- 表格工具栏结束 -->
 </body>

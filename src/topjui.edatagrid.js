@@ -91,7 +91,7 @@
         options.destroyUrl = options.destroyUrl ? options.destroyUrl : controllerUrl + "delete";
 
         $(this).edatagrid({
-            filterBtnIconCls: 'icon-filter',
+            filterBtnIconCls: 'fa fa-filter',
             remoteFilter: true,
             width: options.width,
             height: options.height,

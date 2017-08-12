@@ -5,10 +5,10 @@
     <!-- 避免IE使用兼容模式 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="renderer" content="webkit">
-    <!-- EasyUI样式 -->
-    <link type="text/css" rel="stylesheet" href="../../topjui/themes/default/easyui.css">
     <!-- TopJUI样式 -->
-    <link type="text/css" rel="stylesheet" href="../../topjui/css/topjui.all.min.css">
+    <link type="text/css" href="../../topjui/css/topjui.all.min.css" rel="stylesheet">
+    <link type="text/css" href="../../topjui/themes/yushan/topjui.red.css" rel="stylesheet" id="easyuiTheme"/>
+    <link type="text/css" href="../../topjui/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <!-- jQuery核心 -->
     <script type="text/javascript" src="../../topjui/plugins/easyui/jquery.min.js"></script>
     <script type="text/javascript" src="../../topjui/plugins/jquery/jquery.cookie.js"></script>
@@ -52,7 +52,7 @@
            href:contextPath + '/html/form/combogrid.html',
            height:450,
            buttonsGroup:[
-               {text:'保存',url:contextPath + '/json/response/success.json',iconCls:'icon-add',handler:'ajaxForm'}
+               {text:'保存',url:contextPath + '/json/response/success.json',iconCls:'fa fa-plus',handler:'ajaxForm'}
            ]
        }">自动完成演示</a>
 </div>

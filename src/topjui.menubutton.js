@@ -3,7 +3,7 @@
     $.fn.iMenubutton = function (options) {
         var defaults = {
             plain: true,
-            iconCls: 'icon-cog',
+            iconCls: 'fa fa-cog',
             hasDownArrow: false,
             onClick: function () {
                 $(this).menubutton(options.clickEvent)

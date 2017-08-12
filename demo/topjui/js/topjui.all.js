@@ -1648,7 +1648,7 @@ function addTab(params) {
         id: Math.random(),
         title: params.text,
         closable: typeof(params.closable) != "undefined" ? params.closable : true,
-        iconCls: params.iconCls ? params.iconCls : 'icon-page',
+        iconCls: params.iconCls ? params.iconCls : 'fa fa-page',
         content: iframe,
         //href: params.url,
         border: params.border || false,
@@ -1715,7 +1715,7 @@ addParentTab = function (options) {
         title: title,
         content: iframe,
         closable: true,
-        iconCls: 'icon-page'
+        iconCls: 'fa fa-th'
     });
 
 }
@@ -1769,7 +1769,7 @@ function bindMenuClickEvent($element, options) {
     // 打开dialog事件
     if (options.clickEvent == "openDialog") {
         defaults = {
-            iconCls: 'icon-add',
+            iconCls: 'fa fa-plus',
             parentGridUnselectedMsg: '请先选中一条主表数据！',
             dialog: {
                 title: '数据详情',
@@ -1912,7 +1912,7 @@ function bindMenuClickEvent($element, options) {
          });*/
     } else if (options.clickEvent == "openTab") {
         /*defaults = {
-         iconCls: 'icon-add'
+         iconCls: 'fa fa-plus'
          }
          options = $.extend(defaults, options);
 
@@ -1920,17 +1920,17 @@ function bindMenuClickEvent($element, options) {
          addParentTab(options);
          });*/
     } else if (options.clickEvent == "openWindow") {
-        /*defaults = {
-         iconCls: 'icon-add'
+        defaults = {
+         iconCls: 'fa fa-link'
          }
          options = $.extend(defaults, options);
 
-         $element.on("click", function () {
+        /*$element.on("click", function () {
          openWindow(options);
          });*/
     } else if (options.clickEvent == "edatagrid") {
         defaults = {
-            iconCls: 'icon-add'
+            iconCls: 'fa fa-plus'
         }
         options = $.extend(defaults, options);
 
@@ -1943,26 +1943,26 @@ function bindMenuClickEvent($element, options) {
                 $('#' + options.grid.id).edatagrid('cancelRow');
         });
     } else if (options.clickEvent == "doAjax") {
-        /*defaults = {
-         iconCls: 'icon-add'
+        defaults = {
+         iconCls: 'fa fa-cog'
          }
          options = $.extend(defaults, options);
 
-         $element.on("click", function () {
+        /*$element.on("click", function () {
          //doAjaxHandler(options);
          });*/
     } else if (options.clickEvent == "request") {
-        /*defaults = {
-         iconCls: 'icon-add'
+        defaults = {
+         iconCls: 'fa fa-cog'
          }
          options = $.extend(defaults, options);
 
-         $element.on("click", function () {
+        /*$element.on("click", function () {
          requestHandler(options);
          });*/
     } else if (options.clickEvent == "delete") {
         defaults = {
-            iconCls: 'icon-delete'
+            iconCls: 'fa fa-trash'
         }
         options = $.extend(defaults, options);
 
@@ -1971,7 +1971,7 @@ function bindMenuClickEvent($element, options) {
          });*/
     } else if (options.clickEvent == "filter") {
         defaults = {
-            iconCls: 'icon-filter'
+            iconCls: 'fa fa-filter'
         }
         options = $.extend(defaults, options);
 
@@ -1980,7 +1980,7 @@ function bindMenuClickEvent($element, options) {
          });*/
     } else if (options.clickEvent == "search") {
         defaults = {
-            iconCls: 'icon-search',
+            iconCls: 'fa fa-search',
             href: '/system/search/advanceSearch'
         }
         options = $.extend(defaults, options);
@@ -1990,7 +1990,7 @@ function bindMenuClickEvent($element, options) {
          });*/
     } else if (options.clickEvent == "export") {
         defaults = {
-            iconCls: 'icon-table_go'
+            iconCls: 'fa fa-file'
         }
         options = $.extend(defaults, options);
 
@@ -1999,7 +1999,7 @@ function bindMenuClickEvent($element, options) {
          });*/
     } else if (options.clickEvent == "import") {
         defaults = {
-            iconCls: 'icon-table_go',
+            iconCls: 'fa fa-file',
             href: '/system/excel/excelImport'
         }
         options = $.extend(defaults, options);
@@ -2143,7 +2143,7 @@ function addHandler(options) {
     var dialogObj = $("#" + options.dialogId);
     dialogObj.dialog({
         //title : '新增数据',
-        iconCls: 'icon-add',
+        iconCls: 'fa fa-plus',
         toolbar: '#' + options.dialogId + '-toolbar',
         buttons: '#' + options.dialogId + '-buttons'
     });
@@ -2227,7 +2227,7 @@ function addChildHandler(options) {
         var dialogObj = $("#" + options.dialogId);
         dialogObj.dialog({
             //title : '新增数据',
-            iconCls: 'icon-add',
+            iconCls: 'fa fa-plus',
             toolbar: '#' + options.dialogId + '-toolbar',
             buttons: '#' + options.dialogId + '-buttons'
         });
@@ -2394,6 +2394,7 @@ function refreshGrid(gridType, gridId, clearQueryParams) {
 function doAjaxHandler(options) {
     var defaults = {
         gridId: 'datagrid',
+        iconCls: 'fa fa-cog',
         comfirmMsg: "确定要执行该操作吗？",
         grid: {
             uncheckedMsg: topJUI.language.message.msg.checkSelfGrid
@@ -3168,7 +3169,7 @@ $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
         options.deleteUrl = options.deleteUrl ? options.deleteUrl : controllerUrl + "delete";
 
         $(this).datagrid({
-            filterBtnIconCls: 'icon-filter',
+            filterBtnIconCls: 'fa fa-filter',
             remoteFilter: true,
             width: options.width,
             height: options.height,
@@ -3654,7 +3655,7 @@ $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
     generateDialogDoc = function (options) {
 
         var defaults = {
-            iconCls: 'icon-add',
+            iconCls: 'fa fa-plus',
             parentGridUnselectedMsg: '请先选中一条主表数据！',
             dialog: {
                 title: '数据详情',
@@ -3763,7 +3764,7 @@ $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
         options.destroyUrl = options.destroyUrl ? options.destroyUrl : controllerUrl + "delete";
 
         $(this).edatagrid({
-            filterBtnIconCls: 'icon-filter',
+            filterBtnIconCls: 'fa fa-filter',
             remoteFilter: true,
             width: options.width,
             height: options.height,
@@ -4791,7 +4792,7 @@ Array.prototype.remove = function (val) {
 
     $.fn.iLinkbutton = function (options) {
         var defaults = {
-            iconCls: 'icon-edit',
+            iconCls: 'fa fa-cog',
             plain: false
         }
 
@@ -4881,7 +4882,7 @@ Array.prototype.remove = function (val) {
     $.fn.iMenubutton = function (options) {
         var defaults = {
             plain: true,
-            iconCls: 'icon-cog',
+            iconCls: 'fa fa-cog',
             hasDownArrow: false,
             onClick: function () {
                 $(this).menubutton(options.clickEvent)
@@ -5679,7 +5680,7 @@ Array.prototype.remove = function (val) {
                 var uploaderDialog = $("#uploaderDialog");
 
                 var defaults = {
-                    iconCls: 'icon-add',
+                    iconCls: 'fa fa-plus',
                     parentGridUnselectedMsg: '请先选中一条主表数据！',
                     dialog: {
                         title: '附件上传',
@@ -5703,7 +5704,7 @@ Array.prototype.remove = function (val) {
                 uploaderDialog.dialog('open');
 
                 $('#addUpFile').linkbutton({
-                    iconCls: 'icon-add',
+                    iconCls: 'fa fa-plus',
                     height: 37,
                     onClick: function () {
                         uploadToServer(uploader, parentRow);
@@ -5928,12 +5929,12 @@ Array.prototype.remove = function (val) {
         });
 
         $("#addCondition").menubutton({
-            iconCls: 'icon-add',
+            iconCls: 'fa fa-plus',
             hasDownArrow: false
         });
 
         $(".deleteCondition:last").menubutton({
-            iconCls: 'icon-delete',
+            iconCls: 'fa fa-trash',
             hasDownArrow: false
         });
 

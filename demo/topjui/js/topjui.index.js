@@ -415,7 +415,7 @@ addParentTab = function (options) {
         title: title,
         content: iframe,
         closable: true,
-        iconCls: 'fa fa-file',
+        iconCls: 'fa fa-th',
         border: true
     });
 }

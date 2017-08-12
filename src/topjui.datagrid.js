@@ -91,7 +91,7 @@
         options.deleteUrl = options.deleteUrl ? options.deleteUrl : controllerUrl + "delete";
 
         $(this).datagrid({
-            filterBtnIconCls: 'icon-filter',
+            filterBtnIconCls: 'fa fa-filter',
             remoteFilter: true,
             width: options.width,
             height: options.height,

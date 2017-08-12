@@ -2,7 +2,7 @@
 
     $.fn.iLinkbutton = function (options) {
         var defaults = {
-            iconCls: 'icon-edit',
+            iconCls: 'fa fa-cog',
             plain: false
         }
 

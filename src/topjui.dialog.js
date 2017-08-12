@@ -96,7 +96,7 @@
     generateDialogDoc = function (options) {
 
         var defaults = {
-            iconCls: 'icon-add',
+            iconCls: 'fa fa-plus',
             parentGridUnselectedMsg: '请先选中一条主表数据！',
             dialog: {
                 title: '数据详情',

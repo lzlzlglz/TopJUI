@@ -40,6 +40,6 @@ addParentTab = function (options) {
         title: title,
         content: iframe,
         closable: true,
-        iconCls: 'icon-page'
+        iconCls: 'fa fa-th'
     });
 }
