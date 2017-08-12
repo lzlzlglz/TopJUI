@@ -302,12 +302,12 @@ function bindMenuClickEvent($element, options) {
          }
          });*/
     } else if (options.clickEvent == "openTab") {
-        /*defaults = {
-         iconCls: 'fa fa-plus'
+        defaults = {
+         iconCls: 'fa fa-th'
          }
          options = $.extend(defaults, options);
 
-         $element.on("click", function () {
+        /*$element.on("click", function () {
          addParentTab(options);
          });*/
     } else if (options.clickEvent == "openWindow") {
