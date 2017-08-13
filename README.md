@@ -15,3 +15,11 @@
 
 ## 交流反馈 ##
 - QQ交流群：593783047，如有问题或建议欢迎反馈！
+
+## 赞助我们 ##
+- TopJUI是我们创业团队提供给大家的一个开源前端框架，创业不易，请大家多多支持！
+- 如果您觉得TopJUI对您有帮助，您可以通过以下方式赞助我们：
+- 直接给我们转帐，赞助TopJUI前端框架域名及服务器的租赁费用；
+- 我们提供TopJUI相关的有偿技术支持，收费标准为50元/30分钟；
+- 我们提供基于TopJUI的JAVA或PHP后端软件系统的外包开发服务；
+![Image text](https://raw.githubusercontent.com/hongmaju/light7Local/master/img/productShow/20170518152848.png)
