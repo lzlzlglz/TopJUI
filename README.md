@@ -22,4 +22,4 @@
 - 直接给我们转帐，赞助TopJUI前端框架域名及服务器的租赁费用；
 - 我们提供TopJUI相关的有偿技术支持，收费标准为50元/30分钟；
 - 我们提供基于TopJUI的JAVA或PHP后端软件系统的外包开发服务；
-![Image text](https://raw.githubusercontent.com/hongmaju/light7Local/master/img/productShow/20170518152848.png)
+![微信支付赞助我们](http://git.oschina.net/xvpindex/TopJUI/blob/develop/demo/topjui/image/wxPay.png)
