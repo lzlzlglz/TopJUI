@@ -17,7 +17,7 @@
   position: relative;
 }
 .panel-title {
-  background: url('/topjui/themes/default/images/blank.gif') no-repeat;
+  background: url('../themes/default/images/blank.gif') no-repeat;
 }
 .panel-header-noborder {
   border-width: 0 0 1px 0;
@@ -87,25 +87,25 @@
   overflow: hidden;
 }
 .panel-loading {
-  background: url('/topjui/themes/default/images/loading.gif') no-repeat 10px 10px;
+  background: url('../themes/default/images/loading.gif') no-repeat 10px 10px;
 }
 .panel-tool-close {
-  background: url('/topjui/themes/default/images/panel_tools.png') no-repeat -16px 0px;
+  background: url('../themes/default/images/panel_tools.png') no-repeat -16px 0px;
 }
 .panel-tool-min {
-  background: url('/topjui/themes/default/images/panel_tools.png') no-repeat 0px 0px;
+  background: url('../themes/default/images/panel_tools.png') no-repeat 0px 0px;
 }
 .panel-tool-max {
-  background: url('/topjui/themes/default/images/panel_tools.png') no-repeat 0px -16px;
+  background: url('../themes/default/images/panel_tools.png') no-repeat 0px -16px;
 }
 .panel-tool-restore {
-  background: url('/topjui/themes/default/images/panel_tools.png') no-repeat -16px -16px;
+  background: url('../themes/default/images/panel_tools.png') no-repeat -16px -16px;
 }
 .panel-tool-collapse {
-  background: url('/topjui/themes/default/images/panel_tools.png') no-repeat -32px 0;
+  background: url('../themes/default/images/panel_tools.png') no-repeat -32px 0;
 }
 .panel-tool-expand {
-  background: url('/topjui/themes/default/images/panel_tools.png') no-repeat -32px -16px;
+  background: url('../themes/default/images/panel_tools.png') no-repeat -32px -16px;
 }
 .panel-header,
 .panel-body {
@@ -162,10 +162,10 @@
   border-width: 0 0 1px;
 }
 .accordion-collapse {
-  background: url('/topjui/themes/default/images/accordion_arrows.png') no-repeat 0 0;
+  background: url('../themes/default/images/accordion_arrows.png') no-repeat 0 0;
 }
 .accordion-expand {
-  background: url('/topjui/themes/default/images/accordion_arrows.png') no-repeat -16px 0;
+  background: url('../themes/default/images/accordion_arrows.png') no-repeat -16px 0;
 }
 .accordion {
   background: #ffffff;
@@ -652,7 +652,7 @@
   left: 0;
   top: 0;
   z-index: 10;
-  background: url('/topjui/themes/default/images/blank.gif') no-repeat;
+  background: url('../themes/default/images/blank.gif') no-repeat;
 }
 .l-btn-disabled .filebox-label {
   cursor: default;
@@ -675,7 +675,7 @@
   overflow: auto;
 }
 .combo-arrow {
-  background: url('/topjui/themes/default/images/combo_arrow.png') no-repeat center center;
+  background: url('../themes/default/images/combo_arrow.png') no-repeat center center;
 }
 .combo-panel {
   background-color: #ffffff;
@@ -831,16 +831,16 @@
   z-index: 4;
 }
 .layout-button-up {
-  background: url('/topjui/themes/default/images/layout_arrows.png') no-repeat -16px -16px;
+  background: url('../themes/default/images/layout_arrows.png') no-repeat -16px -16px;
 }
 .layout-button-down {
-  background: url('/topjui/themes/default/images/layout_arrows.png') no-repeat -16px 0;
+  background: url('../themes/default/images/layout_arrows.png') no-repeat -16px 0;
 }
 .layout-button-left {
-  background: url('/topjui/themes/default/images/layout_arrows.png') no-repeat 0 0;
+  background: url('../themes/default/images/layout_arrows.png') no-repeat 0 0;
 }
 .layout-button-right {
-  background: url('/topjui/themes/default/images/layout_arrows.png') no-repeat 0 -16px;
+  background: url('../themes/default/images/layout_arrows.png') no-repeat 0 -16px;
 }
 .layout-split-proxy-h,
 .layout-split-proxy-v {
@@ -1177,13 +1177,13 @@
   margin-left: -1px;
 }
 .tabs-scroller-left {
-  background: #f3f3f3 url('/topjui/themes/default/images/tabs_icons.png') no-repeat 1px center;
+  background: #f3f3f3 url('../themes/default/images/tabs_icons.png') no-repeat 1px center;
 }
 .tabs-scroller-right {
-  background: #f3f3f3 url('/topjui/themes/default/images/tabs_icons.png') no-repeat -15px center;
+  background: #f3f3f3 url('../themes/default/images/tabs_icons.png') no-repeat -15px center;
 }
 .tabs li a.tabs-close {
-  background: url('/topjui/themes/default/images/tabs_icons.png') no-repeat -34px center;
+  background: url('../themes/default/images/tabs_icons.png') no-repeat -34px center;
 }
 .tabs li a.tabs-inner:hover {
   background: #e2e2e2;
@@ -1473,26 +1473,26 @@
 .datagrid-sort .datagrid-sort-icon {
   display: inline;
   padding: 0 13px 0 0;
-  background: url('/topjui/themes/default/images/datagrid_icons.png') no-repeat -64px center;
+  background: url('../themes/default/images/datagrid_icons.png') no-repeat -64px center;
 }
 .datagrid-sort-desc .datagrid-sort-icon {
   display: inline;
   padding: 0 13px 0 0;
-  background: url('/topjui/themes/default/images/datagrid_icons.png') no-repeat -16px center;
+  background: url('../themes/default/images/datagrid_icons.png') no-repeat -16px center;
 }
 .datagrid-sort-asc .datagrid-sort-icon {
   display: inline;
   padding: 0 13px 0 0;
-  background: url('/topjui/themes/default/images/datagrid_icons.png') no-repeat 0px center;
+  background: url('../themes/default/images/datagrid_icons.png') no-repeat 0px center;
 }
 .datagrid-row-collapse {
-  background: url('/topjui/themes/default/images/datagrid_icons.png') no-repeat -48px center;
+  background: url('../themes/default/images/datagrid_icons.png') no-repeat -48px center;
 }
 .datagrid-row-expand {
-  background: url('/topjui/themes/default/images/datagrid_icons.png') no-repeat -32px center;
+  background: url('../themes/default/images/datagrid_icons.png') no-repeat -32px center;
 }
 .datagrid-mask-msg {
-  background: #ffffff url('/topjui/themes/default/images/loading.gif') no-repeat scroll 5px center;
+  background: #ffffff url('../themes/default/images/loading.gif') no-repeat scroll 5px center;
 }
 .datagrid-header,
 .datagrid-td-rownumber {
@@ -1729,22 +1729,22 @@
   margin: 0;
 }
 .pagination-first {
-  background: url('/topjui/themes/default/images/pagination_icons.png') no-repeat 0 center;
+  background: url('../themes/default/images/pagination_icons.png') no-repeat 0 center;
 }
 .pagination-prev {
-  background: url('/topjui/themes/default/images/pagination_icons.png') no-repeat -16px center;
+  background: url('../themes/default/images/pagination_icons.png') no-repeat -16px center;
 }
 .pagination-next {
-  background: url('/topjui/themes/default/images/pagination_icons.png') no-repeat -32px center;
+  background: url('../themes/default/images/pagination_icons.png') no-repeat -32px center;
 }
 .pagination-last {
-  background: url('/topjui/themes/default/images/pagination_icons.png') no-repeat -48px center;
+  background: url('../themes/default/images/pagination_icons.png') no-repeat -48px center;
 }
 .pagination-load {
-  background: url('/topjui/themes/default/images/pagination_icons.png') no-repeat -64px center;
+  background: url('../themes/default/images/pagination_icons.png') no-repeat -64px center;
 }
 .pagination-loading {
-  background: url('/topjui/themes/default/images/loading.gif') no-repeat center center;
+  background: url('../themes/default/images/loading.gif') no-repeat center center;
 }
 .pagination-page-list,
 .pagination .pagination-num {
@@ -1808,19 +1808,19 @@
 }
 .calendar-prevmonth {
   left: 20px;
-  background: url('/topjui/themes/default/images/calendar_arrows.png') no-repeat -18px -2px;
+  background: url('../themes/default/images/calendar_arrows.png') no-repeat -18px -2px;
 }
 .calendar-nextmonth {
   right: 20px;
-  background: url('/topjui/themes/default/images/calendar_arrows.png') no-repeat -34px -2px;
+  background: url('../themes/default/images/calendar_arrows.png') no-repeat -34px -2px;
 }
 .calendar-prevyear {
   left: 3px;
-  background: url('/topjui/themes/default/images/calendar_arrows.png') no-repeat -1px -2px;
+  background: url('../themes/default/images/calendar_arrows.png') no-repeat -1px -2px;
 }
 .calendar-nextyear {
   right: 3px;
-  background: url('/topjui/themes/default/images/calendar_arrows.png') no-repeat -49px -2px;
+  background: url('../themes/default/images/calendar_arrows.png') no-repeat -49px -2px;
 }
 .calendar-body {
   position: relative;
@@ -1889,11 +1889,11 @@
 }
 .calendar-menu-prev {
   margin-right: 10px;
-  background: url('/topjui/themes/default/images/calendar_arrows.png') no-repeat 2px 2px;
+  background: url('../themes/default/images/calendar_arrows.png') no-repeat 2px 2px;
 }
 .calendar-menu-next {
   margin-left: 10px;
-  background: url('/topjui/themes/default/images/calendar_arrows.png') no-repeat -45px 2px;
+  background: url('../themes/default/images/calendar_arrows.png') no-repeat -45px 2px;
 }
 .calendar-menu-month {
   text-align: center;
@@ -1979,7 +1979,7 @@
   float: right;
 }
 .datebox .combo-arrow {
-  background-image: url('/topjui/themes/default/images/datebox_arrow.png');
+  background-image: url('../themes/default/images/datebox_arrow.png');
   background-position: center center;
 }
 .datebox-button {
@@ -2035,10 +2035,10 @@
   filter: alpha(opacity=60);
 }
 .spinner-arrow-up {
-  background: url('/topjui/themes/default/images/spinner_arrows.png') no-repeat 1px center;
+  background: url('../themes/default/images/spinner_arrows.png') no-repeat 1px center;
 }
 .spinner-arrow-down {
-  background: url('/topjui/themes/default/images/spinner_arrows.png') no-repeat -15px center;
+  background: url('../themes/default/images/spinner_arrows.png') no-repeat -15px center;
 }
 .progressbar {
   border-width: 1px;
@@ -2123,7 +2123,7 @@
   border-width: 0 1px 0 0;
 }
 .searchbox-button {
-  background: url('/topjui/themes/default/images/searchbox_button.png') no-repeat center center;
+  background: url('../themes/default/images/searchbox_button.png') no-repeat center center;
 }
 .searchbox .l-btn-plain {
   background: #f3f3f3;
@@ -2222,7 +2222,7 @@
   left: 23px;
 }
 .slider-handle {
-  background: url('/topjui/themes/default/images/slider_handle.png') no-repeat;
+  background: url('../themes/default/images/slider_handle.png') no-repeat;
 }
 .slider-inner {
   border-color: #D3D3D3;
@@ -2321,7 +2321,7 @@
   filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2,MakeShadow=false,ShadowOpacity=0.2);
 }
 .menu-rightarrow {
-  background: url('/topjui/themes/default/images/menu_arrows.png') no-repeat -32px center;
+  background: url('../themes/default/images/menu_arrows.png') no-repeat -32px center;
 }
 .menu-line {
   border-left: 1px solid #ccc;
@@ -2439,7 +2439,7 @@
 }
 .m-btn-downarrow,
 .s-btn-downarrow {
-  background: url('/topjui/themes/default/images/menu_arrows.png') no-repeat 0 center;
+  background: url('../themes/default/images/menu_arrows.png') no-repeat 0 center;
 }
 .m-btn-plain-active,
 .s-btn-plain-active {
@@ -2477,16 +2477,16 @@
   margin: 0 10px 10px 0;
 }
 .messager-error {
-  background: url('/topjui/themes/default/images/messager_icons.png') no-repeat scroll -64px 0;
+  background: url('../themes/default/images/messager_icons.png') no-repeat scroll -64px 0;
 }
 .messager-info {
-  background: url('/topjui/themes/default/images/messager_icons.png') no-repeat scroll 0 0;
+  background: url('../themes/default/images/messager_icons.png') no-repeat scroll 0 0;
 }
 .messager-question {
-  background: url('/topjui/themes/default/images/messager_icons.png') no-repeat scroll -32px 0;
+  background: url('../themes/default/images/messager_icons.png') no-repeat scroll -32px 0;
 }
 .messager-warning {
-  background: url('/topjui/themes/default/images/messager_icons.png') no-repeat scroll -96px 0;
+  background: url('../themes/default/images/messager_icons.png') no-repeat scroll -96px 0;
 }
 .messager-progress {
   padding: 10px;
@@ -2537,62 +2537,62 @@
   overflow: hidden;
 }
 .tree-expanded {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -18px 0px;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -18px 0px;
 }
 .tree-expanded-hover {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -50px 0px;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -50px 0px;
 }
 .tree-collapsed {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat 0px 0px;
+  background: url('../themes/default/images/tree_icons.png') no-repeat 0px 0px;
 }
 .tree-collapsed-hover {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -32px 0px;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -32px 0px;
 }
 .tree-lines .tree-expanded,
 .tree-lines .tree-root-first .tree-expanded {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -144px 0;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -144px 0;
 }
 .tree-lines .tree-collapsed,
 .tree-lines .tree-root-first .tree-collapsed {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -128px 0;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -128px 0;
 }
 .tree-lines .tree-node-last .tree-expanded,
 .tree-lines .tree-root-one .tree-expanded {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -80px 0;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -80px 0;
 }
 .tree-lines .tree-node-last .tree-collapsed,
 .tree-lines .tree-root-one .tree-collapsed {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -64px 0;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -64px 0;
 }
 .tree-line {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -176px 0;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -176px 0;
 }
 .tree-join {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -192px 0;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -192px 0;
 }
 .tree-joinbottom {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -160px 0;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -160px 0;
 }
 .tree-folder {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -208px 0;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -208px 0;
 }
 .tree-folder-open {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -224px 0;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -224px 0;
 }
 .tree-file {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -240px 0;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -240px 0;
 }
 .tree-loading {
-  background: url('/topjui/themes/default/images/loading.gif') no-repeat center center;
+  background: url('../themes/default/images/loading.gif') no-repeat center center;
 }
 .tree-checkbox0 {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -208px -18px;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -208px -18px;
 }
 .tree-checkbox1 {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -224px -18px;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -224px -18px;
 }
 .tree-checkbox2 {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -240px -18px;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -240px -18px;
 }
 .tree-title {
   font-size: 12px;
@@ -2622,10 +2622,10 @@
   margin-top: -9px;
 }
 .tree-dnd-yes {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -256px 0;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -256px 0;
 }
 .tree-dnd-no {
-  background: url('/topjui/themes/default/images/tree_icons.png') no-repeat -256px -18px;
+  background: url('../themes/default/images/tree_icons.png') no-repeat -256px -18px;
 }
 .tree-node-top {
   border-top: 1px dotted red;
