@@ -58,8 +58,8 @@
        iconCls:'fa fa-pencil',
        dialog:{
            id:'articleEditDialog',
-           href:contextPath + '/html/complex/edit.html',
-           url:contextPath + '/json/product/detail.json',
+           href:contextPath + '/html/complex/edit.html?uuid={uuid}',
+           url:contextPath + '/json/product/detail.json?uuid={uuid}',
            buttonsGroup:[
                {text:'更新',url:contextPath + '/json/response/success.json',iconCls:'fa fa-save',handler:'ajaxForm'}
            ]

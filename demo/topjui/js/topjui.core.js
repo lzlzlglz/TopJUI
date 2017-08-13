@@ -21003,10 +21003,22 @@ Array.prototype.remove = function (val) {
                     // 回调执行传入的自定义函数
                     executeCallBackFun(dialog.onBeforeOpen, options);
                 }
+
                 options.href = appendSourceUrlParam(dialog.href);
                 var $dialogObj = $("#" + dialog.id);
                 $dialogObj.iDialog(options);
-                $dialogObj.dialog('open');
+                if (options.dialog.href.indexOf("{") != -1) {
+                    var row = getSelectedRowData(options.grid.type, options.grid.id);
+                    // 替换本表中选中行占位值
+                    var newHref = replaceUrlParamValueByBrace(appendSourceUrlParam(dialog.href), row);
+                    $dialogObj.dialog({
+                        href: newHref
+                    });
+                    //$dialogObj.dialog('open').dialog("refresh", newHref); //加载两次href指定的页面
+                    $dialogObj.dialog('open');
+                } else {
+                    $dialogObj.dialog('open');
+                }
             }
         },
         openTab: function (target, options) {
