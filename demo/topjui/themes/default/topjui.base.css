@@ -326,7 +326,8 @@
   border-color: #D3D3D3 #D3D3D3 #ddd #D3D3D3;
 }
 .dialog-button {
-  border-color: #ddd #D3D3D3 #D3D3D3 #D3D3D3;
+  border: none;
+  border-top: solid 1px #ddd;
 }
 .window-thinborder .dialog-toolbar {
   border-left: transparent;
