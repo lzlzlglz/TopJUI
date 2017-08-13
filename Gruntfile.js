@@ -9,6 +9,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 src: [
+                    "plugins/jquery.easyui.min.js",
                     "plugins/datagrid-filter.js",
                     "plugins/jquery.edatagrid.js",
                     "src/topjui.combotree.js",
@@ -30,8 +31,8 @@ module.exports = function (grunt) {
                     "src/topjui.window.js",
                     "plugins/jquery.base64.js"
                 ],
-                dest: 'demo/topjui/js/topjui.all.js'
-                //dest: 'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/js/topjui.all.js'
+                dest: 'demo/topjui/js/topjui.core.js'
+                //dest: 'E:/wwwroot/Java/ewsdEMIS/application/src/main/webapp/static/topjui/js/topjui.core.js'
             }
         },
         uglify: {
@@ -40,7 +41,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'demo/topjui/js/topjui.all.min.js': 'demo/topjui/js/topjui.all.js'
+                    'demo/topjui/js/topjui.core.min.js': 'demo/topjui/js/topjui.core.js'
                 }
             }
         },
@@ -50,10 +51,9 @@ module.exports = function (grunt) {
             },
             compress: {
                 files: {
-                    'demo/topjui/css/topjui.all.min.css': [
-                        "demo/topjui/themes/yushan/topjui.base.css",
-                        "demo/topjui/css/site.css",
-                        "demo/topjui/css/style.css"
+                    'demo/topjui/css/topjui.core.min.css': [
+                        "demo/topjui/themes/default/topjui.base.css",
+                        "demo/topjui/css/topjui.style.css"
                     ]
                 }
             }

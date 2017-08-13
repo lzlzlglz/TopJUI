@@ -226,30 +226,32 @@ $('#channgyongLink').tree({
 
 /**
  * 更换页面风格
- * @param easyuiThemeName
+ * @param topjuiThemeName
  */
 function changeTheme(themeName) {/* 更换主题 */
-    var $easyuiTheme = $('#easyuiTheme');
-    var url = $easyuiTheme.attr('href');
-    //var href = url.substring(0, url.indexOf('themes')) + 'themes/' + themeName + '/easyui.css';
-    var href = url.substring(0, url.indexOf('themes')) + 'themes/yushan/topjui.' + themeName + '.css';
-    $easyuiTheme.attr('href', href);
+    var $dynamicTheme = $('#dynamicTheme');
+    var themeHref = $dynamicTheme.attr('href');
+    var themeHrefNew = themeHref.substring(0, themeHref.indexOf('themes')) + 'themes/default/topjui.' + themeName + '.css';
+    $dynamicTheme.attr('href', themeHrefNew);
 
     var $iframe = $('iframe');
     if ($iframe.length > 0) {
         for (var i = 0; i < $iframe.length; i++) {
             var ifr = $iframe[i];
-            $(ifr).contents().find('#easyuiTheme').attr('href', href);
+            var $iframeDynamicTheme = $(ifr).contents().find('#dynamicTheme');
+            var iframeThemeHref = $iframeDynamicTheme.attr('href');
+            var iframeThemeHrefNew = iframeThemeHref.substring(0, iframeThemeHref.indexOf('themes')) + 'themes/default/topjui.' + themeName + '.css';
+            $iframeDynamicTheme.attr('href', iframeThemeHrefNew);
         }
     }
 
-    $.cookie('easyuiThemeName', themeName, {
+    $.cookie('topjuiThemeName', themeName, {
         expires: 7,
         path: '/'
     });
 };
-if ($.cookie('easyuiThemeName')) {
-    changeTheme($.cookie('easyuiThemeName'));
+if ($.cookie('topjuiThemeName')) {
+    changeTheme($.cookie('topjuiThemeName'));
 }
 
 // 退出系统
