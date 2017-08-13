@@ -307,25 +307,19 @@
   border-right: 1px solid #fff;
   margin: 2px 1px;
 }
+.dialog-button .l-btn {
+  margin-left: 5px;
+}
+.dialog-toolbar,
+.dialog-toolbar {
+  border-color: #D3D3D3 #D3D3D3 #ddd #D3D3D3;
+}
 .dialog-button {
   position: relative;
   top: -1px;
   padding: 5px;
   text-align: right;
-}
-.dialog-button .l-btn {
-  margin-left: 5px;
-}
-.dialog-toolbar,
-.dialog-button {
-  background: #fafafa;
-  border-width: 1px;
-  border-style: solid;
-}
-.dialog-toolbar {
-  border-color: #D3D3D3 #D3D3D3 #ddd #D3D3D3;
-}
-.dialog-button {
+  background: #f9f9f9;
   border: none;
   border-top: solid 1px #ddd;
 }
