@@ -18,7 +18,7 @@
 #west .accordion{background: #F9FAFC;}
 #west .accordion-body {border:0px;}
 #west .accordion .accordion-header{height: 30px;border-top:solid 1px #ddd;border-left:3px #F9FAFC solid;background: #f9fafc;color:#444;line-height: 30px;}
-#west .accordion .accordion-header-selected{border-left:3px #00a65a solid;background: #e7eaec;border-bottom:solid 1px #ddd;}
+#west .accordion .accordion-header-selected{border-left:3px #00a65a solid;background: #e7eaec;}
 #west .accordion .accordion-header:hover{border-left:3px #00a65a solid;background: #e7eaec;color: #000;}
 #west .accordion .accordion-header-selected .panel-title{color:#444;}
 #west .accordion .accordion-header .panel-title:hover{color: #333;}
