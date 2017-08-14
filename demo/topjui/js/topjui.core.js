@@ -18618,10 +18618,10 @@ function searchHandler(options) {
         var dialogObj = $("#advanceSearchDialog");
         dialogObj.dialog({
             title: '高级查询',
-            iconCls: 'icon-find',
+            iconCls: 'fa fa-search',
             toolbar: '#searchHandler-toolbar',
             buttons: '#searchHandler-buttons',
-            height: 250
+            height: 350
         });
 
         dialogObj.dialog('open');
@@ -21986,7 +21986,7 @@ Array.prototype.remove = function (val) {
                 {"text": "或者", "value": "or"}
             ],
             width: 70,
-            panelHeight: 50,
+            panelHeight: 70,
             editable: false
         });
 
@@ -22070,7 +22070,7 @@ $(function () {
      */
     $("#advanceSearchDialog").dialog({
         width: 620,
-        height: 200,
+        height: 400,
         title: '高级查询',
         modal: false,
         collapsible: true,
@@ -22078,7 +22078,7 @@ $(function () {
         maximized: false,
         resizable: true,
         closed: true,
-        iconCls: 'icon-find',
+        iconCls: 'fa fa-search',
         href: '/system/search/advanceSearch',
         zIndex: 10,
         buttons: '#advanceSearchDialog-buttons',

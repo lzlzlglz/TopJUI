@@ -940,10 +940,10 @@ function searchHandler(options) {
         var dialogObj = $("#advanceSearchDialog");
         dialogObj.dialog({
             title: '高级查询',
-            iconCls: 'icon-find',
+            iconCls: 'fa fa-search',
             toolbar: '#searchHandler-toolbar',
             buttons: '#searchHandler-buttons',
-            height: 250
+            height: 350
         });
 
         dialogObj.dialog('open');
