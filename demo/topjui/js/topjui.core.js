@@ -17981,18 +17981,18 @@ function bindMenuClickEvent($element, options) {
          });*/
     } else if (options.clickEvent == "openTab") {
         defaults = {
-         iconCls: 'fa fa-th'
-         }
-         options = $.extend(defaults, options);
+            iconCls: 'fa fa-th'
+        }
+        options = $.extend(defaults, options);
 
         /*$element.on("click", function () {
          addParentTab(options);
          });*/
     } else if (options.clickEvent == "openWindow") {
         defaults = {
-         iconCls: 'fa fa-link'
-         }
-         options = $.extend(defaults, options);
+            iconCls: 'fa fa-link'
+        }
+        options = $.extend(defaults, options);
 
         /*$element.on("click", function () {
          openWindow(options);
@@ -18013,18 +18013,18 @@ function bindMenuClickEvent($element, options) {
         });
     } else if (options.clickEvent == "doAjax") {
         defaults = {
-         iconCls: 'fa fa-cog'
-         }
-         options = $.extend(defaults, options);
+            iconCls: 'fa fa-cog'
+        }
+        options = $.extend(defaults, options);
 
         /*$element.on("click", function () {
          //doAjaxHandler(options);
          });*/
     } else if (options.clickEvent == "request") {
         defaults = {
-         iconCls: 'fa fa-cog'
-         }
-         options = $.extend(defaults, options);
+            iconCls: 'fa fa-cog'
+        }
+        options = $.extend(defaults, options);
 
         /*$element.on("click", function () {
          requestHandler(options);
@@ -18584,28 +18584,7 @@ function filterHandler(options) {
     //console.log($(".l-btn-text").index($(".l-btn-text:contains('查询')")));
     var gridId;
     if (typeof options.grid == "object") {
-        options.filterOption = [];
-        options.filterOption = options.filter;
-        /*options.filterOption = [{
-            field: 'spec',
-            type: 'combobox',
-            options: {
-                valueField: 'label',
-                textField: 'value',
-                multiple: true,
-                data: [{
-                    label: 'java',
-                    value: 'Java'
-                }, {
-                    label: 'perl',
-                    value: 'Perl'
-                }, {
-                    label: 'ruby',
-                    value: 'Ruby'
-                }]
-            },
-            op: ['contains', 'equal', 'notequal', 'less', 'greater']
-        }];*/
+        options.filterOption = options.filter ? options.filter : [];
         if (options.grid.type == "datagrid") {
             gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {
