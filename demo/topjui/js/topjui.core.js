@@ -16780,7 +16780,7 @@ return opts.min+(opts.max-opts.min)*(pos/size);
 			if (!$('#datagrid-filter-style').length){
 				$('head').append(
 					'<style id="datagrid-filter-style">' +
-					'a.datagrid-filter-btn{display:inline-block;width:22px;height:22px;margin:0;vertical-align:top;cursor:pointer;opacity:0.6;filter:alpha(opacity=60);}' +
+					'a.datagrid-filter-btn{display:inline-block;width:18px;height:22px;margin:10px 0 0 8px;vertical-align:middle;cursor:pointer;opacity:0.6;filter:alpha(opacity=60);}' +
 					'a:hover.datagrid-filter-btn{opacity:1;filter:alpha(opacity=100);}' +
 					'.datagrid-filter-row .textbox,.datagrid-filter-row .textbox .textbox-text{-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;}' +
 					'.datagrid-filter-row input{margin:0;-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;}' +
@@ -18585,12 +18585,14 @@ function filterHandler(options) {
     var gridId;
     if (typeof options.grid == "object") {
         options.filterOption = [];
+        options.filterOption = options.filter;
         /*options.filterOption = [{
-            field: 'userName',
+            field: 'spec',
             type: 'combobox',
             options: {
                 valueField: 'label',
                 textField: 'value',
+                multiple: true,
                 data: [{
                     label: 'java',
                     value: 'Java'

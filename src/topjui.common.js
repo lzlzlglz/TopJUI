@@ -907,12 +907,14 @@ function filterHandler(options) {
     var gridId;
     if (typeof options.grid == "object") {
         options.filterOption = [];
+        options.filterOption = options.filter;
         /*options.filterOption = [{
-            field: 'userName',
+            field: 'spec',
             type: 'combobox',
             options: {
                 valueField: 'label',
                 textField: 'value',
+                multiple: true,
                 data: [{
                     label: 'java',
                     value: 'Java'
