@@ -12,7 +12,7 @@
 - 更多组件功能演示请访问下面的动态演示系统
 
 ## 动态演示 ##
-- 企业管理信息系统快速开发平台 [平台简介](http://www.ewsd.cn/emis.html)
+- [企业管理信息系统快速开发平台](http://www.ewsd.cn/emis.html)
 - 基于Spring + Spring MVC + Hibernate + Mybatis框架 + Activiti流程引擎构建
 - 演示地址：[http://demo.ewsd.cn](http://demo.ewsd.cn)
 
