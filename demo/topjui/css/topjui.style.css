@@ -33,11 +33,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .tree-file { background:url('');line-height:20px;font:normal normal normal 14px/1 FontAwesome;font-size:small;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .tree-file:before{content:"\f0f6"}
 .tree-collapsed {background:url(''); margin-right:0; display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-.tree-collapsed:before{content:"\f0da"}
+.tree-collapsed:before{content:"\f0da";font-size:medium;}
 .tree-expanded {background:url(''); margin-right:0; display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-.tree-expanded:before{content:"\f0d7"}
+.tree-expanded:before{content:"\f0d7";font-size:medium;}
 .tree-icon{height:35px;line-height:35px !important;}
-.tree-hit{height:35px;line-height:35px;}
+.tree-hit{height:35px;line-height:35px !important;}
 .tree-node{padding-left:20px;height: 20px;line-height:20px;}
 .tree-title{ padding-left:4px;color:#444;line-height: 20px;}
 .tree-file{overflow:auto;background: url('');vertical-align: middle;}

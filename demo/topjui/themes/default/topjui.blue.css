@@ -5,7 +5,7 @@
 .label-mes{position:absolute;top:3px;margin-left:13px;text-align:center;padding:2px 3px;line-height:.9;border-radius:3px;display:none;font-size:9px;}
 .label-success{background-color:#00a65a !important}
 #west .tree-icon{margin-top: 0px;color:#fff}
-#west .tree-hit{margin-top: 7px;}
+#west .tree-hit{margin-top: 0px;}
 #west .tree-node{height: 35px;line-height:30px;padding-left:20px;border-bottom: dashed 1px #565656;}
 #west .tree-title{line-height: 35px;color:#fff; padding-left:4px;}
 #west .tree-file{background: url('');vertical-align: middle;overflow:auto;}
@@ -25,9 +25,9 @@
 #west .accordion .accordion-header-selected .panel-title{color:#fff}
 #west .accordion .accordion-header .panel-title:hover{color: #fff;}
 #west .layout-split-west{border-right: 3px solid #efefef;}
-#west .tree-collapsed {background:url(''); color:#fff; margin-top:13px; margin-right:0px; display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+#west .tree-collapsed {background:url(''); color:#fff; margin-top:0px; margin-right:0px; display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 #west .tree-collapsed:before{content:"\f0da"}
-#west .tree-expanded {background:url(''); color:#fff;margin-top:13px; margin-right:0px; display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+#west .tree-expanded {background:url(''); color:#fff;margin-top:0px; margin-right:0px; display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 #west .tree-expanded:before{content:"\f0d7"}
 #center .tabs-panels{border-bottom: 0px;}
 #west .panel-header,#west .panel-body{border:0px}

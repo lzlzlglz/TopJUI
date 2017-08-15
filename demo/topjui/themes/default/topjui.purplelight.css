@@ -23,9 +23,9 @@
 #west .accordion .accordion-header-selected .panel-title{color:#444;}
 #west .accordion .accordion-header .panel-title:hover{color:#333;}
 #west .layout-split-west{border-right:3px solid #efefef;}
-#west .tree-collapsed{display:inline-block;margin-top:13px;margin-right:0;background:url();color:#000;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+#west .tree-collapsed{display:inline-block;margin-top:0px;margin-right:0;background:url();color:#000;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 #west .tree-collapsed:before{content:"\f0da";}
-#west .tree-expanded{display:inline-block;margin-top:13px;margin-right:0;background:url();color:#000;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+#west .tree-expanded{display:inline-block;margin-top:0px;margin-right:0;background:url();color:#000;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 #west .tree-expanded:before{content:"\f0d7";}
 #center .tabs-panels{border-bottom:0;}
 #west .panel-body,#west .panel-header{border:0;}
