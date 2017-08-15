@@ -29,7 +29,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 调整树形图标显示位置 */
 .tree-icon {
-    margin-top: 1px !important;
+    margin-top: 5px !important;
 }
 
 .tree-folder {background:url('');line-height:20px;margin-top:3px;font:normal normal normal 14px/1 FontAwesome;font-size:small;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
