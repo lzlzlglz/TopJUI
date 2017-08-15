@@ -19148,8 +19148,16 @@ topJUI = $.extend(true, defaultConfig, topJUI);
 /* TopJUI默认属性 */
 var defaultHeight = 34;
 $.fn.textbox.defaults.height = defaultHeight;
+$.fn.passwordbox.defaults = defaultHeight;
+$.fn.combo.defaults.height = defaultHeight;
 $.fn.combobox.defaults.height = defaultHeight;
 $.fn.combotree.defaults.height = defaultHeight;
+$.fn.combogrid.defaults.height = defaultHeight;
+$.fn.combotreegrid.defaults.height = defaultHeight;
+$.fn.numberbox.defaults = defaultHeight;
+$.fn.datebox.defaults = defaultHeight;
+$.fn.datetimebox.defaults = defaultHeight;
+$.fn.spinner.defaults = defaultHeight;
 $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
     $.fn.iDatagrid = function (options) {
         var defaults = {
