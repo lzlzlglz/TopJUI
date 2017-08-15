@@ -9,9 +9,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 树形节点高度 */
 .tree-node {
-    height: 15px !important;
-    line-height: 15px !important;
-    padding: 10px 0 !important;
+    height: 35px !important;
+    line-height: 35px !important;
     border-bottom: dashed 1px #ddd;
 }
 
@@ -24,26 +23,21 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 /* 树形节点文字大小 */
 .tree-title {
     font-size: 12px;
-    line-height: 15px !important;
+    line-height: 35px !important;
 }
 
-/* 调整树形图标显示位置 */
-.tree-icon {
-    margin-top: 5px !important;
-}
-
-.tree-folder {background:url('');line-height:20px;margin-top:3px;font:normal normal normal 14px/1 FontAwesome;font-size:small;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.tree-folder {background:url('');line-height:20px;font:normal normal normal 14px/1 FontAwesome;font-size:small;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .tree-folder:before{content:"\f07b"}
-.tree-folder-open {background:url('');margin-top:3px;font:normal normal normal 14px/1 FontAwesome;font-size:small;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.tree-folder-open {background:url('');font:normal normal normal 14px/1 FontAwesome;font-size:small;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .tree-folder-open:before{content:"\f07c"}
-.tree-file { background:url('');line-height:20px;margin-top:3px;font:normal normal normal 14px/1 FontAwesome;font-size:small;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.tree-file { background:url('');line-height:20px;font:normal normal normal 14px/1 FontAwesome;font-size:small;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .tree-file:before{content:"\f0f6"}
-.tree-collapsed {background:url(''); margin-top:3px; margin-right:-5px; display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.tree-collapsed {background:url(''); margin-right:0; display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 .tree-collapsed:before{content:"\f0da"}
-.tree-expanded {background:url('');margin-top:3px; margin-right:-5px; display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.tree-expanded {background:url(''); margin-right:0; display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 .tree-expanded:before{content:"\f0d7"}
-.tree-icon{margin-top: 3px;}
-.tree-hit{margin-top: 6px;}
+.tree-icon{height:35px;line-height:35px !important;}
+.tree-hit{height:35px;line-height:35px;}
 .tree-node{padding-left:20px;height: 20px;line-height:20px;}
 .tree-title{ padding-left:4px;color:#444;line-height: 20px;}
 .tree-file{overflow:auto;background: url('');vertical-align: middle;}
@@ -54,7 +48,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 表格行高 */
 .datagrid-row {
-    height: 36px !important;
+    height: 35px !important;
 }
 
 /* 表格单元格 */
@@ -148,7 +142,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 /* 被选中的tabs顶部边框颜色及遮盖下边框线 */
 .tabs li.tabs-selected a.tabs-inner {
     border-top-color: #3498DB;
-    height: 36px !important;
+    height: 35px !important;
 }
 
 /* tabs关闭按钮高度 */

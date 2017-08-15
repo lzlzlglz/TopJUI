@@ -4,10 +4,10 @@
 .layout-panel-west .panel-header .panel-title{padding-left:20px;height:30px;color:#b8c7ce;line-height:30px;}
 .label-mes{position:absolute;top:3px;display:none;margin-left:13px;padding:2px 3px;border-radius:3px;text-align:center;font-size:9px;line-height:.9;}
 .label-success{background-color:#00a65a !important;}
-#west .tree-icon{margin-top: 9px;color:#fff;}
+#west .tree-icon{margin-top: 0px;color:#fff;}
 #west .tree-hit{margin-top: 7px;}
 #west .tree-node{padding-left:20px;height: 35px;line-height:30px;border-bottom: dashed 1px #565656;}
-#west .tree-title{ padding-left:7px;color:#fff;line-height: 35px;}
+#west .tree-title{ padding-left:4px;color:#fff;line-height: 35px;}
 #west .tree-file{overflow:auto;background: url('');vertical-align: middle;}
 #west .tree-folder, .tree-folder-open{background: url('');line-height: 19px;}
 #west .tree-node-selected{background: #1e282c;}
@@ -16,7 +16,7 @@
 #west .panel-header{padding-left: 20px;}
 #west .panel-body{background: #f9fafc;}
 #west .panel-icon{left: 14px;}
-#west .panel-title{padding-left:18px;height: 30px;color:#b8c7ce;font-size: 12px; line-height: 30px;}
+#west .panel-title{padding-left:15px;height: 30px;color:#b8c7ce;font-size: 12px; line-height: 30px;}
 #west .accordion{border:0px;background: #222d32;}
 #west .accordion-body {border:0px;background:#2c3b41;}
 #west .accordion .accordion-header{height: 30px;border-top:solid 1px #2c3b41;border-left:3px #222d32 solid;background: #222d32;color:#fff;line-height: 30px;}

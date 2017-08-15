@@ -4,10 +4,10 @@
 .layout-panel-west .panel-header .panel-title{height:30px;line-height:30px;padding-left:20px;color:#b8c7ce}
 .label-mes{position:absolute;top:3px;margin-left:13px;text-align:center;padding:2px 3px;line-height:.9;border-radius:3px;display:none;font-size:9px;}
 .label-success{background-color:#00a65a !important}
-#west .tree-icon{margin-top: 9px;color:#fff}
+#west .tree-icon{margin-top: 0px;color:#fff}
 #west .tree-hit{margin-top: 7px;}
 #west .tree-node{height: 35px;line-height:30px;padding-left:20px;border-bottom: dashed 1px #565656;}
-#west .tree-title{line-height: 35px;color:#fff; padding-left:7px;}
+#west .tree-title{line-height: 35px;color:#fff; padding-left:4px;}
 #west .tree-file{background: url('');vertical-align: middle;overflow:auto;}
 #west .tree-folder, .tree-folder-open{background: url('');line-height: 19px;}
 #west .tree-node-selected{background: #1e282c;}
@@ -16,7 +16,7 @@
 #west .panel-header{padding-left: 20px;}
 #west .panel-body{background: #f9fafc;}
 #west .panel-icon{left: 14px;}
-#west .panel-title{font-size: 12px;height: 30px;padding-left:18px; line-height: 30px;color:#b8c7ce}
+#west .panel-title{font-size: 12px;height: 30px;padding-left:15px; line-height: 30px;color:#b8c7ce}
 #west .accordion{background: #222d32;border:0px;}
 #west .accordion-body {border:0px;background:#2c3b41}
 #west .accordion .accordion-header{background: #222d32;height: 30px;line-height: 30px;border-top:solid 1px #2c3b41;color:#fff;border-left:3px #222d32 solid;}

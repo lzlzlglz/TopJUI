@@ -449,7 +449,7 @@
   margin-right: 40px;
 }
 .l-btn-large .l-btn-icon-top .l-btn-text {
-  margin-top: 36px;
+  margin-top: 35px;
   line-height: 24px;
   min-width: 32px;
 }
@@ -457,7 +457,7 @@
   margin: 0 0 0 -16px;
 }
 .l-btn-large .l-btn-icon-bottom .l-btn-text {
-  margin-bottom: 36px;
+  margin-bottom: 35px;
   line-height: 24px;
   min-width: 32px;
 }
@@ -2599,11 +2599,10 @@
   display: inline-block;
   text-decoration: none;
   vertical-align: top;
-  margin-top: 5px;
   white-space: nowrap;
   padding: 0 2px;
-  height: 18px;
-  line-height: 18px;
+  height: 35px;
+  line-height: 35px;
 }
 .tree-node-proxy {
   font-size: 12px;

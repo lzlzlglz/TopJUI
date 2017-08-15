@@ -3,10 +3,10 @@
 .layout-panel-west .panel-header .panel-title{height:30px;line-height:30px;padding-left:20px;color:#777}
 .label-mes{position:absolute;top:3px;margin-left:13px;text-align:center;padding:2px 3px;line-height:.9;border-radius:3px;display:none;font-size:9px;}
 .label-success{background-color:#00a65a !important}
-#west .tree-icon{margin-top: 9px;}
+#west .tree-icon{margin-top: 0px;}
 #west .tree-hit{margin-top: 7px;}
 #west .tree-node{height: 35px;line-height:30px;padding-left:20px;}
-#west .tree-title{line-height: 35px;color:#444; padding-left:7px;}
+#west .tree-title{line-height: 35px;color:#444; padding-left:4px;}
 #west .tree-file{background: url('');vertical-align: middle;overflow:auto;}
 #west .tree-folder, .tree-folder-open{background: url('');line-height: 19px;}
 #west .tree-node-selected{background: #e7eaec;color:#444}
@@ -15,7 +15,7 @@
 #west .panel-header{padding-left: 20px;}
 #west .panel-body{border: 0px;background: #f9fafc;}
 #west .panel-icon{left: 14px;}
-#west .panel-title{font-size: 12px;height: 30px;line-height: 30px;padding-left: 20px;}
+#west .panel-title{font-size: 12px;height: 30px;line-height: 30px;padding-left: 15px;}
 #west .accordion{background: #F9FAFC;}
 #west .accordion-body {border:0px;}
 #west .accordion .accordion-header{background: #f9fafc;height: 30px;line-height: 30px;border-top:solid 1px #ddd;color:#444;border-left:3px #F9FAFC solid;}
