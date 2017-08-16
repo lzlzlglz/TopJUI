@@ -188,16 +188,17 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     line-height: 24px;
 }
 
-/* 下拉菜单文字大小 */
+/* 下拉菜单 */
 .menu-text {
     height: 24px !important;
     line-height: 24px !important;
     font-size: 12px;
-    /*padding-left: 5px;*/
+    padding-left: 2px;
 }
 
+/* Tab右键菜单 */
 .submenubutton .menu-text {
-    padding-left: 0px;
+    padding-left: 28px;
 }
 
 /* 对话框按钮高度 */
