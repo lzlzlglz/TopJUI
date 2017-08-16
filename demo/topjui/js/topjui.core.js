@@ -19147,6 +19147,7 @@ topJUI = $.extend(true, defaultConfig, topJUI);
 
 /* TopJUI默认属性 */
 var defaultHeight = 34;
+$.fn.switchbutton.defaults.height = defaultHeight;
 $.fn.textbox.defaults.height = defaultHeight;
 $.fn.passwordbox.defaults = defaultHeight;
 $.fn.combo.defaults.height = defaultHeight;

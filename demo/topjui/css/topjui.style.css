@@ -453,8 +453,13 @@ table td {
     padding: 5px 10px 5px 24px;
     position: relative;
     left: -3px;
-    background: url("../image/icons/application_view_list.png") no-repeat 5px;
+    background: url("") no-repeat 5px;
     font-size: 12px;
+}
+
+.editTable .divider span:before {
+    content: "\f05a";
+    font-family: FontAwesome;
 }
 
 #attachTable {
