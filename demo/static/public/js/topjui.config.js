@@ -20,7 +20,7 @@
  */
 
 /* 静态演示中获取contextPath，动态演示非必须 开始 */
-var contextPath = "";
+var contextPath = "/";
 var firstPathName = window.location.pathname.split("/")[1];
 if (!(firstPathName == "html" || firstPathName == "json" || firstPathName == "topjui")) {
     contextPath = "/" + firstPathName;
@@ -31,7 +31,7 @@ var ctx = "";
 var topJUI = {
     config: {
         ctx: "",
-        mainPagePath: "/",
+        mainPagePath: contextPath,
         authUrl: "",
         aloneUse: false
     },
