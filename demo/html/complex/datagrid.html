@@ -24,7 +24,49 @@
 <body>
 <table data-toggle="topjui-datagrid"
        data-options="id:'productDg',
-    url:'../../json/product/list.json'">
+       url:'../../json/product/list.json',
+       filter: [{
+            field: 'name',
+            type: 'textbox',
+            op: ['contains', 'equal', 'notequal', 'less', 'greater']
+       },{
+            field: 'code',
+            type: 'combobox',
+            options: {
+                valueField: 'label',
+                textField: 'value',
+                data: [{
+                    label: '2103',
+                    value: '2103'
+                }, {
+                    label: '5103',
+                    value: '5103'
+                }, {
+                    label: '1204',
+                    value: '1204'
+                }]
+            },
+            op: ['contains', 'equal', 'notequal', 'less', 'greater']
+       },{
+            field: 'spec',
+            type: 'combobox',
+            options: {
+                valueField: 'label',
+                textField: 'value',
+                multiple: true,
+                data: [{
+                    label: 'KC-W200SW',
+                    value: 'KC-W200SW'
+                }, {
+                    label: '白色LR-1688BY-2',
+                    value: '白色LR-1688BY-2'
+                }, {
+                    label: '银灰色BCD-339WBA 339',
+                    value: '银灰色BCD-339WBA 339'
+                }]
+            },
+            op: ['contains', 'equal', 'notequal', 'less', 'greater']
+       }]">
     <thead>
     <tr>
         <th data-options="field:'uuid',title:'ID',checkbox:true"></th>
@@ -72,49 +114,7 @@
        grid: {uncheckedMsg:'请先勾选要删除的数据',param:'uuid:uuid,code:code'}">删除（执行Ajax请求）</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
-       data-options="clickEvent:'filter',
-       filter: [{
-            field: 'name',
-            type: 'textbox',
-            op: ['contains', 'equal', 'notequal', 'less', 'greater']
-       },{
-            field: 'code',
-            type: 'combobox',
-            options: {
-                valueField: 'label',
-                textField: 'value',
-                data: [{
-                    label: '2103',
-                    value: '2103'
-                }, {
-                    label: '5103',
-                    value: '5103'
-                }, {
-                    label: '1204',
-                    value: '1204'
-                }]
-            },
-            op: ['contains', 'equal', 'notequal', 'less', 'greater']
-       },{
-            field: 'spec',
-            type: 'combobox',
-            options: {
-                valueField: 'label',
-                textField: 'value',
-                multiple: true,
-                data: [{
-                    label: 'KC-W200SW',
-                    value: 'KC-W200SW'
-                }, {
-                    label: '白色LR-1688BY-2',
-                    value: '白色LR-1688BY-2'
-                }, {
-                    label: '银灰色BCD-339WBA 339',
-                    value: '银灰色BCD-339WBA 339'
-                }]
-            },
-            op: ['contains', 'equal', 'notequal', 'less', 'greater']
-       }]">过滤</a>
+       data-options="clickEvent:'filter'">过滤</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'search'">查询</a>

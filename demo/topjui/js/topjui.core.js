@@ -18049,8 +18049,7 @@ function bindMenuClickEvent($element, options) {
          });*/
     } else if (options.clickEvent == "search") {
         defaults = {
-            iconCls: 'fa fa-search',
-            href: '/system/search/advanceSearch'
+            iconCls: 'fa fa-search'
         }
         options = $.extend(defaults, options);
 
@@ -18581,27 +18580,21 @@ function deleteHandler(options) {
  * @param options
  */
 function filterHandler(options) {
-    //console.log($(".l-btn-text").index($(".l-btn-text:contains('查询')")));
-    var gridId;
     if (typeof options.grid == "object") {
-        options.filterOption = options.filter ? options.filter : [];
+        var gridId = options.grid.id;
+        var gridOptions = $("#" + gridId).datagrid("options");
+        var filter = gridOptions.filter ? gridOptions.filter : [];
         if (options.grid.type == "datagrid") {
-            gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {
                 $("#" + gridId).datagrid('disableFilter');
-                //$(".l-btn-text:contains('隐藏'):eq(1)").text("查询");
             } else {
-                $("#" + gridId).datagrid('enableFilter', options.filterOption);
-                //$(".l-btn-text:contains('查询'):eq(1)").text("隐藏");
+                $("#" + gridId).datagrid('enableFilter', filter);
             }
         } else if (options.grid.type == "treegrid") {
-            gridId = options.grid.id;
             if ($(".datagrid-filter-row").length > 0) {
                 $("#" + gridId).treegrid('disableFilter');
-                //$(".l-btn-text:contains('隐藏'):eq(1)").text("查询");
             } else {
-                $("#" + gridId).treegrid('enableFilter', options.filterOption);
-                //$(".l-btn-text:contains('查询'):eq(1)").text("隐藏");
+                $("#" + gridId).treegrid('enableFilter', filter);
             }
         }
     }
@@ -18612,19 +18605,83 @@ function filterHandler(options) {
  * @param options
  */
 function searchHandler(options) {
+    // 组合查询对话框默认属性
+    var defaults = {
+        dialog: {
+            id: 'advanceSearchDialog',
+            title: '组合查询',
+            width: 620,
+            height: 300,
+            modal: false,
+            collapsible: true,
+            minimizable: false,
+            maximized: false,
+            resizable: true,
+            closed: false,
+            closable: true,
+            zIndex: 10,
+            iconCls: 'fa fa-search',
+            href: '/html/search/form.html',
+            buttons: '#advanceSearchDialog-buttons',
+            onLoad: function () {
+                //窗口打开时，触发事件
+                $(this).trigger(topJUI.eventType.initUI.advanceSearchForm);
+            }
+        }
+    };
+    options = $.extend(defaults, options);
+
+    var searchForm = '<form id="advanceSearchDialog"></form>';
+    searchForm += '<div id="advanceSearchDialog-buttons" style="display:none">';
+    searchForm += '<a href="#" id="resetAdvanceSearchForm" data-toggle="easyui-linkbutton" data-options="iconCls:\'icon-reload\'">清空</a>';
+    searchForm += '<a href="#" id="submitAdvanceSearchForm" data-toggle="topjui-linkbutton" data-options="iconCls:\'icon-search\'">查询</a>';
+    searchForm += '<a href="#" id="closeAdvanceSearchDialog">关闭</a>';
+    searchForm += '</div>';
+    getTabWindow().$('body').append(searchForm);
+
+    var dialogObj = $("#" + options.dialog.id);
+    dialogObj.dialog(options.dialog);
+
+    $('#resetAdvanceSearchForm').linkbutton({
+        iconCls: 'fa fa-refresh',
+        onClick: function () {
+            var formDataArr = [];
+            loadGrid(formDataArr);
+        }
+    });
+    $('#submitAdvanceSearchForm').linkbutton({
+        iconCls: 'fa fa-search',
+        onClick: function () {
+            var formDataArr = [];
+            var formData = $("#" + options.dialog.id).serializeArray();
+            var num = formData.length / 4;
+            for (var i = 0; i < num; i++) {
+                var field = formData[i * 4].name;
+                var fieldValue = formData[i * 4].value;
+                var op = formData[i * 4 + 1].name;
+                var opValue = formData[i * 4 + 1].value;
+                var value = formData[i * 4 + 2].name;
+                var valValue = formData[i * 4 + 2].value;
+                var join = formData[i * 4 + 3].name;
+                var joinValue = formData[i * 4 + 3].value;
+
+                formDataArr.push({field: fieldValue, op: opValue, value: valValue, join: joinValue});
+            }
+            // console.log(JSON.stringify(formDataArr));
+            loadGrid(formDataArr);
+        }
+    });
+    $('#closeAdvanceSearchDialog').linkbutton({
+        iconCls: 'fa fa-close',
+        onClick: function () {
+            $("#" + options.dialog.id).dialog('close');
+            //$(this).closest(".window-body").dialog("destroy");
+        }
+    });
+
     if (typeof options.grid == "object") {
         getColumnsNameAndField(options.grid.type, options.grid.id);
-
-        var dialogObj = $("#advanceSearchDialog");
-        dialogObj.dialog({
-            title: '高级查询',
-            iconCls: 'fa fa-search',
-            toolbar: '#searchHandler-toolbar',
-            buttons: '#searchHandler-buttons',
-            height: 350
-        });
-
-        dialogObj.dialog('open');
+        //dialogObj.dialog('open');
     }
 }
 
@@ -20500,6 +20557,18 @@ $.getUrlStrParam = function (urlStr, name) {
     return null;
 }
 
+function loadGrid(formDataArr) {
+    if ($.cookie("gridType") == "datagrid") {
+        $("#" + $.cookie("gridId")).datagrid('load', {
+            advanceFilter: JSON.stringify(formDataArr)
+        });
+    } else if ($.cookie("gridType") == "treegrid") {
+        $("#" + $.cookie("gridId")).treegrid('load', {
+            advanceFilter: JSON.stringify(formDataArr)
+        });
+    }
+}
+
 /**
  * 测试函数
  */
@@ -22005,7 +22074,7 @@ Array.prototype.remove = function (val) {
         });
 
         $(".deleteCondition:last").menubutton({
-            iconCls: 'fa fa-trash',
+            iconCls: 'fa fa-minus',
             hasDownArrow: false
         });
 
@@ -22077,10 +22146,10 @@ $(function () {
     /**
      * 高级查询对话框窗口
      */
-    $("#advanceSearchDialog").dialog({
+/*    $("#advanceSearchDialog").dialog({
         width: 620,
         height: 400,
-        title: '高级查询',
+        title: '组合查询',
         modal: false,
         collapsible: true,
         minimizable: false,
@@ -22095,45 +22164,17 @@ $(function () {
             //窗口打开时，触发事件
             $(this).trigger(topJUI.eventType.initUI.advanceSearchForm);
         }
-    });
+    });*/
 
-    function loadGrid(formDataArr) {
-        if ($.cookie("gridType") == "datagrid") {
-            $("#" + $.cookie("gridId")).datagrid('load', {
-                advanceFilter: JSON.stringify(formDataArr)
-            });
-        } else if ($.cookie("gridType") == "treegrid") {
-            $("#" + $.cookie("gridId")).treegrid('load', {
-                advanceFilter: JSON.stringify(formDataArr)
-            });
-        }
-    }
-
-    $("#resetAdvanceSearchForm").on('click', function () {
+    /*$("#resetAdvanceSearchForm").on('click', function () {
         var formDataArr = [];
         loadGrid(formDataArr)
+    });*/
+
+    /*$("#submitAdvanceSearchForm").on('click', function () {
+        
     });
-
-    $("#submitAdvanceSearchForm").on('click', function () {
-        var formDataArr = [];
-        var formData = $("#advanceSearchDialog").serializeArray();
-        var num = formData.length / 4;
-        for (var i = 0; i < num; i++) {
-            var field = formData[i * 4].name;
-            var fieldValue = formData[i * 4].value;
-            var op = formData[i * 4 + 1].name;
-            var opValue = formData[i * 4 + 1].value;
-            var value = formData[i * 4 + 2].name;
-            var valValue = formData[i * 4 + 2].value;
-            var join = formData[i * 4 + 3].name;
-            var joinValue = formData[i * 4 + 3].value;
-
-            formDataArr.push({field: fieldValue, op: opValue, value: valValue, join: joinValue});
-        }
-        // console.log(JSON.stringify(formDataArr));
-        loadGrid(formDataArr)
-    });
-
+*/
 
     setTimeout(function () {
         /**

@@ -39,6 +39,18 @@ $.getUrlStrParam = function (urlStr, name) {
     return null;
 }
 
+function loadGrid(formDataArr) {
+    if ($.cookie("gridType") == "datagrid") {
+        $("#" + $.cookie("gridId")).datagrid('load', {
+            advanceFilter: JSON.stringify(formDataArr)
+        });
+    } else if ($.cookie("gridType") == "treegrid") {
+        $("#" + $.cookie("gridId")).treegrid('load', {
+            advanceFilter: JSON.stringify(formDataArr)
+        });
+    }
+}
+
 /**
  * 测试函数
  */
