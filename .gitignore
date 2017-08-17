@@ -1,2 +1,4 @@
 /.idea
 /demo/topjui/js/topjui.core.js
+/src/topjui.common.js
+/src/topjui.plugins.js
