@@ -111,7 +111,7 @@
        data-options="clickEvent:'doAjax',
        iconCls:'fa fa-trash',
        url:contextPath + '/json/response/success.json',
-       grid: {uncheckedMsg:'请先勾选要删除的数据',param:'uuid:uuid,code:code'}">删除（执行Ajax请求）</a>
+       grid: {uncheckedMsg:'请先勾选要删除的数据',param:'uuid:uuid,code:code'}">删除</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'filter'">过滤</a>
@@ -132,11 +132,50 @@
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'openWindow',
-       href:'http://www.topjui.com?uuid={uuid}'">打开新窗口（可动态传参）</a>
+       href:'http://www.topjui.com?uuid={uuid}'">打开新窗口</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'request',
-       url:contextPath + '/json/response/success.json'">执行普通请求（文件下载等）</a>
+       url:contextPath + '/json/response/success.json'">执行普通请求</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="menu:'#exportSubMenu',
+       hasDownArrow:true,
+       iconCls:'fa fa-list'">更多</a>
+    <div id="exportSubMenu" style="width:150px;">
+        <div data-toggle="topjui-menubutton"
+             data-options="clickEvent:'request',
+             url:contextPath + '/json/response/success.json?uuid={uuid}',
+             grid:{
+                 type:'datagrid',
+                 id:'productDg'
+             }">导出 PDF 报表
+        </div>
+        <div data-toggle="topjui-menubutton"
+             data-options="clickEvent:'export',
+             url: contextPath + '/json/response/export.html',
+             grid:{
+                 type:'datagrid',
+                 id:'productDg'
+             }">导出EXCEL列表
+        </div>
+        <div data-toggle="topjui-menubutton"
+             data-options="clickEvent:'request',
+             url:contextPath + '/json/response/success.json?uuid={uuid}',
+             grid:{
+                 type:'datagrid',
+                 id:'productDg'
+             }">导出EXCEL报表
+        </div>
+        <div data-toggle="topjui-menubutton"
+             data-options="clickEvent:'request',
+             url:contextPath + '/json/response/success.json?uuid={uuid}',
+             grid:{
+                 type:'datagrid',
+                 id:'productDg'
+             }">导出WORD报表
+        </div>
+    </div>
 </div>
 <!-- 表格工具栏结束 -->
 </body>

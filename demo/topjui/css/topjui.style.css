@@ -188,6 +188,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     line-height: 24px;
 }
 
+/* 过滤器下拉选项：无/包含/等于/大于 */
+.menu-item > .menu-text {
+    padding-left: 28px;
+}
+
 /* 下拉菜单 */
 .menu-text {
     height: 24px !important;
