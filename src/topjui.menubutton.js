@@ -25,13 +25,6 @@
             var grid = options.grid;
             var parentGrid = options.parentGrid;
 
-            // 权限控制
-            if (dialog.id != undefined) {
-                if (!authCheck(dialog.id)) return;
-            } else {
-                if (!authCheck(dialog.href)) return;
-            }
-
             options.dialog.leftMargin = ($(document.body).width() * 0.5) - (dialog.width * 0.5);
             options.dialog.topMargin = ($(document.body).height() * 0.5) - (dialog.height * 0.5);
 

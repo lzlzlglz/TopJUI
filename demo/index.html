@@ -20,6 +20,7 @@
     <script type="text/javascript" src="./topjui/plugins/jquery/jquery.cookie.js"></script>
     <!-- TopJUI框架配置 -->
     <script type="text/javascript" src="./static/public/js/topjui.config.js"></script>
+    <script type="text/javascript">topJUI.config.mainPage = true;</script>
     <!-- TopJUI框架核心 -->
     <script type="text/javascript" src="./topjui/js/topjui.core.min.js"></script>
     <!-- TopJUI中文支持 -->
@@ -58,37 +59,49 @@
                     <table id="topmenucontent" cellpadding="0" cellspacing="0">
                         <td id="1325" title="这只是静态演示" class="topmenu selected systemName">
                             <a class="l-btn-text bannerMenu" href="javascript:void(0)">
-                                <p><lable class="fa  fa-hand-pointer-o"></lable></p>
+                                <p>
+                                    <lable class="fa  fa-hand-pointer-o"></lable>
+                                </p>
                                 <p><span style="white-space:nowrap;">静态演示</span></p>
                             </a>
                         </td>
                         <td id="60" title="TopJUI开发文档" class="topmenu systemName">
                             <a class="l-btn-text bannerMenu" href="javascript:void(0)">
-                                <p><lable class="fa fa-puzzle-piece"></lable></p>
+                                <p>
+                                    <lable class="fa fa-puzzle-piece"></lable>
+                                </p>
                                 <p><span style="white-space:nowrap;">开发文档</span></p>
                             </a>
                         </td>
                         <td id="" title="人力资源" class="topmenu systemName">
                             <a class="l-btn-text bannerMenu" href="javascript:void(0)">
-                                <p><lable class="fa fa-sort-amount-asc"></lable></p>
+                                <p>
+                                    <lable class="fa fa-sort-amount-asc"></lable>
+                                </p>
                                 <p><span style="white-space:nowrap;">人力资源</span></p>
                             </a>
                         </td>
                         <td id="" title="财务管理" class="topmenu systemName">
                             <a class="l-btn-text bannerMenu" href="javascript:void(0)">
-                                <p><lable class="fa fa-weixin"></lable></p>
+                                <p>
+                                    <lable class="fa fa-weixin"></lable>
+                                </p>
                                 <p><span style="white-space:nowrap;">财务管理</span></p>
                             </a>
                         </td>
                         <td id="" title="业务系统" class="topmenu systemName">
                             <a class="l-btn-text bannerMenu" href="javascript:void(0)">
-                                <p><lable class="fa fa-gears"></lable></p>
+                                <p>
+                                    <lable class="fa fa-gears"></lable>
+                                </p>
                                 <p><span style="white-space:nowrap;">业务系统</span></p>
                             </a>
                         </td>
                         <td id="" title="系统设置" class="topmenu systemName">
                             <a class="l-btn-text bannerMenu" href="javascript:void(0)">
-                                <p><lable class="fa  fa-shield"></lable></p>
+                                <p>
+                                    <lable class="fa  fa-shield"></lable>
+                                </p>
                                 <p><span style="white-space:nowrap;">系统设置</span></p>
                             </a>
                         </td>
@@ -119,7 +132,8 @@
         </table>
     </div>
 
-    <div id="west" data-options="region:'west',split:true,width:230,border:true" title="轻松工作，快乐办公！" iconCls="fa fa-dashboard"
+    <div id="west" data-options="region:'west',split:true,width:230,border:true" title="轻松工作，快乐办公！"
+         iconCls="fa fa-dashboard"
          style="overflow:hidden;" align="left">
         <div id="RightAccordion" class="easyui-accordion"></div>
         <!--<div id="menuTab" class="easyui-tabs" data-options="fit:true,border:false">

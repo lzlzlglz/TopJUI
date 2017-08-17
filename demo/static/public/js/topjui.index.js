@@ -1,7 +1,6 @@
 var ctx = "";
 var index_layout;
 var index_tabs;
-var index_tabsMenu;
 var layout_west_tree;
 var layout_west_tree_url = '';
 
@@ -206,23 +205,6 @@ function tabMenuOprate(menu, type) {
     }
 
 }
-
-// 常用链接树
-$('#channgyongLink').tree({
-    url: ctx + '/system/link/getListById?id=1',
-    formatter: function (node) {
-        if (node.url)
-            return '<a href="' + node.url + '" target="_blank">' + node.text + '</a>';
-        else
-            return node.text;
-    },
-    onLoadSuccess: function (node, data) {
-        $(this).tree("expandAll");
-    },
-    onBeforeExpand: function (node) {
-        $(this).tree('options').url = ctx + '/system/link/getListByPid?pid=' + node.id;
-    }
-});
 
 /**
  * 更换页面风格
