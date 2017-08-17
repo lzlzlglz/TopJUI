@@ -18654,18 +18654,22 @@ function searchHandler(options) {
         onClick: function () {
             var formDataArr = [];
             var formData = $("#" + options.dialog.id).serializeArray();
-            var num = formData.length / 4;
+            var num = formData.length / 6;
             for (var i = 0; i < num; i++) {
-                var field = formData[i * 4].name;
-                var fieldValue = formData[i * 4].value;
-                var op = formData[i * 4 + 1].name;
-                var opValue = formData[i * 4 + 1].value;
-                var value = formData[i * 4 + 2].name;
-                var valValue = formData[i * 4 + 2].value;
-                var join = formData[i * 4 + 3].name;
-                var joinValue = formData[i * 4 + 3].value;
+                var join = formData[i * 6 + 0].name;
+                var joinValue = formData[i * 6 + 0].value;
+                var lb = formData[i * 6 + 1].name;
+                var lbValue = formData[i * 6 + 1].value;
+                var field = formData[i * 6 + 2].name;
+                var fieldValue = formData[i * 6 + 2].value;
+                var op = formData[i * 6 + 3].name;
+                var opValue = formData[i * 6 + 3].value;
+                var value = formData[i * 6 + 4].name;
+                var valValue = formData[i * 6 + 4].value;
+                var rb = formData[i * 6 + 5].name;
+                var rbValue = formData[i * 6 + 5].value;
 
-                formDataArr.push({field: fieldValue, op: opValue, value: valValue, join: joinValue});
+                formDataArr.push({join: joinValue, lb: lbValue, field: fieldValue, op: opValue, value: valValue, rb: rbValue});
             }
             // console.log(JSON.stringify(formDataArr));
             loadGrid(formDataArr);
