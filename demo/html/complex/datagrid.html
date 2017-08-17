@@ -89,6 +89,7 @@
        data-options="clickEvent:'openDialog',
        dialog:{
            id:'userAddDialog',
+           height:350,
            href:contextPath + '/html/complex/add.html',
            buttonsGroup:[
                {text:'保存',url:contextPath + '/json/response/success.json',iconCls:'fa fa-plus',handler:'ajaxForm'}
@@ -100,6 +101,7 @@
        iconCls:'fa fa-pencil',
        dialog:{
            id:'articleEditDialog',
+           height:350,
            href:contextPath + '/html/complex/edit.html?uuid={uuid}',
            url:contextPath + '/json/product/detail.json?uuid={uuid}',
            buttonsGroup:[
