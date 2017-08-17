@@ -18610,7 +18610,7 @@ function searchHandler(options) {
         dialog: {
             id: 'advanceSearchDialog',
             title: '组合查询',
-            width: 620,
+            width: 700,
             height: 300,
             modal: false,
             collapsible: true,
@@ -22056,6 +22056,30 @@ Array.prototype.remove = function (val) {
 
         $(".value:last").textbox({});
 
+        $(".lb:last").combobox({
+            textField: 'text',
+            valueField: 'value',
+            data: [
+                {"text": "无", "value": "", "selected": true},
+                {"text": "(", "value": "("}
+            ],
+            width: 45,
+            panelHeight: 70,
+            editable: false
+        });
+
+        $(".rb:last").combobox({
+            textField: 'text',
+            valueField: 'value',
+            data: [
+                {"text": "无", "value": "", "selected": true},
+                {"text": ")", "value": ")"}
+            ],
+            width: 45,
+            panelHeight: 70,
+            editable: false
+        });
+
         $(".join:last").combobox({
             textField: 'text',
             valueField: 'value',
@@ -22079,7 +22103,7 @@ Array.prototype.remove = function (val) {
         });
 
         $(".deleteCondition:last").on('click', function () {
-            var index = $(".deleteCondition").index(this) + 1;
+            var index = $(".deleteCondition").index(this) + 2;
             getTabWindow().$("#advanceSearchTable tr:eq(" + index + ")").remove();
         });
     });

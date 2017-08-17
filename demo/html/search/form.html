@@ -1,18 +1,34 @@
 <table id="advanceSearchTable" class="editTable">
     <tr>
-        <td style="width:30px;"></td>
-        <td>
-            <input type="text" class="field" name="field">
-            <input type="text" class="op" name="op">
-            <input type="text" class="value" name="value">
-            <input type="text" class="join" name="join">
-            <a id="addCondition" href="javascript:void(0)"></a>
+        <td style="font-weight: bold;">方式</td>
+        <td style="font-weight: bold;">左括号</td>
+        <td style="font-weight: bold;">字段</td>
+        <td style="font-weight: bold;">条件</td>
+        <td style="font-weight: bold;">数值</td>
+        <td style="font-weight: bold;">右括号</td>
+        <td style="font-weight: bold;">操作</td>
+    </tr>
+    <tr>
+        <td><input type="text" class="join" name="join"></td>
+        <td><input type="text" class="lb" name="lb"></td>
+        <td><input type="text" class="field" name="field"></td>
+        <td><input type="text" class="op" name="op"></td>
+        <td><input type="text" class="value" name="value"></td>
+        <td><input type="text" class="rb" name="rb"></td>
+        <td><a id="addCondition" href="javascript:void(0)"></a>
         </td>
     </tr>
 </table>
 
 <script>
-    var html = '<tr><td style="width:30px;"></td><td><input type="text" class="field" name="field"> <input type="text" class="op" name="op"> <input type="text" class="value" name="value"> <input type="text" class="join" name="join"> <a class="deleteCondition" href="javascript:void(0)"></a></td></tr>';
+    var html = '<tr>';
+    html += '<td><input type="text" class="join" name="join"></td>';
+    html += '<td><input type="text" class="lb" name="lb"></td>';
+    html += '<td><input type="text" class="field" name="field"></td>';
+    html += '<td><input type="text" class="op" name="op"></td>';
+    html += '<td><input type="text" class="value" name="value"></td>';
+    html += '<td><input type="text" class="rb" name="rb"></td>';
+    html += '<td><a class="deleteCondition" href="javascript:void(0)"></a></td></tr>';
     $("#addCondition").on('click', function () {
         $("#advanceSearchTable").append(html);
         $(this).trigger(topJUI.eventType.initUI.advanceSearchForm);
