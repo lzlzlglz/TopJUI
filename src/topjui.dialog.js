@@ -26,6 +26,9 @@
             postfix: 'Edit',
             combotreeFields: '',
             refreshTreeId: '',
+            onBeforeLoad: function () {
+                
+            },
             onBeforeOpen: function () {
 
             },

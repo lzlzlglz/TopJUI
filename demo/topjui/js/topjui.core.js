@@ -19354,7 +19354,7 @@ $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
             selectOnCheck: options.selectOnCheck,
             //bodyCls : "leftBottomBorder",
             onBeforeLoad: function (param) {
-
+                
             },
             onLoadSuccess: function () {
 
@@ -19740,6 +19740,9 @@ $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
             postfix: 'Edit',
             combotreeFields: '',
             refreshTreeId: '',
+            onBeforeLoad: function () {
+                
+            },
             onBeforeOpen: function () {
 
             },

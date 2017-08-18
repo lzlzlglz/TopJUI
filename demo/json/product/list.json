@@ -17,7 +17,8 @@
       "memo": "",
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 25
     },
     {
       "uuid": "06CFC35B-B75F-11E4-B135-782BCBD7746B",
@@ -36,7 +37,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 27
     },
     {
       "uuid": "089D45AB-B745-11E4-9C3C-782BCBD7746B",
@@ -55,7 +57,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 55
     },
     {
       "uuid": "14716F2E-B749-11E4-98B5-782BCBD7746B",
@@ -74,7 +77,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 85
     },
     {
       "uuid": "1736597F-B74B-11E4-98B5-782BCBD7746B",
@@ -93,7 +97,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 46
     },
     {
       "uuid": "1B411CD9-B76A-11E4-9AAE-782BCBD7746B",
@@ -112,7 +117,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 76
     },
     {
       "uuid": "1D0177A0-B746-11E4-9C3C-782BCBD7746B",
@@ -131,7 +137,8 @@
       "memo": "",
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 23
     },
     {
       "uuid": "2D1C672D-B74A-11E4-98B5-782BCBD7746B",
@@ -150,7 +157,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 12
     },
     {
       "uuid": "359389E5-B745-11E4-9C3C-782BCBD7746B",
@@ -169,7 +177,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 33
     },
     {
       "uuid": "35FA2DE1-B746-11E4-9C3C-782BCBD7746B",
@@ -188,7 +197,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 89
     },
     {
       "uuid": "373A750B-B749-11E4-98B5-782BCBD7746B",
@@ -207,7 +217,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 83
     },
     {
       "uuid": "3AD67063-B74B-11E4-98B5-782BCBD7746B",
@@ -226,7 +237,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 33
     },
     {
       "uuid": "4735240F-B3F4-11E4-9DEA-782BCBD7746B",
@@ -245,7 +257,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 37
     },
     {
       "uuid": "496850A9-B74A-11E4-98B5-782BCBD7746B",
@@ -264,7 +277,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 22
     },
     {
       "uuid": "5148FC80-B76A-11E4-9AAE-782BCBD7746B",
@@ -283,7 +297,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 11
     },
     {
       "uuid": "5472B0C8-B746-11E4-9C3C-782BCBD7746B",
@@ -302,7 +317,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 25
     },
     {
       "uuid": "5ADA53E3-B749-11E4-98B5-782BCBD7746B",
@@ -321,7 +337,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 69
     },
     {
       "uuid": "5E8F05FF-B74B-11E4-98B5-782BCBD7746B",
@@ -340,7 +357,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 66
     },
     {
       "uuid": "7122320E-B76A-11E4-9AAE-782BCBD7746B",
@@ -359,7 +377,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 88
     },
     {
       "uuid": "7ED6D9C2-B749-11E4-98B5-782BCBD7746B",
@@ -378,7 +397,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 85
     },
     {
       "uuid": "8CBD95C4-B3F4-11E4-9DEA-782BCBD7746B",
@@ -397,7 +417,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 58
     },
     {
       "uuid": "903F1597-B744-11E4-9C3C-782BCBD7746B",
@@ -416,7 +437,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 34
     },
     {
       "uuid": "95554EBC-B74A-11E4-98B5-782BCBD7746B",
@@ -435,7 +457,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 45
     },
     {
       "uuid": "95D1BFFC-B746-11E4-9C3C-782BCBD7746B",
@@ -454,7 +477,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 29
     },
     {
       "uuid": "AB325C43-B744-11E4-9C3C-782BCBD7746B",
@@ -473,7 +497,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 85
     },
     {
       "uuid": "B0F6FBA5-B745-11E4-9C3C-782BCBD7746B",
@@ -492,7 +517,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 23
     },
     {
       "uuid": "BA7AC1DC-B746-11E4-9C3C-782BCBD7746B",
@@ -511,7 +537,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 75
     },
     {
       "uuid": "BB01CEF8-B3F5-11E4-9DEA-782BCBD7746B",
@@ -530,7 +557,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 55
     },
     {
       "uuid": "BE3C9CBF-B74A-11E4-98B5-782BCBD7746B",
@@ -549,7 +577,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 88
     },
     {
       "uuid": "BF635F9D-B749-11E4-98B5-782BCBD7746B",
@@ -568,7 +597,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 55
     },
     {
       "uuid": "D84201A3-B745-11E4-9C3C-782BCBD7746B",
@@ -587,7 +617,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 35
     },
     {
       "uuid": "DA4D10A8-B3F3-11E4-9DEA-782BCBD7746B",
@@ -606,7 +637,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 34
     },
     {
       "uuid": "E2A660FD-B3F4-11E4-9DEA-782BCBD7746B",
@@ -625,7 +657,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 56
     },
     {
       "uuid": "E600D194-B75E-11E4-B135-782BCBD7746B",
@@ -644,7 +677,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 12
     },
     {
       "uuid": "EF05A6DF-B74A-11E4-98B5-782BCBD7746B",
@@ -663,7 +697,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 99
     },
     {
       "uuid": "F4BA9C47-B748-11E4-98B5-782BCBD7746B",
@@ -682,7 +717,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 100
     },
     {
       "uuid": "FDE1B0F0-B3F3-11E4-9DEA-782BCBD7746B",
@@ -701,7 +737,8 @@
       "memo": null,
       "company_id": "4D74E1E4-A129-11E4-9B6A-782BCBD7746B",
       "brand_id": null,
-      "unit": null
+      "unit": null,
+      "rate": 72
     }
   ],
   "total": "37"

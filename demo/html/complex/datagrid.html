@@ -74,6 +74,7 @@
         <th data-options="field:'code',title:'商品编号',sortable:true"></th>
         <th data-options="field:'spec',title:'规格型号',sortable:true"></th>
         <th data-options="field:'sale_price',title:'销售单价',sortable:true"></th>
+        <th data-options="field:'rate',title:'完成率',sortable:true,formatter:progressFormatter"></th>
     </tr>
     </thead>
 </table>
@@ -180,5 +181,17 @@
     </div>
 </div>
 <!-- 表格工具栏结束 -->
+
+<script>
+    function progressFormatter(value, rowData, rowIndex) {
+        var htmlstr = '<div id="p" class="easyui-progressbar progressbar" data-options="value:' + value + '" style="width: 398px; height: 26px;">';
+        htmlstr += '<div class="progressbar-text" style="width: 398px; height: 26px; line-height: 26px;">' + value + '%</div>';
+        htmlstr += '<div class="progressbar-value" style="width: ' + value + '%; height: 26px; line-height: 26px;">';
+        htmlstr += '<div class="progressbar-text" style="width: 398px; height: 26px; line-height: 26px;">' + value + '%</div>';
+        htmlstr += '</div>';
+        htmlstr += '</div>';
+        return htmlstr;
+    }
+</script>
 </body>
 </html>
