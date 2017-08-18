@@ -65,7 +65,7 @@
             singleSelect  : options.singleSelect,
             url           : options.url,
             //queryParams : {},
-            loadMsg       : options.loadMsg,
+            //loadMsg       : options.loadMsg,
             rownumbers    : options.rownumbers,
             pagination    : options.pagination,
             pageNumber    : options.pageNumber,

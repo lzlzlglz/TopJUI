@@ -19335,7 +19335,7 @@ $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
             url: appendSourceUrlParam(options.url),
             toolbar: options.toolbar,
             //queryParams : {},
-            loadMsg: options.loadMsg,
+            //loadMsg: options.loadMsg,
             rownumbers: options.rownumbers,
             pagination: options.pagination,
             paginPosition: 'bottom',
@@ -19354,10 +19354,10 @@ $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
             selectOnCheck: options.selectOnCheck,
             //bodyCls : "leftBottomBorder",
             onBeforeLoad: function (param) {
-                
+                $("#Loading").length > 0 ? showMask() : loadMask();
             },
             onLoadSuccess: function () {
-
+                hiddenMask();
                 //$('#' + options.id).datagrid('doCellTip', {cls: {'background-color': 'red'}, delay: 500});
                 $('#' + options.id).datagrid('doCellTip', {cls: {}, delay: 500});
 
@@ -19741,12 +19741,14 @@ $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
             combotreeFields: '',
             refreshTreeId: '',
             onBeforeLoad: function () {
-                
+                $("#Loading").length > 0 ? showMask() : loadMask();
             },
             onBeforeOpen: function () {
 
             },
             onLoad: function () {
+                hiddenMask();
+                $.messager.progress('close');
                 $(this).trigger(topJUI.eventType.initUI.form);
                 $(this).dialog("center");
                 if (dialogOptions.url != undefined) {
@@ -20631,6 +20633,29 @@ subString = function (dateStr, start, end) {
     } else {
         return '';
     }
+}
+
+// 弹出加载层
+function loadMask() {
+    var html = '<div id="Loading" class="loading-wrap">';
+    html += '<div class="loading-content">';
+    html += '<div class="loading-round">';
+    html += '<img src="' + topJUI.config.path + '/image/loading-bg.png" alt="">';
+    html += '</div>';
+    html += '<div class="loading-dot">';
+    html += '<img src="' + topJUI.config.path + '/image/loading-dot.png" alt="">';
+    html += '</div>';
+    html += '</div>';
+    html += '</div>';
+    getTabWindow().$('body').append(html);
+}
+// 隐藏加载层
+function hiddenMask() {
+    $("#Loading").fadeOut("normal");
+}
+// 显示加载层
+function showMask() {
+    $('#Loading').fadeIn();
 }
 
 /**

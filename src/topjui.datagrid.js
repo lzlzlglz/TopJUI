@@ -102,7 +102,7 @@
             url: appendSourceUrlParam(options.url),
             toolbar: options.toolbar,
             //queryParams : {},
-            loadMsg: options.loadMsg,
+            //loadMsg: options.loadMsg,
             rownumbers: options.rownumbers,
             pagination: options.pagination,
             paginPosition: 'bottom',
@@ -121,10 +121,10 @@
             selectOnCheck: options.selectOnCheck,
             //bodyCls : "leftBottomBorder",
             onBeforeLoad: function (param) {
-                
+                $("#Loading").length > 0 ? showMask() : loadMask();
             },
             onLoadSuccess: function () {
-
+                hiddenMask();
                 //$('#' + options.id).datagrid('doCellTip', {cls: {'background-color': 'red'}, delay: 500});
                 $('#' + options.id).datagrid('doCellTip', {cls: {}, delay: 500});
 

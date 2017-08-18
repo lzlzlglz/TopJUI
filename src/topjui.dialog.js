@@ -27,12 +27,14 @@
             combotreeFields: '',
             refreshTreeId: '',
             onBeforeLoad: function () {
-                
+                $("#Loading").length > 0 ? showMask() : loadMask();
             },
             onBeforeOpen: function () {
 
             },
             onLoad: function () {
+                hiddenMask();
+                $.messager.progress('close');
                 $(this).trigger(topJUI.eventType.initUI.form);
                 $(this).dialog("center");
                 if (dialogOptions.url != undefined) {

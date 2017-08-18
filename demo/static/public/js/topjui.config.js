@@ -31,6 +31,7 @@ var ctx = "";
 var topJUI = {
     config: {
         ctx: "",
+        path: "/topjui",  // topjui路径
         mainPage: false,
         aloneUse: false
     },

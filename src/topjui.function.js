@@ -73,6 +73,29 @@ subString = function (dateStr, start, end) {
     }
 }
 
+// 弹出加载层
+function loadMask() {
+    var html = '<div id="Loading" class="loading-wrap">';
+    html += '<div class="loading-content">';
+    html += '<div class="loading-round">';
+    html += '<img src="' + topJUI.config.path + '/image/loading-bg.png" alt="">';
+    html += '</div>';
+    html += '<div class="loading-dot">';
+    html += '<img src="' + topJUI.config.path + '/image/loading-dot.png" alt="">';
+    html += '</div>';
+    html += '</div>';
+    html += '</div>';
+    getTabWindow().$('body').append(html);
+}
+// 隐藏加载层
+function hiddenMask() {
+    $("#Loading").fadeOut("normal");
+}
+// 显示加载层
+function showMask() {
+    $('#Loading').fadeIn();
+}
+
 /**
  * 回调函数，用于点击提交按钮在提交表单之前选中select输入框中的所有项
  */

@@ -605,6 +605,91 @@ table.gridtable .bold {
     margin: 10px 0 20px;
 }
 
+/*--------------------加载start--------------------*/
+.loading-wrap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    opacity:0.6;
+    filter:Alpha(opacity=60); /* IE8 以及更早的浏览器 */
+    z-index: 9999;
+}
+
+.loading-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -83px;
+    width: 166px;
+    height: 166px;
+    background: url("http://www.rdkj168.com/erp/static/image/loading-img.png") no-repeat center center;
+}
+
+.loading-round {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+
+}
+
+.loading-round, .loading-dot {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin 1s infinite linear;
+    -moz-animation: spin 1s infinite linear;
+    -ms-animation: spin 1s infinite linear;
+    -o-animation: spin 1s infinite linear;
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-ms-keyframes spin {
+    from {
+        -ms-transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes spin {
+    from {
+        -o-transform: rotate(0deg);
+    }
+    to {
+        -o-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+/*--------------------加载end--------------------*/
+
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 ::-webkit-scrollbar
 {
