@@ -17780,11 +17780,13 @@ addParentTab = function (options) {
     }
 
     var iframe = '<iframe src="' + src + '" frameborder="0" style="border:0;width:100%;height:100%;"></iframe>';
+    console.log(options.tab.tools);
     parent.$('#index_tabs').tabs("add", {
         title: title,
         content: iframe,
         closable: true,
-        iconCls: 'fa fa-th'
+        iconCls: 'fa fa-th',
+        tools: options.tab.tools
     });
 
 }

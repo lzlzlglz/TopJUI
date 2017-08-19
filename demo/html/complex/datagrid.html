@@ -130,7 +130,14 @@
        data-options="clickEvent:'openTab',
        tab:{
            title:'这是新的Tab窗口',
-           href:contextPath + '/html/menu/openTab_index.html'
+           href:contextPath + '/html/menu/openTab_index.html',
+           tools:[{
+                iconCls:'icon-add',
+                handler:function(){alert('添加')}
+           },{
+                iconCls:'icon-edit',
+                handler:function(){alert('编辑')}
+           }]
        }">打开Tab窗口</a>
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"

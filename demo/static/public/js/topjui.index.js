@@ -45,6 +45,14 @@ $(function () {
         fit: true
     });
 
+    $(".collapseMenu").on("click", function () {
+        var p = $("#index_layout").layout("panel", "west")[0].clientWidth;
+        if (p > 0)
+            $('#index_layout').layout('collapse', 'west');
+        else
+            $('#index_layout').layout('expand', 'west');
+    })
+
     // 首页tabs选项卡
     index_tabs = $('#index_tabs').tabs({
         fit: true,
@@ -321,10 +329,12 @@ function generateMenu(menuId, systemName) {
                 $.each(data, function (i, e) {// 循环创建手风琴的项
                     var pid = e.pid;
                     $('#RightAccordion').accordion('add', {
+                        fit: false,
                         title: e.text,
                         content: "<ul id='tree" + e.id + "' ></ul>",
+                        border: false,
                         selected: true,
-                        iconCls: e.iconCls,
+                        iconCls: e.iconCls
                     });
                     $.parser.parse();
                     $.get(ctx + "json/menu/menu_" + e.id + ".json", function (data) {// 循环创建树的项

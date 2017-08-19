@@ -55,6 +55,9 @@
                 <td class="webname">
                     <span class="fa fa-envira" style="font-size:26px; padding-right:8px;"></span>TopJUI前端框架
                 </td>
+                <td class="collapseMenu" style="text-align: center;cursor: pointer;">
+                    <span class="fa fa-list" style="font-size:26px;"></span>
+                </td>
                 <td>
                     <table id="topmenucontent" cellpadding="0" cellspacing="0">
                         <td id="1325" title="这只是静态演示" class="topmenu selected systemName">
@@ -132,9 +135,9 @@
         </table>
     </div>
 
-    <div id="west" data-options="region:'west',split:true,width:230,border:true" title="轻松工作，快乐办公！"
-         iconCls="fa fa-dashboard"
-         style="overflow:hidden;" align="left">
+    <div id="west"
+         data-options="region:'west',split:true,width:230,border:false,headerCls:'border_right',bodyCls:'border_right'"
+         title="" iconCls="fa fa-dashboard">
         <div id="RightAccordion" class="easyui-accordion"></div>
         <!--<div id="menuTab" class="easyui-tabs" data-options="fit:true,border:false">
             <div title="导航菜单" data-options="iconCls:'fa fa-sitemap'" style="padding:0;">
