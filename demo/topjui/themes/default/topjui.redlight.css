@@ -19,7 +19,7 @@
 #west .accordion{background: #F9FAFC;}
 #west .accordion-body {border:0px;}
 #west .accordion .accordion-header{background: #f9fafc;height: 30px;line-height: 30px;border-top:solid 1px #ddd;color:#444;border-left:3px #F9FAFC solid;}
-#west .accordion .accordion-header-selected{background: #e7eaec;border-left:3px #dd4b39 solid;}
+#west .accordion .accordion-header-selected{background: #e7eaec;border-left:3px #dd4b39 solid;border-bottom:solid 1px #ddd;}
 #west .accordion .accordion-header:hover{background: #e7eaec;color: #000;border-left:3px #dd4b39 solid;}
 #west .accordion .accordion-header-selected .panel-title{color:#444}
 #west .accordion .accordion-header .panel-title:hover{color: #333;}
