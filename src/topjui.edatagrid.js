@@ -102,7 +102,7 @@
             url: appendSourceUrlParam(options.url),
             toolbar: options.toolbar,
             //queryParams : {},
-            loadMsg: options.loadMsg,
+            //loadMsg: options.loadMsg,
             rownumbers: options.rownumbers,
             pagination: options.pagination,
             paginPosition: 'bottom',
@@ -124,9 +124,10 @@
             updateUrl: options.updateUrl,
             destroyUrl: options.destroyUrl,
             onBeforeLoad: function (param) {
-
+                $("#Loading").length > 0 ? showMask() : loadMask();
             },
             onLoadSuccess: function () {
+                hiddenMask();
                 //$(this).datagrid("fixRownumber");
             },
             onClickRow: function (index, row) {

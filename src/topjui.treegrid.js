@@ -54,10 +54,15 @@
             ]],
             checkOnSelect: false,
             selectOnCheck: false,
+            onBeforeLoad: function (param) {
+                
+            },
             onBeforeExpand: function (row) {
+                $("#Loading").length > 0 ? showMask() : loadMask();
                 $(this).treegrid('options').url = replaceUrlParamValueByBrace(options.expandUrl, row);
             },
             onLoadSuccess: function () {
+                hiddenMask();
                 var rootNode = $(options.gridId).treegrid('getRoot');
                 if (rootNode) {
                     $(options.gridId).treegrid("expand", rootNode.id);

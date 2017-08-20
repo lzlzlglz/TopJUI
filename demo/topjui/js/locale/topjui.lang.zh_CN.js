@@ -69,6 +69,9 @@ if ($.fn.datetimespinner) {
 if ($.fn.panel) {
     $.fn.dialog.defaults.loadingMessage = "";
 }
+if ($.fn.edatagrid) {
+    $.fn.edatagrid.defaults.loadMsg = "";
+}
 if ($.fn.datagrid && $.fn.datagrid.defaults && $.fn.datagrid.defaults.operators.nofilter) {
     $.fn.datagrid.defaults.operators.nofilter.text = "无";
     $.fn.datagrid.defaults.operators.contains.text = "包含";

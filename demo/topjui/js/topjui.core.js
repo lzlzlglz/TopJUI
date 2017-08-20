@@ -19937,7 +19937,7 @@ $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
             url: appendSourceUrlParam(options.url),
             toolbar: options.toolbar,
             //queryParams : {},
-            loadMsg: options.loadMsg,
+            //loadMsg: options.loadMsg,
             rownumbers: options.rownumbers,
             pagination: options.pagination,
             paginPosition: 'bottom',
@@ -19959,9 +19959,10 @@ $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
             updateUrl: options.updateUrl,
             destroyUrl: options.destroyUrl,
             onBeforeLoad: function (param) {
-
+                $("#Loading").length > 0 ? showMask() : loadMask();
             },
             onLoadSuccess: function () {
+                hiddenMask();
                 //$(this).datagrid("fixRownumber");
             },
             onClickRow: function (index, row) {
@@ -22652,10 +22653,15 @@ $(function () {
             ]],
             checkOnSelect: false,
             selectOnCheck: false,
+            onBeforeLoad: function (param) {
+                
+            },
             onBeforeExpand: function (row) {
+                $("#Loading").length > 0 ? showMask() : loadMask();
                 $(this).treegrid('options').url = replaceUrlParamValueByBrace(options.expandUrl, row);
             },
             onLoadSuccess: function () {
+                hiddenMask();
                 var rootNode = $(options.gridId).treegrid('getRoot');
                 if (rootNode) {
                     $(options.gridId).treegrid("expand", rootNode.id);
