@@ -20,7 +20,7 @@
 #west .accordion{background: #222d32;border:0px;}
 #west .accordion-body {border:0px;background:#2c3b41}
 #west .accordion .accordion-header{background: #222d32;height: 30px;line-height: 30px;border-top:solid 1px #2c3b41;color:#fff;border-left:3px #222d32 solid;}
-#west .accordion .accordion-header-selected{background: #222d32;border-left:3px #3c8dbc solid;border-bottom:solid 1px #2c3b41;}
+#west .accordion .accordion-header-selected{background: #222d32;border-left:3px #3c8dbc solid;border-bottom:solid 0px #2c3b41;}
 #west .accordion .accordion-header:hover{background: #1e282c;color: #fff;border-left:3px #3c8dbc solid;}
 #west .accordion .accordion-header-selected .panel-title{color:#fff}
 #west .accordion .accordion-header .panel-title:hover{color: #fff;}

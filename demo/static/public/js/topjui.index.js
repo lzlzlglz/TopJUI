@@ -50,7 +50,7 @@ $(function () {
             $('#index_layout').layout('collapse', 'west');
         else
             $('#index_layout').layout('expand', 'west');
-    })
+    });
 
     // 首页tabs选项卡
     index_tabs = $('#index_tabs').tabs({
@@ -113,6 +113,8 @@ $(function () {
         //generateMenu(e.currentTarget.dataset.menuid, e.target.textContent); //IE9及以下不兼容data-menuid属性
         //generateMenu(e.target.getAttribute('data-menuid'), e.target.textContent);
         generateMenu($(this).attr("id"), $(this).attr("title"));
+        $(".systemName").removeClass("selected");
+        $(this).addClass("selected");
     });
 
     // 主页打开初始化时显示第一个系统的菜单
