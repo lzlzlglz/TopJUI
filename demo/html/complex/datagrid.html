@@ -96,7 +96,7 @@
                {text:'保存',url:contextPath + '/json/response/success.json',iconCls:'fa fa-plus',handler:'ajaxForm'}
            ]
        }">新增</a>
-    <a href="javascript:void(0)"
+    <a href="javascript:void(0)" class="topjui-btn"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'openDialog',
        iconCls:'fa fa-pencil',
@@ -109,23 +109,23 @@
                {text:'更新',url:contextPath + '/json/response/success.json',iconCls:'fa fa-save',handler:'ajaxForm'}
            ]
        }">编辑</a>
-    <a href="javascript:void(0)"
+    <a href="javascript:void(0)" class="topjui-btn-normal"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'doAjax',
        iconCls:'fa fa-trash',
        url:contextPath + '/json/response/success.json',
        grid: {uncheckedMsg:'请先勾选要删除的数据',param:'uuid:uuid,code:code'}">删除</a>
-    <a href="javascript:void(0)"
+    <a href="javascript:void(0)" class="topjui-btn-warm"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'filter'">过滤</a>
-    <a href="javascript:void(0)"
+    <a href="javascript:void(0)" class="topjui-btn-danger"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'search'">查询</a>
-    <a href="javascript:void(0)"
+    <a href="javascript:void(0)" class="topjui-btn"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'export',
        url:contextPath + '/json/response/export.html'">导出</a>
-    <a href="javascript:void(0)"
+    <a href="javascript:void(0)" class="topjui-btn-normal"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'openTab',
        tab:{
@@ -139,15 +139,15 @@
                 handler:function(){alert('编辑')}
            }]
        }">打开Tab窗口</a>
-    <a href="javascript:void(0)"
+    <a href="javascript:void(0)" class="topjui-btn-warm"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'openWindow',
        href:'http://www.topjui.com?uuid={uuid}'">打开新窗口</a>
-    <a href="javascript:void(0)"
+    <a href="javascript:void(0)" class="topjui-btn"
        data-toggle="topjui-menubutton"
        data-options="clickEvent:'request',
        url:contextPath + '/json/response/success.json'">执行普通请求</a>
-    <a href="javascript:void(0)"
+    <a href="javascript:void(0)" class="topjui-btn-danger"
        data-toggle="topjui-menubutton"
        data-options="menu:'#exportSubMenu',
        hasDownArrow:true,

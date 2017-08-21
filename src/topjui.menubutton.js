@@ -1,6 +1,6 @@
 (function ($) {
 
-    $.fn.iMenubutton = function (options) {
+    $.fn.iMenubutton = function (options, param) {
         var defaults = {
             plain: true,
             iconCls: 'fa fa-cog',
@@ -17,7 +17,7 @@
 
     $.extend($.fn.menubutton.methods, {
 
-        openDialog: function (target, options) {
+        openDialog: function (target) {
             //var options = $(this).menubutton('options'); // 事件中获取参数
             var options = $.data(target[0], "menubutton").options;
             //var options = target[0].dataset.options;
@@ -66,36 +66,51 @@
                 }
             }
         },
-        openTab: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
-            addParentTab(options);
+        openTab: function (jq) {
+            //var options = $.data(jq[0], "menubutton").options;
+            //addParentTab(jq[0]);
+            return jq.each(function () {
+                addParentTab(this);
+            });
         },
-        openWindow: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
-            openWindow(options);
+        openWindow: function (jq) {
+            //var options = $.data(jq[0], "menubutton").options;
+            //openWindow(jq[0]);
+            return jq.each(function () {
+                openWindow(this);
+            });
         },
-        doAjax: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
-            doAjaxHandler(options);
+        doAjax: function (jq) {
+            //var options = $.data(jq[0], "menubutton").options;
+            //doAjaxHandler(options);
+            return jq.each(function () {
+                doAjaxHandler(this);
+            });
         },
-        request: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
-            requestHandler(options);
+        request: function (jq) {
+            //var options = $.data(jq[0], "menubutton").options;
+            //requestHandler(options);
+            return jq.each(function () {
+                requestHandler(this);
+            });
         },
-        delete: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
-            deleteHandler(options);
+        delete: function (jq) {
+            //var options = $.data(jq[0], "menubutton").options;
+            //deleteHandler(options);
+            return jq.each(function () {
+                deleteHandler(this);
+            });
         },
-        filter: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
+        filter: function (jq) {
+            var options = $.data(jq[0], "menubutton").options;
             filterHandler(options);
         },
-        search: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
+        search: function (jq) {
+            var options = $.data(jq[0], "menubutton").options;
             searchHandler(options);
         },
-        export: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
+        export: function (jq) {
+            var options = $.data(jq[0], "menubutton").options;
             exportHandler(options);
         },
         import: function (target, options) {

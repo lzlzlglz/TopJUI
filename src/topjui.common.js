@@ -63,8 +63,8 @@ function addTab(params) {
     }
 }
 
-addParentTab = function (options) {
-
+addParentTab = function (target) {
+    var options = $.data(target, "menubutton").options;
     var src, title;
     if (typeof options.grid == "object") {
         if (options.grid.checkboxSelect == true) {
@@ -102,7 +102,6 @@ addParentTab = function (options) {
     }
 
     var iframe = '<iframe src="' + src + '" frameborder="0" style="border:0;width:100%;height:100%;"></iframe>';
-    console.log(options.tab.tools);
     parent.$('#index_tabs').tabs("add", {
         title: title,
         content: iframe,
@@ -117,7 +116,8 @@ addParentTab = function (options) {
  * 打开新窗口
  * @param options
  */
-openWindow = function (options) {
+openWindow = function (target) {
+    var options = $.data(target, "menubutton").options;
     var href;
     if (typeof options.grid == "object") {
         if (options.grid.checkboxSelect == true) {
@@ -774,7 +774,8 @@ function refreshGrid(gridType, gridId, clearQueryParams) {
  * Ajax操作
  * @param options
  */
-function doAjaxHandler(options) {
+function doAjaxHandler(target) {
+    var options = $.data(target, "menubutton").options;
     var defaults = {
         gridId: 'datagrid',
         iconCls: 'fa fa-cog',
@@ -822,7 +823,8 @@ function doAjaxHandler(options) {
  * 普通请求操作
  * @param options
  */
-function requestHandler(options) {
+function requestHandler(target) {
+    var options = $.data(target, "menubutton").options;
     options.url = appendSourceUrlParam(options.url);
 
     if (typeof options.grid == "object") {
@@ -849,10 +851,8 @@ function requestHandler(options) {
  * 删除表格数据
  * @param options
  */
-function deleteHandler(options) {
-    // 权限控制
-    var oriUrl = options.url ? options.url : getUrl("controller") + "delete"
-
+function deleteHandler(target) {
+    var options = $.data(target, "menubutton").options;
     var defaults = {
         gridId: 'datagrid',
         url: options.url ? appendSourceUrlParam(options.url) : getUrl("controller") + "delete" + location.search

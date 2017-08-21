@@ -17741,8 +17741,8 @@ function addTab(params) {
     }
 }
 
-addParentTab = function (options) {
-
+addParentTab = function (target) {
+    var options = $.data(target, "menubutton").options;
     var src, title;
     if (typeof options.grid == "object") {
         if (options.grid.checkboxSelect == true) {
@@ -17780,7 +17780,6 @@ addParentTab = function (options) {
     }
 
     var iframe = '<iframe src="' + src + '" frameborder="0" style="border:0;width:100%;height:100%;"></iframe>';
-    console.log(options.tab.tools);
     parent.$('#index_tabs').tabs("add", {
         title: title,
         content: iframe,
@@ -17795,7 +17794,8 @@ addParentTab = function (options) {
  * 打开新窗口
  * @param options
  */
-openWindow = function (options) {
+openWindow = function (target) {
+    var options = $.data(target, "menubutton").options;
     var href;
     if (typeof options.grid == "object") {
         if (options.grid.checkboxSelect == true) {
@@ -18452,7 +18452,8 @@ function refreshGrid(gridType, gridId, clearQueryParams) {
  * Ajax操作
  * @param options
  */
-function doAjaxHandler(options) {
+function doAjaxHandler(target) {
+    var options = $.data(target, "menubutton").options;
     var defaults = {
         gridId: 'datagrid',
         iconCls: 'fa fa-cog',
@@ -18500,7 +18501,8 @@ function doAjaxHandler(options) {
  * 普通请求操作
  * @param options
  */
-function requestHandler(options) {
+function requestHandler(target) {
+    var options = $.data(target, "menubutton").options;
     options.url = appendSourceUrlParam(options.url);
 
     if (typeof options.grid == "object") {
@@ -18527,10 +18529,8 @@ function requestHandler(options) {
  * 删除表格数据
  * @param options
  */
-function deleteHandler(options) {
-    // 权限控制
-    var oriUrl = options.url ? options.url : getUrl("controller") + "delete"
-
+function deleteHandler(target) {
+    var options = $.data(target, "menubutton").options;
     var defaults = {
         gridId: 'datagrid',
         url: options.url ? appendSourceUrlParam(options.url) : getUrl("controller") + "delete" + location.search
@@ -21077,7 +21077,7 @@ Array.prototype.remove = function (val) {
 
 })(jQuery);;(function ($) {
 
-    $.fn.iMenubutton = function (options) {
+    $.fn.iMenubutton = function (options, param) {
         var defaults = {
             plain: true,
             iconCls: 'fa fa-cog',
@@ -21094,7 +21094,7 @@ Array.prototype.remove = function (val) {
 
     $.extend($.fn.menubutton.methods, {
 
-        openDialog: function (target, options) {
+        openDialog: function (target) {
             //var options = $(this).menubutton('options'); // 事件中获取参数
             var options = $.data(target[0], "menubutton").options;
             //var options = target[0].dataset.options;
@@ -21143,36 +21143,51 @@ Array.prototype.remove = function (val) {
                 }
             }
         },
-        openTab: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
-            addParentTab(options);
+        openTab: function (jq) {
+            //var options = $.data(jq[0], "menubutton").options;
+            //addParentTab(jq[0]);
+            return jq.each(function () {
+                addParentTab(this);
+            });
         },
-        openWindow: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
-            openWindow(options);
+        openWindow: function (jq) {
+            //var options = $.data(jq[0], "menubutton").options;
+            //openWindow(jq[0]);
+            return jq.each(function () {
+                openWindow(this);
+            });
         },
-        doAjax: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
-            doAjaxHandler(options);
+        doAjax: function (jq) {
+            //var options = $.data(jq[0], "menubutton").options;
+            //doAjaxHandler(options);
+            return jq.each(function () {
+                doAjaxHandler(this);
+            });
         },
-        request: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
-            requestHandler(options);
+        request: function (jq) {
+            //var options = $.data(jq[0], "menubutton").options;
+            //requestHandler(options);
+            return jq.each(function () {
+                requestHandler(this);
+            });
         },
-        delete: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
-            deleteHandler(options);
+        delete: function (jq) {
+            //var options = $.data(jq[0], "menubutton").options;
+            //deleteHandler(options);
+            return jq.each(function () {
+                deleteHandler(this);
+            });
         },
-        filter: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
+        filter: function (jq) {
+            var options = $.data(jq[0], "menubutton").options;
             filterHandler(options);
         },
-        search: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
+        search: function (jq) {
+            var options = $.data(jq[0], "menubutton").options;
             searchHandler(options);
         },
-        export: function (target, options) {
-            var options = $.data(target[0], "menubutton").options;
+        export: function (jq) {
+            var options = $.data(jq[0], "menubutton").options;
             exportHandler(options);
         },
         import: function (target, options) {
