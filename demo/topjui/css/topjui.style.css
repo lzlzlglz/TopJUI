@@ -669,6 +669,10 @@ table.gridtable .bold {
     -o-animation: spin 1s infinite linear;
 }
 
+.collapseMenu {
+    width: 50px;
+}
+
 @-webkit-keyframes spin {
     from {
         -webkit-transform: rotate(0deg);
