@@ -47,7 +47,7 @@
 #center .tabs li.tabs-selected a.tabs-inner{border-top-color: #00a65a;border-top-width: 3px;}
 .banner{width: 100%;height: 50px;background: #00a65a;color: #fff;}
 .banner .l-btn-text{margin:0px;}
-.banner .webname{width: 225px;background:#008d4c; text-align:left; padding-left:10px; font-weight:bold; font-size: 20px;line-height: 25px; }
+.banner .webname{width: 215px;background:#008d4c; text-align:left; padding-left:10px; font-weight:bold; font-size: 20px;line-height: 25px; }
 .panel-icon, .panel-tool {margin-top:-6px;}
 #west .panel-tool a{opacity:0.8;filter:alpha(opacity=20);}
 /*easyui inner*/

@@ -50,7 +50,7 @@ background: url('../../themes/default/images/accordion_arrows2.png') no-repeat 0
 #center .tabs li.tabs-selected a.tabs-inner{border-top-color: #3c8dbc;border-top-width: 3px;}
 .banner{width: 100%;height: 50px;background: #3c8dbc;color: #fff;}
 .banner .l-btn-text{margin:0px;}
-.banner .webname{background:#367fa9;width: 225px; font-weight:bold; font-size: 20px;line-height: 25px; text-align:left; padding-left:10px; }
+.banner .webname{background:#367fa9;width: 215px; font-weight:bold; font-size: 20px;line-height: 25px; text-align:left; padding-left:10px; }
 .panel-icon, .panel-tool {margin-top:-6px;}
 #west .panel-tool a{filter:alpha(opacity=20);opacity:0.8}
 /*easyui inner*/
