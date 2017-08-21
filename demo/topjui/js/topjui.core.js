@@ -910,7 +910,8 @@ _94.remove();
 function _97(_98){
 var _99=$.data(_98,"linkbutton").options;
 var t=$(_98).empty();
-t.addClass("l-btn").removeClass("l-btn-plain l-btn-selected l-btn-plain-selected l-btn-outline");
+var btnCls=_99.btnCls?" "+_99.btnCls:"";
+t.addClass("l-btn"+btnCls).removeClass("l-btn-plain l-btn-selected l-btn-plain-selected l-btn-outline");
 t.removeClass("l-btn-small l-btn-medium l-btn-large").addClass("l-btn-"+_99.size);
 if(_99.plain){
 t.addClass("l-btn-plain");
@@ -18651,9 +18652,9 @@ function searchHandler(options) {
     // 组合查询对话框
     var searchForm = '<form id="advanceSearchDialog"></form>';
     searchForm += '<div id="advanceSearchDialog-buttons" style="display:none">';
-    searchForm += '<a href="#" id="resetAdvanceSearchForm" data-toggle="easyui-linkbutton" data-options="iconCls:\'icon-reload\'">清空</a>';
+    searchForm += '<a href="#" id="resetAdvanceSearchForm" data-toggle="topjui-linkbutton" data-options="iconCls:\'icon-reload\',btnCls:\'topjui-btn\'">清空</a>';
     searchForm += '<a href="#" id="submitAdvanceSearchForm" data-toggle="topjui-linkbutton" data-options="iconCls:\'icon-search\'">查询</a>';
-    searchForm += '<a href="#" id="closeAdvanceSearchDialog">关闭</a>';
+    searchForm += '<a href="#" id="closeAdvanceSearchDialog" data-toggle="topjui-linkbutton" data-options="btnCls:\'topjui-btn-danger\'">关闭</a>';
     searchForm += '</div>';
     getTabWindow().$('body').append(searchForm);
 
@@ -18673,6 +18674,7 @@ function searchHandler(options) {
     // 提交查询请求
     $('#submitAdvanceSearchForm').linkbutton({
         iconCls: 'fa fa-search',
+        btnCls: 'topjui-btn-warm',
         onClick: function () {
             var formDataArr = [];
             var formData = $("#" + options.dialog.id).serializeArray();
@@ -19842,7 +19844,7 @@ $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
                     if (!buttonsArr[i].handler) {
                         buttonsArr[i].handler = 'ajaxForm';
                     }
-                    buttonsDom += '<a href="#" data-toggle="topjui-linkbutton" data-options="menubuttonId:\'' + options.id + '\',handlerBefore:\'' + buttonsArr[i].handlerBefore + '\',handler:\'' + buttonsArr[i].handler + '\',dialog:{id:\'' + options.dialog.id + '\'},url:\'' + buttonsArr[i].url + '\',iconCls:\'' + buttonsArr[i].iconCls + '\'">' + buttonsArr[i].text + '</a>';
+                    buttonsDom += '<a href="#" data-toggle="topjui-linkbutton" data-options="menubuttonId:\'' + options.id + '\',handlerBefore:\'' + buttonsArr[i].handlerBefore + '\',handler:\'' + buttonsArr[i].handler + '\',dialog:{id:\'' + options.dialog.id + '\'},url:\'' + buttonsArr[i].url + '\',iconCls:\'' + buttonsArr[i].iconCls + '\',btnCls:\'' + buttonsArr[i].btnCls + '\'">' + buttonsArr[i].text + '</a>';
                 }
             }
         }
@@ -19851,7 +19853,7 @@ $.fn.numberspinner.defaults.height = defaultHeight;;(function ($) {
             dialogDom +
             '<div id="' + options.dialog.id + '-buttons" style="display:none">' +
             buttonsDom +
-            '<a href="#" data-toggle="topjui-linkbutton" data-options="iconCls:\'fa fa-close\'" onclick="javascript:$(\'#' + options.dialog.id + '\').dialog(\'close\')">关闭</a>' +
+            '<a href="#" data-toggle="topjui-linkbutton" data-options="iconCls:\'fa fa-close\',btnCls:\'topjui-btn-danger\'" onclick="javascript:$(\'#' + options.dialog.id + '\').dialog(\'close\')">关闭</a>' +
             '</div>'
         );
 
@@ -20991,6 +20993,7 @@ Array.prototype.remove = function (val) {
     $.fn.iLinkbutton = function (options) {
         var defaults = {
             iconCls: 'fa fa-cog',
+            btnCls: 'topjui-btn-normal',
             plain: false
         }
 

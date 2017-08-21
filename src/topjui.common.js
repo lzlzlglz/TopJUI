@@ -973,9 +973,9 @@ function searchHandler(options) {
     // 组合查询对话框
     var searchForm = '<form id="advanceSearchDialog"></form>';
     searchForm += '<div id="advanceSearchDialog-buttons" style="display:none">';
-    searchForm += '<a href="#" id="resetAdvanceSearchForm" data-toggle="easyui-linkbutton" data-options="iconCls:\'icon-reload\'">清空</a>';
+    searchForm += '<a href="#" id="resetAdvanceSearchForm" data-toggle="topjui-linkbutton" data-options="iconCls:\'icon-reload\',btnCls:\'topjui-btn\'">清空</a>';
     searchForm += '<a href="#" id="submitAdvanceSearchForm" data-toggle="topjui-linkbutton" data-options="iconCls:\'icon-search\'">查询</a>';
-    searchForm += '<a href="#" id="closeAdvanceSearchDialog">关闭</a>';
+    searchForm += '<a href="#" id="closeAdvanceSearchDialog" data-toggle="topjui-linkbutton" data-options="btnCls:\'topjui-btn-danger\'">关闭</a>';
     searchForm += '</div>';
     getTabWindow().$('body').append(searchForm);
 
@@ -995,6 +995,7 @@ function searchHandler(options) {
     // 提交查询请求
     $('#submitAdvanceSearchForm').linkbutton({
         iconCls: 'fa fa-search',
+        btnCls: 'topjui-btn-warm',
         onClick: function () {
             var formDataArr = [];
             var formData = $("#" + options.dialog.id).serializeArray();

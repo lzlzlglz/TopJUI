@@ -126,7 +126,7 @@
                     if (!buttonsArr[i].handler) {
                         buttonsArr[i].handler = 'ajaxForm';
                     }
-                    buttonsDom += '<a href="#" data-toggle="topjui-linkbutton" data-options="menubuttonId:\'' + options.id + '\',handlerBefore:\'' + buttonsArr[i].handlerBefore + '\',handler:\'' + buttonsArr[i].handler + '\',dialog:{id:\'' + options.dialog.id + '\'},url:\'' + buttonsArr[i].url + '\',iconCls:\'' + buttonsArr[i].iconCls + '\'">' + buttonsArr[i].text + '</a>';
+                    buttonsDom += '<a href="#" data-toggle="topjui-linkbutton" data-options="menubuttonId:\'' + options.id + '\',handlerBefore:\'' + buttonsArr[i].handlerBefore + '\',handler:\'' + buttonsArr[i].handler + '\',dialog:{id:\'' + options.dialog.id + '\'},url:\'' + buttonsArr[i].url + '\',iconCls:\'' + buttonsArr[i].iconCls + '\',btnCls:\'' + buttonsArr[i].btnCls + '\'">' + buttonsArr[i].text + '</a>';
                 }
             }
         }
@@ -135,7 +135,7 @@
             dialogDom +
             '<div id="' + options.dialog.id + '-buttons" style="display:none">' +
             buttonsDom +
-            '<a href="#" data-toggle="topjui-linkbutton" data-options="iconCls:\'fa fa-close\'" onclick="javascript:$(\'#' + options.dialog.id + '\').dialog(\'close\')">关闭</a>' +
+            '<a href="#" data-toggle="topjui-linkbutton" data-options="iconCls:\'fa fa-close\',btnCls:\'topjui-btn-danger\'" onclick="javascript:$(\'#' + options.dialog.id + '\').dialog(\'close\')">关闭</a>' +
             '</div>'
         );
 

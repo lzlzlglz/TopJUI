@@ -576,11 +576,11 @@
     background: #fafafa;
     background-repeat: repeat-x;
     border: 1px solid #bbb;
-    background: -webkit-linear-gradient(top, #ffffff 0, #eeeeee 100%);
+    /*background: -webkit-linear-gradient(top, #ffffff 0, #eeeeee 100%);
     background: -moz-linear-gradient(top, #ffffff 0, #eeeeee 100%);
     background: -o-linear-gradient(top, #ffffff 0, #eeeeee 100%);
     background: linear-gradient(to bottom, #ffffff 0, #eeeeee 100%);
-    background-repeat: repeat-x;
+    background-repeat: repeat-x;*/
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#eeeeee, GradientType=0);
     -moz-border-radius: 2px 2px 2px 2px;
     -webkit-border-radius: 2px 2px 2px 2px;

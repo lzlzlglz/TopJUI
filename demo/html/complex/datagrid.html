@@ -93,12 +93,12 @@
            height:350,
            href:contextPath + '/html/complex/add.html',
            buttonsGroup:[
-               {text:'保存',url:contextPath + '/json/response/success.json',iconCls:'fa fa-plus',handler:'ajaxForm'}
+               {text:'保存',url:contextPath + '/json/response/success.json',iconCls:'fa fa-plus',handler:'ajaxForm',btnCls:'topjui-btn-normal'}
            ]
        }">新增</a>
-    <a href="javascript:void(0)" class="topjui-btn"
+    <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
-       data-options="clickEvent:'openDialog',
+       data-options="clickEvent:'openDialog',btnCls:'topjui-btn',
        iconCls:'fa fa-pencil',
        dialog:{
            id:'articleEditDialog',
@@ -106,28 +106,28 @@
            href:contextPath + '/html/complex/edit.html?uuid={uuid}',
            url:contextPath + '/json/product/detail.json?uuid={uuid}',
            buttonsGroup:[
-               {text:'更新',url:contextPath + '/json/response/success.json',iconCls:'fa fa-save',handler:'ajaxForm'}
+               {text:'更新',url:contextPath + '/json/response/success.json',iconCls:'fa fa-save',handler:'ajaxForm',btnCls:'topjui-btn'}
            ]
        }">编辑</a>
-    <a href="javascript:void(0)" class="topjui-btn-normal"
+    <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
-       data-options="clickEvent:'doAjax',
+       data-options="clickEvent:'doAjax',btnCls:'topjui-btn-normal',
        iconCls:'fa fa-trash',
        url:contextPath + '/json/response/success.json',
        grid: {uncheckedMsg:'请先勾选要删除的数据',param:'uuid:uuid,code:code'}">删除</a>
-    <a href="javascript:void(0)" class="topjui-btn-warm"
+    <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
-       data-options="clickEvent:'filter'">过滤</a>
-    <a href="javascript:void(0)" class="topjui-btn-danger"
+       data-options="clickEvent:'filter',btnCls:'topjui-btn-warm'">过滤</a>
+    <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
-       data-options="clickEvent:'search'">查询</a>
-    <a href="javascript:void(0)" class="topjui-btn"
+       data-options="clickEvent:'search',btnCls:'topjui-btn-danger'">查询</a>
+    <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
-       data-options="clickEvent:'export',
+       data-options="clickEvent:'export',btnCls:'topjui-btn',
        url:contextPath + '/json/response/export.html'">导出</a>
-    <a href="javascript:void(0)" class="topjui-btn-normal"
+    <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
-       data-options="clickEvent:'openTab',
+       data-options="clickEvent:'openTab',btnCls:'topjui-btn-normal',
        tab:{
            title:'这是新的Tab窗口',
            href:contextPath + '/html/menu/openTab_index.html',

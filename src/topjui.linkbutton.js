@@ -3,6 +3,7 @@
     $.fn.iLinkbutton = function (options) {
         var defaults = {
             iconCls: 'fa fa-cog',
+            btnCls: 'topjui-btn-normal',
             plain: false
         }
 
