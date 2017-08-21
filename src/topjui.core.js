@@ -30,7 +30,7 @@ var defaultConfig = {
                 error: "error",
                 question: "question",
                 info: "info",
-                warning: "warning"
+                warning: "fa fa-info-circle fa-3x"
             }
         }
     },

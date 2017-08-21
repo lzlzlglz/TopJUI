@@ -4067,7 +4067,7 @@ $.messager={show:function(_2c7){
 return _2c1(_2c7);
 },alert:function(_2c8,msg,icon,fn){
 var opts=typeof _2c8=="object"?_2c8:{title:_2c8,msg:msg,icon:icon,fn:fn};
-var cls=opts.icon?"messager-icon messager-"+opts.icon:"";
+var cls=opts.icon?"messager-icon "+opts.icon:"";
 opts=$.extend({},$.messager.defaults,{content:"<div class=\""+cls+"\"></div>"+"<div>"+opts.msg+"</div>"+"<div style=\"clear:both;\"/>"},opts);
 if(!opts.buttons){
 opts.buttons=[{text:opts.ok,onClick:function(){
@@ -19212,7 +19212,7 @@ $.fn.serializeObject = function () {
                 error: "error",
                 question: "question",
                 info: "info",
-                warning: "warning"
+                warning: "fa fa-info-circle fa-3x"
             }
         }
     },
