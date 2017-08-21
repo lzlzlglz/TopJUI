@@ -19,7 +19,6 @@ $(window).load(function () {
 });
 
 $(function () {
-
     //监听右键事件，创建右键菜单
     $('#index_tabs').tabs({
         onContextMenu: function (e, title, index) {

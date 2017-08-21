@@ -85,7 +85,7 @@ function loadMask() {
     html += '</div>';
     html += '</div>';
     html += '</div>';
-    getTabWindow().$('body').append(html);
+    $('body').append(html);
 }
 // 隐藏加载层
 function hiddenMask() {
